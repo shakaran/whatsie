@@ -1,5 +1,8 @@
 # Quick Reference: Building Whatsie with CMake
 
+> Whatsie builds with **CMake** (Ninja generator recommended). There is no
+> `Makefile` wrapper — all commands below drive CMake directly.
+
 ## TL;DR - Getting Started in 30 seconds
 
 ```bash
@@ -7,116 +10,121 @@
 git clone https://github.com/keshavbhatt/whatsie.git
 cd whatsie
 
-# Build (Release mode)
-make build-release
+# Initialise the bundled libnotify-qt submodule
+git submodule update --init --recursive
+
+# Configure + build (Release mode)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
 
 # Run
 ./build/whatsie
 
 # Install to system (optional)
-make install
+cmake --install build          # uses the configured CMAKE_INSTALL_PREFIX
 ```
 
 ## Common Commands
 
+### Configuring
+
+```bash
+# Release (optimized)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+# Debug
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+
+# Choose the install prefix at configure time (baked into the build)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX="$HOME/.local"
+
+# Use a different build directory
+cmake -S . -B mybuild -G Ninja -DCMAKE_BUILD_TYPE=Release
+```
+
 ### Building
 
 ```bash
-# Debug build
-make build-debug
+# Build (parallel, auto-detects cores)
+cmake --build build --parallel
 
-# Release build (optimized)
-make build-release
+# Build with a fixed number of jobs
+cmake --build build -j8
 
-# Just configure (don't build)
-CMAKE_BUILD_TYPE=Release make configure
+# Incremental rebuild after editing sources — same command
+cmake --build build --parallel
 
-# Build with specific number of threads
-JOBS=8 make build-release
-
-# Build in custom directory
-BUILD_DIR=mybuild make build-release
+# Or invoke Ninja directly inside the build dir
+ninja -C build
 ```
 
 ### Running
 
 ```bash
-# Run from build directory
-make run
-
-# Run directly
+# Run from the build directory
 ./build/whatsie
 
-# Run from system (after install)
+# Run from the system (after install, if prefix/bin is on PATH)
 whatsie
 ```
 
 ### Installation & Uninstallation
 
 ```bash
-# Install to /usr/local (default, doesn't need sudo)
-make install
+# Install using the prefix chosen at configure time
+cmake --install build
 
-# Install to /usr (needs sudo for most systems)
-INSTALL_PREFIX=/usr make install
+# Install system-wide to /usr (needs sudo; must have configured with that prefix)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+cmake --build build --parallel
+sudo cmake --install build
 
-# Or manually:
-cd build && sudo cmake --install . --prefix /usr
-
-# To uninstall (manual cleanup needed as CMake doesn't track uninstall):
-sudo rm /usr/bin/whatsie
-sudo rm -r /usr/share/org.keshavnrj.ubuntu/WhatSie/
-# ... etc
+# Uninstall (CMake records installed files in the manifest):
+xargs rm -v < build/install_manifest.txt
 ```
+
+> **Note:** `CMAKE_INSTALL_PREFIX` is resolved into absolute install paths at
+> **configure** time. Passing `--prefix` to `cmake --install` after configuring
+> with a different prefix will *not* take effect — reconfigure instead.
 
 ### Cleaning
 
 ```bash
 # Remove all build artifacts
-make clean
-
-# Or manually
 rm -rf build/
 ```
 
-## Direct CMake Commands (Without Makefile)
+## Supported CMake Options
+
+- `CMAKE_BUILD_TYPE`: `Debug` or `Release` (default: `Release`)
+- `CMAKE_INSTALL_PREFIX`: installation prefix (default: `/usr/local`)
+- `FLATPAK_BUILD`: skip spell-check dictionary compilation (`ON`/`OFF`, default: `OFF`)
+- `-G <generator>`: build system generator (`Ninja` recommended, or `"Unix Makefiles"`)
 
 ```bash
-# Create build directory
-mkdir build && cd build
+# Flatpak build (no dictionary compilation)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DFLATPAK_BUILD=ON
 
-# Configure for Release
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
+# Use Unix Makefiles instead of Ninja
+cmake -S . -B build -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
 
-# Configure for Debug
-cmake -DCMAKE_BUILD_TYPE=Debug ..
-
-# Build with Ninja
-ninja
-
-# Build with Make
-cmake --build . --parallel 4
-
-# Install
-ninja install
-# or
-cmake --install . --config Release --prefix /usr/local
+# All options together
+cmake -S . -B build -G Ninja \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=/usr \
+      -DFLATPAK_BUILD=OFF
 ```
 
 ## Environment Variables
 
 ```bash
-# Set default build type
-export CMAKE_BUILD_TYPE=Release
-
-# Set default install prefix
-export INSTALL_PREFIX=/usr
-
-# Set default number of build jobs
-export JOBS=8
-
-# Set Qt path (if not in standard location)
+# Point CMake at a non-standard Qt6 install
 export CMAKE_PREFIX_PATH=/path/to/qt6/lib/cmake
+
+# Speed up rebuilds with ccache
+cmake -S . -B build -G Ninja -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
 ```
 
 ## IDE Usage
@@ -129,36 +137,16 @@ export CMAKE_PREFIX_PATH=/path/to/qt6/lib/cmake
 5. Ctrl+B to build
 
 ### VS Code
-1. Install "CMake" extension
-2. Install "CMake Tools" extension
-3. Open folder containing `CMakeLists.txt`
-4. Select a kit when prompted
-5. F7 to build
+1. Install the "CMake Tools" extension
+2. Open the folder containing `CMakeLists.txt`
+3. Select a kit when prompted
+4. F7 to build
 
 ### CLion
-1. Open project folder
-2. CLion auto-detects CMakeLists.txt
-3. Configure build configuration in preferences
+1. Open the project folder
+2. CLion auto-detects `CMakeLists.txt`
+3. Configure the build profile in preferences
 4. Ctrl+Shift+F10 to build and run
-
-## Build Options
-
-```bash
-# Flatpak build (no dictionary compilation)
-cmake -DFLATPAK_BUILD=ON ..
-
-# Use Unix Makefiles instead of Ninja
-cmake -G "Unix Makefiles" ..
-
-# Set custom installation prefix
-cmake -DCMAKE_INSTALL_PREFIX=$HOME/.local ..
-
-# All together
-cmake -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_PREFIX=/usr \
-      -DFLATPAK_BUILD=OFF \
-      -G Ninja ..
-```
 
 ## Troubleshooting Quick Tips
 
@@ -166,9 +154,10 @@ cmake -DCMAKE_BUILD_TYPE=Release \
 |---------|----------|
 | Qt6 not found | `export CMAKE_PREFIX_PATH=/usr/lib/cmake/Qt6` |
 | Ninja not found | `sudo apt install ninja-build` |
-| Permission denied on install | Add `sudo` or use prefix in home dir |
-| qwebengine_convert_dict missing | Ignore warning or use `-DFLATPAK_BUILD=ON` |
-| Build fails with C++ errors | Update compiler: `sudo apt install build-essential` |
+| `notify-qt` submodule missing | `git submodule update --init --recursive` |
+| Permission denied on install | Reconfigure with `-DCMAKE_INSTALL_PREFIX=$HOME/.local` (no sudo) |
+| `qwebengine_convert_dict` missing | Ignore the warning or configure with `-DFLATPAK_BUILD=ON` |
+| Build fails with C++ errors | Update the compiler: `sudo apt install build-essential` |
 
 ## Build Output Locations
 
@@ -177,20 +166,20 @@ build/
 ├── whatsie                      # Main executable
 ├── CMakeFiles/                  # CMake temporary files
 ├── cmake_install.cmake          # Installation script
+├── install_manifest.txt         # List of installed files (after install)
 ├── compile_commands.json        # For IDE language servers
 └── qtwebengine_dictionaries/    # Compiled spell-check dicts (if built)
 ```
 
 ## Performance Tips
 
-- Use **Ninja** instead of Make (faster)
-- Use **Release** build for production (`CMAKE_BUILD_TYPE=Release`)
-- Use **-j flag** to parallelize: `JOBS=16 make build-release`
-- Use **ccache** for faster rebuilds: `cmake -DCMAKE_C_COMPILER_LAUNCHER=ccache ..`
+- Use **Ninja** instead of Unix Makefiles (faster incremental builds)
+- Use a **Release** build for production (`-DCMAKE_BUILD_TYPE=Release`)
+- Parallelise explicitly with `-j`: `cmake --build build -j16`
+- Use **ccache** for faster rebuilds: `-DCMAKE_CXX_COMPILER_LAUNCHER=ccache`
 
 ## Version & Build Info
 
-Check version and build information:
 ```bash
 ./build/whatsie --version
 ./build/whatsie --build-info
@@ -200,33 +189,27 @@ Check version and build information:
 
 1. **Initial setup**:
    ```bash
-   make build-debug
+   git submodule update --init --recursive
+   cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+   cmake --build build --parallel
    ```
 
 2. **Iterative development**:
    ```bash
-   # Make source code changes
-   make build          # Rebuild incrementally
-   make run            # Test changes
+   # edit sources, then rebuild incrementally
+   cmake --build build --parallel
+   ./build/whatsie
    ```
 
 3. **Before committing**:
    ```bash
-   make clean
-   make build-release
-   ./build/whatsie     # Final test
-   ```
-
-4. **Installation testing**:
-   ```bash
-   make install
-   whatsie             # Test from any directory
+   rm -rf build
+   cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+   cmake --build build --parallel
+   ./build/whatsie     # final test
    ```
 
 ## Further Help
 
-- `make help` - Show all available targets
-- `CMAKE_MIGRATION.md` - Detailed migration guide
-- `MIGRATION_SUMMARY.md` - Complete feature summary
-- `CMakeLists.txt` - Source configuration (well-commented)
-
+- [`CMAKE_MIGRATION.md`](CMAKE_MIGRATION.md) — detailed qmake → CMake migration guide
+- `CMakeLists.txt` — source configuration (well-commented)

@@ -5,9 +5,12 @@ This document outlines the migration from qmake to CMake for building Whatsie wi
 
 ## Prerequisites
 - CMake 3.24 or later
-- Qt6 (6.0 or later) with development packages
+- Qt6 (6.10 or later) with development packages
 - Ninja build tool (optional but recommended)
 - C++17 compatible compiler (GCC 7+, Clang 5+, or MSVC 2017+)
+
+> The build bundles `libnotify-qt` as a git submodule. After cloning, run
+> `git submodule update --init --recursive` before configuring.
 
 ### Install build dependencies on Ubuntu/Debian:
 ```bash

@@ -61,7 +61,7 @@ Options:
 
 ### Requirements
  - git, cmake >= 3.24, ninja-build
- - Qt6 >= 6.0 (qt6-base-dev, qt6-webengine-dev, qt6-positioning-dev)
+ - Qt6 >= 6.10 (qt6-base-dev, qt6-webengine-dev, qt6-positioning-dev)
  - C++17 compiler (GCC 7+, Clang 5+)
  - libx11-dev
 
@@ -86,32 +86,60 @@ sudo pacman -S cmake ninja qt6-base qt6-webengine qt6-positioning
 
 ### Build & Run
 
+The project uses CMake (with the Ninja generator) and bundles `libnotify-qt`
+as a git submodule, so remember to initialise submodules after cloning.
+
 ```bash
 git clone https://github.com/keshavbhatt/whatsie.git
 cd whatsie
-make build-release
+git submodule update --init --recursive
+
+# Configure and build (Release)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
+
+# Run
 ./build/whatsie
 ```
 
 ### Install (Optional)
 
-```bash
-# Install to /usr/local
-make install
+The install prefix is baked in at configure time, so set
+`CMAKE_INSTALL_PREFIX` when configuring, then install.
 
-# OR install system-wide to /usr
-sudo make install INSTALL_PREFIX=/usr
+```bash
+# Install into your home (no sudo, ~/.local/bin is usually on PATH)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$HOME/.local"
+cmake --build build --parallel
+cmake --install build
+
+# OR install system-wide to /usr (needs sudo)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr
+cmake --build build --parallel
+sudo cmake --install build
 ```
 
 ### Common Build Commands
 
 ```bash
-make build-release    # Build in Release mode
-make build-debug      # Build in Debug mode
-make install          # Install to /usr/local
-make run              # Run the built executable
-make clean            # Clean build artifacts
-make help             # Show all available targets
+# Debug build
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build --parallel
+
+# Rebuild incrementally (after editing sources)
+cmake --build build --parallel
+
+# Build with a fixed number of jobs
+cmake --build build -j8
+
+# Clean build artifacts
+rm -rf build
+
+# Show version / build info
+./build/whatsie --version
+./build/whatsie --build-info
 ```
 
 ### Troubleshooting
@@ -119,11 +147,13 @@ make help             # Show all available targets
 | Problem | Solution |
 |---------|----------|
 | CMake not found | `sudo apt install cmake` |
-| Qt6 not found | `sudo apt install qt6-base-dev qt6-webengine-dev` |
+| Qt6 not found | `sudo apt install qt6-base-dev qt6-webengine-dev` (or `export CMAKE_PREFIX_PATH=/usr/lib/cmake/Qt6`) |
 | Ninja not found | `sudo apt install ninja-build` |
-| Permission denied | `make install INSTALL_PREFIX=~/.local` |
+| `notify-qt` submodule missing | `git submodule update --init --recursive` |
+| Permission denied on install | Reconfigure with `-DCMAKE_INSTALL_PREFIX=$HOME/.local` (no sudo) |
 
-For detailed build instructions, see `BUILD_QUICK_REFERENCE.md`
+For detailed build instructions, see [`DOCS/BUILD_QUICK_REFERENCE.md`](DOCS/BUILD_QUICK_REFERENCE.md)
+and [`DOCS/CMAKE_MIGRATION.md`](DOCS/CMAKE_MIGRATION.md).
 
 
 
