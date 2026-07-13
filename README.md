@@ -8,6 +8,34 @@ Feature rich WhatsApp web client based on Qt WebEngine for Linux and Windows Des
 > **Keshav Bhatt**, which remains MIT-licensed. All upstream copyright and
 > authorship is preserved — see [LICENSE](LICENSE).
 
+## What's new in this fork
+
+On top of upstream WhatSie, this fork adds:
+
+- **Windows 10+ support** from a single codebase — platform-specific pieces are
+  behind `Q_OS_*` guards, so Linux behaviour is unchanged. Native toast
+  notifications, Win32 Caps Lock detection and a GUI-subsystem executable with
+  icon/version resources. Every push is compile-checked by a Windows CI workflow.
+- **Connection watchdog** — WhatsApp Web's WebSocket can die or freeze, leaving
+  the app stuck on *"Connecting…"* with messages that never send. A health probe
+  now detects it and reloads the page automatically, capped at 3 attempts per
+  hang so an unfixable cause (no disk space, network down) never turns into a
+  reload loop.
+- **Self-updating User-Agent** — the reported Chrome version is derived from the
+  bundled Chromium instead of being hardcoded, so it can no longer go stale and
+  get the client treated as an outdated browser. It follows Qt WebEngine upgrades
+  automatically.
+- **"Identify as WhatSie in linked devices"** — linked sessions show up on your
+  phone as *"WhatSie for Linux"* (or the matching platform) instead of a generic
+  *"Google Chrome (Linux)"*. Applies to devices linked afterwards.
+- **"Close emoji/sticker panel when clicking outside"** (opt-in) — WhatsApp Web
+  otherwise keeps the expressions panel open until its button is pressed again.
+- **Quit actually quits** — since Qt 6.3 the minimize-to-tray veto cancelled the
+  quit, so tray *Quit* / <kbd>Ctrl</kbd>+<kbd>Q</kbd> minimised the window
+  instead of closing the app when it was visible.
+- **Build docs that match reality** — the documented `make build-release` wrapper
+  never existed; the build is plain CMake + Ninja (see below).
+
 ## Whatsie Key features
 
 - Light and Dark Themes with automatic switching
@@ -39,6 +67,8 @@ Feature rich WhatsApp web client based on Qt WebEngine for Linux and Windows Des
 	+ Configurable page zoom factor, switching based on window state maximized on normal 
 	+ Configurable App User Agent
 	+ Application Storage management, lets you clean residual cache and persistent data
+	+ Close emoji/sticker panel when clicking outside (opt-in)
+	+ Identify as WhatSie in linked devices, instead of a generic browser name
 
 ## Command line options:
 Comes with general CLI support, with a bunch of options that let you interact with already running instances of Whatsie.
