@@ -295,10 +295,22 @@ void WebEnginePage::handleSelectClientCertificate(
 void WebEnginePage::javaScriptConsoleMessage(
     WebEnginePage::JavaScriptConsoleMessageLevel level, const QString &message,
     int lineId, const QString &sourceId) {
-  Q_UNUSED(level);
-  Q_UNUSED(message);
-  Q_UNUSED(lineId);
-  Q_UNUSED(sourceId);
+  // The page's console used to be discarded outright, which made anything only
+  // WhatsApp Web can see — a failed paste, a blocked request — impossible to
+  // diagnose from a bug report. Surface warnings and errors; the chattier
+  // levels are compiled out of release builds by QT_NO_DEBUG_OUTPUT.
+  const QString where = QStringLiteral("%1:%2").arg(sourceId).arg(lineId);
+  switch (level) {
+  case QWebEnginePage::ErrorMessageLevel:
+    qWarning().noquote() << "[js error]" << where << message;
+    break;
+  case QWebEnginePage::WarningMessageLevel:
+    qWarning().noquote() << "[js warn]" << where << message;
+    break;
+  default:
+    qDebug().noquote() << "[js]" << where << message;
+    break;
+  }
 }
 
 void WebEnginePage::injectPreventScrollWheelZoomHelper() {
