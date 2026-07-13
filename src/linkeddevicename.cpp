@@ -47,8 +47,9 @@ static const char kScriptTemplate[] = R"JS(
     if (window.__whatsieLinkedDeviceNameHooked) return;
     try {
       if (typeof window.require === 'function') {
+        var modules = window.require('__debug').modulesMap;
         // Current builds: bare-function module, patched via the registry.
-        var rec = window.require('__debug').modulesMap['WAWebBrowserInfo'];
+        var rec = modules['WAWebBrowserInfo'];
         if (rec && typeof rec.defaultExport === 'function') {
           var wrapped = wrap(rec.defaultExport);
           rec.defaultExport = wrapped;
@@ -57,12 +58,17 @@ static const char kScriptTemplate[] = R"JS(
           window.__whatsieLinkedDeviceNameHooked = true;
           return;
         }
-        // Older builds: plain export on WAWebMiscBrowserUtils.
-        var mod = window.require('WAWebMiscBrowserUtils');
-        if (mod && typeof mod.info === 'function') {
-          mod.info = wrap(mod.info);
-          window.__whatsieLinkedDeviceNameHooked = true;
-          return;
+        // Older builds: plain export on WAWebMiscBrowserUtils. Ask the registry
+        // first — require()ing a module WhatsApp does not have throws, and it
+        // logs "Requiring unknown module" to the console before it does, once
+        // per retry. Current builds no longer ship it at all.
+        if (modules['WAWebMiscBrowserUtils']) {
+          var mod = window.require('WAWebMiscBrowserUtils');
+          if (mod && typeof mod.info === 'function') {
+            mod.info = wrap(mod.info);
+            window.__whatsieLinkedDeviceNameHooked = true;
+            return;
+          }
         }
       }
     } catch (e) { /* module not registered yet — retry */ }
