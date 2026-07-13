@@ -69,6 +69,11 @@ inline QString questionForPermission(const QWebEnginePermission &permission) {
         "Allow %1 to capture audio and video of your desktop?");
   case QWebEnginePermission::PermissionType::Notifications:
     return WebEnginePage::tr("Allow %1 to show notification on your desktop?");
+  case QWebEnginePermission::PermissionType::ClipboardReadWrite:
+    return WebEnginePage::tr("Allow %1 to read your clipboard? This is needed to "
+                             "paste images into a chat.");
+  case QWebEnginePermission::PermissionType::LocalFontsAccess:
+    return WebEnginePage::tr("Allow %1 to see the fonts installed on your system?");
   default:
     return QString();
   }
@@ -96,15 +101,22 @@ void WebEnginePage::handlePermissionRequested(QWebEnginePermission permission) {
 
   if (SettingsManager::instance().settings().value(permissionTypeStr, false).toBool()) {
     permission.grant();
+  } else if (question.isEmpty()) {
+    // No wording for this type, so we cannot ask. Deny it, but do NOT persist
+    // that denial: writing an answer the user was never asked for is what used
+    // to silently and permanently disable permissions we simply had no case
+    // for — clipboard reads among them. Leaving the key unset means a future
+    // build that knows how to ask will still ask.
+    qWarning() << "Denying permission type with no prompt:"
+               << static_cast<int>(permission.permissionType());
+    permission.deny();
+  } else if (QMessageBox::question(view()->window(), title, question) ==
+             QMessageBox::Yes) {
+    permission.grant();
+    SettingsManager::instance().settings().setValue(permissionTypeStr, true);
   } else {
-    if (!question.isEmpty() &&
-        QMessageBox::question(view()->window(), title, question) == QMessageBox::Yes) {
-      permission.grant();
-      SettingsManager::instance().settings().setValue(permissionTypeStr, true);
-    } else {
-      permission.deny();
-      SettingsManager::instance().settings().setValue(permissionTypeStr, false);
-    }
+    permission.deny();
+    SettingsManager::instance().settings().setValue(permissionTypeStr, false);
   }
   SettingsManager::instance().settings().endGroup();
 }

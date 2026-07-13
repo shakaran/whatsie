@@ -62,6 +62,35 @@ static void migrateLegacyUserData() {
   migrate(QStandardPaths::GenericDataLocation);   // WebEngine profile / session
 }
 
+// Permission types we had no prompt for were denied outright and the denial was
+// written to the settings, so they stayed denied forever even once we learned
+// how to ask. Clipboard reads were the casualty: WhatsApp Web could not read an
+// image out of the clipboard, and pasting failed with "1 image you tried adding
+// has no content". Drop those stored denials once so they are asked properly.
+// A user who then answers "no" keeps that answer — this only clears the ones
+// nobody was ever asked about.
+static void clearSilentlyDeniedPermissions() {
+  QSettings &s = SettingsManager::instance().settings();
+  if (s.value(QStringLiteral("permissionPromptsFixed"), false).toBool())
+    return;
+
+  const QList<QWebEnginePermission::PermissionType> previouslyUnprompted = {
+      QWebEnginePermission::PermissionType::ClipboardReadWrite,
+      QWebEnginePermission::PermissionType::LocalFontsAccess,
+  };
+
+  s.beginGroup(QStringLiteral("permissions"));
+  for (const auto type : previouslyUnprompted) {
+    const QString key = QString::number(static_cast<int>(type));
+    if (s.contains(key) && !s.value(key).toBool()) {
+      qInfo() << "Clearing permission denial that was never asked for:" << key;
+      s.remove(key);
+    }
+  }
+  s.endGroup();
+  s.setValue(QStringLiteral("permissionPromptsFixed"), true);
+}
+
 // Must run before QApplication is created so Qt WebEngine picks these up.
 static void setChromiumFlags() {
   if (!qEnvironmentVariableIsEmpty("QTWEBENGINE_CHROMIUM_FLAGS"))
@@ -136,6 +165,7 @@ int main(int argc, char *argv[]) {
   // session). Carry the old data over on first run so users are not silently
   // logged out.
   migrateLegacyUserData();
+  clearSilentlyDeniedPermissions();
 
 
   QCommandLineParser parser;
