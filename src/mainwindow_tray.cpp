@@ -4,7 +4,6 @@
 
 #include <algorithm>
 
-#include <QShortcut>
 #include <QStyleHints>
 
 // ── Actions ──────────────────────────────────────────────────────────────────
@@ -22,12 +21,12 @@ void MainWindow::createActions() {
   addAction(m_fullscreenAction);
 
   m_minimizeAction = new QAction(tr("Mi&nimize to tray"), this);
+  // Carried by the action itself rather than a detached QShortcut, so the
+  // shortcut sheet can read it back instead of hardcoding the key.
+  m_minimizeAction->setShortcut(QKeySequence(Qt::Modifier::CTRL | Qt::Key_W));
+  m_minimizeAction->setAutoRepeat(false);
   connect(m_minimizeAction, &QAction::triggered, this, &QMainWindow::hide);
   addAction(m_minimizeAction);
-
-  QShortcut *minimizeShortcut = new QShortcut(
-      QKeySequence(Qt::Modifier::CTRL | Qt::Key_W), this, SLOT(hide()));
-  minimizeShortcut->setAutoRepeat(false);
 
   m_restoreAction = new QAction(tr("&Restore"), this);
   connect(m_restoreAction, &QAction::triggered, this, &QMainWindow::show);
