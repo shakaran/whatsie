@@ -44,10 +44,20 @@ public slots:
 protected slots:
   void closeEvent(QCloseEvent *event) override;
   void resizeEvent(QResizeEvent *event) override;
+  void moveEvent(QMoveEvent *event) override;
+  void showEvent(QShowEvent *event) override;
   void changeEvent(QEvent *e) override;
 
 private:
   const QIcon getTrayIcon(const int &notificationCount) const;
+  // Qt's saveGeometry() cannot be trusted while the window is maximized (see
+  // saveWindowGeometry), so the normal geometry is tracked by hand.
+  void trackNormalGeometry();
+  void saveWindowGeometry();
+  QRect m_normalGeometry;
+  QTimer *m_normalGeometryTimer = nullptr;
+  bool m_restoreMaximized = false;
+  bool m_geometryRestored = false;
   void createActions();
   void createTrayIcon();
   void createWebEngine();

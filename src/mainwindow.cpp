@@ -56,27 +56,119 @@ MainWindow::~MainWindow() { m_webEngine->deleteLater(); }
 
 // ── Window geometry ───────────────────────────────────────────────────────────
 
+// Qt's saveGeometry() is not usable while the window is maximized: on Wayland
+// normalGeometry() then reports the *maximized* rectangle, so the blob records
+// "maximized, and the size to restore down to is the maximized size". Restoring
+// that on the next run left the window maximized from the very first frame,
+// having never been in a normal state, so the compositor — which decides the
+// restore-down size on Wayland — had nothing to go back to and the button did
+// nothing. Track the normal geometry ourselves instead, and on startup show the
+// window normal first and maximize afterwards, so the compositor learns the
+// size to restore to. (Reproduced with a bare QMainWindow: it is a Qt/Wayland
+// behaviour, not something this app causes.)
+void MainWindow::trackNormalGeometry() {
+  if (!isVisible() || isMaximized() || isFullScreen() || isMinimized())
+    return;
+
+  // On Wayland the resize to the maximized size arrives *before* the maximized
+  // flag flips, so right now the window can look like a normal window that
+  // happens to be screen-sized — and recording that would store the maximized
+  // rectangle as the normal one, the very corruption this exists to avoid. Let
+  // the geometry settle and check the state again before believing it.
+  if (!m_normalGeometryTimer) {
+    m_normalGeometryTimer = new QTimer(this);
+    m_normalGeometryTimer->setSingleShot(true);
+    m_normalGeometryTimer->setInterval(250);
+    connect(m_normalGeometryTimer, &QTimer::timeout, this, [this]() {
+      if (isVisible() && !isMaximized() && !isFullScreen() && !isMinimized())
+        m_normalGeometry = geometry();
+    });
+  }
+  m_normalGeometryTimer->start();
+}
+
+void MainWindow::saveWindowGeometry() {
+  QSettings &settings = SettingsManager::instance().settings();
+  const bool maximized = isMaximized() || isFullScreen();
+
+  // Last line of defence: never persist the maximized rectangle as the normal
+  // geometry. If it slipped through anyway, keep whatever was stored before
+  // rather than write a value that leaves restore-down with nowhere to go.
+  const bool looksLikeTheMaximizedRect = maximized && m_normalGeometry == geometry();
+  if (m_normalGeometry.isValid() && !looksLikeTheMaximizedRect)
+    settings.setValue("normalGeometry", m_normalGeometry);
+
+  settings.setValue("wasMaximized", maximized);
+}
+
 void MainWindow::restoreMainWindow() {
-  if (SettingsManager::instance().settings().value("geometry").isValid()) {
-    restoreGeometry(
-        SettingsManager::instance().settings().value("geometry").toByteArray());
-    QPoint pos = QCursor::pos();
-    for (auto screen : QGuiApplication::screens()) {
-      QRect screenRect = screen->geometry();
-      if (screenRect.contains(pos)) {
-        move(screenRect.center() - rect().center());
+  QSettings &settings = SettingsManager::instance().settings();
+
+  const QRect normalGeometry = settings.value("normalGeometry").toRect();
+  if (normalGeometry.isValid()) {
+    m_normalGeometry = normalGeometry;
+    setGeometry(normalGeometry);
+    // Applied once the window is on screen, not here: it has to be mapped in
+    // its normal state first for the restore-down size to be remembered.
+    m_restoreMaximized = settings.value("wasMaximized", false).toBool();
+    return;
+  }
+
+  // Installs that predate the keys above still have Qt's blob.
+  if (settings.value("geometry").isValid()) {
+    restoreGeometry(settings.value("geometry").toByteArray());
+
+    if (isMaximized() || isFullScreen()) {
+      // A blob saved while maximized carries the maximized rectangle as its
+      // normal geometry, so there is no previous size left in it to recover.
+      // Come up normal at the default size and maximize after mapping: without
+      // this the window would stay stuck maximized, and — never having been in
+      // a normal state — would never record a normal geometry to save either,
+      // so it could not heal on its own.
+      setWindowState(windowState() &
+                     ~(Qt::WindowMaximized | Qt::WindowFullScreen));
+      resize(800, 684);
+      m_restoreMaximized = true;
+    }
+
+    if (!m_restoreMaximized) {
+      QPoint pos = QCursor::pos();
+      for (auto screen : QGuiApplication::screens()) {
+        QRect screenRect = screen->geometry();
+        if (screenRect.contains(pos)) {
+          move(screenRect.center() - rect().center());
+        }
       }
     }
+    m_normalGeometry = geometry();
   } else {
     resize(800, 684);
   }
 }
 
+void MainWindow::showEvent(QShowEvent *event) {
+  QMainWindow::showEvent(event);
+  if (m_geometryRestored)
+    return;
+  m_geometryRestored = true;
+  if (!m_restoreMaximized)
+    return;
+  // Queued, so the window is actually mapped at its normal size before the
+  // compositor is asked to maximize it.
+  QTimer::singleShot(0, this, [this]() { showMaximized(); });
+}
+
 void MainWindow::resizeEvent(QResizeEvent *event) {
   QMainWindow::resizeEvent(event);
+  trackNormalGeometry();
   if (!m_lockWidget || event->size() == event->oldSize())
     return;
   m_lockWidget->resize(size());
+}
+
+void MainWindow::moveEvent(QMoveEvent *event) {
+  QMainWindow::moveEvent(event);
+  trackNormalGeometry();
 }
 
 // ── Window state & zoom ───────────────────────────────────────────────────────
@@ -385,7 +477,7 @@ void MainWindow::notificationClicked() {
 // ── Lifecycle events ──────────────────────────────────────────────────────────
 
 void MainWindow::closeEvent(QCloseEvent *event) {
-  SettingsManager::instance().settings().setValue("geometry", saveGeometry());
+  saveWindowGeometry();
   getPageTheme();
   QTimer::singleShot(500, m_settingsWidget,
                      [=]() { m_settingsWidget->refresh(); });
@@ -406,7 +498,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 
 void MainWindow::quitApp() {
   m_isQuitting = true;
-  SettingsManager::instance().settings().setValue("geometry", saveGeometry());
+  saveWindowGeometry();
   getPageTheme();
   // Give the async getPageTheme() call above time to land before quitting.
   QTimer::singleShot(500, this, [=]() { qApp->quit(); });
