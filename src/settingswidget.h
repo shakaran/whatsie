@@ -22,6 +22,7 @@ signals:
   void userAgentChanged(QString userAgentStr);
   void initLock();
   void changeLockPassword();
+  void linkedDeviceNameChanged();
   void notificationPopupTimeOutChanged();
   void webTweaksChanged();
   void notify(QString message);
@@ -64,6 +65,7 @@ private slots:
   void on_chnageCurrentPasswordPushButton_clicked();
   void on_closeButtonActionComboBox_currentIndexChanged(int index);
   void on_defaultUserAgentButton_clicked();
+  void on_identifyInLinkedDevicesCheckBox_toggled(bool checked);
   void on_minimizeOnTrayIconClick_toggled(bool checked);
   void on_muteAudioCheckBox_toggled(bool checked);
   void on_dismissEmojiPanelCheckBox_toggled(bool checked);

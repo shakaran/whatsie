@@ -1,5 +1,6 @@
 #include "webengineprofilemanager.h"
 #include "common.h"
+#include "linkeddevicename.h"
 #include "settingsmanager.h"
 #include "webtweaks.h"
 
@@ -161,4 +162,5 @@ void WebEngineProfileManager::applyUserSettings() {
         s.value(QStringLiteral("autoPlayMedia"), false).toBool());
 
     WebTweaks::install(m_profile);
+    LinkedDeviceName::install(m_profile);
 }

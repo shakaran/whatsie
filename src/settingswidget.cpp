@@ -90,6 +90,11 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
           .settings()
           .value("webtweaks/dismissExpressionsPanel", false)
           .toBool());
+  ui->identifyInLinkedDevicesCheckBox->setChecked(
+      SettingsManager::instance()
+          .settings()
+          .value("identifyInLinkedDevices", true)
+          .toBool());
 
   this->appAutoLockingSetChecked(
       SettingsManager::instance()
@@ -595,6 +600,12 @@ void SettingsWidget::on_dismissEmojiPanelCheckBox_toggled(bool checked) {
   SettingsManager::instance().settings().setValue(
       "webtweaks/dismissExpressionsPanel", checked);
   emit webTweaksChanged();
+}
+
+void SettingsWidget::on_identifyInLinkedDevicesCheckBox_toggled(bool checked) {
+  SettingsManager::instance().settings().setValue("identifyInLinkedDevices",
+                                                  checked);
+  emit linkedDeviceNameChanged();
 }
 
 void SettingsWidget::on_appAutoLockcheckBox_toggled(bool checked) {
