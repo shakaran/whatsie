@@ -1,4 +1,5 @@
 #include "webenginepage.h"
+#include "common.h"
 #include "webengineprofilemanager.h"
 
 WebEnginePage::WebEnginePage(QWebEngineProfile *profile, QObject *parent)
@@ -123,14 +124,23 @@ void WebEnginePage::handlePermissionRequested(QWebEnginePermission permission) {
 
 void WebEnginePage::handleLoadFinished(bool ok) {
 
-  // turn on Notification settings by default
-  if (SettingsManager::instance()
-          .settings()
-          .value("permissions/Notifications")
-          .isValid() == false) {
-    SettingsManager::instance().settings().beginGroup("permissions");
-    SettingsManager::instance().settings().setValue("Notifications", true);
-    SettingsManager::instance().settings().endGroup();
+  // Grant notifications on first run — they are the whole point of a messaging
+  // client. This used to write "permissions/Notifications", a key nothing ever
+  // read (the handler keys on the numeric PermissionType), so it granted
+  // nothing: the user was prompted instead, and a dismissed prompt left the
+  // permission denied for good, with WhatsApp Web pointing them at a browser
+  // address bar that does not exist here. Grant it on the profile too, so the
+  // page sees it immediately.
+  const auto notifications = QWebEnginePermission::PermissionType::Notifications;
+  const QString notificationsKey =
+      QStringLiteral("permissions/%1").arg(static_cast<int>(notifications));
+  QSettings &settings = SettingsManager::instance().settings();
+  if (!settings.value(notificationsKey).isValid()) {
+    settings.setValue(notificationsKey, true);
+    const QWebEnginePermission permission =
+        profile()->queryPermission(QUrl(whatsAppOrigin), notifications);
+    if (permission.isValid())
+      permission.grant();
   }
 
   if (ok) {
