@@ -394,14 +394,6 @@ void MainWindow::closeEvent(QCloseEvent *event) {
               .toInt() == 0) {
     hide();
     event->ignore();
-    if (SettingsManager::instance()
-            .settings()
-            .value("firstrun_tray", true)
-            .toBool()) {
-      showNotification(QApplication::applicationName(),
-                       "Minimized to system tray.");
-      SettingsManager::instance().settings().setValue("firstrun_tray", false);
-    }
     return;
   }
   event->accept();
@@ -413,10 +405,8 @@ void MainWindow::quitApp() {
   m_isQuitting = true;
   SettingsManager::instance().settings().setValue("geometry", saveGeometry());
   getPageTheme();
-  QTimer::singleShot(500, this, [=]() {
-    SettingsManager::instance().settings().setValue("firstrun_tray", true);
-    qApp->quit();
-  });
+  // Give the async getPageTheme() call above time to land before quitting.
+  QTimer::singleShot(500, this, [=]() { qApp->quit(); });
 }
 
 void MainWindow::runMinimized() {
