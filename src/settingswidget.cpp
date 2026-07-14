@@ -77,7 +77,7 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
       1000);
   ui->notificationCombo->setCurrentIndex(SettingsManager::instance()
                                              .settings()
-                                             .value("notificationCombo", 1)
+                                             .value("notificationCombo", 0)
                                              .toInt());
   ui->useNativeFileDialog->setChecked(SettingsManager::instance()
                                           .settings()

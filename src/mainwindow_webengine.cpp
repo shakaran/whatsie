@@ -105,7 +105,7 @@ void MainWindow::setNotificationPresenter(QWebEngineProfile *profile) {
         if (settings.value("disableNotificationPopups", false).toBool())
           return;
 
-        int notificationCombo = settings.value("notificationCombo", 1).toInt();
+        int notificationCombo = settings.value("notificationCombo", 0).toInt();
         int timeout = settings.value("notificationTimeOut", 9000).toInt();
 
         if (notificationCombo == 0) {
@@ -177,7 +177,12 @@ void MainWindow::setNotificationPresenter(QWebEngineProfile *profile) {
         }
 
         m_webengine_notifier_popup->setMinimumWidth(300);
-        QScreen *screen = QGuiApplication::primaryScreen();
+        // The screen this window lives on, not the primary one. On a
+        // multi-monitor desk the popup used to appear on whichever screen the
+        // system called primary, which is often not the one the user is
+        // looking at. QWidget::screen() already falls back to the primary
+        // screen when the window has no handle yet.
+        QScreen *screen = this->screen();
         if (!screen) {
           const auto screens = QGuiApplication::screens();
           if (!screens.isEmpty()) {

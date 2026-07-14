@@ -423,7 +423,7 @@ void MainWindow::showNotification(QString title, QString message) {
 
   if (SettingsManager::instance()
               .settings()
-              .value("notificationCombo", 1)
+              .value("notificationCombo", 0)
               .toInt() == 0) {
     auto timeout = SettingsManager::instance()
                        .settings()
@@ -467,12 +467,12 @@ void MainWindow::showNotification(QString title, QString message) {
   popup->style()->polish(qApp);
   popup->setMinimumWidth(300);
   popup->adjustSize();
-  QScreen *scr = QGuiApplication::primaryScreen();
+  QScreen *scr = this->screen();
   if (scr) {
     popup->present(scr, title, message,
                    QPixmap(":/icons/app/notification/whatsie-notify.png"));
   } else {
-    qWarning() << "showNotification: unable to get primary screen";
+    qWarning() << "showNotification: unable to get a screen";
   }
 }
 
