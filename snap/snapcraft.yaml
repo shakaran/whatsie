@@ -12,18 +12,15 @@ platforms:
   amd64:
   arm64:
 
-plugs:
-  hunspell-dictionaries:
-    content: hunspell-dictionaries
-    interface: content
-    target: $SNAP/usr/share/hunspell
-    default-provider: hunspell-dictionaries
+# The hunspell-dictionaries content snap used to be mounted here, with DICPATH
+# pointing at it. It could never have worked: Qt WebEngine's spell checker is
+# Chromium's, and Chromium reads .bdic — it cannot read hunspell's .dic/.aff.
+# The dictionaries are converted at build time and shipped inside the snap
+# instead (see CMakeLists.txt), so there is nothing to mount.
 
 apps:
   whatsie:
     command: usr/bin/whatsie
-    environment:
-      DICPATH: $SNAP/usr/share/hunspell
     desktop: usr/share/applications/net.shakaran.whatsie.desktop
     common-id: net.shakaran.whatsie
     extensions:
@@ -57,7 +54,6 @@ parts:
     parse-info:
       - dist/linux/net.shakaran.whatsie.appdata.xml
     build-snaps:
-      - hunspell-dictionaries
       - cmake/latest/stable
     build-packages:
       - libxkbcommon-dev
@@ -65,6 +61,8 @@ parts:
 
     stage-packages:
       - libdrm2
+      # libqxcb links against it, and without it the snap does not start at all.
+      - libxcb-shape0
 
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release

@@ -65,6 +65,14 @@ over on first run, so nobody is logged out by upgrading.
   idle — a MutationObserver whose own repaints retriggered it.
 * The User-Agent is derived from the engine, so it always reports the truth.
 
+#### 📦 Packaging (snap)
+
+* Stage `libxcb-shape0`: `libqxcb` links against it, and without it the snap
+  does not launch at all.
+* Drop the `hunspell-dictionaries` content mount and `DICPATH`. It could never
+  have fed the spell checker — Chromium reads `.bdic`, not hunspell's
+  `.dic`/`.aff` — and the dictionaries are shipped inside the snap now.
+
 #### 📖 Documentation
 
 * The build docs describe the actual CMake build. Old Qt or CMake now fails with
