@@ -36,6 +36,16 @@ public:
   static float RoundToOneDecimal(float number);
   static void DisplayExceptionErrorDialog(const QString &error_info);
   static QString appDebugInfo();
+
+  // The same facts as appDebugInfo(), plus how much memory the browser and
+  // renderer processes are actually using and the recent log, as Markdown —
+  // ready to be the body of a bug report rather than something to retype.
+  static QString appDebugInfoMarkdown();
+
+  // Resident memory of this process and of the Chromium processes it spawned.
+  // Memory complaints are the most common bug report this app gets, and they
+  // arrive with a screenshot of a system monitor instead of numbers.
+  static QString processMemoryInfo();
   static void desktopOpenUrl(const QString &filePathStr);
   static bool isPhoneNumber(const QString &phoneNumber);
   static QString genRand(int length, bool useUpper = true, bool useLower = true,

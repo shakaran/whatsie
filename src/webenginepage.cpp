@@ -1,5 +1,6 @@
 #include "webenginepage.h"
 #include "common.h"
+#include "debuglog.h"
 #include "webengineprofilemanager.h"
 #include <QApplication>
 #include <QDir>
@@ -373,6 +374,11 @@ void WebEnginePage::javaScriptConsoleMessage(
   // diagnose from a bug report. Surface warnings and errors; the chattier
   // levels are compiled out of release builds by QT_NO_DEBUG_OUTPUT.
   const QString where = QStringLiteral("%1:%2").arg(sourceId).arg(lineId);
+
+  // Into the ring buffer regardless of level: the line that explains a bug is
+  // routinely the one nobody thought worth printing.
+  DebugLog::append(QStringLiteral("[js] %1 %2").arg(where, message));
+
   switch (level) {
   case QWebEnginePage::ErrorMessageLevel:
     qWarning().noquote() << "[js error]" << where << message;

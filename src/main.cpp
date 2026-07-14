@@ -11,6 +11,7 @@
 #include <QtWebEngineCore>
 
 #include "common.h"
+#include "debuglog.h"
 #include "def.h"
 #include "dictionaries.h"
 #include "mainwindow.h"
@@ -208,6 +209,8 @@ static void setChromiumFlags() {
 }
 
 int main(int argc, char *argv[]) {
+  DebugLog::install();   // before anything can log
+
   // Qt6 on Linux routes qDebug/qWarning to journald when the process is not
   // attached to a TTY (e.g. when launched from an IDE).  Force stderr output
   // so the IDE Run console always captures debug logs.

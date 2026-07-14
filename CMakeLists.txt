@@ -145,6 +145,7 @@ set(SOURCES
     src/about.cpp
     src/automatictheme.cpp
     src/common.cpp
+    src/debuglog.cpp
     src/downloadmanagerwidget.cpp
     src/downloadwidget.cpp
     src/linkeddevicename.cpp
@@ -180,6 +181,7 @@ set(HEADERS
     src/autolockeventfilter.h
     src/automatictheme.h
     src/common.h
+    src/debuglog.h
     src/def.h
     src/downloadmanagerwidget.h
     src/downloadwidget.h

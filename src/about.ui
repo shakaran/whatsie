@@ -197,6 +197,16 @@ p, li { white-space: pre-wrap; }
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QPushButton" name="report_bug">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copies the debug information below to the clipboard and opens the issue tracker, so it can be pasted straight into the report.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Report a Bug</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item>

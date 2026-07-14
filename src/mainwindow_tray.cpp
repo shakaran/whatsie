@@ -57,7 +57,13 @@ void MainWindow::createActions() {
   addAction(m_toggleThemeAction);
 
   m_aboutAction = new QAction(tr("&About"), this);
+  // The only way to this dialog used to be the tray menu, and the tray is
+  // exactly what is missing or misbehaving on the desktops people file bugs
+  // from — so the version number, commit and build date they were being asked
+  // for were unreachable precisely when they needed them. F1 always works.
+  m_aboutAction->setShortcut(QKeySequence::HelpContents);
   connect(m_aboutAction, &QAction::triggered, this, &MainWindow::showAbout);
+  addAction(m_aboutAction);
 
   m_quitAction = new QAction(tr("&Quit"), this);
   m_quitAction->setShortcut(QKeySequence(Qt::Modifier::CTRL | Qt::Key_Q));

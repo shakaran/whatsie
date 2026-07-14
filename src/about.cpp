@@ -1,4 +1,8 @@
 #include "about.h"
+#include <QClipboard>
+#include <QMessageBox>
+#include <QUrlQuery>
+#include <QGuiApplication>
 #include "ui_about.h"
 #include <QDesktopServices>
 #include <QGraphicsOpacityEffect>
@@ -33,6 +37,7 @@ About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
 
   donateLink = "https://paypal.me/shakaran/5";
   moreAppsLink = "https://github.com/shakaran";
+  reportBugLink = "https://github.com/shakaran/whatsie/issues/new";
 
   appSourceCodeLink = "https://github.com/shakaran/whatsie";
   appRateLink = "snap://whatsie";
@@ -84,6 +89,35 @@ About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
           [=]() { QDesktopServices::openUrl(QUrl(moreAppsLink)); });
   connect(ui->source_code, &QPushButton::clicked,
           [=]() { QDesktopServices::openUrl(QUrl(appSourceCodeLink)); });
+
+  // Half of a useful bug report is which build it is and what the app was
+  // saying at the time, and that is exactly what nobody can be bothered to
+  // gather. GitHub takes the issue body as a query parameter, so it arrives
+  // already filled in and the reporter only has to describe what happened.
+  connect(ui->report_bug, &QPushButton::clicked, [=]() {
+    const QString body =
+        QObject::tr("<!-- What did you do, what did you expect, and what "
+                    "happened instead? -->\n\n\n") +
+        Utils::appDebugInfoMarkdown();
+
+    QUrl url(reportBugLink);
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("body"), body);
+    url.setQuery(query);
+
+    // A very long log makes a URL the browser or GitHub will refuse. Keep the
+    // clipboard as the fallback so nothing is silently lost, and say so.
+    if (url.toEncoded().size() > 7500) {
+      QGuiApplication::clipboard()->setText(body);
+      url.setQuery(QUrlQuery{});
+      QMessageBox::information(
+          this, tr("Report a Bug"),
+          tr("The debug information was too long for the browser to carry, so "
+             "it has been copied to your clipboard instead. Paste it into the "
+             "issue."));
+    }
+    QDesktopServices::openUrl(url);
+  });
 
   setWindowTitle(QApplication::applicationName() + " | About");
 

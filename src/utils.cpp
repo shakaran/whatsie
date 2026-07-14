@@ -1,5 +1,7 @@
 #include "utils.h"
+#include "debuglog.h"
 #include "def.h"
+#include <QHash>
 #include <time.h>
 
 Utils::Utils(QObject *parent) : QObject(parent) { setParent(parent); }
@@ -304,6 +306,121 @@ QString Utils::appDebugInfo() {
             << "</ul>";
 
   return debugInfo.join("\n");
+}
+
+// Resident set size of a process, in MB, or -1 when it cannot be read.
+static double residentMb(qint64 pid) {
+#ifdef Q_OS_LINUX
+  QFile status(QStringLiteral("/proc/%1/status").arg(pid));
+  if (!status.open(QIODevice::ReadOnly | QIODevice::Text))
+    return -1;
+  while (!status.atEnd()) {
+    const QByteArray line = status.readLine();
+    if (!line.startsWith("VmRSS:"))
+      continue;
+    const QList<QByteArray> parts = line.simplified().split(' ');
+    if (parts.size() >= 2)
+      return parts.at(1).toDouble() / 1024.0;  // kB -> MB
+  }
+#else
+  Q_UNUSED(pid);
+#endif
+  return -1;
+}
+
+QString Utils::processMemoryInfo() {
+#ifdef Q_OS_LINUX
+  const qint64 self = QCoreApplication::applicationPid();
+  const double own = residentMb(self);
+
+  // Walk the whole subtree, not just our direct children. Chromium forks its
+  // renderer from the *zygote*, so the renderer's parent is the zygote and not
+  // us — and the renderer is exactly where WhatsApp Web lives and where the
+  // gigabytes people report go. Counting direct children only reported half a
+  // gigabyte while the process tree was using two and a half.
+  QHash<qint64, QList<qint64>> childrenOf;
+  const QStringList entries = QDir(QStringLiteral("/proc"))
+                                  .entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+  for (const QString &entry : entries) {
+    bool isPid = false;
+    const qint64 pid = entry.toLongLong(&isPid);
+    if (!isPid)
+      continue;
+    QFile status(QStringLiteral("/proc/%1/status").arg(pid));
+    if (!status.open(QIODevice::ReadOnly | QIODevice::Text))
+      continue;
+    while (!status.atEnd()) {
+      const QByteArray line = status.readLine();
+      if (!line.startsWith("PPid:"))
+        continue;
+      childrenOf[line.simplified().split(' ').value(1).toLongLong()].append(pid);
+      break;
+    }
+  }
+
+  double descendants = 0;
+  int count = 0;
+  QList<qint64> queue = childrenOf.value(self);
+  while (!queue.isEmpty()) {
+    const qint64 pid = queue.takeFirst();
+    queue.append(childrenOf.value(pid));
+    const double rss = residentMb(pid);
+    if (rss < 0)
+      continue;
+    descendants += rss;
+    ++count;
+  }
+
+  return QStringLiteral("%1 MB browser + %2 MB across %3 engine processes "
+                        "(%4 MB total)")
+      .arg(own, 0, 'f', 0)
+      .arg(descendants, 0, 'f', 0)
+      .arg(count)
+      .arg(own + descendants, 0, 'f', 0);
+#else
+  return QStringLiteral("unavailable on this platform");
+#endif
+}
+
+QString Utils::appDebugInfoMarkdown() {
+  QString installMode = Utils::getInstallType().trimmed();
+  if (installMode.isEmpty())
+    installMode = QStringLiteral("Unknown");
+
+  QStringList out;
+  out << QStringLiteral("### Environment")
+      << QStringLiteral("")
+      << QStringLiteral("| | |")
+      << QStringLiteral("|---|---|")
+      << QStringLiteral("| Version | %1 |").arg(QLatin1String(VERSIONSTR))
+      << QStringLiteral("| Commit | %1 (%2) |")
+             .arg(QLatin1String(GIT_HASH), QLatin1String(GIT_BRANCH))
+      << QStringLiteral("| Built | %1 |")
+             .arg(QString::fromLatin1(BUILD_TIMESTAMP))
+      << QStringLiteral("| Qt | %1 (built against %2) |")
+             .arg(QLatin1String(qVersion()), QLatin1String(QT_VERSION_STR))
+      << QStringLiteral("| System | %1 |").arg(QSysInfo::prettyProductName())
+      << QStringLiteral("| Architecture | %1 |")
+             .arg(QSysInfo::currentCpuArchitecture())
+      << QStringLiteral("| Install mode | %1 |").arg(installMode)
+      << QStringLiteral("| Memory | %1 |").arg(Utils::processMemoryInfo())
+      << QStringLiteral("");
+
+  const QString log = DebugLog::recent();
+  if (!log.isEmpty()) {
+    out << QStringLiteral("### Log")
+        << QStringLiteral("")
+        << QStringLiteral("<details><summary>Recent output and page console"
+                          "</summary>")
+        << QStringLiteral("")
+        << QStringLiteral("```")
+        << log
+        << QStringLiteral("```")
+        << QStringLiteral("")
+        << QStringLiteral("</details>")
+        << QStringLiteral("");
+  }
+  return out.join(QLatin1Char('\n'));
 }
 
 void Utils::DisplayExceptionErrorDialog(const QString &error_info) {
