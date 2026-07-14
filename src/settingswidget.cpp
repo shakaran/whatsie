@@ -81,7 +81,7 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
                                              .toInt());
   ui->useNativeFileDialog->setChecked(SettingsManager::instance()
                                           .settings()
-                                          .value("useNativeFileDialog", false)
+                                          .value("useNativeFileDialog", true)
                                           .toBool());
   ui->startMinimized->setChecked(SettingsManager::instance()
                                      .settings()
@@ -762,7 +762,7 @@ void SettingsWidget::on_changeDefaultDownloadLocationPb_clicked() {
   QString path;
   bool usenativeFileDialog = SettingsManager::instance()
                                  .settings()
-                                 .value("useNativeFileDialog", false)
+                                 .value("useNativeFileDialog", true)
                                  .toBool();
   if (usenativeFileDialog == false) {
     path = QFileDialog::getExistingDirectory(

@@ -1,6 +1,9 @@
 #include "webenginepage.h"
 #include "common.h"
 #include "webengineprofilemanager.h"
+#include <QApplication>
+#include <QDir>
+#include <QFileInfo>
 
 WebEnginePage::WebEnginePage(QWebEngineProfile *profile, QObject *parent)
     : QWebEnginePage(profile, parent) {
@@ -72,6 +75,12 @@ WebEnginePage::createWindow(QWebEnginePage::WebWindowType type) {
 QWidget *WebEnginePage::dialogParent() {
   QWidget *currentView = view();
   return currentView ? currentView->window() : nullptr;
+}
+
+// The dialogs below take their icons from the parent's style. With no parent
+// there is still a style to ask: the application's.
+static QStyle *dialogStyle(QWidget *parent) {
+  return parent ? parent->style() : QApplication::style();
 }
 
 inline QString questionForPermission(const QWebEnginePermission &permission) {
@@ -188,16 +197,32 @@ QStringList WebEnginePage::chooseFiles(QWebEnginePage::FileSelectionMode mode,
     dialogMode = QFileDialog::ExistingFiles;
   }
 
-  QFileDialog *dialog = new QFileDialog();
+  // Parented, so it is modal to the window instead of a stray top-level that
+  // can end up behind it.
+  QFileDialog *dialog = new QFileDialog(dialogParent());
+
+  // The desktop's own file chooser by default. Qt's built-in one has no
+  // bookmarks, no Recent, and no address bar, which left people unable to
+  // reach a file that was not already under the directory it happened to open
+  // in — they had to copy it somewhere reachable first. The setting stays for
+  // anyone who prefers the Qt dialog.
   bool usenativeFileDialog = SettingsManager::instance()
                                  .settings()
-                                 .value("useNativeFileDialog", false)
+                                 .value("useNativeFileDialog", true)
                                  .toBool();
 
   if (usenativeFileDialog == false) {
     dialog->setOption(QFileDialog::DontUseNativeDialog, true);
   }
   dialog->setFileMode(dialogMode);
+
+  // Reopen where the last attachment came from rather than in whatever the
+  // process's working directory happens to be.
+  const QString lastDir =
+      SettingsManager::instance().settings().value("lastAttachmentDir").toString();
+  if (!lastDir.isEmpty() && QDir(lastDir).exists())
+    dialog->setDirectory(lastDir);
+
   QStringList mimeFilters;
   mimeFilters.append("application/octet-stream"); // to show All files(*)
   mimeFilters.append(acceptedMimeTypes);
@@ -214,6 +239,9 @@ QStringList WebEnginePage::chooseFiles(QWebEnginePage::FileSelectionMode mode,
   QStringList selectedFiles;
   if (dialog->exec()) {
     selectedFiles = dialog->selectedFiles();
+    if (!selectedFiles.isEmpty())
+      SettingsManager::instance().settings().setValue(
+          "lastAttachmentDir", QFileInfo(selectedFiles.first()).absolutePath());
   }
   dialog->deleteLater();
   return selectedFiles;
@@ -231,7 +259,7 @@ void WebEnginePage::handleCertificateError(
     Ui::CertificateErrorDialog certificateDialog;
     certificateDialog.setupUi(&dialog);
     certificateDialog.m_iconLabel->setText(QString());
-    QIcon icon(mainWindow->style()->standardIcon(QStyle::SP_MessageBoxWarning,
+    QIcon icon(dialogStyle(mainWindow)->standardIcon(QStyle::SP_MessageBoxWarning,
                                                  nullptr, mainWindow));
     certificateDialog.m_iconLabel->setPixmap(icon.pixmap(32, 32));
     certificateDialog.m_errorLabel->setText(description);
@@ -259,7 +287,7 @@ void WebEnginePage::handleAuthenticationRequired(const QUrl &requestUrl,
   passwordDialog.setupUi(&dialog);
 
   passwordDialog.m_iconLabel->setText(QString());
-  QIcon icon(mainWindow->style()->standardIcon(QStyle::SP_MessageBoxQuestion,
+  QIcon icon(dialogStyle(mainWindow)->standardIcon(QStyle::SP_MessageBoxQuestion,
                                                nullptr, mainWindow));
   passwordDialog.m_iconLabel->setPixmap(icon.pixmap(32, 32));
 
@@ -290,7 +318,7 @@ void WebEnginePage::handleProxyAuthenticationRequired(
   passwordDialog.setupUi(&dialog);
 
   passwordDialog.m_iconLabel->setText(QString());
-  QIcon icon(mainWindow->style()->standardIcon(QStyle::SP_MessageBoxQuestion,
+  QIcon icon(dialogStyle(mainWindow)->standardIcon(QStyle::SP_MessageBoxQuestion,
                                                nullptr, mainWindow));
   passwordDialog.m_iconLabel->setPixmap(icon.pixmap(32, 32));
 
