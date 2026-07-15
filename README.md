@@ -30,6 +30,23 @@ That distinction decides where a problem belongs:
 
 On top of upstream WhatSie, this fork adds:
 
+- **Multiple WhatsApp accounts** — either as separate windows with
+  `whatsie --profile=<name>`, or as tabs inside one window. Each account is a
+  fully separate session with its own storage; the tray badge sums the unread
+  count across all of them. Add a tab with the **+**, and rename or remove one by
+  right-clicking it. With a single account the tab bar is hidden, so nothing
+  changes if you do not use this.
+- **Spell checker** — actually works now. Qt WebEngine needs Chromium `.bdic`
+  dictionaries, not hunspell's; the fork converts and ships them, so the language
+  list is no longer empty. Pick the language in Settings.
+- **Chat themes, wallpaper and a privacy blur** — recolour WhatsApp Web (14
+  themes), set your own image behind the chats, or blur them until you hover so
+  nobody reads over your shoulder. Toggle the theme and the blur from buttons in
+  WhatsApp's own sidebar.
+- **A bug report you can actually file** — <kbd>F1</kbd> opens About; its *Report
+  a Bug* button opens a GitHub issue with the version, commit, memory use of the
+  whole process tree, and the recent log (including WhatsApp Web's console)
+  already filled in.
 - **Windows 10+ support** from a single codebase — platform-specific pieces are
   behind `Q_OS_*` guards, so Linux behaviour is unchanged. Native toast
   notifications, Win32 Caps Lock detection and a GUI-subsystem executable with
@@ -109,7 +126,22 @@ Options:
                        of WhatSie
   -r, --reload-app     Reload the app in a running instance of WhatSie
   -n, --new-chat       Open new chat prompt in a running instance of WhatSie
+  -p, --profile <name> Run as a separate account with its own session and
+                       settings, in its own window
 ```
+
+### Multiple accounts
+
+Two independent ways to be signed in to more than one account:
+
+- **Separate windows** — `whatsie --profile=work` runs a wholly separate account
+  with its own WhatsApp session, its own settings file and its own window. Run as
+  many as you like side by side; launching the same profile again just raises the
+  one already running. Without the flag, everything is exactly as before.
+- **Tabs in one window** — click the **+** on the account tab bar to add another
+  account inside the current window. Right-click a tab to rename or remove it. The
+  tray icon's unread badge is the total across every tab. (Each set of tabs
+  belongs to the profile it was created under, so `--profile=work` keeps its own.)
 
 ## Languages
 

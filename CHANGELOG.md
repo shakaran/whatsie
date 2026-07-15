@@ -7,6 +7,14 @@ over on first run, so nobody is logged out by upgrading.
 
 #### 🎁 Features
 
+* **Multiple WhatsApp accounts.** Either as separate windows —
+  `whatsie --profile=<name>`, each with its own session, settings file and
+  instance — or as tabs inside one window, added with a **+** and renamed or
+  removed from a right-click menu. Every account is a separate Chromium storage
+  partition, so the sessions never touch; the tray badge sums the unread count
+  across them all. The default account keeps the exact storage it had, so an
+  upgrade neither moves it nor logs it out, and the tab bar hides itself when
+  there is only one account.
 * **Spell checker, working.** It was not broken, it was gone — and the build
   asserted that the system hunspell package supplied the dictionaries. Qt
   WebEngine uses Chromium's spell checker, which reads `.bdic` and cannot read
