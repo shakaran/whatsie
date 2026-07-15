@@ -154,6 +154,7 @@ set(SOURCES
     src/main.cpp
     src/identicons.cpp
     src/mainwindow.cpp
+    src/mainwindow_accounts.cpp
     src/mainwindow_lock.cpp
     src/mainwindow_tray.cpp
     src/mainwindow_webengine.cpp

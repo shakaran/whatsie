@@ -17,23 +17,11 @@
 void MainWindow::createWebEngine() {
   WebEngineProfileManager::instance().applyUserSettings();
 
-  QSizePolicy widgetSize;
-  widgetSize.setHorizontalPolicy(QSizePolicy::Expanding);
-  widgetSize.setVerticalPolicy(QSizePolicy::Expanding);
-  widgetSize.setHorizontalStretch(1);
-  widgetSize.setVerticalStretch(1);
-
-  WebView *webEngineView = new WebView(this);
-  setCentralWidget(webEngineView);
-  webEngineView->setSizePolicy(widgetSize);
-  webEngineView->show();
-
-  m_webEngine = webEngineView;
-  webEngineView->addAction(m_minimizeAction);
-  webEngineView->addAction(m_lockAction);
-  webEngineView->addAction(m_quitAction);
-
-  createWebPage(false);
+  // The central widget is now a tab bar over a stack of account views, rather
+  // than a single view. With only the default account the tab bar hides itself,
+  // so this is invisible until a second account is added.
+  buildAccountArea();
+  loadAccounts();
 
   // Connection watchdog: poll the injected WebSocket health probe and reload
   // the page when WhatsApp's socket has died or gone silent.
@@ -46,21 +34,23 @@ void MainWindow::createWebEngine() {
   }
 }
 
+// The single-account entry point, kept for the reload paths. It reloads the
+// active account.
 void MainWindow::createWebPage(bool offTheRecord) {
-  QWebEngineProfile *profile = nullptr;
+  Q_UNUSED(offTheRecord);
+  if (m_activeAccount >= 0 && m_activeAccount < m_accounts.size())
+    createPageFor(m_accounts[m_activeAccount].view,
+                  m_accounts[m_activeAccount].id);
+}
 
-  if (offTheRecord) {
-    if (!m_otrProfile)
-      m_otrProfile.reset(new QWebEngineProfile);
-    profile = m_otrProfile.get();
-  } else {
-    profile = WebEngineProfileManager::instance().profile();
-    WebEngineProfileManager::instance().applyUserSettings();
-  }
+void MainWindow::createPageFor(WebView *view, const QString &accountId) {
+  QWebEngineProfile *profile =
+      WebEngineProfileManager::instance().profileFor(accountId);
+  WebEngineProfileManager::instance().applyUserSettings();
 
   setNotificationPresenter(profile);
 
-  QWebEnginePage *page = new WebEnginePage(profile, m_webEngine);
+  QWebEnginePage *page = new WebEnginePage(profile, view);
   installPageBridge(page);
   if (SettingsManager::instance()
           .settings()
@@ -70,12 +60,7 @@ void MainWindow::createWebPage(bool offTheRecord) {
   } else {
     page->setBackgroundColor(QColor(240, 240, 240)); // WhatsApp light bg
   }
-  m_webEngine->setPage(page);
-
-  if (offTheRecord) {
-    // Transfer ownership so the OTR profile is cleaned up with the page.
-    profile->setParent(page);
-  }
+  view->setPage(page);
 
   auto randomValue = QRandomGenerator::global()->generateDouble() * 300.0;
   page->setUrl(
@@ -90,7 +75,7 @@ void MainWindow::createWebPage(bool offTheRecord) {
                              .settings()
                              .value("zoomFactor", 1.0)
                              .toDouble();
-  m_webEngine->page()->setZoomFactor(currentFactor);
+  view->page()->setZoomFactor(currentFactor);
 }
 
 // Buttons WhatSie injects into WhatsApp's own UI need a way back into the app.

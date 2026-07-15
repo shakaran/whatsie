@@ -8,6 +8,10 @@
 #include <QWebChannel>
 #include <QTimer>
 
+class WebView;
+class QTabBar;
+class QStackedWidget;
+
 #include "autolockeventfilter.h"
 #include "downloadmanagerwidget.h"
 #include "lock.h"
@@ -70,8 +74,39 @@ private:
   void askToReloadPage();
   void updateSettingsUserAgentWidget();
   void createWebPage(bool offTheRecord = false);
+  // Loads WhatsApp into a specific account's view and profile. createWebPage is
+  // the old single-account entry point and now just calls this for the active
+  // account.
+  void createPageFor(WebView *view, const QString &accountId);
   // Lets buttons WhatSie injects into WhatsApp's UI call back into the app.
   void installPageBridge(QWebEnginePage *page);
+
+  // ── In-window accounts (tabs) ─────────────────────────────────────────────
+  // Each account is a separate WhatsApp session in its own view and profile,
+  // switched by a tab bar that hides itself when only the default account
+  // exists — so a single-account setup looks and behaves exactly as before.
+  struct Account {
+    QString id;      // "" for the default account, a random slug otherwise
+    QString name;    // shown on the tab
+    WebView *view = nullptr;
+    int unread = 0;
+  };
+  void buildAccountArea();
+  WebView *addAccount(const QString &id, const QString &name, bool load);
+  void setActiveAccount(int index);
+  void promptAddAccount();
+  void renameAccount(int index);
+  void removeAccount(int index);
+  void saveAccounts();
+  void loadAccounts();
+  int accountIndexForView(const QObject *view) const;
+  void refreshAccountTabs();
+  void updateTrayUnread();
+
+  QList<Account> m_accounts;
+  int m_activeAccount = 0;
+  QTabBar *m_accountBar = nullptr;
+  QStackedWidget *m_accountStack = nullptr;
   void initSettingWidget();
   void tryLock();
   void checkLoadedCorrectly();

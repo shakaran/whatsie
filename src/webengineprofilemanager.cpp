@@ -38,38 +38,60 @@ static QString stripQtWebEngineToken(QString userAgent) {
 }
 
 WebEngineProfileManager::WebEngineProfileManager() {
-    // Named profile → persistent storage is enabled automatically. The storage
-    // name carries the account suffix, so a second account is a genuinely
-    // separate Chromium partition — separate cookies, separate WhatsApp session
-    // — rather than the same one shared. The default account keeps the bare
-    // "whatsie" name so its existing session survives the upgrade untouched.
-    m_profile = new QWebEngineProfile(
-        QStringLiteral("whatsie") + AppProfile::suffix());
+    // The default account. profileFor("") both creates and configures it, and
+    // caches it, so m_profile and the map never disagree.
+    m_profile = profileFor(QString());
+}
 
+QWebEngineProfile *WebEngineProfileManager::profileFor(const QString &accountId) {
+    auto it = m_profiles.constFind(accountId);
+    if (it != m_profiles.constEnd())
+        return it.value();
+
+    // A distinct storage name per account is what makes each a separate Chromium
+    // partition. The default account keeps the bare "whatsie" (plus the
+    // process-level --profile suffix) so its existing session is untouched.
+    QString storageName = QStringLiteral("whatsie") + AppProfile::suffix();
+    if (!accountId.isEmpty())
+        storageName += QLatin1Char('-') + accountId;
+
+    auto *profile = new QWebEngineProfile(storageName);
+    configureProfile(profile, accountId);
+    m_profiles.insert(accountId, profile);
+    return profile;
+}
+
+void WebEngineProfileManager::configureProfile(QWebEngineProfile *profile,
+                                               const QString &accountId) {
     // Derive the default UA from the engine itself *before* we ever override
     // httpUserAgent, so it always matches the installed Chromium version and
-    // stays current across Qt WebEngine upgrades. The hardcoded value in
-    // common.cpp only survives as a fallback if this ever yields nothing.
-    const QString engineUA = stripQtWebEngineToken(m_profile->httpUserAgent());
-    if (!engineUA.isEmpty())
-        defaultUserAgentStr = engineUA;
-    qDebug() << "Engine-derived default UserAgent:" << defaultUserAgentStr;
+    // stays current across Qt WebEngine upgrades. Only worth doing once — every
+    // account's engine reports the same UA. The hardcoded value in common.cpp
+    // survives only as a fallback if this ever yields nothing.
+    if (defaultUserAgentStr.isEmpty() || m_profiles.isEmpty()) {
+        const QString engineUA = stripQtWebEngineToken(profile->httpUserAgent());
+        if (!engineUA.isEmpty())
+            defaultUserAgentStr = engineUA;
+        qDebug() << "Engine-derived default UserAgent:" << defaultUserAgentStr;
+    }
 
     const QString dataPath  = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     const QString cachePath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 
-    // The default account keeps ".../QtWebEngine"; a named one gets its own
-    // sibling directory, so the two sessions never touch.
-    const QString engineSub =
-        QStringLiteral("/QtWebEngine") + AppProfile::suffix();
-    m_profile->setPersistentStoragePath(dataPath + engineSub);
-    m_profile->setCachePath(cachePath + engineSub);
-    m_profile->setPersistentCookiesPolicy(QWebEngineProfile::AllowPersistentCookies);
+    // Default account keeps ".../QtWebEngine"; a named one gets its own sibling
+    // directory, so the sessions never touch.
+    QString engineSub = QStringLiteral("/QtWebEngine") + AppProfile::suffix();
+    if (!accountId.isEmpty())
+        engineSub += QLatin1Char('-') + accountId;
 
-    qDebug() << "WebEngineProfile persistent storage:" << m_profile->persistentStoragePath();
-    qDebug() << "WebEngineProfile cache path:"         << m_profile->cachePath();
+    profile->setPersistentStoragePath(dataPath + engineSub);
+    profile->setCachePath(cachePath + engineSub);
+    profile->setPersistentCookiesPolicy(QWebEngineProfile::AllowPersistentCookies);
 
-    auto *s = m_profile->settings();
+    qDebug() << "WebEngineProfile" << (accountId.isEmpty() ? "(default)" : accountId)
+             << "storage:" << profile->persistentStoragePath();
+
+    auto *s = profile->settings();
     s->setAttribute(QWebEngineSettings::AutoLoadImages,                    true);
     s->setAttribute(QWebEngineSettings::JavascriptEnabled,                 true);
     s->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows,          true);
@@ -85,7 +107,9 @@ WebEngineProfileManager::WebEngineProfileManager() {
     s->setAttribute(QWebEngineSettings::JavascriptCanPaste,                true);
     s->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard,      true);
 
-    applyUserSettings();
+    applyUserSettingsTo(profile);
+
+    auto *m_profile = profile;   // the scripts below were written against m_profile
 
     // WhatsApp Web calls navigator.storage.persist() at startup and logs a
     // non-fatal error when it returns false (QtWebEngine never auto-grants it).
@@ -158,7 +182,7 @@ WebEngineProfileManager::WebEngineProfileManager() {
 }
 
 WebEngineProfileManager::~WebEngineProfileManager() {
-    delete m_profile;
+    qDeleteAll(m_profiles);
 }
 
 QWebEngineProfile *WebEngineProfileManager::profile() const {
@@ -166,12 +190,18 @@ QWebEngineProfile *WebEngineProfileManager::profile() const {
 }
 
 void WebEngineProfileManager::applyUserSettings() {
+    // Settings are global, so a change applies to every account's profile.
+    for (QWebEngineProfile *profile : std::as_const(m_profiles))
+        applyUserSettingsTo(profile);
+}
+
+void WebEngineProfileManager::applyUserSettingsTo(QWebEngineProfile *profile) {
     QSettings &s = SettingsManager::instance().settings();
 
-    m_profile->setHttpUserAgent(
+    profile->setHttpUserAgent(
         s.value(QStringLiteral("useragent"), defaultUserAgentStr).toString());
 
-    m_profile->settings()->setAttribute(
+    profile->settings()->setAttribute(
         QWebEngineSettings::PlaybackRequiresUserGesture,
         s.value(QStringLiteral("autoPlayMedia"), false).toBool());
 
@@ -181,13 +211,13 @@ void WebEngineProfileManager::applyUserSettings() {
     const bool spellCheck =
         s.value(QStringLiteral("spellCheckEnabled"), true).toBool() &&
         !dictionary.isEmpty();
-    m_profile->setSpellCheckEnabled(spellCheck);
-    m_profile->setSpellCheckLanguages(spellCheck ? QStringList{dictionary}
-                                                 : QStringList{});
+    profile->setSpellCheckEnabled(spellCheck);
+    profile->setSpellCheckLanguages(spellCheck ? QStringList{dictionary}
+                                               : QStringList{});
 
-    WebTweaks::install(m_profile);
-    ChatWallpaper::install(m_profile);
-    ChatTheme::install(m_profile);
-    PrivacyBlur::install(m_profile);
-    LinkedDeviceName::install(m_profile);
+    WebTweaks::install(profile);
+    ChatWallpaper::install(profile);
+    ChatTheme::install(profile);
+    PrivacyBlur::install(profile);
+    LinkedDeviceName::install(profile);
 }

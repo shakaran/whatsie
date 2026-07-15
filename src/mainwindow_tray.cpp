@@ -163,29 +163,30 @@ const QIcon MainWindow::getTrayIcon(const int &notificationCount) const {
 }
 
 void MainWindow::handleWebViewTitleChanged(const QString &title) {
-  setWindowTitle(QApplication::applicationName() + AppProfile::label() + ": " + title);
+  // Which account's title changed — the signal can come from any account's
+  // view, not just the visible one.
+  const int idx = accountIndexForView(sender());
+  if (idx < 0)
+    return;
 
-  QRegularExpressionMatch notificationsTitleMatch =
+  // Pull the unread count out of the title ("(3) Chat name"), and remember it
+  // per account so the tray can show the total across all of them.
+  int unread = 0;
+  const QRegularExpressionMatch titleMatch =
       m_notificationsTitleRegExp.match(title);
-
-  if (notificationsTitleMatch.hasMatch()) {
-    QString capturedTitle = notificationsTitleMatch.captured(0);
-    QRegularExpressionMatch unreadMessageCountMatch =
-        m_unreadMessageCountRegExp.match(capturedTitle);
-
-    if (unreadMessageCountMatch.hasMatch()) {
-      QString unreadMessageCountStr = unreadMessageCountMatch.captured(1);
-      int unreadMessageCount = unreadMessageCountStr.toInt();
-
-      m_restoreAction->setText(
-          tr("Restore") + " | " + unreadMessageCountStr + " " +
-          (unreadMessageCount > 1 ? tr("messages") : tr("message")));
-
-      m_systemTrayIcon->setIcon(getTrayIcon(unreadMessageCount));
-      setWindowIcon(getTrayIcon(unreadMessageCount));
-    }
-  } else {
-    m_systemTrayIcon->setIcon(m_trayIconNormal);
-    setWindowIcon(themeIcon("whatsie", ":/icons/app/icon-64.png"));
+  if (titleMatch.hasMatch()) {
+    const QRegularExpressionMatch countMatch =
+        m_unreadMessageCountRegExp.match(titleMatch.captured(0));
+    if (countMatch.hasMatch())
+      unread = countMatch.captured(1).toInt();
   }
+  m_accounts[idx].unread = unread;
+
+  // The window title follows the active account only.
+  if (idx == m_activeAccount)
+    setWindowTitle(QApplication::applicationName() + AppProfile::label() +
+                   ": " + title);
+
+  refreshAccountTabs();   // per-account badge on each tab
+  updateTrayUnread();     // summed badge on the single tray icon
 }

@@ -12,6 +12,10 @@ class WebView : public QWebEngineView {
 public:
   WebView(QWidget *parent = nullptr);
 
+  // Which account this view belongs to ("" for the default account). Lets the
+  // one title/load handler in MainWindow tell the accounts apart.
+  QString accountId;
+
 protected:
   void contextMenuEvent(QContextMenuEvent *event) override;
   void wheelEvent(QWheelEvent *event) override;
