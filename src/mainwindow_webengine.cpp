@@ -256,6 +256,7 @@ void MainWindow::doReload(bool byPassCache, bool isAskedByCLI,
     this->showNotification(QApplication::applicationName(),
                            QObject::tr("Reloading..."));
   } else {
+    ensureLockVisible();   // give the user the unlock screen, not just a refusal
     QString error = tr("Unlock to Reload the App.");
     if (isAskedByCLI) {
       this->showNotification(QApplication::applicationName() + "| Error",

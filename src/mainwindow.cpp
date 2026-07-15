@@ -179,7 +179,8 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
   trackNormalGeometry();
   if (!m_lockWidget || event->size() == event->oldSize())
     return;
-  m_lockWidget->resize(size());
+  // Track the central widget it now lives in, not the whole window.
+  m_lockWidget->resize(centralWidget() ? centralWidget()->size() : size());
 }
 
 void MainWindow::moveEvent(QMoveEvent *event) {
@@ -411,13 +412,13 @@ void MainWindow::initSettingWidget() {
 
 void MainWindow::showSettings(bool isAskedByCLI) {
   if (m_lockWidget && m_lockWidget->getIsLocked()) {
-    QString error = tr("Unlock to access Settings.");
-    if (isAskedByCLI)
-      showNotification(QApplication::applicationName() + "| Error", error);
-    else
-      QMessageBox::critical(this, QApplication::applicationName() + "| Error",
-                            error);
     show();
+    // Present the unlock screen rather than only nagging: the bug report was
+    // being told to unlock with no unlock window anywhere on screen.
+    ensureLockVisible();
+    if (isAskedByCLI)
+      showNotification(QApplication::applicationName() + "| Error",
+                       tr("Unlock to access Settings."));
     return;
   }
   if (m_webEngine == nullptr) {

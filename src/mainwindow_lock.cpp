@@ -32,7 +32,14 @@ void MainWindow::initAutoLock() {
 
 void MainWindow::initLock() {
   if (m_lockWidget == nullptr) {
-    m_lockWidget = new Lock(this);
+    // Parented to the central widget, not to the window. QMainWindow's layout
+    // keeps the central widget stacked above any plain child of the window, so
+    // a lock overlay parented to `this` ends up *behind* the account area and
+    // never covers it — you are told to unlock with no unlock screen in sight.
+    // Inside the central widget it is a normal sibling that raise() keeps on
+    // top. (This is the account-tabs container; before that it was the view.)
+    QWidget *host = centralWidget() ? centralWidget() : qobject_cast<QWidget *>(this);
+    m_lockWidget = new Lock(host);
     m_lockWidget->setObjectName("lockWidget");
     m_lockWidget->setWindowFlags(Qt::Widget);
     m_lockWidget->setStyleSheet(
@@ -68,7 +75,7 @@ void MainWindow::initLock() {
     m_lockWidget->applyThemeQuirks();
   }
 
-  m_lockWidget->setGeometry(this->rect());
+  if (centralWidget()) m_lockWidget->setGeometry(centralWidget()->rect());
   QApplication::processEvents();
 
   if (SettingsManager::instance().settings().value("lockscreen").toBool()) {
@@ -78,10 +85,26 @@ void MainWindow::initLock() {
       m_lockWidget->signUp();
     }
     m_lockWidget->show();
+    // Above the central widget, always. The central widget is now a container
+    // (the account tab area), and a lock overlay left behind it is locked with
+    // no way to unlock — exactly the "told to unlock, no unlock window" report.
+    m_lockWidget->raise();
   } else {
     m_lockWidget->hide();
   }
   updateWindowTheme();
+}
+
+// The lock is on but its overlay is not actually in front of the user — bring
+// it there. Called wherever the app refuses an action because it is locked, so
+// "unlock first" always comes with something to unlock.
+void MainWindow::ensureLockVisible() {
+  if (!m_lockWidget || !m_lockWidget->getIsLocked())
+    return;
+  if (centralWidget())
+    m_lockWidget->setGeometry(centralWidget()->rect());
+  m_lockWidget->show();
+  m_lockWidget->raise();
 }
 
 void MainWindow::tryLock() {
