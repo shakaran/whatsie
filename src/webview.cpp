@@ -162,7 +162,7 @@ bool WebView::pasteClipboardImage() {
       clipboardData: transfer, bubbles: true, cancelable: true
     }));
   } catch (e) {
-    console.error("whatsie: pasting the clipboard image failed: " + e);
+    console.error("whatly: pasting the clipboard image failed: " + e);
   }
 })();
 )JS");

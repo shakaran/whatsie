@@ -5,10 +5,10 @@
 #include <QWebEngineScript>
 #include <QWebEngineScriptCollection>
 
-static const char kScriptName[] = "whatsie-web-tweaks";
+static const char kScriptName[] = "whatly-web-tweaks";
 
 // __FLAGS__ becomes a JSON object of the enabled tweaks. Behavior is gated by
-// the LIVE flags object (window.__whatsieWebTweaks) rather than a captured
+// the LIVE flags object (window.__whatlyWebTweaks) rather than a captured
 // boolean, so re-running this script on a loaded page toggles the tweak
 // without a reload. Every DOM access is wrapped so a stale selector can never
 // break the page.
@@ -17,21 +17,21 @@ static const char kScriptTemplate[] = R"JS(
   'use strict';
   var FLAGS = __FLAGS__;
   var LABELS = __LABELS__;
-  var W = window.__whatsieWebTweaks;
+  var W = window.__whatlyWebTweaks;
   if (W) {
     W.dismissExpressionsPanel = FLAGS.dismissExpressionsPanel;  // live update
     W.themeToggleButton = FLAGS.themeToggleButton;
     W.privacyBlurButton = FLAGS.privacyBlurButton;
   } else {
-    W = window.__whatsieWebTweaks = FLAGS;
+    W = window.__whatlyWebTweaks = FLAGS;
   }
-  if (window.__whatsieWebTweaksReady) {
+  if (window.__whatlyWebTweaksReady) {
     // Re-run from Settings: the listeners are already in place, but the button
     // must be added or removed to match the flag that just changed.
-    if (window.__whatsieInstallThemeButton) window.__whatsieInstallThemeButton();
+    if (window.__whatlyInstallThemeButton) window.__whatlyInstallThemeButton();
     return;
   }
-  window.__whatsieWebTweaksReady = true;
+  window.__whatlyWebTweaksReady = true;
 
   // ── Dismiss the expressions (emoji/GIF/sticker) panel on outside click. ──
   // WhatsApp keeps it open until its button is pressed again. The panel mount
@@ -80,34 +80,34 @@ static const char kScriptTemplate[] = R"JS(
   // The blur is a stylesheet the app injects, so the page can read its own
   // state off it — no second channel to keep in sync with the app.
   var isBlurred = function () {
-    var style = document.getElementById('whatsie-privacy-blur');
+    var style = document.getElementById('whatly-privacy-blur');
     return !!(style && style.textContent);
   };
 
   // Every button we add: what it looks like right now, and what a click does.
   var BUTTONS = [
     {
-      id: 'whatsie-theme-toggle',
+      id: 'whatly-theme-toggle',
       enabled: function () { return W.themeToggleButton; },
       icon: function () { return isDark() ? ICON.sun : ICON.moon; },
       label: function () {
         return isDark() ? LABELS.switchToLight : LABELS.switchToDark;
       },
       click: function () {
-        if (window.__whatsieBridge && window.__whatsieBridge.toggleTheme)
-          window.__whatsieBridge.toggleTheme();
+        if (window.__whatlyBridge && window.__whatlyBridge.toggleTheme)
+          window.__whatlyBridge.toggleTheme();
       },
     },
     {
-      id: 'whatsie-blur-toggle',
+      id: 'whatly-blur-toggle',
       enabled: function () { return W.privacyBlurButton; },
       icon: function () { return isBlurred() ? ICON.eye : ICON.eyeOff; },
       label: function () {
         return isBlurred() ? LABELS.showChats : LABELS.blurChats;
       },
       click: function () {
-        if (window.__whatsieBridge && window.__whatsieBridge.togglePrivacyBlur)
-          window.__whatsieBridge.togglePrivacyBlur();
+        if (window.__whatlyBridge && window.__whatlyBridge.togglePrivacyBlur)
+          window.__whatlyBridge.togglePrivacyBlur();
       },
     },
   ];
@@ -120,10 +120,10 @@ static const char kScriptTemplate[] = R"JS(
   // there is nothing to write.
   var paint = function (spec, button) {
     var label = spec.label();
-    if (button.getAttribute('data-whatsie-state') === label) return;
+    if (button.getAttribute('data-whatly-state') === label) return;
     var svg = button.querySelector('svg');
     if (!svg) return;
-    button.setAttribute('data-whatsie-state', label);
+    button.setAttribute('data-whatly-state', label);
     svg.setAttribute('viewBox', '0 0 24 24');
     svg.setAttribute('fill', 'currentColor');
     svg.innerHTML = spec.icon();
@@ -178,7 +178,7 @@ static const char kScriptTemplate[] = R"JS(
         for (var i = rail.length - 1; i >= 0; i--) {
           if (!avatar && rail[i].querySelector('img')) { avatar = rail[i]; continue; }
           if (avatar && !template && rail[i].querySelector('svg') &&
-              !rail[i].querySelector('img') && !rail[i].closest('[id^="whatsie-"]'))
+              !rail[i].querySelector('img') && !rail[i].closest('[id^="whatly-"]'))
             template = rail[i];
         }
         if (!avatar || !template) continue;
@@ -221,7 +221,7 @@ static const char kScriptTemplate[] = R"JS(
     }
   };
 
-  window.__whatsieInstallThemeButton = function () { install(); repaint(); };
+  window.__whatlyInstallThemeButton = function () { install(); repaint(); };
 
   // WhatsApp rebuilds the rail on navigation, so the buttons have to be put
   // back. A MutationObserver over the body is the obvious way and the wrong

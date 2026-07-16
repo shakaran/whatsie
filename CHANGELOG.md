@@ -1,14 +1,20 @@
 ## Unreleased
 
 First release of the fork maintained at https://github.com/shakaran/whatsie.
-Everything below is on top of upstream 5.1.0. The application IDs moved to the
-`net.shakaran` namespace; existing settings and the logged-in session are copied
-over on first run, so nobody is logged out by upgrading.
+Everything below is on top of upstream 5.1.0.
+
+**The app is now called Whatly** (it was WhatSie). The application id is
+`net.shakaran.whatly`, the binary is `whatly`, and user data lives under
+`shakaran/whatly`. Existing installs are carried over automatically on first
+run — settings and the logged-in session are copied from the old `shakaran`
+namespace and from the previous `WhatSie` layout, so nobody is logged out by
+upgrading. If the automatic copy ever misses something, `whatly
+--migrate-from=whatsie` does it by hand (`--dry-run` to preview first).
 
 #### 🎁 Features
 
 * **Multiple WhatsApp accounts.** Either as separate windows —
-  `whatsie --profile=<name>`, each with its own session, settings file and
+  `whatly --profile=<name>`, each with its own session, settings file and
   instance — or as tabs inside one window, added with a **+** and renamed or
   removed from a right-click menu. Every account is a separate Chromium storage
   partition, so the sessions never touch; the tray badge sums the unread count
@@ -39,7 +45,7 @@ over on first run, so nobody is logged out by upgrading.
 * Image paste from a browser's clipboard.
 * A connection watchdog that reloads the page when WhatsApp's WebSocket hangs,
   capped at three reloads per episode.
-* Identify as WhatSie in the phone's linked-devices list, instead of as Chrome.
+* Identify as Whatly in the phone's linked-devices list, instead of as Chrome.
 * Close the emoji panel by clicking outside it (opt-in).
 * `F1` opens About; its **Report a Bug** button fills in the GitHub issue with
   the version, commit, memory usage of the whole process tree, and the recent
@@ -47,7 +53,7 @@ over on first run, so nobody is logged out by upgrading.
 
 #### 🐞 Bug Fixes
 
-* **Logging out of KDE could stall on WhatSie.** With close-to-tray on, the
+* **Logging out of KDE could stall on Whatly.** With close-to-tray on, the
   window vetoed *every* close — including the one the session manager sends at
   logout — so the desktop saw an app refusing to quit and waited on it. A
   session-end close is now honoured as a real quit. (Reported on KDE; the fix
@@ -699,8 +705,8 @@ over on first run, so nobody is logged out by upgrading.
    - lets pass arguments from secondary instances to main instance
    - open new chat without reloading page
    - restore application with command line argument to secondary instance:
-          example: `whatsie whatsapp://whatsie`
-          will restore the primary instance of whatsie process
+          example: `whatly whatsapp://whatly`
+          will restore the primary instance of whatly process
 
 ### 4.0
 - fix(SystemTray) tray icon uses png rather than SVG
@@ -715,7 +721,7 @@ over on first run, so nobody is logged out by upgrading.
 - feat(WebApp) added setting to set zoom factor when the window is maximized and fullscreen (gives user ability to set different zoom factor for Normal, Maximized(Fullscreen WindowStates)
 - fix(Setting) settings UI is more organized
 - fix(WebApp) enable JavaScript execCommand("paste")
-- feat(WebApp) tested for new WhatsApp Web that lets users use Whatsie without requiring the phone connected to the internet
+- feat(WebApp) tested for new WhatsApp Web that lets users use Whatly without requiring the phone connected to the internet
 - fix(Lock) unify passowrd echomode in lock widget
 
 

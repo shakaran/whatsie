@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.24)
-project(whatsie LANGUAGES CXX)
+project(whatly LANGUAGES CXX)
 
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 17)
@@ -112,16 +112,16 @@ endif()
 # The extra hardening flags are opt-out. A distribution builds with its own
 # hardening policy and its own optimisation flags, and forcing these on top
 # fights that — which is exactly what a Gentoo maintainer reported. Packagers
-# can pass -DWHATSIE_HARDENING=OFF to leave the toolchain's own flags in place;
+# can pass -DWHATLY_HARDENING=OFF to leave the toolchain's own flags in place;
 # for a normal source build they stay on.
-option(WHATSIE_HARDENING "Add stack-protector/FORTIFY hardening compile flags" ON)
+option(WHATLY_HARDENING "Add stack-protector/FORTIFY hardening compile flags" ON)
 
 # Compiler flags
 if(MSVC)
     # Source files contain UTF-8 characters; MSVC needs to be told explicitly.
     add_compile_options(/utf-8)
 else()
-    if(WHATSIE_HARDENING)
+    if(WHATLY_HARDENING)
         add_compile_options(
             -fstack-protector-strong
             -fstack-clash-protection
@@ -259,7 +259,7 @@ set(SINGLEAPP_HEADERS
 )
 
 # Create the main executable
-add_executable(whatsie
+add_executable(whatly
     ${SOURCES}
     ${HEADERS}
     ${UI_FILES}
@@ -273,7 +273,7 @@ add_executable(whatsie
 # dead. Compile them to .qm and embed them, so main.cpp can load one for the
 # system locale.
 if (Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
-    qt_add_translations(whatsie
+    qt_add_translations(whatly
         TS_FILES
             src/i18n/ar_SA.ts
             src/i18n/de_DE.ts
@@ -300,7 +300,7 @@ else()
 endif()
 
 # Include directories
-target_include_directories(whatsie PRIVATE
+target_include_directories(whatly PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/src/singleapplication
     ${CMAKE_CURRENT_SOURCE_DIR}/src/widgets/elidedlabel
@@ -310,7 +310,7 @@ target_include_directories(whatsie PRIVATE
 )
 
 # Link libraries
-target_link_libraries(whatsie PRIVATE
+target_link_libraries(whatly PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Gui
     Qt${QT_VERSION_MAJOR}::Widgets
@@ -326,7 +326,7 @@ target_link_libraries(whatsie PRIVATE
 # hint with the byte order the spec requires (see MainWindow::notificationImageHint).
 if(UNIX AND NOT APPLE)
     find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS DBus)
-    target_link_libraries(whatsie PRIVATE
+    target_link_libraries(whatly PRIVATE
         notify-qt
         X11
         Qt${QT_VERSION_MAJOR}::DBus
@@ -336,13 +336,13 @@ endif()
 # Windows executable setup: GUI subsystem (no console) and icon/version resource
 if(WIN32)
     string(REPLACE "." "," PROJECT_VERSION_RC ${PROJECT_VERSION})
-    configure_file(dist/windows/whatsie.rc.in ${CMAKE_CURRENT_BINARY_DIR}/whatsie.rc @ONLY)
-    target_sources(whatsie PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/whatsie.rc)
-    set_target_properties(whatsie PROPERTIES WIN32_EXECUTABLE TRUE)
+    configure_file(dist/windows/whatly.rc.in ${CMAKE_CURRENT_BINARY_DIR}/whatly.rc @ONLY)
+    target_sources(whatly PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/whatly.rc)
+    set_target_properties(whatly PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
 
 # Define compiler definitions
-target_compile_definitions(whatsie PRIVATE
+target_compile_definitions(whatly PRIVATE
     QAPPLICATION_CLASS=QApplication
     QT_DEPRECATED_WARNINGS
     GIT_HASH="${GIT_HASH}"
@@ -356,46 +356,46 @@ target_compile_definitions(whatsie PRIVATE
 message(STATUS "Qt6 WebEngine spellchecker support: enabled (required)")
 
 # Install the executable
-install(TARGETS whatsie DESTINATION ${BINDIR})
+install(TARGETS whatly DESTINATION ${BINDIR})
 
 # Linux-only installation files (freedesktop.org conventions)
 if(UNIX AND NOT APPLE)
 
 # Install desktop file
-install(FILES dist/linux/net.shakaran.whatsie.desktop
+install(FILES dist/linux/net.shakaran.whatly.desktop
     DESTINATION ${DATADIR}/applications
 )
 
 # Install appdata file
-install(FILES dist/linux/net.shakaran.whatsie.appdata.xml
+install(FILES dist/linux/net.shakaran.whatly.appdata.xml
     DESTINATION ${DATADIR}/metainfo
 )
 
 # Install license
 install(FILES LICENSE
-    DESTINATION ${DATADIR}/licenses/whatsie
+    DESTINATION ${DATADIR}/licenses/whatly
 )
 
 # Install icons
-install(FILES dist/linux/hicolor/16x16/apps/net.shakaran.whatsie.png
+install(FILES dist/linux/hicolor/16x16/apps/net.shakaran.whatly.png
     DESTINATION ${DATADIR}/icons/hicolor/16x16/apps
 )
-install(FILES dist/linux/hicolor/32x32/apps/net.shakaran.whatsie.png
+install(FILES dist/linux/hicolor/32x32/apps/net.shakaran.whatly.png
     DESTINATION ${DATADIR}/icons/hicolor/32x32/apps
 )
-install(FILES dist/linux/hicolor/64x64/apps/net.shakaran.whatsie.png
+install(FILES dist/linux/hicolor/64x64/apps/net.shakaran.whatly.png
     DESTINATION ${DATADIR}/icons/hicolor/64x64/apps
 )
-install(FILES dist/linux/hicolor/128x128/apps/net.shakaran.whatsie.png
+install(FILES dist/linux/hicolor/128x128/apps/net.shakaran.whatly.png
     DESTINATION ${DATADIR}/icons/hicolor/128x128/apps
 )
-install(FILES dist/linux/hicolor/256x256/apps/net.shakaran.whatsie.png
+install(FILES dist/linux/hicolor/256x256/apps/net.shakaran.whatly.png
     DESTINATION ${DATADIR}/icons/hicolor/256x256/apps
 )
-install(FILES dist/linux/hicolor/scalable/apps/net.shakaran.whatsie.svg
+install(FILES dist/linux/hicolor/scalable/apps/net.shakaran.whatly.svg
     DESTINATION ${DATADIR}/icons/hicolor/scalable/apps
 )
-install(FILES dist/linux/hicolor/symbolic/apps/net.shakaran.whatsie-symbolic.svg
+install(FILES dist/linux/hicolor/symbolic/apps/net.shakaran.whatly-symbolic.svg
     DESTINATION ${DATADIR}/icons/hicolor/symbolic/apps
 )
 
@@ -411,9 +411,9 @@ endif()
 # The hunspell sources in src/dictionaries are converted here, once, with the
 # tool Qt ships for it, and installed as .bdic. QTWEBENGINE_DICTIONARIES_PATH is
 # pointed at the result at startup (see main.cpp).
-option(WHATSIE_SPELLCHECK "Build the spell-check dictionaries" ON)
+option(WHATLY_SPELLCHECK "Build the spell-check dictionaries" ON)
 
-if(WHATSIE_SPELLCHECK)
+if(WHATLY_SPELLCHECK)
 
 find_program(QWEBENGINE_CONVERT_DICT
     NAMES qwebengine_convert_dict
@@ -421,7 +421,7 @@ find_program(QWEBENGINE_CONVERT_DICT
           /usr/lib/x86_64-linux-gnu/qt6/libexec /usr/lib64/qt6/libexec
 )
 
-file(GLOB WHATSIE_HUNSPELL_DICTS "${CMAKE_CURRENT_SOURCE_DIR}/src/dictionaries/*.dic")
+file(GLOB WHATLY_HUNSPELL_DICTS "${CMAKE_CURRENT_SOURCE_DIR}/src/dictionaries/*.dic")
 
 if(NOT QWEBENGINE_CONVERT_DICT)
     # Not a warning to be ignored: without this tool there are no dictionaries,
@@ -435,17 +435,17 @@ if(NOT QWEBENGINE_CONVERT_DICT)
         "  Fedora:         sudo dnf install qt6-qtwebengine-devel\n"
         "  Arch:           sudo pacman -S qt6-webengine\n"
         "Or pass its location explicitly: -DQWEBENGINE_CONVERT_DICT=/path/to/qwebengine_convert_dict\n"
-        "To build without a spell checker instead, pass -DWHATSIE_SPELLCHECK=OFF."
+        "To build without a spell checker instead, pass -DWHATLY_SPELLCHECK=OFF."
     )
 endif()
 
-set(WHATSIE_DICT_DIR "${CMAKE_CURRENT_BINARY_DIR}/qtwebengine_dictionaries")
-file(MAKE_DIRECTORY "${WHATSIE_DICT_DIR}")
+set(WHATLY_DICT_DIR "${CMAKE_CURRENT_BINARY_DIR}/qtwebengine_dictionaries")
+file(MAKE_DIRECTORY "${WHATLY_DICT_DIR}")
 
-set(WHATSIE_BDICS "")
-foreach(dict ${WHATSIE_HUNSPELL_DICTS})
+set(WHATLY_BDICS "")
+foreach(dict ${WHATLY_HUNSPELL_DICTS})
     get_filename_component(dict_name "${dict}" NAME_WE)
-    set(bdic "${WHATSIE_DICT_DIR}/${dict_name}.bdic")
+    set(bdic "${WHATLY_DICT_DIR}/${dict_name}.bdic")
     add_custom_command(
         OUTPUT "${bdic}"
         COMMAND "${QWEBENGINE_CONVERT_DICT}" "${dict}" "${bdic}"
@@ -453,28 +453,28 @@ foreach(dict ${WHATSIE_HUNSPELL_DICTS})
         COMMENT "Converting dictionary ${dict_name} to .bdic"
         VERBATIM
     )
-    list(APPEND WHATSIE_BDICS "${bdic}")
+    list(APPEND WHATLY_BDICS "${bdic}")
 endforeach()
 
-add_custom_target(whatsie_dictionaries ALL DEPENDS ${WHATSIE_BDICS})
-add_dependencies(whatsie whatsie_dictionaries)
+add_custom_target(whatly_dictionaries ALL DEPENDS ${WHATLY_BDICS})
+add_dependencies(whatly whatly_dictionaries)
 
-list(LENGTH WHATSIE_BDICS WHATSIE_DICT_COUNT)
+list(LENGTH WHATLY_BDICS WHATLY_DICT_COUNT)
 
 if(UNIX AND NOT APPLE)
-    install(FILES ${WHATSIE_BDICS}
-        DESTINATION ${DATADIR}/whatsie/qtwebengine_dictionaries
+    install(FILES ${WHATLY_BDICS}
+        DESTINATION ${DATADIR}/whatly/qtwebengine_dictionaries
     )
 endif()
 
 else()
-    set(WHATSIE_DICT_COUNT 0)
-    target_compile_definitions(whatsie PRIVATE WHATSIE_NO_SPELLCHECK)
+    set(WHATLY_DICT_COUNT 0)
+    target_compile_definitions(whatly PRIVATE WHATLY_NO_SPELLCHECK)
 endif()
 
 # Summary message
 message(STATUS "")
-message(STATUS "========== Whatsie Build Configuration ==========")
+message(STATUS "========== Whatly Build Configuration ==========")
 message(STATUS "Version:                  ${PROJECT_VERSION}")
 message(STATUS "Install prefix:           ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "Build type:               ${CMAKE_BUILD_TYPE}")

@@ -26,10 +26,10 @@ jobs:
         run: cmake --build build --config Release
 
       - name: Deploy Qt runtime
-        run: '& "$env:QT_ROOT_DIR\bin\windeployqt.exe" build\Release\whatsie.exe'
+        run: '& "$env:QT_ROOT_DIR\bin\windeployqt.exe" build\Release\whatly.exe'
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: whatsie-windows-x64
+          name: whatly-windows-x64
           path: build/Release

@@ -8,8 +8,8 @@
 #include <QWebEngineScript>
 #include <QWebEngineScriptCollection>
 
-static const char kScriptName[] = "whatsie-custom-css";
-static const char kStyleId[] = "whatsie-custom-css";
+static const char kScriptName[] = "whatly-custom-css";
+static const char kStyleId[] = "whatly-custom-css";
 static const char kSettingsKey[] = "customCssEnabled";
 
 // __CSS__ becomes a JS string literal: the user's stylesheet, or "" to remove

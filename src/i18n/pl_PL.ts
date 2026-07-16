@@ -14,7 +14,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;WhatSie&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Whatly&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;WhatsApp Web Client for Linux Desktop.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -417,53 +417,53 @@ Czy chcesz pominąć kontrolę bezpieczeństwa i kontynuować?   </translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="572"/>
-        <location filename="../mainwindow.cpp" line="578"/>
+        <location filename="../mainwindow.cpp" line="581"/>
+        <location filename="../mainwindow.cpp" line="587"/>
         <location filename="../mainwindow_webengine.cpp" line="262"/>
         <location filename="../mainwindow_webengine.cpp" line="265"/>
         <source>| Error</source>
         <translation>| Błąd</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="573"/>
+        <location filename="../mainwindow.cpp" line="582"/>
         <source>Unlock to access Settings.</source>
         <translation>Odblokuj, aby otworzyć ustawienia.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="579"/>
+        <location filename="../mainwindow.cpp" line="588"/>
         <source>Unable to initialize settings module.
 Webengine is not initialized.</source>
         <translation>Nie można zainicjować modułu ustawień.
 WebEngine nie jest zainicjowany.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="609"/>
         <source> | Action required</source>
         <translation> | Wymagane działanie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="601"/>
+        <location filename="../mainwindow.cpp" line="610"/>
         <source>Page needs to be reloaded to continue.</source>
         <translation>Aby kontynuować, strona musi zostać przeładowana.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="806"/>
+        <location filename="../mainwindow.cpp" line="815"/>
         <source>Open</source>
         <translation>Otwórz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="816"/>
+        <location filename="../mainwindow.cpp" line="825"/>
         <location filename="../mainwindow_tray.cpp" line="16"/>
         <source>New Chat</source>
         <translation>Nowy czat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="817"/>
+        <location filename="../mainwindow.cpp" line="826"/>
         <source>Enter a valid WhatsApp number with country code (ex- +91XXXXXXXXXX)</source>
         <translation>Wprowadź prawidłowy numer WhatsApp z numerem kierunkowym kraju (np. +48XXXXXXXXX)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="847"/>
+        <location filename="../mainwindow.cpp" line="856"/>
         <source>Rate Application</source>
         <translation>Oceń aplikację</translation>
     </message>
@@ -597,19 +597,6 @@ Otworzyć ustawienia teraz?</translation>
     </message>
 </context>
 <context>
-    <name>MoreApps</name>
-    <message>
-        <location filename="../widgets/MoreApps/moreapps.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../widgets/MoreApps/moreapps.ui" line="33"/>
-        <source>... ... ... ...</source>
-        <translation>... ... ... ...</translation>
-    </message>
-</context>
-<context>
     <name>NotificationPopup</name>
     <message>
         <location filename="../notificationpopup.h" line="52"/>
@@ -713,57 +700,87 @@ Otworzyć ustawienia teraz?</translation>
         <translation>Ukryj informacje diagnostyczne</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="269"/>
+        <location filename="../main.cpp" line="172"/>
+        <source>Nothing to migrate from &quot;%1&quot; — already migrated, or no data found there.</source>
+        <translation>Nie ma nic do migracji z „%1” — już zmigrowano lub nie znaleziono danych.</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="177"/>
+        <source>Would copy:</source>
+        <translation>Skopiowano by:</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="177"/>
+        <source>Copied:</source>
+        <translation>Skopiowano:</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="181"/>
+        <source>Run again without --dry-run to perform the copy.</source>
+        <translation>Uruchom ponownie bez --dry-run, aby wykonać kopię.</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="401"/>
         <source>Feature rich WhatsApp web client based on Qt WebEngine</source>
         <translation>Rozbudowany klient WhatsApp Web oparty na Qt WebEngine</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="276"/>
+        <location filename="../main.cpp" line="408"/>
         <source>Displays help on commandline options</source>
         <translation>Wyświetla pomoc dotyczącą opcji wiersza poleceń</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="281"/>
+        <location filename="../main.cpp" line="413"/>
         <source>Opens Settings dialog in a running instance of </source>
         <translation>Otwiera ustawienia w uruchomionej instancji </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="286"/>
+        <location filename="../main.cpp" line="418"/>
         <source>Locks a running instance of </source>
         <translation>Blokuje uruchomioną instancję </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="292"/>
+        <location filename="../main.cpp" line="424"/>
         <source>Opens About dialog in a running instance of </source>
         <translation>Otwiera okno „O programie” w uruchomionej instancji </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="298"/>
+        <location filename="../main.cpp" line="430"/>
         <source>Toggle between dark &amp; light theme in a running instance of </source>
         <translation>Przełącza między jasnym a ciemnym motywem w uruchomionej instancji </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="305"/>
+        <location filename="../main.cpp" line="437"/>
         <source>Reload the app in a running instance of </source>
         <translation>Przeładowuje aplikację w uruchomionej instancji </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="311"/>
+        <location filename="../main.cpp" line="443"/>
         <source>Open new chat prompt in a running instance of </source>
         <translation>Otwiera okno nowego czatu w uruchomionej instancji </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="324"/>
+        <location filename="../main.cpp" line="456"/>
         <source>Run as a separate account with its own session and settings, in its own window</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uruchom jako osobne konto z własną sesją i ustawieniami, we własnym oknie&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="331"/>
+        <location filename="../main.cpp" line="463"/>
         <source>Show main window of running instance of </source>
         <translation>Pokazuje główne okno uruchomionej instancji </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="414"/>
+        <location filename="../main.cpp" line="470"/>
+        <source>Copy settings and the logged-in session from a previous install (e.g. the older &quot;whatsie&quot; build) into this one, then exit</source>
+        <translation>Skopiuj ustawienia i zalogowaną sesję z poprzedniej instalacji (np. starszej wersji „whatsie”) do tej, a następnie zakończ</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="477"/>
+        <source>With --migrate-from, only report what would be copied</source>
+        <translation>Z --migrate-from tylko pokaż, co zostałoby skopiowane</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="561"/>
         <source>App lock is not configured, 
 Please setup the password in the Settings first.</source>
         <translation>Blokada aplikacji nie jest skonfigurowana.
@@ -1060,8 +1077,8 @@ Najpierw ustaw hasło w ustawieniach.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="391"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language of WhatSie&apos;s own interface. Takes effect after restarting the app. The language of the chats themselves comes from WhatsApp Web and cannot be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Język interfejsu WhatSie. Działa po ponownym uruchomieniu aplikacji. Język samych czatów pochodzi z WhatsApp Web i nie można go tu zmienić.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language of Whatly&apos;s own interface. Takes effect after restarting the app. The language of the chats themselves comes from WhatsApp Web and cannot be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Język interfejsu Whatly. Działa po ponownym uruchomieniu aplikacji. Język samych czatów pochodzi z WhatsApp Web i nie można go tu zmienić.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="398"/>
@@ -1169,8 +1186,8 @@ Najpierw ustaw hasło w ustawieniach.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="520"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use one of your own images as the background of the chat pane, as WhatsApp does on Android. The image is stored inside WhatSie, not uploaded anywhere, and is only visible to you.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Użyj własnego obrazu jako tła panelu czatu, tak jak robi to WhatsApp na Androidzie. Obraz jest przechowywany w WhatSie, nigdzie nie jest wysyłany i widzisz go tylko Ty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use one of your own images as the background of the chat pane, as WhatsApp does on Android. The image is stored inside Whatly, not uploaded anywhere, and is only visible to you.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Użyj własnego obrazu jako tła panelu czatu, tak jak robi to WhatsApp na Androidzie. Obraz jest przechowywany w Whatly, nigdzie nie jest wysyłany i widzisz go tylko Ty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="523"/>
@@ -1179,13 +1196,13 @@ Najpierw ustaw hasło w ustawieniach.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="539"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;New logins appear as &amp;quot;WhatSie for Linux&amp;quot; (or the matching platform) in your phone&apos;s linked-devices list instead of &amp;quot;Google Chrome (Linux)&amp;quot;. The name is stored on the phone when a device is linked, so changing this only affects future links — log out and re-link to rename an existing session.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nowe logowania pojawiają się na liście połączonych urządzeń w telefonie jako „WhatSie dla Linuksa” (lub odpowiednia platforma) zamiast „Google Chrome (Linux)”. Nazwa jest zapisywana w telefonie podczas łączenia urządzenia, więc zmiana dotyczy tylko przyszłych połączeń — wyloguj się i połącz ponownie, aby zmienić nazwę istniejącej sesji.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;New logins appear as &amp;quot;Whatly for Linux&amp;quot; (or the matching platform) in your phone&apos;s linked-devices list instead of &amp;quot;Google Chrome (Linux)&amp;quot;. The name is stored on the phone when a device is linked, so changing this only affects future links — log out and re-link to rename an existing session.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nowe logowania pojawiają się na liście połączonych urządzeń w telefonie jako „Whatly dla Linuksa” (lub odpowiednia platforma) zamiast „Google Chrome (Linux)”. Nazwa jest zapisywana w telefonie podczas łączenia urządzenia, więc zmiana dotyczy tylko przyszłych połączeń — wyloguj się i połącz ponownie, aby zmienić nazwę istniejącej sesji.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="542"/>
-        <source>Identify as WhatSie in linked devices</source>
-        <translation>Identyfikuj się jako WhatSie na połączonych urządzeniach</translation>
+        <source>Identify as Whatly in linked devices</source>
+        <translation>Identyfikuj się jako Whatly na połączonych urządzeniach</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="553"/>

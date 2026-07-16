@@ -1,16 +1,16 @@
 [Desktop Entry]
-Name=WhatSie
+Name=Whatly
 GenericName[it]=Client Qt per WhatsApp Web
 GenericName=Qt WhatsApp Web Client
-Comment[it]=Un Client per WhatsApp Web basato su Qt
-Comment=A WhatsApp Web Client using the Qt framework
-Icon=net.shakaran.whatsie
-Exec=whatsie %u
+Comment[it]=Un Client per WhatsApp Web basato su QT
+Comment=A WhatsApp Web Client using the QT framework
+Icon=/usr/share/icons/hicolor/256x256/apps/net.shakaran.whatly.png
+Exec=/usr/bin/whatly/whatly %u
 Terminal=false
 Type=Application
 Categories=Chat;Network;InstantMessaging;Qt;
-Keywords=WhatSie;WhatsApp;
-StartupWMClass=whatsie
+Keywords=Whatly;WhatsApp;
+StartupWMClass=whatly
 StartupNotify=true
 MimeType=x-scheme-handler/whatsapp;
 X-GNOME-UsesNotifications=true
@@ -20,24 +20,24 @@ Actions=Chat;Settings;Theme;Lock;About;
 [Desktop Action Chat]
 Name[it]=Nuova Chat
 Name=New Chat
-Exec=whatsie -n
+Exec=whatly -n
 
 [Desktop Action Theme]
 Name[it]=Cambia tema
 Name=Toggle theme
-Exec=whatsie -t
+Exec=whatly -t
 
 [Desktop Action Settings]
 Name[it]=Impostazioni
 Name=Settings
-Exec=whatsie -s
+Exec=whatly -s
 
 [Desktop Action Lock]
 Name[it]=Blocca
 Name=Lock
-Exec=whatsie -l
+Exec=whatly -l
 
 [Desktop Action About]
 Name[it]=Info
 Name=About
-Exec=whatsie -i
+Exec=whatly -i

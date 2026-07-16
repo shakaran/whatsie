@@ -1,10 +1,10 @@
-# Translating WhatSie
+# Translating Whatly
 
-WhatSie's interface can be translated. The language follows the system locale by
+Whatly's interface can be translated. The language follows the system locale by
 default and can be overridden in **Settings → General settings → Interface
 language**; the change takes effect after a restart.
 
-> **What this does *not* cover.** Only WhatSie's own interface — menus, settings,
+> **What this does *not* cover.** Only Whatly's own interface — menus, settings,
 > dialogs — is translated here. The language of the chats is WhatsApp Web's, and
 > WhatsApp picks it from your account and browser locale. Nothing in this project
 > can change it.

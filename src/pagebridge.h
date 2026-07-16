@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-// The one object WhatsApp's page can reach, over QWebChannel. Buttons WhatSie
+// The one object WhatsApp's page can reach, over QWebChannel. Buttons Whatly
 // injects into the page (see WebTweaks) call into here; nothing else is
 // exposed, and the page cannot reach anything this class does not declare as a
 // slot.

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>net.shakaran.whatsie</id>
+  <id>net.shakaran.whatly</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
-  <name>Whatsie</name>
+  <name>Whatly</name>
   <summary>Feature-rich WhatsApp Web client for the Linux desktop</summary>
 
   <developer id="net.shakaran">
@@ -17,14 +17,14 @@
 
   <description>
     <p>
-      Whatsie is a native desktop wrapper for WhatsApp Web, built on Qt
+      Whatly is a native desktop wrapper for WhatsApp Web, built on Qt
       and QtWebEngine.  It brings WhatsApp out of the browser tab and into a
       proper desktop application with system integration, privacy controls, and
       customization options unavailable in a plain browser.
     </p>
     <p>
       This is a fork maintained by Ángel Guzmán Maeso, based on the original
-      WhatSie created by Keshav Bhatt and released under the MIT licence.
+      Whatly created by Keshav Bhatt and released under the MIT licence.
     </p>
     <p>Core features:</p>
     <ul>
@@ -45,7 +45,7 @@
     </ul>
   </description>
 
-  <launchable type="desktop-id">net.shakaran.whatsie.desktop</launchable>
+  <launchable type="desktop-id">net.shakaran.whatly.desktop</launchable>
 
   <url type="homepage">https://github.com/shakaran/whatsie</url>
   <url type="bugtracker">https://github.com/shakaran/whatsie/issues</url>
@@ -85,7 +85,7 @@
   </screenshots>
 
   <provides>
-    <binary>whatsie</binary>
+    <binary>whatly</binary>
   </provides>
 
   <content_rating type="oars-1.0" />

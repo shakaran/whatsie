@@ -7,8 +7,8 @@
 #include "appprofile.h"
 
 // One QSettings, but scoped to the active account (see AppProfile). The default
-// account keeps the file the app has always used — WhatSie.conf — so nothing
-// moves on upgrade; a --profile=work account reads and writes WhatSie-work.conf
+// account keeps the file the app has always used — whatly.conf — so nothing
+// moves on upgrade; a --profile=work account reads and writes whatly-work.conf
 // instead. The file is chosen lazily, on first use, by which point main() has
 // already fixed the account and set the organisation name.
 class SettingsManager {

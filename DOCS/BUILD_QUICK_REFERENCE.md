@@ -1,6 +1,6 @@
-# Quick Reference: Building Whatsie with CMake
+# Quick Reference: Building Whatly with CMake
 
-> Whatsie builds with **CMake** (Ninja generator recommended). There is no
+> Whatly builds with **CMake** (Ninja generator recommended). There is no
 > `Makefile` wrapper — all commands below drive CMake directly.
 
 ## TL;DR - Getting Started in 30 seconds
@@ -8,7 +8,7 @@
 ```bash
 # Clone and navigate
 git clone https://github.com/shakaran/whatsie.git
-cd whatsie
+cd whatly
 
 # Initialise the bundled libnotify-qt submodule
 git submodule update --init --recursive
@@ -18,7 +18,7 @@ cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 
 # Run
-./build/whatsie
+./build/whatly
 
 # Install to system (optional)
 cmake --install build          # uses the configured CMAKE_INSTALL_PREFIX
@@ -63,10 +63,10 @@ ninja -C build
 
 ```bash
 # Run from the build directory
-./build/whatsie
+./build/whatly
 
 # Run from the system (after install, if prefix/bin is on PATH)
-whatsie
+whatly
 ```
 
 ### Installation & Uninstallation
@@ -165,7 +165,7 @@ cmake -S . -B build -G Ninja -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
 
 ```
 build/
-├── whatsie                      # Main executable
+├── whatly                      # Main executable
 ├── CMakeFiles/                  # CMake temporary files
 ├── cmake_install.cmake          # Installation script
 ├── install_manifest.txt         # List of installed files (after install)
@@ -183,8 +183,8 @@ build/
 ## Version & Build Info
 
 ```bash
-./build/whatsie --version
-./build/whatsie --build-info
+./build/whatly --version
+./build/whatly --build-info
 ```
 
 ## Development Workflow
@@ -200,7 +200,7 @@ build/
    ```bash
    # edit sources, then rebuild incrementally
    cmake --build build --parallel
-   ./build/whatsie
+   ./build/whatly
    ```
 
 3. **Before committing**:
@@ -208,7 +208,7 @@ build/
    rm -rf build
    cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
    cmake --build build --parallel
-   ./build/whatsie     # final test
+   ./build/whatly     # final test
    ```
 
 ## Further Help

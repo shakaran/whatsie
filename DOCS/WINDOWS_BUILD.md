@@ -1,6 +1,6 @@
-# Building Whatsie on Windows
+# Building Whatly on Windows
 
-Whatsie builds natively on Windows 10 and later. The same codebase is used on
+Whatly builds natively on Windows 10 and later. The same codebase is used on
 all platforms; Linux-only pieces (libnotify-qt/D-Bus notifications, X11) are
 compiled out via `Q_OS_*` guards and replaced with Qt/Win32 equivalents.
 
@@ -23,14 +23,14 @@ CMake can find MSVC):
 
 ```bat
 git clone https://github.com/shakaran/whatsie.git
-cd whatsie
+cd whatly
 
 cmake -G "Visual Studio 17 2022" -A x64 -B build ^
       -DCMAKE_PREFIX_PATH=C:\Qt\6.10.0\msvc2022_64
 cmake --build build --config Release
 ```
 
-The executable lands in `build\Release\whatsie.exe`.
+The executable lands in `build\Release\whatly.exe`.
 
 Alternatively, open the project folder in Qt Creator and build with an
 MSVC-based Qt 6.10+ kit — no extra configuration needed.
@@ -41,7 +41,7 @@ To run outside the build environment, place the Qt runtime next to the
 executable with `windeployqt` (ships with Qt):
 
 ```bat
-C:\Qt\6.10.0\msvc2022_64\bin\windeployqt.exe build\Release\whatsie.exe
+C:\Qt\6.10.0\msvc2022_64\bin\windeployqt.exe build\Release\whatly.exe
 ```
 
 This copies the required Qt DLLs, the WebEngine process
@@ -58,4 +58,4 @@ This copies the required Qt DLLs, the WebEngine process
 * The default user agent reports `Windows NT 10.0` so WhatsApp Web treats the
   app as Chrome on Windows.
 * The executable is a GUI-subsystem binary (no console window); icon and
-  version info come from `dist/windows/whatsie.rc.in`.
+  version info come from `dist/windows/whatly.rc.in`.

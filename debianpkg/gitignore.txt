@@ -12,5 +12,5 @@ dist
 .tar.gz
 *.deb
 .asc
-debian/whatsie
+debian/whatly
 debian/files

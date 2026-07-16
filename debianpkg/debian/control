@@ -1,4 +1,4 @@
-Source: whatsie
+Source: whatly
 Section: utils
 Priority: optional
 Maintainer: krafairus <krafairuspc@gmail.com>
@@ -9,7 +9,7 @@ Build-Depends:
 Standards-Version: 4.16.3
 Homepage: https://github.com/shakaran/whatsie
 
-Package: whatsie
+Package: whatly
 Architecture: all
 Depends:
   qtwebengine5-dev-tools,

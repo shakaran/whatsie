@@ -80,7 +80,7 @@ private:
   // the old single-account entry point and now just calls this for the active
   // account.
   void createPageFor(WebView *view, const QString &accountId);
-  // Lets buttons WhatSie injects into WhatsApp's UI call back into the app.
+  // Lets buttons Whatly injects into WhatsApp's UI call back into the app.
   void installPageBridge(QWebEnginePage *page);
 
   // ── In-window accounts (tabs) ─────────────────────────────────────────────

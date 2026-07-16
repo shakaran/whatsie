@@ -1,7 +1,7 @@
-# CMake Migration Guide for Whatsie
+# CMake Migration Guide for Whatly
 
 ## Overview
-This document outlines the migration from qmake to CMake for building Whatsie with Qt6.
+This document outlines the migration from qmake to CMake for building Whatly with Qt6.
 
 ## Prerequisites
 - CMake 3.24 or later — or 4.0 or later if the bundled `libnotify-qt` submodule
@@ -93,12 +93,12 @@ cmake --install . --config Release --prefix ~/.local
 
 ### From build directory
 ```bash
-./build/whatsie
+./build/whatly
 ```
 
 ### After installation to /usr
 ```bash
-whatsie
+whatly
 ```
 
 ## Supported CMake Options
@@ -134,10 +134,10 @@ The script will warn if the dictionary compiler is not found. You can:
 1. Install it manually: `sudo apt-get install qtwebengine5-dev-tools` (for Qt5, adapt for Qt6)
 2. Build with `-DFLATPAK_BUILD=ON` to skip dictionary compilation
 
-### Permission denied when running whatsie
+### Permission denied when running whatly
 After installation to /usr, the binary should be executable. If not:
 ```bash
-sudo chmod +x /usr/bin/whatsie
+sudo chmod +x /usr/bin/whatly
 ```
 
 ## Cleaning Build Artifacts

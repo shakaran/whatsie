@@ -4,9 +4,9 @@
 #include <QWebEngineScript>
 #include <QWebEngineScriptCollection>
 
-static const char kScriptName[] = "whatsie-linked-device-name";
+static const char kScriptName[] = "whatly-linked-device-name";
 
-// __NAME__ becomes a JS string literal ("WhatSie for Linux", or "" when the
+// __NAME__ becomes a JS string literal ("Whatly for Linux", or "" when the
 // setting is off). The label comes from WAWebBrowserInfo — a module whose
 // default export is a 0-arg function returning {os, name, version, ua} — so
 // the hook swaps the module registry's defaultExport for a decorating wrapper
@@ -17,10 +17,10 @@ static const char kScriptName[] = "whatsie-linked-device-name";
 // arbitrary text but the browser name is validated against known browsers
 // and silently omitted otherwise (both behaviors observed by re-linking a
 // phone). The wrapper exploits that: os carries the full brand text and name
-// is set to the unrecognized "WhatSie", so the browser prefix disappears and
-// the label reads just "WhatSie for Linux".
+// is set to the unrecognized "Whatly", so the browser prefix disappears and
+// the label reads just "Whatly for Linux".
 //
-// The wrapper reads the LIVE name from window.__whatsieLinkedDeviceName, so
+// The wrapper reads the LIVE name from window.__whatlyLinkedDeviceName, so
 // re-running this script on a loaded page toggles the override without a
 // reload. The module system loads asynchronously, so the hook retries until
 // it resolves.
@@ -28,15 +28,15 @@ static const char kScriptTemplate[] = R"JS(
 (function () {
   'use strict';
   var NAME = __NAME__;
-  window.__whatsieLinkedDeviceName = NAME;  // live value read by the wrapper
-  if (window.__whatsieLinkedDeviceNameHooked || !NAME) return;
+  window.__whatlyLinkedDeviceName = NAME;  // live value read by the wrapper
+  if (window.__whatlyLinkedDeviceNameHooked || !NAME) return;
   var wrap = function (orig) {
     return function () {
       var inf = orig.apply(this, arguments);
       try {
-        if (window.__whatsieLinkedDeviceName && inf) {
-          inf.os = window.__whatsieLinkedDeviceName;
-          inf.name = 'WhatSie';  // unknown browser → phone omits the prefix
+        if (window.__whatlyLinkedDeviceName && inf) {
+          inf.os = window.__whatlyLinkedDeviceName;
+          inf.name = 'Whatly';  // unknown browser → phone omits the prefix
         }
       } catch (e) { /* keep the stock label */ }
       return inf;
@@ -44,7 +44,7 @@ static const char kScriptTemplate[] = R"JS(
   };
   var tries = 0;
   var hook = function () {
-    if (window.__whatsieLinkedDeviceNameHooked) return;
+    if (window.__whatlyLinkedDeviceNameHooked) return;
     try {
       if (typeof window.require === 'function') {
         var modules = window.require('__debug').modulesMap;
@@ -55,7 +55,7 @@ static const char kScriptTemplate[] = R"JS(
           rec.defaultExport = wrapped;
           if (rec.exports && typeof rec.exports.default === 'function')
             rec.exports.default = wrapped;
-          window.__whatsieLinkedDeviceNameHooked = true;
+          window.__whatlyLinkedDeviceNameHooked = true;
           return;
         }
         // Older builds: plain export on WAWebMiscBrowserUtils. Ask the registry
@@ -66,7 +66,7 @@ static const char kScriptTemplate[] = R"JS(
           var mod = window.require('WAWebMiscBrowserUtils');
           if (mod && typeof mod.info === 'function') {
             mod.info = wrap(mod.info);
-            window.__whatsieLinkedDeviceNameHooked = true;
+            window.__whatlyLinkedDeviceNameHooked = true;
             return;
           }
         }
@@ -82,11 +82,11 @@ namespace LinkedDeviceName {
 
 static QString platformDeviceName() {
 #if defined(Q_OS_WIN)
-  return QStringLiteral("WhatSie for Windows");
+  return QStringLiteral("Whatly for Windows");
 #elif defined(Q_OS_MACOS)
-  return QStringLiteral("WhatSie for macOS");
+  return QStringLiteral("Whatly for macOS");
 #else
-  return QStringLiteral("WhatSie for Linux");
+  return QStringLiteral("Whatly for Linux");
 #endif
 }
 

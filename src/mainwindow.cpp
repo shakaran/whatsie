@@ -42,15 +42,15 @@ extern bool   defaultAppAutoLock;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
 #ifdef Q_OS_LINUX
-      m_notifier("WhatSie", this),
+      m_notifier("Whatly", this),
 #endif
-      m_trayIconNormal(themeIcon("whatsie-tray", ":/icons/app/notification/whatsie-notify.png")),
+      m_trayIconNormal(themeIcon("whatly-tray", ":/icons/app/notification/whatly-notify.png")),
       m_notificationsTitleRegExp("^\\([1-9]\\d*\\).*"),
       m_unreadMessageCountRegExp("\\([^\\d]*(\\d+)[^\\d]*\\)") {
 
   setObjectName("MainWindow");
-  setWindowTitle(QApplication::applicationName() + AppProfile::label());
-  setWindowIcon(themeIcon("whatsie", ":/icons/app/icon-64.png"));
+  setWindowTitle(QApplication::applicationDisplayName() + AppProfile::label());
+  setWindowIcon(themeIcon("whatly", ":/icons/app/icon-64.png"));
   applyMinimumSize();
   restoreMainWindow();
   createActions();
@@ -424,7 +424,7 @@ void MainWindow::initSettingWidget() {
   m_settingsWidget = new SettingsWidget(
       this, screenNumber, m_webEngine->page()->profile()->cachePath(),
       m_webEngine->page()->profile()->persistentStoragePath());
-  m_settingsWidget->setWindowTitle(QApplication::applicationName() +
+  m_settingsWidget->setWindowTitle(QApplication::applicationDisplayName() +
                                    " | Settings");
   m_settingsWidget->setWindowFlags(Qt::Dialog);
 
@@ -531,8 +531,8 @@ void MainWindow::initSettingWidget() {
             m_webEngine->page()->runJavaScript(
                 js.isEmpty()
                     ? QStringLiteral("(function(){var e=document.getElementById("
-                                     "'whatsie-chat-theme'); if (e) e.remove();"
-                                     "window.__whatsieChatThemeApply = null;})();")
+                                     "'whatly-chat-theme'); if (e) e.remove();"
+                                     "window.__whatlyChatThemeApply = null;})();")
                     : js);
           });
 
@@ -578,13 +578,13 @@ void MainWindow::showSettings(bool isAskedByCLI) {
     // being told to unlock with no unlock window anywhere on screen.
     ensureLockVisible();
     if (isAskedByCLI)
-      showNotification(QApplication::applicationName() + tr("| Error"),
+      showNotification(QApplication::applicationDisplayName() + tr("| Error"),
                        tr("Unlock to access Settings."));
     return;
   }
   if (m_webEngine == nullptr) {
     QMessageBox::critical(
-        this, QApplication::applicationName() + tr("| Error"),
+        this, QApplication::applicationDisplayName() + tr("| Error"),
         tr("Unable to initialize settings module.\nWebengine is not initialized."));
     return;
   }
@@ -606,7 +606,7 @@ void MainWindow::updateSettingsUserAgentWidget() {
 
 void MainWindow::askToReloadPage() {
   QMessageBox msgBox;
-  msgBox.setWindowTitle(QApplication::applicationName() + tr(" | Action required"));
+  msgBox.setWindowTitle(QApplication::applicationDisplayName() + tr(" | Action required"));
   msgBox.setInformativeText(tr("Page needs to be reloaded to continue."));
   msgBox.setStandardButtons(QMessageBox::Ok);
   msgBox.exec();
@@ -623,7 +623,7 @@ void MainWindow::showNotification(QString title, QString message) {
     return;
 
   if (title.isEmpty())
-    title = QApplication::applicationName();
+    title = QApplication::applicationDisplayName();
 
   if (SettingsManager::instance()
               .settings()
@@ -674,7 +674,7 @@ void MainWindow::showNotification(QString title, QString message) {
   QScreen *scr = this->screen();
   if (scr) {
     popup->present(scr, title, message,
-                   QPixmap(":/icons/app/notification/whatsie-notify.png"));
+                   QPixmap(":/icons/app/notification/whatly-notify.png"));
   } else {
     qWarning() << "showNotification: unable to get a screen";
   }
@@ -808,13 +808,13 @@ QVariant MainWindow::notificationImageHint(const QPixmap &pixmap) {
 }
 
 Notification::EventPtr MainWindow::notify(const QString& title, const QString& body, qint32 timeout) {
-  Notification::EventPtr ntf = m_notifier.createNotification(title, body, "whatsie");
+  Notification::EventPtr ntf = m_notifier.createNotification(title, body, "whatly");
 
   ntf->setTimeout(timeout);
   ntf->setCategory("im.received");
   ntf->addAction("open", tr("Open"));
   ntf->setHint("action-icons", false);
-  ntf->setHintString("image-path", "whatsie");
+  ntf->setHintString("image-path", "whatly");
   return ntf;
 }
 #endif
@@ -832,11 +832,11 @@ void MainWindow::newChat() {
 void MainWindow::triggerNewChat(const QString &phone, const QString &text) {
   static QString phoneStr, textStr;
   m_webEngine->page()->runJavaScript(
-      "openNewChatWhatsieDefined()",
+      "openNewChatWhatlyDefined()",
       [this, phone, text](const QVariant &result) {
         if (result.toString().contains("true")) {
           m_webEngine->page()->runJavaScript(
-              QString("openNewChatWhatsie(\"%1\",\"%2\")").arg(phone, text));
+              QString("openNewChatWhatly(\"%1\",\"%2\")").arg(phone, text));
         } else {
           phoneStr = phone.isEmpty() ? "" : "phone=" + phone;
           textStr = text.isEmpty() ? "" : "text=" + text;
@@ -852,7 +852,7 @@ void MainWindow::triggerNewChat(const QString &phone, const QString &text) {
 
 void MainWindow::initRateWidget() {
   RateApp *rateApp = new RateApp(this, "snap://whatsie", 5, 5, 1000 * 30);
-  rateApp->setWindowTitle(QApplication::applicationName() + " | " +
+  rateApp->setWindowTitle(QApplication::applicationDisplayName() + " | " +
                           tr("Rate Application"));
   rateApp->setVisible(false);
   rateApp->setWindowFlags(Qt::Dialog);

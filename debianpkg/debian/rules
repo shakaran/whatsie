@@ -18,7 +18,7 @@ clean:
 	rm -f build-stamp
 	dh_clean
 
-DESTDIR = $(CURDIR)/debian/whatsie
+DESTDIR = $(CURDIR)/debian/whatly
 
 install: build
 	dh_testdir
@@ -26,16 +26,16 @@ install: build
 	dh_prep
 	dh_installdirs
 
-	# Add here commands to install the package into whatsie.
-	install -d $(DESTDIR)/usr/bin/whatsie
-	install -m 755 data/whatsie $(DESTDIR)/usr/bin/whatsie
+	# Add here commands to install the package into whatly.
+	install -d $(DESTDIR)/usr/bin/whatly
+	install -m 755 data/whatly $(DESTDIR)/usr/bin/whatly
 	install -d $(DESTDIR)/usr/share/icons/hicolor/256x256/apps
-	install -m 644 data/net.shakaran.whatsie.png $(DESTDIR)/usr/share/icons/hicolor/256x256/apps/
+	install -m 644 data/net.shakaran.whatly.png $(DESTDIR)/usr/share/icons/hicolor/256x256/apps/
 	install -d $(DESTDIR)/usr/share/icons/hicolor/symbolic/apps
-	install -m 644 data/net.shakaran.whatsie-symbolic.svg $(DESTDIR)/usr/share/icons/hicolor/symbolic/apps/
+	install -m 644 data/net.shakaran.whatly-symbolic.svg $(DESTDIR)/usr/share/icons/hicolor/symbolic/apps/
 	install -d $(DESTDIR)/usr/share/applications
-	install -m 644 data/net.shakaran.whatsie.desktop $(DESTDIR)/usr/share/applications/
-	cp -r src/* $(DESTDIR)/usr/bin/whatsie/
+	install -m 644 data/net.shakaran.whatly.desktop $(DESTDIR)/usr/share/applications/
+	cp -r src/* $(DESTDIR)/usr/bin/whatly/
 
 # Build architecture-independent files here.
 binary-indep: build install

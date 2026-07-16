@@ -10,8 +10,8 @@
 #include <QWebEngineScript>
 #include <QWebEngineScriptCollection>
 
-static const char kScriptName[] = "whatsie-chat-wallpaper";
-static const char kStyleId[] = "whatsie-chat-wallpaper";
+static const char kScriptName[] = "whatly-chat-wallpaper";
+static const char kStyleId[] = "whatly-chat-wallpaper";
 static const char kSettingsKey[] = "chatWallpaper";
 
 // Big enough to stay sharp on a 4K panel, small enough that the base64 string

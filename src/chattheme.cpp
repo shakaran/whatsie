@@ -6,7 +6,7 @@
 #include <QWebEngineScript>
 #include <QWebEngineScriptCollection>
 
-static const char kScriptName[] = "whatsie-chat-theme";
+static const char kScriptName[] = "whatly-chat-theme";
 static const char kSettingsKey[] = "chatTheme";
 
 // The recolouring runs in the page, over the page's own stylesheets, because
@@ -28,7 +28,7 @@ static const char kScriptTemplate[] = R"JS(
 (function () {
   'use strict';
   var P = __PARAMS__;
-  var STYLE_ID = 'whatsie-chat-theme';
+  var STYLE_ID = 'whatly-chat-theme';
 
   var parse = function (v) {
     var m = /^#([0-9a-f]{6})$/i.exec(v);
@@ -121,13 +121,13 @@ static const char kScriptTemplate[] = R"JS(
 
   // WhatsApp loads stylesheets lazily and swaps its palette when the light/dark
   // theme changes, so recompute rather than assume one pass is enough.
-  if (!window.__whatsieChatThemeWatching) {
-    window.__whatsieChatThemeWatching = true;
+  if (!window.__whatlyChatThemeWatching) {
+    window.__whatlyChatThemeWatching = true;
     var pending = null;
     var schedule = function () {
       clearTimeout(pending);
       pending = setTimeout(function () {
-        if (window.__whatsieChatThemeApply) window.__whatsieChatThemeApply();
+        if (window.__whatlyChatThemeApply) window.__whatlyChatThemeApply();
       }, 250);
     };
     new MutationObserver(schedule).observe(document.documentElement, {
@@ -143,7 +143,7 @@ static const char kScriptTemplate[] = R"JS(
       }
     }).observe(document.documentElement, {childList: true, subtree: true});
   }
-  window.__whatsieChatThemeApply = run;   // always the newest theme's parameters
+  window.__whatlyChatThemeApply = run;   // always the newest theme's parameters
 })();
 )JS";
 

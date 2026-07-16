@@ -1,4 +1,4 @@
-# WhatSie
+# Whatly
 
 Feature rich WhatsApp web client based on Qt WebEngine for Linux and Windows Desktop
 
@@ -8,22 +8,22 @@ Feature rich WhatsApp web client based on Qt WebEngine for Linux and Windows Des
 > **Keshav Bhatt**, which remains MIT-licensed. All upstream copyright and
 > authorship is preserved — see [LICENSE](LICENSE).
 
-## What WhatSie is (and is not)
+## What Whatly is (and is not)
 
-WhatSie is a **desktop wrapper around [web.whatsapp.com](https://web.whatsapp.com)**.
+Whatly is a **desktop wrapper around [web.whatsapp.com](https://web.whatsapp.com)**.
 It gives WhatsApp Web a native window with system integration — tray, notifications,
 themes, an app lock, shortcuts, a download manager — but the chat interface itself
 is WhatsApp's own web client, running in Qt WebEngine.
 
 That distinction decides where a problem belongs:
 
-- **WhatsApp Web's limits are not WhatSie bugs.** WhatsApp Web lags behind the
+- **WhatsApp Web's limits are not Whatly bugs.** WhatsApp Web lags behind the
   phone app for some message types, so you may see *"your version of WhatsApp Web
   doesn't support it"*. The same message appears in Chrome or Firefox — only Meta
   can change that.
-- **WhatsApp Web's shortcuts come from WhatsApp**, not from WhatSie, so they never
+- **WhatsApp Web's shortcuts come from WhatsApp**, not from Whatly, so they never
   appear in the app's shortcut list (see [Keyboard shortcuts](#keyboard-shortcuts)).
-- **WhatSie is not a WhatsApp client of its own**: it does not implement the
+- **Whatly is not a WhatsApp client of its own**: it does not implement the
   protocol, store your messages or talk to WhatsApp's servers directly.
 
 ## What's new in this fork
@@ -31,7 +31,7 @@ That distinction decides where a problem belongs:
 On top of upstream WhatSie, this fork adds:
 
 - **Multiple WhatsApp accounts** — either as separate windows with
-  `whatsie --profile=<name>`, or as tabs inside one window. Each account is a
+  `whatly --profile=<name>`, or as tabs inside one window. Each account is a
   fully separate session with its own storage; the tray badge sums the unread
   count across all of them. Add a tab with the **+**, and rename or remove one by
   right-clicking it. With a single account the tab bar is hidden, so nothing
@@ -62,8 +62,8 @@ On top of upstream WhatSie, this fork adds:
   bundled Chromium instead of being hardcoded, so it can no longer go stale and
   get the client treated as an outdated browser. It follows Qt WebEngine upgrades
   automatically.
-- **"Identify as WhatSie in linked devices"** — linked sessions show up on your
-  phone as *"WhatSie for Linux"* (or the matching platform) instead of a generic
+- **"Identify as Whatly in linked devices"** — linked sessions show up on your
+  phone as *"Whatly for Linux"* (or the matching platform) instead of a generic
   *"Google Chrome (Linux)"*. Applies to devices linked afterwards.
 - **"Close emoji/sticker panel when clicking outside"** (opt-in) — WhatsApp Web
   otherwise keeps the expressions panel open until its button is pressed again.
@@ -73,7 +73,7 @@ On top of upstream WhatSie, this fork adds:
 - **Build docs that match reality** — the documented `make build-release` wrapper
   never existed; the build is plain CMake + Ninja (see below).
 
-## Whatsie Key features
+## Whatly Key features
 
 - Light and Dark Themes with automatic switching
 - Customized Notifications & Native Notifications
@@ -105,29 +105,29 @@ On top of upstream WhatSie, this fork adds:
 	+ Configurable App User Agent
 	+ Application Storage management, lets you clean residual cache and persistent data
 	+ Close emoji/sticker panel when clicking outside (opt-in)
-	+ Identify as WhatSie in linked devices, instead of a generic browser name
+	+ Identify as Whatly in linked devices, instead of a generic browser name
 
 ## Command line options:
-Comes with general CLI support, with a bunch of options that let you interact with already running instances of Whatsie.
+Comes with general CLI support, with a bunch of options that let you interact with already running instances of Whatly.
 
-Run: `whatsie -h` to see all supported options.
+Run: `whatly -h` to see all supported options.
 
 ```
-Usage: whatsie [options]
+Usage: whatly [options]
 Feature rich WhatsApp web client based on Qt WebEngine
 
 Options:
   -h, --help           Displays help on commandline options
   -v, --version        Displays version information.
   -b, --build-info     Shows detailed current build infomation
-  -w, --show-window    Show main window of running instance of WhatSie
-  -s, --open-settings  Opens Settings dialog in a running instance of WhatSie
-  -l, --lock-app       Locks a running instance of WhatSie
-  -i, --open-about     Opens About dialog in a running instance of WhatSie
+  -w, --show-window    Show main window of running instance of Whatly
+  -s, --open-settings  Opens Settings dialog in a running instance of Whatly
+  -l, --lock-app       Locks a running instance of Whatly
+  -i, --open-about     Opens About dialog in a running instance of Whatly
   -t, --toggle-theme   Toggle between dark & light theme in a running instance
-                       of WhatSie
-  -r, --reload-app     Reload the app in a running instance of WhatSie
-  -n, --new-chat       Open new chat prompt in a running instance of WhatSie
+                       of Whatly
+  -r, --reload-app     Reload the app in a running instance of Whatly
+  -n, --new-chat       Open new chat prompt in a running instance of Whatly
   -p, --profile <name> Run as a separate account with its own session and
                        settings, in its own window
 ```
@@ -136,7 +136,7 @@ Options:
 
 Two independent ways to be signed in to more than one account:
 
-- **Separate windows** — `whatsie --profile=work` runs a wholly separate account
+- **Separate windows** — `whatly --profile=work` runs a wholly separate account
   with its own WhatsApp session, its own settings file and its own window. Run as
   many as you like side by side; launching the same profile again just raises the
   one already running. Without the flag, everything is exactly as before.
@@ -155,12 +155,12 @@ restart). 15 languages ship with the app.
 > without native-speaker review and will contain mistakes. Corrections are very
 > welcome and need no C++ — see [DOCS/TRANSLATIONS.md](DOCS/TRANSLATIONS.md).
 >
-> This covers WhatSie's own interface only. The language of the chats comes from
+> This covers Whatly's own interface only. The language of the chats comes from
 > WhatsApp Web and cannot be changed here.
 
 ## Keyboard shortcuts
 
-WhatSie's own shortcuts. The same list is available in the app under
+Whatly's own shortcuts. The same list is available in the app under
 **Settings → Global shortcuts → Show shortcuts**.
 
 | Shortcut | Action |
@@ -176,7 +176,7 @@ WhatSie's own shortcuts. The same list is available in the app under
 
 > **WhatsApp Web has its own shortcuts too** — for searching, starting a chat,
 > marking as unread and so on. Those come from WhatsApp itself, not from
-> WhatSie, so they will never show up in the list above; they simply work inside
+> Whatly, so they will never show up in the list above; they simply work inside
 > the app as they do in a browser. See WhatsApp's own keyboard-shortcuts help
 > for that list.
 
@@ -225,7 +225,7 @@ as a git submodule, so remember to initialise submodules after cloning.
 
 ```bash
 git clone https://github.com/shakaran/whatsie.git
-cd whatsie
+cd whatly
 git submodule update --init --recursive
 
 # Configure and build (Release)
@@ -233,7 +233,7 @@ cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 
 # Run
-./build/whatsie
+./build/whatly
 ```
 
 ### Install (Optional)
@@ -272,8 +272,8 @@ cmake --build build -j8
 rm -rf build
 
 # Show version / build info
-./build/whatsie --version
-./build/whatsie --build-info
+./build/whatly --version
+./build/whatly --build-info
 ```
 
 ### Troubleshooting
@@ -306,11 +306,11 @@ and [`DOCS/CMAKE_MIGRATION.md`](DOCS/CMAKE_MIGRATION.md).
 
 ```bat
 git clone https://github.com/shakaran/whatsie.git
-cd whatsie
+cd whatly
 cmake -G "Visual Studio 17 2022" -A x64 -B build -DCMAKE_PREFIX_PATH=C:\Qt\6.10.0\msvc2022_64
 cmake --build build --config Release
-C:\Qt\6.10.0\msvc2022_64\bin\windeployqt.exe build\Release\whatsie.exe
-build\Release\whatsie.exe
+C:\Qt\6.10.0\msvc2022_64\bin\windeployqt.exe build\Release\whatly.exe
+build\Release\whatly.exe
 ```
 
 For detailed instructions, see [DOCS/WINDOWS_BUILD.md](DOCS/WINDOWS_BUILD.md).
@@ -318,7 +318,7 @@ For detailed instructions, see [DOCS/WINDOWS_BUILD.md](DOCS/WINDOWS_BUILD.md).
 Every push is also compile-checked on Windows by the `Windows Build` GitHub
 Actions workflow, which uploads a ready-to-run build as a workflow artifact.
 
-## Install Whatsie on Linux Desktop
+## Install Whatly on Linux Desktop
 
 > **Note:** this fork is not published to any store yet — build it from source
 > (see above). The packages below distribute the **upstream** project by Keshav
@@ -335,8 +335,8 @@ Using Arch User Repository (AUR), [AUR package for Whatsie](https://aur.archlinu
 
 ## Screenshots (could be old)
 
-![WhatSie Light Theme](https://github.com/shakaran/whatsie/blob/main/screenshots/1.jpg?raw=true)
-![WhatSie Dark Theme](https://github.com/shakaran/whatsie/blob/main/screenshots/2.jpg?raw=true)
-![WhatSie Setting module](https://github.com/shakaran/whatsie/blob/main/screenshots/4.jpg?raw=true)
-![WhatSie App Lock screen](https://github.com/shakaran/whatsie/blob/main/screenshots/3.jpg?raw=true)
-![WhatSie Shortcuts & Permissions](https://github.com/shakaran/whatsie/blob/main/screenshots/5.jpg?raw=true)
+![Whatly Light Theme](https://github.com/shakaran/whatsie/blob/main/screenshots/1.jpg?raw=true)
+![Whatly Dark Theme](https://github.com/shakaran/whatsie/blob/main/screenshots/2.jpg?raw=true)
+![Whatly Setting module](https://github.com/shakaran/whatsie/blob/main/screenshots/4.jpg?raw=true)
+![Whatly App Lock screen](https://github.com/shakaran/whatsie/blob/main/screenshots/3.jpg?raw=true)
+![Whatly Shortcuts & Permissions](https://github.com/shakaran/whatsie/blob/main/screenshots/5.jpg?raw=true)

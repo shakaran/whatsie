@@ -316,7 +316,7 @@ QString Utils::appDebugInfo() {
       QString(installType.trimmed().isEmpty() ? "Unknown" : installType) +
       "</li>";
 
-  QString applicationName = QApplication::applicationName();
+  QString applicationName = QApplication::applicationDisplayName();
   QString version = QString(VERSIONSTR);
   QString sourceBranch = QString(GIT_BRANCH);
   QString commitHash = QString(GIT_HASH);
@@ -476,13 +476,13 @@ void Utils::DisplayExceptionErrorDialog(const QString &error_info) {
   message_box.setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
   message_box.setModal(true);
   message_box.setIcon(QMessageBox::Critical);
-  message_box.setWindowTitle(QApplication::applicationName() +
+  message_box.setWindowTitle(QApplication::applicationDisplayName() +
                              QObject::tr("Exception"));
   // spaces are added to the end because otherwise the dialog is too small
-  message_box.setText(QApplication::applicationName() +
+  message_box.setText(QApplication::applicationDisplayName() +
                       QObject::tr(" has encountered a problem."));
   message_box.setInformativeText(
-      QApplication::applicationName() +
+      QApplication::applicationDisplayName() +
       QObject::tr(
           " may need to Restart. Please report the error to developer."));
   message_box.setStandardButtons(QMessageBox::Close);

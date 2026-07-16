@@ -176,7 +176,7 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
           .value("defaultDownloadLocation",
                  QStandardPaths::writableLocation(
                      QStandardPaths::DownloadLocation) +
-                     QDir::separator() + QApplication::applicationName())
+                     QDir::separator() + QApplication::applicationDisplayName())
           .toString());
 
   ui->styleComboBox->blockSignals(true);
@@ -473,7 +473,7 @@ void SettingsWidget::on_userAgentLineEdit_textChanged(const QString &arg1) {
 
 void SettingsWidget::on_setUserAgent_clicked() {
   if (ui->userAgentLineEdit->text().trimmed().isEmpty()) {
-    QMessageBox::information(this, QApplication::applicationName() + tr("| Error"),
+    QMessageBox::information(this, QApplication::applicationDisplayName() + tr("| Error"),
                              tr("Cannot set an empty UserAgent String."));
     return;
   }
@@ -583,7 +583,7 @@ void SettingsWidget::showSetApplockPasswordDialog() {
 
 void SettingsWidget::on_showShortcutsButton_clicked() {
   QWidget *sheet = new QWidget(this);
-  sheet->setWindowTitle(QApplication::applicationName() +
+  sheet->setWindowTitle(QApplication::applicationDisplayName() +
                         " | Global shortcuts");
 
   sheet->setWindowFlags(Qt::Popup | Qt::FramelessWindowHint);
@@ -609,7 +609,7 @@ void SettingsWidget::on_showShortcutsButton_clicked() {
 
 void SettingsWidget::on_showPermissionsButton_clicked() {
   PermissionDialog *permissionDialog = new PermissionDialog(this);
-  permissionDialog->setWindowTitle(QApplication::applicationName() + " | " +
+  permissionDialog->setWindowTitle(QApplication::applicationDisplayName() + " | " +
                                    tr("Feature permissions"));
   permissionDialog->setWindowFlag(Qt::Dialog);
   permissionDialog->setAttribute(Qt::WA_DeleteOnClose, true);
@@ -637,7 +637,7 @@ void SettingsWidget::on_tryNotification_clicked() {
 void SettingsWidget::on_automaticThemeCheckBox_toggled(bool checked) {
   if (checked) {
     AutomaticTheme *automaticTheme = new AutomaticTheme(this);
-    automaticTheme->setWindowTitle(QApplication::applicationName() +
+    automaticTheme->setWindowTitle(QApplication::applicationDisplayName() +
                                    " | Automatic theme switcher setup");
     automaticTheme->setWindowFlag(Qt::Dialog);
     automaticTheme->setAttribute(Qt::WA_DeleteOnClose, true);
@@ -816,9 +816,9 @@ void SettingsWidget::populateSpellCheck() {
           [this](QStandardItem *) { saveSpellCheckLanguages(); },
           Qt::UniqueConnection);
   // The view's items are toggled by a click that must not dismiss the popup.
-  if (combo->view() && !combo->view()->viewport()->property("whatsieFilter").toBool()) {
+  if (combo->view() && !combo->view()->viewport()->property("whatlyFilter").toBool()) {
     combo->view()->viewport()->installEventFilter(this);
-    combo->view()->viewport()->setProperty("whatsieFilter", true);
+    combo->view()->viewport()->setProperty("whatlyFilter", true);
   }
   combo->setEnabled(!available.isEmpty() && ui->spellCheckCheckBox->isChecked());
   combo->blockSignals(false);
@@ -950,7 +950,7 @@ void SettingsWidget::on_languageComboBox_currentIndexChanged(int index) {
   // Qt would need every widget to be rebuilt to retranslate in place, so ask
   // for a restart rather than leave half the interface in the old language.
   emit notify(tr("The interface language will change when you restart %1.")
-                  .arg(QApplication::applicationName()));
+                  .arg(QApplication::applicationDisplayName()));
 }
 
 void SettingsWidget::on_identifyInLinkedDevicesCheckBox_toggled(bool checked) {
@@ -1079,7 +1079,7 @@ void SettingsWidget::on_changeDefaultDownloadLocationPb_clicked() {
             .value("defaultDownloadLocation",
                    QStandardPaths::writableLocation(
                        QStandardPaths::DownloadLocation) +
-                       QDir::separator() + QApplication::applicationName())
+                       QDir::separator() + QApplication::applicationDisplayName())
             .toString(),
         QFileDialog::DontUseNativeDialog);
   } else {
@@ -1090,7 +1090,7 @@ void SettingsWidget::on_changeDefaultDownloadLocationPb_clicked() {
             .value("defaultDownloadLocation",
                    QStandardPaths::writableLocation(
                        QStandardPaths::DownloadLocation) +
-                       QDir::separator() + QApplication::applicationName())
+                       QDir::separator() + QApplication::applicationDisplayName())
             .toString());
   }
 

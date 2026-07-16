@@ -14,7 +14,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;WhatSie&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Whatly&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;WhatsApp Web Client for Linux Desktop.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -417,53 +417,53 @@ Apakah Anda ingin melewati pemeriksaan keamanan dan melanjutkan?   </translation
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="572"/>
-        <location filename="../mainwindow.cpp" line="578"/>
+        <location filename="../mainwindow.cpp" line="581"/>
+        <location filename="../mainwindow.cpp" line="587"/>
         <location filename="../mainwindow_webengine.cpp" line="262"/>
         <location filename="../mainwindow_webengine.cpp" line="265"/>
         <source>| Error</source>
         <translation>| Kesalahan</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="573"/>
+        <location filename="../mainwindow.cpp" line="582"/>
         <source>Unlock to access Settings.</source>
         <translation>Buka kunci untuk mengakses pengaturan.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="579"/>
+        <location filename="../mainwindow.cpp" line="588"/>
         <source>Unable to initialize settings module.
 Webengine is not initialized.</source>
         <translation>Tidak dapat menginisialisasi modul pengaturan.
 WebEngine belum diinisialisasi.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="609"/>
         <source> | Action required</source>
         <translation> | Tindakan diperlukan</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="601"/>
+        <location filename="../mainwindow.cpp" line="610"/>
         <source>Page needs to be reloaded to continue.</source>
         <translation>Halaman perlu dimuat ulang untuk melanjutkan.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="806"/>
+        <location filename="../mainwindow.cpp" line="815"/>
         <source>Open</source>
         <translation>Buka</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="816"/>
+        <location filename="../mainwindow.cpp" line="825"/>
         <location filename="../mainwindow_tray.cpp" line="16"/>
         <source>New Chat</source>
         <translation>Obrolan baru</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="817"/>
+        <location filename="../mainwindow.cpp" line="826"/>
         <source>Enter a valid WhatsApp number with country code (ex- +91XXXXXXXXXX)</source>
         <translation>Masukkan nomor WhatsApp yang valid dengan kode negara (mis. +62XXXXXXXXXX)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="847"/>
+        <location filename="../mainwindow.cpp" line="856"/>
         <source>Rate Application</source>
         <translation>Beri nilai aplikasi</translation>
     </message>
@@ -597,19 +597,6 @@ Buka pengaturan sekarang?</translation>
     </message>
 </context>
 <context>
-    <name>MoreApps</name>
-    <message>
-        <location filename="../widgets/MoreApps/moreapps.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../widgets/MoreApps/moreapps.ui" line="33"/>
-        <source>... ... ... ...</source>
-        <translation>... ... ... ...</translation>
-    </message>
-</context>
-<context>
     <name>NotificationPopup</name>
     <message>
         <location filename="../notificationpopup.h" line="52"/>
@@ -713,57 +700,87 @@ Buka pengaturan sekarang?</translation>
         <translation>Sembunyikan informasi debug</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="269"/>
+        <location filename="../main.cpp" line="172"/>
+        <source>Nothing to migrate from &quot;%1&quot; — already migrated, or no data found there.</source>
+        <translation>Tidak ada yang bisa dimigrasikan dari "%1" — sudah dimigrasikan, atau tidak ada data.</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="177"/>
+        <source>Would copy:</source>
+        <translation>Akan menyalin:</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="177"/>
+        <source>Copied:</source>
+        <translation>Disalin:</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="181"/>
+        <source>Run again without --dry-run to perform the copy.</source>
+        <translation>Jalankan lagi tanpa --dry-run untuk melakukan penyalinan.</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="401"/>
         <source>Feature rich WhatsApp web client based on Qt WebEngine</source>
         <translation>Klien WhatsApp Web berfitur lengkap berbasis Qt WebEngine</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="276"/>
+        <location filename="../main.cpp" line="408"/>
         <source>Displays help on commandline options</source>
         <translation>Menampilkan bantuan untuk opsi baris perintah</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="281"/>
+        <location filename="../main.cpp" line="413"/>
         <source>Opens Settings dialog in a running instance of </source>
         <translation>Membuka pengaturan pada instansi yang sedang berjalan dari </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="286"/>
+        <location filename="../main.cpp" line="418"/>
         <source>Locks a running instance of </source>
         <translation>Mengunci instansi yang sedang berjalan dari </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="292"/>
+        <location filename="../main.cpp" line="424"/>
         <source>Opens About dialog in a running instance of </source>
         <translation>Membuka jendela «Tentang» pada instansi yang sedang berjalan dari </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="298"/>
+        <location filename="../main.cpp" line="430"/>
         <source>Toggle between dark &amp; light theme in a running instance of </source>
         <translation>Beralih antara tema terang dan gelap pada instansi yang sedang berjalan dari </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="305"/>
+        <location filename="../main.cpp" line="437"/>
         <source>Reload the app in a running instance of </source>
         <translation>Memuat ulang aplikasi pada instansi yang sedang berjalan dari </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="311"/>
+        <location filename="../main.cpp" line="443"/>
         <source>Open new chat prompt in a running instance of </source>
         <translation>Membuka jendela obrolan baru pada instansi yang sedang berjalan dari </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="324"/>
+        <location filename="../main.cpp" line="456"/>
         <source>Run as a separate account with its own session and settings, in its own window</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jalankan sebagai akun terpisah dengan sesi dan pengaturannya sendiri, di jendelanya sendiri&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="331"/>
+        <location filename="../main.cpp" line="463"/>
         <source>Show main window of running instance of </source>
         <translation>Menampilkan jendela utama dari instansi yang sedang berjalan dari </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="414"/>
+        <location filename="../main.cpp" line="470"/>
+        <source>Copy settings and the logged-in session from a previous install (e.g. the older &quot;whatsie&quot; build) into this one, then exit</source>
+        <translation>Salin pengaturan dan sesi yang masuk dari instalasi sebelumnya (mis. versi "whatsie" lama) ke sini, lalu keluar</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="477"/>
+        <source>With --migrate-from, only report what would be copied</source>
+        <translation>Dengan --migrate-from, hanya laporkan apa yang akan disalin</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="561"/>
         <source>App lock is not configured, 
 Please setup the password in the Settings first.</source>
         <translation>Kunci aplikasi belum dikonfigurasi.
@@ -1060,8 +1077,8 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="391"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language of WhatSie&apos;s own interface. Takes effect after restarting the app. The language of the chats themselves comes from WhatsApp Web and cannot be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bahasa antarmuka WhatSie sendiri. Berlaku setelah memulai ulang aplikasi. Bahasa obrolan berasal dari WhatsApp Web dan tidak dapat diubah di sini.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language of Whatly&apos;s own interface. Takes effect after restarting the app. The language of the chats themselves comes from WhatsApp Web and cannot be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bahasa antarmuka Whatly sendiri. Berlaku setelah memulai ulang aplikasi. Bahasa obrolan berasal dari WhatsApp Web dan tidak dapat diubah di sini.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="398"/>
@@ -1169,8 +1186,8 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="520"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use one of your own images as the background of the chat pane, as WhatsApp does on Android. The image is stored inside WhatSie, not uploaded anywhere, and is only visible to you.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Gunakan salah satu gambar Anda sendiri sebagai latar panel obrolan, seperti yang dilakukan WhatsApp di Android. Gambar disimpan di dalam WhatSie, tidak diunggah ke mana pun, dan hanya terlihat oleh Anda.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use one of your own images as the background of the chat pane, as WhatsApp does on Android. The image is stored inside Whatly, not uploaded anywhere, and is only visible to you.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Gunakan salah satu gambar Anda sendiri sebagai latar panel obrolan, seperti yang dilakukan WhatsApp di Android. Gambar disimpan di dalam Whatly, tidak diunggah ke mana pun, dan hanya terlihat oleh Anda.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="523"/>
@@ -1179,13 +1196,13 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="539"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;New logins appear as &amp;quot;WhatSie for Linux&amp;quot; (or the matching platform) in your phone&apos;s linked-devices list instead of &amp;quot;Google Chrome (Linux)&amp;quot;. The name is stored on the phone when a device is linked, so changing this only affects future links — log out and re-link to rename an existing session.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Login baru akan muncul sebagai «WhatSie for Linux» (atau platform yang sesuai) di daftar perangkat tertaut di ponsel Anda, bukan «Google Chrome (Linux)». Nama tersebut disimpan di ponsel saat perangkat ditautkan, jadi mengubah ini hanya memengaruhi penautan berikutnya — keluar dan tautkan ulang untuk mengganti nama sesi yang sudah ada.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;New logins appear as &amp;quot;Whatly for Linux&amp;quot; (or the matching platform) in your phone&apos;s linked-devices list instead of &amp;quot;Google Chrome (Linux)&amp;quot;. The name is stored on the phone when a device is linked, so changing this only affects future links — log out and re-link to rename an existing session.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Login baru akan muncul sebagai «Whatly for Linux» (atau platform yang sesuai) di daftar perangkat tertaut di ponsel Anda, bukan «Google Chrome (Linux)». Nama tersebut disimpan di ponsel saat perangkat ditautkan, jadi mengubah ini hanya memengaruhi penautan berikutnya — keluar dan tautkan ulang untuk mengganti nama sesi yang sudah ada.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="542"/>
-        <source>Identify as WhatSie in linked devices</source>
-        <translation>Identifikasi sebagai WhatSie di perangkat tertaut</translation>
+        <source>Identify as Whatly in linked devices</source>
+        <translation>Identifikasi sebagai Whatly di perangkat tertaut</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="553"/>

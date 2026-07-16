@@ -14,7 +14,7 @@ About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
   ui->setupUi(this);
 
   // init
-  appName = QApplication::applicationName();
+  appName = QApplication::applicationDisplayName();
 #ifdef Q_OS_WIN
   appDescription = "WhatsApp Web client for Windows Desktop"
                    "<br><span style=' font-size:8pt;'>Windows port — follows "
@@ -119,7 +119,7 @@ About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
     QDesktopServices::openUrl(url);
   });
 
-  setWindowTitle(QApplication::applicationName() + tr(" | About"));
+  setWindowTitle(QApplication::applicationDisplayName() + tr(" | About"));
 
   ui->centerWidget->hide();
 

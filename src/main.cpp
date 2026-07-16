@@ -6,6 +6,7 @@
 #include <QLibraryInfo>
 #include <QLocale>
 #include <QStandardPaths>
+#include <QTextStream>
 #include <QTranslator>
 #include <QtWidgets>
 #include <QtWebEngineCore>
@@ -68,6 +69,121 @@ static void migrateLegacyUserData() {
   migrate(QStandardPaths::GenericDataLocation);   // WebEngine profile / session
 }
 
+// Copy one application's user data to another within the current organisation —
+// the settings file(s) and the WebEngine profile directory that holds the
+// WhatsApp session. Used to bridge the WhatSie → whatly rename: the app name is
+// the leaf of every QStandardPaths location, so without this the new name would
+// come up with empty settings and logged out. Copied, never moved, and an
+// existing file at the destination is left untouched, so it is safe to run more
+// than once and an older build still works from the originals.
+//
+// Returns a description of each copy for reporting; with dryRun the copies are
+// only described, not performed (what --migrate-from --dry-run previews).
+static QStringList migrateApp(const QString &oldApp, const QString &newApp,
+                              bool dryRun) {
+  QStringList report;
+  const QString org = QApplication::organizationName();
+  if (oldApp.isEmpty() || newApp.isEmpty() || oldApp == newApp || org.isEmpty())
+    return report;
+
+  // Settings are one file per account: <config>/<org>/<app>.conf, with a
+  // "-<suffix>" before the extension for named accounts. Rename the app prefix
+  // on each, so WhatSie.conf → whatly.conf and WhatSie-work.conf → whatly-work.conf.
+  const QString cfgDir =
+      QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) +
+      QLatin1Char('/') + org;
+  QDir cd(cfgDir);
+  if (cd.exists()) {
+    const QStringList confs =
+        cd.entryList({oldApp + QStringLiteral("*.conf")}, QDir::Files);
+    for (const QString &f : confs) {
+      const QString target = newApp + f.mid(oldApp.length());
+      if (!cd.exists(f) || cd.exists(target))
+        continue; // never overwrite an existing new-layout file
+      report << cd.filePath(f) + QStringLiteral(" → ") + cd.filePath(target);
+      if (!dryRun)
+        QFile::copy(cd.filePath(f), cd.filePath(target));
+    }
+  }
+
+  // The profile — session, local storage, cache metadata — is a directory:
+  // <data>/<org>/<app>. A single copy carries every account nested inside it.
+  const QString dataDir =
+      QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) +
+      QLatin1Char('/') + org;
+  const QString oldData = dataDir + QLatin1Char('/') + oldApp;
+  const QString newData = dataDir + QLatin1Char('/') + newApp;
+  if (QDir(oldData).exists() && !QDir(newData).exists()) {
+    report << oldData + QStringLiteral(" → ") + newData;
+    if (!dryRun)
+      copyDirRecursively(oldData, newData);
+  }
+  return report;
+}
+
+// The automatic first-run bridge for the WhatSie → whatly rename.
+static void migrateAppRename() {
+  const QStringList done =
+      migrateApp(QStringLiteral("WhatSie"), QApplication::applicationName(),
+                 /*dryRun=*/false);
+  for (const QString &line : done)
+    qInfo() << "Migrating user data:" << line;
+}
+
+// The optional manual migration flag, handled here — early, before anything
+// reads or writes settings — so --dry-run genuinely touches nothing and a real
+// run is not pre-empted by the automatic first-run copy. Returns an exit code
+// when the flag was given (the app should stop after), or -1 to carry on.
+//   whatly --migrate-from=whatsie            copy the old install's data in
+//   whatly --migrate-from=whatsie --dry-run  show what that would copy
+static int runCliMigration(int argc, char *argv[]) {
+  bool requested = false, dryRun = false;
+  QString from = QStringLiteral("whatsie");
+  for (int i = 1; i < argc; ++i) {
+    const QString a = QString::fromLocal8Bit(argv[i]);
+    if (a == QLatin1String("--dry-run")) {
+      dryRun = true;
+    } else if (a == QLatin1String("--migrate-from")) {
+      requested = true; // value, if any, is the next argument
+      if (i + 1 < argc) {
+        const QString next = QString::fromLocal8Bit(argv[i + 1]);
+        if (!next.startsWith(QLatin1Char('-')))
+          from = next;
+      }
+    } else if (a.startsWith(QLatin1String("--migrate-from="))) {
+      requested = true;
+      from = a.section(QLatin1Char('='), 1);
+    }
+  }
+  if (!requested)
+    return -1;
+
+  // Accept the friendly fork name ("whatsie") or a raw application name.
+  const QString oldApp =
+      from.compare(QStringLiteral("whatsie"), Qt::CaseInsensitive) == 0
+          ? QStringLiteral("WhatSie")
+          : from;
+
+  const QStringList lines =
+      migrateApp(oldApp, QApplication::applicationName(), dryRun);
+
+  QTextStream out(stdout);
+  if (lines.isEmpty()) {
+    out << QObject::tr("Nothing to migrate from \"%1\" — already migrated, or "
+                       "no data found there.")
+               .arg(from)
+        << '\n';
+  } else {
+    out << (dryRun ? QObject::tr("Would copy:") : QObject::tr("Copied:")) << '\n';
+    for (const QString &l : lines)
+      out << "  " << l << '\n';
+    if (dryRun)
+      out << QObject::tr("Run again without --dry-run to perform the copy.")
+          << '\n';
+  }
+  return 0;
+}
+
 // Permission types we had no prompt for were denied outright and the denial was
 // written to the settings, so they stayed denied forever even once we learned
 // how to ask. Clipboard reads were the casualty: WhatsApp Web could not read an
@@ -122,7 +238,7 @@ static void normalizeWindowTheme() {
 // locale, falling back to English when there is none — which is every locale
 // but Italian for now.
 //
-// Note this only covers WhatSie's own interface. The language of the chats
+// Note this only covers Whatly's own interface. The language of the chats
 // themselves is WhatsApp Web's, chosen by WhatsApp from the account and the
 // browser locale; the app neither sets nor can override it.
 static void installTranslations() {
@@ -143,7 +259,7 @@ static void installTranslations() {
     qApp->installTranslator(qtTranslator);
   }
 
-  // Then WhatSie's. qt_add_translations compiles src/i18n/<name>.ts into
+  // Then Whatly's. qt_add_translations compiles src/i18n/<name>.ts into
   // :/i18n/<name>.qm, so try the full locale before the bare language.
   auto *appTranslator = new QTranslator(qApp);
   const QStringList candidates = {
@@ -236,20 +352,36 @@ int main(int argc, char *argv[]) {
   SingleApplication instance(argc, argv, true, SingleApplication::Mode::User,
                              1000, AppProfile::id());
   instance.setQuitOnLastWindowClosed(false);
-  instance.setWindowIcon(themeIcon("whatsie", ":/icons/app/icon-64.png"));
-  QApplication::setApplicationName("WhatSie");
-  QApplication::setDesktopFileName("net.shakaran.whatsie");
+  instance.setWindowIcon(themeIcon("whatly", ":/icons/app/icon-64.png"));
+  // The machine name is lowercase — it is the leaf of every QStandardPaths
+  // location (~/.local/share/shakaran/whatly, ~/.config/shakaran/whatly.conf)
+  // and of the settings file. The human-facing name, shown in window titles and
+  // the About box, is set separately so those read "Whatly", not "whatly".
+  QApplication::setApplicationName("whatly");
+  QApplication::setApplicationDisplayName("Whatly");
+  QApplication::setDesktopFileName("net.shakaran.whatly");
   QApplication::setOrganizationDomain("net.shakaran");
   QApplication::setOrganizationName("shakaran");
   QApplication::setApplicationVersion(VERSIONSTR);
 
-  installTranslations();
+  // The manual migration flag is handled before any settings are read or
+  // written, so --dry-run stays side-effect free and a real copy is not
+  // pre-empted by the automatic first-run migration below. Registered in the
+  // parser further down only so it appears in --help.
+  if (const int rc = runCliMigration(argc, argv); rc >= 0)
+    return rc;
 
-  // This fork changed the organisation name, which moves every QStandardPaths
-  // location (settings, and the WebEngine profile that holds the WhatsApp
-  // session). Carry the old data over on first run so users are not silently
-  // logged out.
+  // Carry user data forward BEFORE anything reads settings. Two layout changes
+  // have to be bridged: the organisation rename (keshavnrj → shakaran) and the
+  // application rename (WhatSie → whatly), each of which moves every
+  // QStandardPaths location — settings and the WebEngine profile that holds the
+  // WhatsApp session alike. QSettings caches whatever it reads the first time it
+  // is opened, so the copy must be in place before that first read, which
+  // installTranslations() below triggers.
   migrateLegacyUserData();
+  migrateAppRename();
+
+  installTranslations();
   clearSilentlyDeniedPermissions();
   normalizeWindowTheme();
 
@@ -279,37 +411,37 @@ int main(int argc, char *argv[]) {
       QStringList() << "s"
                     << "open-settings",
       QObject::tr("Opens Settings dialog in a running instance of ") +
-          QApplication::applicationName());
+          QApplication::applicationDisplayName());
 
   QCommandLineOption lockAppOption(QStringList() << "l"
                                                  << "lock-app",
                                    QObject::tr("Locks a running instance of ") +
-                                       QApplication::applicationName());
+                                       QApplication::applicationDisplayName());
 
   QCommandLineOption openAboutOption(
       QStringList() << "i"
                     << "open-about",
       QObject::tr("Opens About dialog in a running instance of ") +
-          QApplication::applicationName());
+          QApplication::applicationDisplayName());
 
   QCommandLineOption toggleThemeOption(
       QStringList() << "t"
                     << "toggle-theme",
       QObject::tr(
           "Toggle between dark & light theme in a running instance of ") +
-          QApplication::applicationName());
+          QApplication::applicationDisplayName());
 
   QCommandLineOption reloadAppOption(
       QStringList() << "r"
                     << "reload-app",
       QObject::tr("Reload the app in a running instance of ") +
-          QApplication::applicationName());
+          QApplication::applicationDisplayName());
 
   QCommandLineOption newChatOption(
       QStringList() << "n"
                     << "new-chat",
       QObject::tr("Open new chat prompt in a running instance of ") +
-          QApplication::applicationName());
+          QApplication::applicationDisplayName());
 
   QCommandLineOption buildInfoOption(QStringList() << "b"
                                                    << "build-info",
@@ -329,7 +461,20 @@ int main(int argc, char *argv[]) {
       QStringList() << "w"
                     << "show-window",
       QObject::tr("Show main window of running instance of ") +
-          QApplication::applicationName());
+          QApplication::applicationDisplayName());
+
+  // Handled early by runCliMigration() before settings are touched; registered
+  // here only so they are documented in --help and not rejected as unknown.
+  QCommandLineOption migrateFromOption(
+      QStringList() << "migrate-from",
+      QObject::tr("Copy settings and the logged-in session from a previous "
+                  "install (e.g. the older \"whatsie\" build) into this one, "
+                  "then exit"),
+      QStringLiteral("name"));
+
+  QCommandLineOption dryRunOption(
+      QStringList() << "dry-run",
+      QObject::tr("With --migrate-from, only report what would be copied"));
 
   parser.addOption(showCLIHelpOption);
   parser.addVersionOption();
@@ -342,6 +487,8 @@ int main(int argc, char *argv[]) {
   parser.addOption(reloadAppOption);
   parser.addOption(newChatOption);
   parser.addOption(profileOption);
+  parser.addOption(migrateFromOption);
+  parser.addOption(dryRunOption);
 
   secondaryInstanceCLIOptions << showAppWindowOption << openSettingsOption
                               << lockAppOption << openAboutOption
@@ -366,7 +513,7 @@ int main(int argc, char *argv[]) {
   // if secondary instance is invoked
   if (instance.isSecondary()) {
     instance.sendMessage(instance.arguments().join(' ').toUtf8());
-    qInfo().noquote() << QApplication::applicationName() +
+    qInfo().noquote() << QApplication::applicationDisplayName() +
                              " is already running with PID: " +
                              QString::number(instance.primaryPid()) +
                              " by USER:"
@@ -377,12 +524,12 @@ int main(int argc, char *argv[]) {
   // Initialise the single persistent WebEngine profile before any page is created.
   WebEngineProfileManager::instance();
 
-  MainWindow whatsie;
+  MainWindow whatly;
 
   // else
   QObject::connect(
-      &instance, &SingleApplication::receivedMessage, &whatsie,
-      [&whatsie, &secondaryInstanceCLIOptions](int instanceId,
+      &instance, &SingleApplication::receivedMessage, &whatly,
+      [&whatly, &secondaryInstanceCLIOptions](int instanceId,
                                                QByteArray message) {
         qInfo().noquote() << "Another instance with PID: " +
                                  QString::number(instanceId) +
@@ -396,26 +543,26 @@ int main(int argc, char *argv[]) {
         if (p.isSet("s")) {
           qInfo() << "cmd:"
                   << "OpenAppSettings";
-          whatsie.alreadyRunning();
-          whatsie.showSettings(true);
+          whatly.alreadyRunning();
+          whatly.showSettings(true);
           return;
         }
 
         if (p.isSet("l")) {
           qInfo() << "cmd:"
                   << "LockApp";
-          whatsie.alreadyRunning();
+          whatly.alreadyRunning();
           if (!SettingsManager::instance()
                    .settings()
                    .value("asdfg")
                    .isValid()) {
-            whatsie.showNotification(
-                QApplication::applicationName(),
+            whatly.showNotification(
+                QApplication::applicationDisplayName(),
                 QObject::tr("App lock is not configured, \n"
                             "Please setup the password in the Settings "
                             "first."));
           } else {
-            whatsie.lockApp();
+            whatly.lockApp();
           }
           return;
         }
@@ -423,40 +570,40 @@ int main(int argc, char *argv[]) {
         if (p.isSet("i")) {
           qInfo() << "cmd:"
                   << "OpenAppAbout";
-          whatsie.alreadyRunning();
-          whatsie.showAbout();
+          whatly.alreadyRunning();
+          whatly.showAbout();
           return;
         }
 
         if (p.isSet("t")) {
           qInfo() << "cmd:"
                   << "ToggleAppTheme";
-          whatsie.alreadyRunning();
-          whatsie.toggleTheme();
+          whatly.alreadyRunning();
+          whatly.toggleTheme();
           return;
         }
 
         if (p.isSet("r")) {
           qInfo() << "cmd:"
                   << "ReloadApp";
-          whatsie.alreadyRunning();
-          whatsie.doReload(false, true);
+          whatly.alreadyRunning();
+          whatly.doReload(false, true);
           return;
         }
 
         if (p.isSet("n")) {
           qInfo() << "cmd:"
                   << "OpenNewChatPrompt";
-          whatsie.alreadyRunning();
-          whatsie.newChat(); // TODO: invetigate the crash
+          whatly.alreadyRunning();
+          whatly.newChat(); // TODO: invetigate the crash
           return;
         }
 
         if (p.isSet("w")) {
           qInfo() << "cmd:"
                   << "ShowAppWindow";
-          whatsie.alreadyRunning();
-          whatsie.show();
+          whatly.alreadyRunning();
+          whatly.show();
           return;
         }
 
@@ -465,9 +612,9 @@ int main(int argc, char *argv[]) {
               "whatsapp://" + messageStr.split("whatsapp://").last();
           qInfo() << "cmd:"
                   << "x-schema-handler";
-          whatsie.loadSchemaUrl(urlStr);
+          whatly.loadSchemaUrl(urlStr);
         } else {
-          whatsie.alreadyRunning();
+          whatly.alreadyRunning();
         }
       });
 
@@ -475,7 +622,7 @@ int main(int argc, char *argv[]) {
     if (argStr.contains("whatsapp://")) {
       qInfo() << "cmd:"
               << "x-schema-handler";
-      whatsie.loadSchemaUrl(argStr);
+      whatly.loadSchemaUrl(argStr);
     }
   }
 
@@ -484,9 +631,9 @@ int main(int argc, char *argv[]) {
           .settings()
           .value("startMinimized", false)
           .toBool()) {
-    whatsie.runMinimized();
+    whatly.runMinimized();
   } else {
-    whatsie.show();
+    whatly.show();
   }
 
   return instance.exec();

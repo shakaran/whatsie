@@ -1,5 +1,5 @@
-name: whatsie
-adopt-info: whatsie-build-src
+name: whatly
+adopt-info: whatly-build-src
 
 grade: stable
 confinement: strict
@@ -19,10 +19,10 @@ platforms:
 # instead (see CMakeLists.txt), so there is nothing to mount.
 
 apps:
-  whatsie:
-    command: usr/bin/whatsie
-    desktop: usr/share/applications/net.shakaran.whatsie.desktop
-    common-id: net.shakaran.whatsie
+  whatly:
+    command: usr/bin/whatly
+    desktop: usr/share/applications/net.shakaran.whatly.desktop
+    common-id: net.shakaran.whatly
     extensions:
       - kde-neon-6
     plugs:
@@ -48,11 +48,11 @@ apps:
 
 
 parts:
-  whatsie-build-src:
+  whatly-build-src:
     plugin: cmake
     source: .
     parse-info:
-      - dist/linux/net.shakaran.whatsie.appdata.xml
+      - dist/linux/net.shakaran.whatly.appdata.xml
     build-snaps:
       - cmake/latest/stable
     build-packages:
@@ -77,12 +77,12 @@ parts:
       craftctl default
 
       mkdir -p ${CRAFT_PART_INSTALL}/meta/gui
-      cp ${CRAFT_PART_INSTALL}/usr/share/icons/hicolor/256x256/apps/net.shakaran.whatsie.png \
+      cp ${CRAFT_PART_INSTALL}/usr/share/icons/hicolor/256x256/apps/net.shakaran.whatly.png \
         ${CRAFT_PART_INSTALL}/meta/gui/icon.png
 
       sed -i \
         "s|^Icon=.*|Icon=\${SNAP}/meta/gui/icon.png|" \
-        ${CRAFT_PART_INSTALL}/usr/share/applications/net.shakaran.whatsie.desktop
+        ${CRAFT_PART_INSTALL}/usr/share/applications/net.shakaran.whatly.desktop
 
     prime:
       - -usr/bug

@@ -18,13 +18,13 @@ QStringList candidateDirectories() {
     candidates << env;
 
   // The dictionaries this build converted. The binary lands in <prefix>/bin and
-  // they land in <prefix>/share/whatsie, so derive one from the other instead of
+  // they land in <prefix>/share/whatly, so derive one from the other instead of
   // baking in an absolute path: this has to work from a build tree, from a
   // ~/.local install and from a system one alike.
   const QString appDir = QCoreApplication::applicationDirPath();
   candidates << appDir + QStringLiteral("/qtwebengine_dictionaries")
              << appDir +
-                    QStringLiteral("/../share/whatsie/qtwebengine_dictionaries");
+                    QStringLiteral("/../share/whatly/qtwebengine_dictionaries");
 
   // Failing that, whatever the distribution happens to ship. Debian and Ubuntu
   // put Chromium's .bdic files here; Qt does not look for them on its own.

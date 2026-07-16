@@ -100,7 +100,7 @@ void MainWindow::setActiveAccount(int index) {
   }
   // Re-point the lock overlay and refresh the title to the now-active account.
   if (m_webEngine && m_webEngine->page())
-    setWindowTitle(QApplication::applicationName() + AppProfile::label() +
+    setWindowTitle(QApplication::applicationDisplayName() + AppProfile::label() +
                    ": " + m_webEngine->page()->title());
 }
 
@@ -150,7 +150,7 @@ void MainWindow::updateTrayUnread() {
   } else {
     m_restoreAction->setText(tr("Restore"));
     m_systemTrayIcon->setIcon(m_trayIconNormal);
-    setWindowIcon(themeIcon("whatsie", ":/icons/app/icon-64.png"));
+    setWindowIcon(themeIcon("whatly", ":/icons/app/icon-64.png"));
   }
 }
 

@@ -3,7 +3,7 @@
 #include <QString>
 #include <QWebEngineProfile>
 
-// Makes new logins appear as "WhatSie for Linux" (or the matching platform)
+// Makes new logins appear as "Whatly for Linux" (or the matching platform)
 // in the phone's Linked-Devices list, instead of "Google Chrome (Linux)".
 //
 // WhatsApp Web derives that label client-side (the WAWebBrowserInfo module;
@@ -19,7 +19,7 @@ namespace LinkedDeviceName {
 
 // The userscript with the current QSettings baked in. accountLabel, when set,
 // is appended so several accounts in the same app show distinct names in the
-// phone's linked-devices list ("WhatSie for Linux (Work)"). Used both for
+// phone's linked-devices list ("Whatly for Linux (Work)"). Used both for
 // profile injection (fresh page loads) and for applying a toggle to an
 // already-loaded page via QWebEnginePage::runJavaScript.
 QString scriptSource(const QString &accountLabel = QString());

@@ -343,7 +343,7 @@ void MoreApps::addToAppFilterList(const QString &appName) {
   // or appname is empty or already added to filter list
   if (mFilterList.contains(appName) == false &&
       appName.trimmed().isEmpty() == false &&
-      appName.contains(QApplication::applicationName(), Qt::CaseInsensitive) ==
+      appName.contains(QApplication::applicationDisplayName(), Qt::CaseInsensitive) ==
           false)
     mFilterList.append(appName);
 }

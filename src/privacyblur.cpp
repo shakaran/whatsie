@@ -6,7 +6,7 @@
 #include <QWebEngineScript>
 #include <QWebEngineScriptCollection>
 
-static const char kScriptName[] = "whatsie-privacy-blur";
+static const char kScriptName[] = "whatly-privacy-blur";
 static const char kSettingsKey[] = "privacyBlur";
 
 // Plain CSS in an injected <style>: no scripting, nothing to keep in sync with
@@ -21,11 +21,11 @@ static const char kScriptTemplate[] = R"JS(
   'use strict';
   try {
     var CSS = __CSS__;
-    var el = document.getElementById('whatsie-privacy-blur');
+    var el = document.getElementById('whatly-privacy-blur');
     if (!CSS) { if (el) el.remove(); return; }
     if (!el) {
       el = document.createElement('style');
-      el.id = 'whatsie-privacy-blur';
+      el.id = 'whatly-privacy-blur';
       (document.head || document.documentElement).appendChild(el);
     }
     el.textContent = CSS;

@@ -415,7 +415,7 @@ void WebEnginePage::injectPreventScrollWheelZoomHelper() {
 }
 
 void WebEnginePage::injectNewChatJavaScript() {
-  QString js = R"(const openNewChatWhatsie = (phone,text) => {
+  QString js = R"(const openNewChatWhatly = (phone,text) => {
                     const link = document.createElement('a');
                     link.setAttribute('href',
                     `whatsapp://send/?phone=${phone}&text=${text}`);
@@ -423,9 +423,9 @@ void WebEnginePage::injectNewChatJavaScript() {
                     link.click();
                     document.body.removeChild(link);
                 };
-                function openNewChatWhatsieDefined()
+                function openNewChatWhatlyDefined()
                 {
-                    return (openNewChatWhatsie != 'undefined');
+                    return (openNewChatWhatly != 'undefined');
                 })";
   this->runJavaScript(js);
 }

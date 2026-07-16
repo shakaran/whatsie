@@ -131,7 +131,7 @@ void MainWindow::lockApp() {
     m_lockWidget->lock_app();
   } else {
     int ret = QMessageBox::information(
-        this, tr(QApplication::applicationName().toUtf8()),
+        this, tr(QApplication::applicationDisplayName().toUtf8()),
         tr("App lock is not configured, \n"
            "Please setup the password in the Settings first.\n\nOpen "
            "Settings now?"),

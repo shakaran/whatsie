@@ -2,7 +2,7 @@
 // Configured by CMake (see the WIN32 block in CMakeLists.txt).
 #include <windows.h>
 
-IDI_ICON1 ICON "@CMAKE_CURRENT_SOURCE_DIR@/dist/windows/whatsie.ico"
+IDI_ICON1 ICON "@CMAKE_CURRENT_SOURCE_DIR@/dist/windows/whatly.ico"
 
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION @PROJECT_VERSION_RC@,0
@@ -19,9 +19,9 @@ BEGIN
         BEGIN
             VALUE "FileDescription", "@PROJECT_DESCRIPTION@"
             VALUE "FileVersion", "@PROJECT_VERSION@"
-            VALUE "InternalName", "whatsie"
-            VALUE "OriginalFilename", "whatsie.exe"
-            VALUE "ProductName", "WhatSie"
+            VALUE "InternalName", "whatly"
+            VALUE "OriginalFilename", "whatly.exe"
+            VALUE "ProductName", "Whatly"
             VALUE "ProductVersion", "@PROJECT_VERSION@"
         END
     END

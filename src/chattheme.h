@@ -6,7 +6,7 @@
 
 class QWebEngineProfile;
 
-// Recolours WhatsApp Web itself — not WhatSie's own widgets, which the
+// Recolours WhatsApp Web itself — not Whatly's own widgets, which the
 // "windowTheme" setting covers.
 //
 // WhatsApp paints every colour through CSS custom properties, but their names

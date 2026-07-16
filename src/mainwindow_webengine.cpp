@@ -78,7 +78,7 @@ void MainWindow::createPageFor(WebView *view, const QString &accountId) {
   view->page()->setZoomFactor(currentFactor);
 }
 
-// Buttons WhatSie injects into WhatsApp's own UI need a way back into the app.
+// Buttons Whatly injects into WhatsApp's own UI need a way back into the app.
 // QWebChannel is that way: it exposes exactly one object, with exactly the slots
 // PageBridge declares — the page can reach nothing else.
 void MainWindow::installPageBridge(QWebEnginePage *page) {
@@ -91,7 +91,7 @@ void MainWindow::installPageBridge(QWebEnginePage *page) {
   }
   if (!m_webChannel) {
     m_webChannel = new QWebChannel(this);
-    m_webChannel->registerObject(QStringLiteral("whatsieBridge"), m_pageBridge);
+    m_webChannel->registerObject(QStringLiteral("whatlyBridge"), m_pageBridge);
   }
   page->setWebChannel(m_webChannel);
 
@@ -106,7 +106,7 @@ void MainWindow::installPageBridge(QWebEnginePage *page) {
   }
 
   QWebEngineScript bridge;
-  bridge.setName(QStringLiteral("whatsie-page-bridge"));
+  bridge.setName(QStringLiteral("whatly-page-bridge"));
   bridge.setSourceCode(QString::fromUtf8(js.readAll()) + QStringLiteral(R"js(
     (function connect() {
       if (typeof qt === 'undefined' || !qt.webChannelTransport) {
@@ -114,7 +114,7 @@ void MainWindow::installPageBridge(QWebEnginePage *page) {
         return;
       }
       new QWebChannel(qt.webChannelTransport, function (channel) {
-        window.__whatsieBridge = channel.objects.whatsieBridge;
+        window.__whatlyBridge = channel.objects.whatlyBridge;
       });
     })();
   )js"));
@@ -253,16 +253,16 @@ void MainWindow::doReload(bool byPassCache, bool isAskedByCLI,
   }
 
   if (m_lockWidget && !m_lockWidget->getIsLocked()) {
-    this->showNotification(QApplication::applicationName(),
+    this->showNotification(QApplication::applicationDisplayName(),
                            QObject::tr("Reloading..."));
   } else {
     ensureLockVisible();   // give the user the unlock screen, not just a refusal
     QString error = tr("Unlock to Reload the App.");
     if (isAskedByCLI) {
-      this->showNotification(QApplication::applicationName() + tr("| Error"),
+      this->showNotification(QApplication::applicationDisplayName() + tr("| Error"),
                              error);
     } else {
-      QMessageBox::critical(this, QApplication::applicationName() + tr("| Error"),
+      QMessageBox::critical(this, QApplication::applicationDisplayName() + tr("| Error"),
                             error);
     }
     this->show();
@@ -283,8 +283,8 @@ void MainWindow::checkConnectionHealth() {
     return;
 
   m_webEngine->page()->runJavaScript(
-      QStringLiteral("(typeof window.__whatsieWsState==='function')?"
-                     "window.__whatsieWsState():'idle'"),
+      QStringLiteral("(typeof window.__whatlyWsState==='function')?"
+                     "window.__whatlyWsState():'idle'"),
       [this](const QVariant &result) {
         const QString state = result.toString();
 

@@ -151,7 +151,7 @@ void RateApp::on_donate_clicked() {
 }
 
 void RateApp::on_donate_2_clicked() {
-  QDesktopServices::openUrl(QUrl("https://opencollective.com/whatsie"));
+  QDesktopServices::openUrl(QUrl("https://opencollective.com/shakaran"));
   this->reset();
   this->close();
 }

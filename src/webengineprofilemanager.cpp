@@ -50,9 +50,9 @@ QWebEngineProfile *WebEngineProfileManager::profileFor(const QString &accountId)
         return it.value();
 
     // A distinct storage name per account is what makes each a separate Chromium
-    // partition. The default account keeps the bare "whatsie" (plus the
+    // partition. The default account keeps the bare "whatly" (plus the
     // process-level --profile suffix) so its existing session is untouched.
-    QString storageName = QStringLiteral("whatsie") + AppProfile::suffix();
+    QString storageName = QStringLiteral("whatly") + AppProfile::suffix();
     if (!accountId.isEmpty())
         storageName += QLatin1Char('-') + accountId;
 
@@ -140,19 +140,19 @@ void WebEngineProfileManager::configureProfile(QWebEngineProfile *profile,
 
     // Connection watchdog probe: wrap window.WebSocket at document creation so
     // we can observe WhatsApp's connection. The native side polls
-    // window.__whatsieWsStuck() periodically and reloads when the socket has
+    // window.__whatlyWsStuck() periodically and reloads when the socket has
     // died or gone silent. Must run in the MainWorld and before page scripts so
     // it patches the constructor WhatsApp actually uses.
     QWebEngineScript wsProbe;
-    wsProbe.setName(QStringLiteral("whatsie-ws-watchdog"));
+    wsProbe.setName(QStringLiteral("whatly-ws-watchdog"));
     wsProbe.setSourceCode(QStringLiteral(
         "(function(){"
-        "  if(window.__whatsieWsPatched)return;"
+        "  if(window.__whatlyWsPatched)return;"
         "  var Native=window.WebSocket;"
         "  if(!Native)return;"
-        "  window.__whatsieWsPatched=true;"
+        "  window.__whatlyWsPatched=true;"
         "  var st={open:0,everOpened:false,last:Date.now()};"
-        "  window.__whatsieWs=st;"
+        "  window.__whatlyWs=st;"
         "  function P(u,pr){"
         "    var ws=pr!==undefined?new Native(u,pr):new Native(u);"
         "    try{"
@@ -168,7 +168,7 @@ void WebEngineProfileManager::configureProfile(QWebEngineProfile *profile,
         "  P.CONNECTING=Native.CONNECTING;P.OPEN=Native.OPEN;"
         "  P.CLOSING=Native.CLOSING;P.CLOSED=Native.CLOSED;"
         "  window.WebSocket=P;"
-        "  window.__whatsieWsState=function(){"
+        "  window.__whatlyWsState=function(){"
         "    if(!st.everOpened||!navigator.onLine)return 'idle';" // connecting/offline: neutral
         "    if(st.open<=0)return 'stuck';"          // socket died and never reopened
         "    if((Date.now()-st.last)>90000)return 'stuck';" // socket open but silent >90s
@@ -196,7 +196,7 @@ void WebEngineProfileManager::applyUserSettings() {
         applyUserSettingsTo(it.value(), it.key());
 }
 
-// The default account keeps the bare "WhatSie for Linux"; a named one appends
+// The default account keeps the bare "Whatly for Linux"; a named one appends
 // its tab name. The names live in the same settings the accounts list is saved
 // to (see MainWindow::saveAccounts).
 QString WebEngineProfileManager::accountLabel(const QString &accountId) {

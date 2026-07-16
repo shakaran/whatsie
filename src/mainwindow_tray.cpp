@@ -196,7 +196,7 @@ const QIcon MainWindow::getTrayIcon(const int &notificationCount) const {
     QImage glyphImg(size, size, QImage::Format_ARGB32_Premultiplied);
     glyphImg.fill(Qt::transparent);
     {
-      QSvgRenderer renderer(QStringLiteral(":/icons/app/whatsie-symbolic.svg"));
+      QSvgRenderer renderer(QStringLiteral(":/icons/app/whatly-symbolic.svg"));
       QPainter rp(&glyphImg);
       renderer.render(&rp);
     }
@@ -225,8 +225,8 @@ const QIcon MainWindow::getTrayIcon(const int &notificationCount) const {
     // The colourful icons already carry the count badge baked in.
     const QString path =
         count == 0
-            ? QStringLiteral(":/icons/app/notification/whatsie-notify.png")
-            : QStringLiteral(":/icons/app/notification/whatsie-notify-%1.png")
+            ? QStringLiteral(":/icons/app/notification/whatly-notify.png")
+            : QStringLiteral(":/icons/app/notification/whatly-notify-%1.png")
                   .arg(count);
     QPixmap glyph(path);
     QPainter p(&base);
@@ -289,7 +289,7 @@ void MainWindow::handleWebViewTitleChanged(const QString &title) {
 
   // The window title follows the active account only.
   if (idx == m_activeAccount)
-    setWindowTitle(QApplication::applicationName() + AppProfile::label() +
+    setWindowTitle(QApplication::applicationDisplayName() + AppProfile::label() +
                    ": " + title);
 
   refreshAccountTabs();   // per-account badge on each tab
