@@ -108,7 +108,7 @@ upgrading. If the automatic copy ever misses something, `whatly
 
 * The build docs describe the actual CMake build. Old Qt or CMake now fails with
   an actionable error instead of a confusing one.
-* `DOCS/TRANSLATIONS.md`, `DOCS/WINDOWS_BUILD.md`.
+* `docs/TRANSLATIONS.md`, `docs/WINDOWS_BUILD.md`.
 
 #### ⚠️ Known limitations
 

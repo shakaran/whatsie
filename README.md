@@ -202,7 +202,7 @@ otherwise [build from source](#build-from-source-linux).
 
 Grab the build from the latest [release](https://github.com/shakaran/whatly/releases),
 or the artifact from the **Windows Build** CI run. See
-[DOCS/WINDOWS_BUILD.md](DOCS/WINDOWS_BUILD.md) to build it yourself.
+[docs/WINDOWS_BUILD.md](docs/WINDOWS_BUILD.md) to build it yourself.
 
 ## Command line options
 
@@ -249,7 +249,7 @@ restart). 15 languages ship with the app.
 
 > **Only `it_IT` was translated by a human.** The rest were machine-generated
 > without native-speaker review and will contain mistakes. Corrections are very
-> welcome and need no C++ — see [DOCS/TRANSLATIONS.md](DOCS/TRANSLATIONS.md).
+> welcome and need no C++ — see [docs/TRANSLATIONS.md](docs/TRANSLATIONS.md).
 >
 > This covers Whatly's own interface only. The language of the chats comes from
 > WhatsApp Web and cannot be changed here.
@@ -366,8 +366,8 @@ sudo cmake --install build
 | `notify-qt` submodule missing | `git submodule update --init --recursive` |
 | Permission denied on install | Reconfigure with `-DCMAKE_INSTALL_PREFIX=$HOME/.local` (no sudo) |
 
-For detailed build instructions, see [`DOCS/BUILD_QUICK_REFERENCE.md`](DOCS/BUILD_QUICK_REFERENCE.md)
-and [`DOCS/CMAKE_MIGRATION.md`](DOCS/CMAKE_MIGRATION.md).
+For detailed build instructions, see [`docs/BUILD_QUICK_REFERENCE.md`](docs/BUILD_QUICK_REFERENCE.md)
+and [`docs/CMAKE_MIGRATION.md`](docs/CMAKE_MIGRATION.md).
 
 ## Build from Source (Windows)
 
@@ -390,7 +390,7 @@ C:\Qt\6.10.0\msvc2022_64\bin\windeployqt.exe build\Release\whatly.exe
 build\Release\whatly.exe
 ```
 
-For detailed instructions, see [DOCS/WINDOWS_BUILD.md](DOCS/WINDOWS_BUILD.md).
+For detailed instructions, see [docs/WINDOWS_BUILD.md](docs/WINDOWS_BUILD.md).
 Every push is also compile-checked on Windows by the **Windows Build** GitHub
 Actions workflow, which uploads a ready-to-run build as an artifact.
 
