@@ -126,13 +126,23 @@ On top of upstream WhatSie, this fork adds:
 
 <img src="docs/img/card-themes.png" width="720" alt="Whatly — fourteen chat themes"/>
 
+<img src="docs/img/card-lightdark.png" width="720" alt="Whatly — light and dark window theme"/>
+
+<img src="docs/img/card-lock.png" width="720" alt="Whatly — app lock"/>
+
+<img src="docs/img/card-tray.png" width="720" alt="Whatly — a smarter system tray"/>
+
+<img src="docs/img/card-shortcuts.png" width="720" alt="Whatly — keyboard shortcuts"/>
+
+<img src="docs/img/card-watchdog.png" width="720" alt="Whatly — connection watchdog"/>
+
 <img src="docs/img/card-settings.png" width="720" alt="Whatly settings — every feature is a toggle"/>
 
 <img src="docs/img/card-about.png" width="720" alt="Whatly About — one-click bug reports"/>
 
 </div>
 
-<sub>The chat list above is shown with the <b>privacy blur</b> on — that is the feature in action, not a redaction.</sub>
+<sub>The chat list is shown with the <b>privacy blur</b> on — that is the feature in action, not a redaction.</sub>
 
 ## Key features
 

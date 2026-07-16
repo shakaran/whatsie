@@ -146,6 +146,77 @@ def themes_panel(out, W=660, H=720, ss=2):
         d.text((x+14*ss+sw+16*ss, y+(ch-12*ss)//2-16*ss), name, font=_font(True, 21*ss), fill=(225, 235, 233))
     im.resize((W//ss, H//ss), Image.LANCZOS).save(out)
 
+def tray_panel(out, ss=2):
+    """A dark 'panel' strip showing the real tray icons: colour idle and colour
+    with unread badges."""
+    W, H = 640*ss, 340*ss
+    im = Image.new("RGB", (W, H), (30, 33, 36)); d = ImageDraw.Draw(im)
+    ndir = os.path.join(REPO, "src/icons/app/notification")
+    def load(name, size):
+        return Image.open(os.path.join(ndir, name)).convert("RGBA").resize((size, size), Image.LANCZOS)
+    d.text((30*ss, 26*ss), "System tray", font=_font(True, 28*ss), fill=(235, 245, 243))
+    d.text((30*ss, 74*ss), "colour badge · monochrome option · connection status",
+           font=_font(False, 19*ss), fill=(150, 200, 190))
+    strip_top = 150*ss; strip_h = 130*ss
+    d.rounded_rectangle([24*ss, strip_top, W-24*ss, strip_top+strip_h], radius=16*ss, fill=(16, 18, 20))
+    isz = 60*ss; y = strip_top + 22*ss
+    items = [("whatly-notify.png", "idle"), ("whatly-notify-3.png", "3 unread"),
+             ("whatly-notify-10.png", "10+")]
+    gap = W//(len(items)+1)
+    lf = _font(False, 17*ss)
+    for i, (name, label) in enumerate(items):
+        x = gap*(i+1) - isz//2
+        im.paste(load(name, isz), (x, y), load(name, isz))
+        d.text((x+isz//2-d.textlength(label, font=lf)//2, y+isz+10*ss), label, font=lf, fill=(180, 190, 190))
+    im.resize((W//ss, H//ss), Image.LANCZOS).save(out)
+
+SHORTCUTS = [("Ctrl", "N", "New chat"), ("Ctrl", "P", "Settings"),
+             ("Ctrl", "T", "Toggle light/dark"), ("Ctrl", "L", "Lock the app"),
+             ("Ctrl", "W", "Minimize to tray"), ("Ctrl", "Q", "Quit"),
+             ("", "F5", "Reload"), ("", "F11", "Fullscreen")]
+
+def _keycap(d, x, y, text, f):
+    w = max(38, d.textlength(text, font=f) + 22)
+    d.rounded_rectangle([x, y, x+w, y+40], radius=8, fill=(50, 58, 60), outline=(90, 100, 100), width=2)
+    tb = d.textbbox((0, 0), text, font=f)
+    d.text((x+(w-(tb[2]-tb[0]))/2-tb[0], y+(40-(tb[3]-tb[1]))/2-tb[1]), text, font=f, fill=(230, 240, 238))
+    return w
+
+def shortcuts_panel(out):
+    W, H = 660, 720
+    im = Image.new("RGB", (W, H), (24, 32, 34)); d = ImageDraw.Draw(im)
+    d.text((30, 26), "Keyboard shortcuts", font=_font(True, 30), fill=(235, 245, 243))
+    kf, af = _font(True, 20), _font(False, 22)
+    y = 100; rh = (H-y-30)//len(SHORTCUTS)
+    for mod, key, action in SHORTCUTS:
+        x = 34
+        if mod:
+            x += _keycap(d, x, y+8, mod, kf) + 8
+            d.text((x, y+14), "+", font=af, fill=(150, 170, 168)); x += 22
+        _keycap(d, x, y+8, key, kf)
+        d.text((300, y+16), action, font=af, fill=(220, 232, 230))
+        y += rh
+    im.save(out)
+
+def watchdog_panel(out):
+    W, H = 660, 720
+    im = Image.new("RGB", (W, H), (24, 32, 34)); d = ImageDraw.Draw(im)
+    cx = W//2
+    # a simple reload glyph
+    import math
+    for a in range(-40, 250):
+        r = math.radians(a)
+        d.ellipse([cx+180*math.cos(r)-9, 250+180*math.sin(r)-9, cx+180*math.cos(r)+9, 250+180*math.sin(r)+9], fill=(45, 212, 191))
+    ah = math.radians(250)
+    tip = (cx+180*math.cos(ah), 250+180*math.sin(ah))
+    d.polygon([(tip[0]-4, tip[1]-34), (tip[0]+34, tip[1]-4), (tip[0]-30, tip[1]+24)], fill=(45, 212, 191))
+    d.text((cx-90, 224), "auto", font=_font(True, 44), fill=(235, 245, 243))
+    for i, ln in enumerate(["Connection watchdog", "Reloads WhatsApp Web when its",
+                            "WebSocket dies or freezes —", "capped at 3 tries per hang."]):
+        f = _font(True, 30) if i == 0 else _font(False, 24)
+        d.text((cx-d.textlength(ln, font=f)/2, 470+i*44), ln, font=f, fill=(220, 232, 230) if i else (235, 245, 243))
+    im.save(out)
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--shots", default=os.path.join(REPO, "tools/shots"))
@@ -158,9 +229,22 @@ def main():
     themes_panel(tp)
     card(os.path.join(a.out, "card-themes.png"), tp, "Fourteen chat themes",
          "Recolour WhatsApp Web itself — pick a hue, keep your photos and avatars untouched.")
+    trp = os.path.join(a.shots, "tray.png"); tray_panel(trp)
+    card(os.path.join(a.out, "card-tray.png"), trp, "A smarter system tray",
+         "An unread-count badge, an optional monochrome icon that matches your panel, and a connection-status dim.")
+    scp = os.path.join(a.shots, "shortcuts.png"); shortcuts_panel(scp)
+    card(os.path.join(a.out, "card-shortcuts.png"), scp, "Keyboard shortcuts",
+         "Drive the app from the keyboard — new chat, settings, theme, lock, reload and more.")
+    wdp = os.path.join(a.shots, "watchdog.png"); watchdog_panel(wdp)
+    card(os.path.join(a.out, "card-watchdog.png"), wdp, "It reconnects itself",
+         "WhatsApp Web's socket can hang on 'Connecting…'. A health probe detects it and reloads, capped at 3 tries.")
     jobs = [
         ("chat.png",     "card-chat.png",     "Themes and a privacy blur",
          "Recolour WhatsApp Web with 14 chat themes, and blur the chats until you hover so nobody reads over your shoulder."),
+        ("lightdark.png", "card-lightdark.png", "Light and dark",
+         "The window chrome follows a light or dark theme — or tracks your desktop's preference, live."),
+        ("lock.png",      "card-lock.png",      "Lock the app",
+         "Guard the window behind a passcode, with optional auto-locking after a period of inactivity."),
         ("settings.png", "card-settings.png", "Every feature is a setting",
          "Themes, wallpaper, privacy blur, spell-check, tray and more — all toggles."),
         ("about.png",    "card-about.png",    "Report a bug in one click",
