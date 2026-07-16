@@ -846,6 +846,30 @@ Please setup the password in the Settings first.</source>
         <source>Cannot write %1</source>
         <translation>%1 に書き込めません</translation>
     </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="284"/>
+        <source>Switch to light theme</source>
+        <comment>WebTweaks</comment>
+        <translation>ライトテーマに切り替え</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="285"/>
+        <source>Switch to dark theme</source>
+        <comment>WebTweaks</comment>
+        <translation>ダークテーマに切り替え</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="286"/>
+        <source>Show the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>チャットを表示</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="287"/>
+        <source>Blur the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>チャットをぼかす</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

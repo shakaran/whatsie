@@ -846,6 +846,30 @@ Please setup the password in the Settings first.</source>
         <source>Cannot write %1</source>
         <translation>%1 에 쓸 수 없습니다</translation>
     </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="284"/>
+        <source>Switch to light theme</source>
+        <comment>WebTweaks</comment>
+        <translation>밝은 테마로 전환</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="285"/>
+        <source>Switch to dark theme</source>
+        <comment>WebTweaks</comment>
+        <translation>어두운 테마로 전환</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="286"/>
+        <source>Show the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>채팅 표시</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="287"/>
+        <source>Blur the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>채팅 흐리게</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

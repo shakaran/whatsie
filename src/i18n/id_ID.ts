@@ -846,6 +846,30 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
         <source>Cannot write %1</source>
         <translation>Tidak dapat menulis %1</translation>
     </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="284"/>
+        <source>Switch to light theme</source>
+        <comment>WebTweaks</comment>
+        <translation>Beralih ke tema terang</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="285"/>
+        <source>Switch to dark theme</source>
+        <comment>WebTweaks</comment>
+        <translation>Beralih ke tema gelap</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="286"/>
+        <source>Show the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>Tampilkan obrolan</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="287"/>
+        <source>Blur the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>Buramkan obrolan</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

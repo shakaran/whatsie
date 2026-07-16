@@ -852,6 +852,30 @@ Imposta la password nelle Impostazioni.</translation>
         <source>Cannot write %1</source>
         <translation>Impossibile scrivere %1</translation>
     </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="284"/>
+        <source>Switch to light theme</source>
+        <comment>WebTweaks</comment>
+        <translation>Passa al tema chiaro</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="285"/>
+        <source>Switch to dark theme</source>
+        <comment>WebTweaks</comment>
+        <translation>Passa al tema scuro</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="286"/>
+        <source>Show the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>Mostra le chat</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="287"/>
+        <source>Blur the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>Sfoca le chat</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>
@@ -958,7 +982,7 @@ Imposta la password nelle Impostazioni.</translation>
     <message>
         <location filename="../settingswidget.ui" line="198"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Match the desktop&apos;s own light/dark preference, and change with it. Overrides the manual theme and the automatic sunrise/sunset switch.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Segue la preferenza chiaro/scuro del desktop e cambia con essa. Ha la precedenza sul tema manuale e sul cambio automatico all'alba/tramonto.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Segue la preferenza chiaro/scuro del desktop e cambia con essa. Ha la precedenza sul tema manuale e sul cambio automatico all&apos;alba/tramonto.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="201"/>

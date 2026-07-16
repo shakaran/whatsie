@@ -846,6 +846,30 @@ Configure primero la contraseña en los ajustes.</translation>
         <source>Cannot write %1</source>
         <translation>No se puede escribir %1</translation>
     </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="284"/>
+        <source>Switch to light theme</source>
+        <comment>WebTweaks</comment>
+        <translation>Cambiar al tema claro</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="285"/>
+        <source>Switch to dark theme</source>
+        <comment>WebTweaks</comment>
+        <translation>Cambiar al tema oscuro</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="286"/>
+        <source>Show the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>Mostrar los chats</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="287"/>
+        <source>Blur the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>Desenfocar los chats</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

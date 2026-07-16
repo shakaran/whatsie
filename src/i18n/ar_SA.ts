@@ -846,6 +846,30 @@ Please setup the password in the Settings first.</source>
         <source>Cannot write %1</source>
         <translation>تعذّرت الكتابة إلى %1</translation>
     </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="284"/>
+        <source>Switch to light theme</source>
+        <comment>WebTweaks</comment>
+        <translation>التبديل إلى السمة الفاتحة</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="285"/>
+        <source>Switch to dark theme</source>
+        <comment>WebTweaks</comment>
+        <translation>التبديل إلى السمة الداكنة</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="286"/>
+        <source>Show the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>إظهار المحادثات</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="287"/>
+        <source>Blur the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>تمويه المحادثات</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

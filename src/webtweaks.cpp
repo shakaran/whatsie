@@ -1,5 +1,6 @@
 #include "webtweaks.h"
 #include "settingsmanager.h"
+#include <QObject>
 
 #include <QWebEngineScript>
 #include <QWebEngineScriptCollection>
@@ -15,6 +16,7 @@ static const char kScriptTemplate[] = R"JS(
 (function () {
   'use strict';
   var FLAGS = __FLAGS__;
+  var LABELS = __LABELS__;
   var W = window.__whatsieWebTweaks;
   if (W) {
     W.dismissExpressionsPanel = FLAGS.dismissExpressionsPanel;  // live update
@@ -89,7 +91,7 @@ static const char kScriptTemplate[] = R"JS(
       enabled: function () { return W.themeToggleButton; },
       icon: function () { return isDark() ? ICON.sun : ICON.moon; },
       label: function () {
-        return isDark() ? 'Switch to light theme' : 'Switch to dark theme';
+        return isDark() ? LABELS.switchToLight : LABELS.switchToDark;
       },
       click: function () {
         if (window.__whatsieBridge && window.__whatsieBridge.toggleTheme)
@@ -101,7 +103,7 @@ static const char kScriptTemplate[] = R"JS(
       enabled: function () { return W.privacyBlurButton; },
       icon: function () { return isBlurred() ? ICON.eye : ICON.eyeOff; },
       label: function () {
-        return isBlurred() ? 'Show the chats' : 'Blur the chats';
+        return isBlurred() ? LABELS.showChats : LABELS.blurChats;
       },
       click: function () {
         if (window.__whatsieBridge && window.__whatsieBridge.togglePrivacyBlur)
@@ -248,6 +250,17 @@ namespace WebTweaks {
 
 static const char *jsBool(bool value) { return value ? "true" : "false"; }
 
+// A translated string as a JS double-quoted literal — the injected button
+// labels are user-facing, so they go through tr() here and are handed to the
+// script rather than hardcoded in English inside the JS (where lupdate could
+// never see them).
+static QString jsString(const QString &value) {
+  QString e = value;
+  e.replace(QLatin1Char('\\'), QLatin1String("\\\\"));
+  e.replace(QLatin1Char('"'), QLatin1String("\\\""));
+  return QLatin1Char('"') + e + QLatin1Char('"');
+}
+
 QString scriptSource() {
   QSettings &s = SettingsManager::instance().settings();
   const bool dismiss =
@@ -263,8 +276,19 @@ QString scriptSource() {
           .arg(QLatin1String(jsBool(dismiss)), QLatin1String(jsBool(themeButton)),
                QLatin1String(jsBool(blurButton)));
 
+  // The injected buttons' accessible labels, translated. QObject::tr with an
+  // explicit "WebTweaks" context so they land in the translation catalogue.
+  const QString labels =
+      QStringLiteral("{\"switchToLight\":%1,\"switchToDark\":%2,"
+                     "\"showChats\":%3,\"blurChats\":%4}")
+          .arg(jsString(QObject::tr("Switch to light theme", "WebTweaks")),
+               jsString(QObject::tr("Switch to dark theme", "WebTweaks")),
+               jsString(QObject::tr("Show the chats", "WebTweaks")),
+               jsString(QObject::tr("Blur the chats", "WebTweaks")));
+
   QString source = QString::fromLatin1(kScriptTemplate);
   source.replace(QLatin1String("__FLAGS__"), flags);
+  source.replace(QLatin1String("__LABELS__"), labels);
   return source;
 }
 

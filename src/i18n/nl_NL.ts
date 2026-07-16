@@ -846,6 +846,30 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
         <source>Cannot write %1</source>
         <translation>Kan %1 niet schrijven</translation>
     </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="284"/>
+        <source>Switch to light theme</source>
+        <comment>WebTweaks</comment>
+        <translation>Naar licht thema wisselen</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="285"/>
+        <source>Switch to dark theme</source>
+        <comment>WebTweaks</comment>
+        <translation>Naar donker thema wisselen</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="286"/>
+        <source>Show the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>Chats tonen</translation>
+    </message>
+    <message>
+        <location filename="../webtweaks.cpp" line="287"/>
+        <source>Blur the chats</source>
+        <comment>WebTweaks</comment>
+        <translation>Chats vervagen</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>
