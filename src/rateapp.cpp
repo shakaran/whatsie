@@ -1,12 +1,31 @@
 #include "rateapp.h"
 #include "ui_rateapp.h"
 #include <QDebug>
+#include <QIcon>
 #include <QMetaEnum>
+#include <QPixmap>
+#include <QPushButton>
+#include <QSize>
 
 RateApp::RateApp(QWidget *parent, QString app_rating_url, int app_launch_count,
                  int app_install_days, int present_delay)
     : QWidget(parent), ui(new Ui::RateApp) {
   ui->setupUi(this);
+
+  // The app logo, plus a representative icon on every action button. Set here
+  // from the bundled resources — not from the desktop icon theme — so a missing
+  // or not-yet-cached theme icon can never leave the dialog blank.
+  ui->logoLabel->setPixmap(QPixmap(QStringLiteral(":/icons/app/icon-64.png")));
+  ui->rateNowBtn->setIcon(QIcon(QStringLiteral(":/icons/shopping-cart-line.png")));
+  ui->rateOnGithub->setIcon(QIcon(QStringLiteral(":/icons/star-line.png")));
+  ui->donate->setIcon(QIcon(QStringLiteral(":/icons/paypal-line.png")));
+  ui->donate_2->setIcon(QIcon(QStringLiteral(":/icons/funds-line.png")));
+  ui->laterBtn->setIcon(QIcon(QStringLiteral(":/icons/time-line.png")));
+  ui->alreadyDoneBtn->setIcon(QIcon(QStringLiteral(":/icons/check-line.png")));
+  const QSize iconSize(18, 18);
+  for (QPushButton *b : {ui->rateNowBtn, ui->rateOnGithub, ui->donate,
+                         ui->donate_2, ui->laterBtn, ui->alreadyDoneBtn})
+    b->setIconSize(iconSize);
 
   this->app_rating_url =
       app_rating_url; // Url to open when rating button clicked
