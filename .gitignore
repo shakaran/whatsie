@@ -56,3 +56,5 @@ whatly
 
 .idea
 build
+build/
+tools/shots/

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"
      style="fill-rule:evenodd;clip-rule:evenodd">
-  <!-- speech-bubble ring + tail (monochrome silhouette for the tray) -->
   <path style="fill:#000000" fill-rule="evenodd" d="M 32 5 C 17.098857 5 5 16.969621 5 31.710938 C 5 37.047389 6.5860348 42.020918 9.3144531 46.193359 L 5 59 L 18.179688 54.65625 C 22.223999 57.046126 26.949584 58.419922 32 58.419922 C 46.901143 58.419922 59 46.452254 59 31.710938 C 59 16.969621 46.901143 5 32 5 z M 32 10.308594 C 43.939672 10.308594 53.634766 19.899327 53.634766 31.710938 C 53.634766 43.522547 43.939672 53.109375 32 53.109375 C 27.481058 53.109375 23.28555 51.738327 19.8125 49.390625 L 11.679688 52.072266 L 14.365234 44.101562 C 11.847131 40.603908 10.365234 36.327615 10.365234 31.710938 C 10.365234 19.899327 20.060328 10.308594 32 10.308594 z"/>
-  <!-- geometric W matching the app icon -->
   <path d="M 18.95 23.76 L 25.22 39.64 L 32 29.16 L 38.79 39.64 L 45.06 23.76"
-        fill="none" stroke="#000000" stroke-width="4.6"
-        stroke-linecap="round" stroke-linejoin="round"/>
+        fill="none" stroke="#000000" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
