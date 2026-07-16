@@ -161,6 +161,7 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason) {
       reason == QSystemTrayIcon::Context)
     return;
   if (isVisible()) {
+    lockOnHideIfEnabled();
     hide();
   } else {
     show();

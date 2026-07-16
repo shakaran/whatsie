@@ -447,23 +447,23 @@ WebEngine ist nicht initialisiert.</translation>
         <translation>Die Seite muss neu geladen werden, um fortzufahren.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="815"/>
+        <location filename="../mainwindow.cpp" line="816"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="825"/>
+        <location filename="../mainwindow.cpp" line="826"/>
         <location filename="../mainwindow_tray.cpp" line="16"/>
         <source>New Chat</source>
         <translation>Neuer Chat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="826"/>
+        <location filename="../mainwindow.cpp" line="827"/>
         <source>Enter a valid WhatsApp number with country code (ex- +91XXXXXXXXXX)</source>
         <translation>Geben Sie eine gültige WhatsApp-Nummer mit Ländervorwahl ein (z. B. +49XXXXXXXXXX)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="856"/>
+        <location filename="../mainwindow.cpp" line="857"/>
         <source>Rate Application</source>
         <translation>Anwendung bewerten</translation>
     </message>
@@ -838,17 +838,17 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
         <translation>Architektur</translation>
     </message>
     <message>
-        <location filename="../utils.cpp" line="480"/>
+        <location filename="../utils.cpp" line="486"/>
         <source>Exception</source>
         <translation>Ausnahme</translation>
     </message>
     <message>
-        <location filename="../utils.cpp" line="483"/>
+        <location filename="../utils.cpp" line="489"/>
         <source> has encountered a problem.</source>
         <translation> ist auf ein Problem gestoßen.</translation>
     </message>
     <message>
-        <location filename="../utils.cpp" line="486"/>
+        <location filename="../utils.cpp" line="492"/>
         <source> may need to Restart. Please report the error to developer.</source>
         <translation> muss möglicherweise neu gestartet werden. Bitte melden Sie den Fehler dem Entwickler.</translation>
     </message>
@@ -896,48 +896,48 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="33"/>
+        <location filename="../rateapp.ui" line="43"/>
         <source>Rate this app</source>
         <translation>Diese Anwendung bewerten</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="46"/>
+        <location filename="../rateapp.ui" line="56"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you enjoy using this app, would you mind taking a moment to rate it?&lt;/p&gt;&lt;p&gt;It won&apos;t take more than a minute. Thanks you for your support!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wenn Ihnen diese Anwendung gefällt, würden Sie sich einen Moment Zeit nehmen, um sie zu bewerten?&lt;/p&gt;&lt;p&gt;Es dauert nicht länger als eine Minute. Vielen Dank für Ihre Unterstützung!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="63"/>
+        <location filename="../rateapp.ui" line="73"/>
         <source>  Rate in Store</source>
         <translation>  Im Store bewerten</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="89"/>
-        <location filename="../rateapp.ui" line="146"/>
+        <location filename="../rateapp.ui" line="99"/>
+        <location filename="../rateapp.ui" line="156"/>
         <source>Or</source>
         <translation>Oder</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="109"/>
+        <location filename="../rateapp.ui" line="119"/>
         <source>Star rate Github repo</source>
         <translation>GitHub-Repository mit einem Stern versehen</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="120"/>
+        <location filename="../rateapp.ui" line="130"/>
         <source>Donate via PayPal </source>
         <translation>Über PayPal spenden </translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="166"/>
+        <location filename="../rateapp.ui" line="176"/>
         <source>Donate via OpenCollective</source>
         <translation>Über OpenCollective spenden</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="177"/>
+        <location filename="../rateapp.ui" line="187"/>
         <source>Later</source>
         <translation>Später</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="200"/>
+        <location filename="../rateapp.ui" line="210"/>
         <source>  Already Done  </source>
         <translation>  Bereits erledigt  </translation>
     </message>
@@ -1031,7 +1031,7 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="297"/>
-        <location filename="../settingswidget.ui" line="973"/>
+        <location filename="../settingswidget.ui" line="983"/>
         <source> Secs</source>
         <translation> Sek.</translation>
     </message>
@@ -1122,7 +1122,7 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="438"/>
-        <location filename="../settingswidget.cpp" line="712"/>
+        <location filename="../settingswidget.cpp" line="714"/>
         <source>Custom CSS</source>
         <translation>Benutzerdefiniertes CSS</translation>
     </message>
@@ -1149,7 +1149,7 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="469"/>
-        <location filename="../settingswidget.cpp" line="783"/>
+        <location filename="../settingswidget.cpp" line="789"/>
         <source>Check spelling as I type</source>
         <translation>Rechtschreibung während der Eingabe prüfen</translation>
     </message>
@@ -1180,7 +1180,7 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="511"/>
-        <location filename="../settingswidget.cpp" line="688"/>
+        <location filename="../settingswidget.cpp" line="690"/>
         <source>Chat wallpaper</source>
         <translation>Chat-Hintergrund</translation>
     </message>
@@ -1294,199 +1294,209 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="945"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the window hides to the system tray, lock it behind the passcode. Requires a password to be set.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wenn sich das Fenster in den System-Tray ausblendet, hinter dem Passcode sperren. Erfordert ein eingerichtetes Passwort.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../settingswidget.ui" line="948"/>
+        <source>Lock when hidden to tray</source>
+        <translation>Beim Ausblenden in den Tray sperren</translation>
+    </message>
+    <message>
+        <location filename="../settingswidget.ui" line="955"/>
         <source>Current Password</source>
         <translation>Aktuelles Passwort</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="952"/>
-        <location filename="../settingswidget.ui" line="986"/>
+        <location filename="../settingswidget.ui" line="962"/>
+        <location filename="../settingswidget.ui" line="996"/>
         <source>Change password</source>
         <translation>Passwort ändern</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="955"/>
-        <location filename="../settingswidget.ui" line="1064"/>
+        <location filename="../settingswidget.ui" line="965"/>
+        <location filename="../settingswidget.ui" line="1074"/>
         <source>Change</source>
         <translation>Ändern</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="966"/>
+        <location filename="../settingswidget.ui" line="976"/>
         <source>Enable auto locking after</source>
         <translation>Automatische Sperre aktivieren nach</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="989"/>
+        <location filename="../settingswidget.ui" line="999"/>
         <source>Reset</source>
         <translation>Zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1021"/>
+        <location filename="../settingswidget.ui" line="1031"/>
         <source>View password</source>
         <translation>Passwort anzeigen</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1048"/>
+        <location filename="../settingswidget.ui" line="1058"/>
         <source>Default Download location</source>
         <translation>Standard-Downloadordner</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1061"/>
+        <location filename="../settingswidget.ui" line="1071"/>
         <source>Change Download Location</source>
         <translation>Downloadordner ändern</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1080"/>
+        <location filename="../settingswidget.ui" line="1090"/>
         <source>Storage </source>
         <translation>Speicher </translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1100"/>
+        <location filename="../settingswidget.ui" line="1110"/>
         <source>Property</source>
         <translation>Eigenschaft</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1107"/>
+        <location filename="../settingswidget.ui" line="1117"/>
         <source>  Clear (requires restart)</source>
         <translation>  Leeren (Neustart erforderlich)</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1118"/>
+        <location filename="../settingswidget.ui" line="1128"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Persistent data includes persistent cookies, HTML5 local storage, and visited links.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zu den persistenten Daten gehören dauerhafte Cookies, HTML5-Local-Storage und besuchte Links.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1121"/>
+        <location filename="../settingswidget.ui" line="1131"/>
         <source>Persistent data</source>
         <translation>Persistente Daten</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1128"/>
+        <location filename="../settingswidget.ui" line="1138"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1150"/>
+        <location filename="../settingswidget.ui" line="1160"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1172"/>
+        <location filename="../settingswidget.ui" line="1182"/>
         <source>Action</source>
         <translation>Aktion</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="369"/>
+        <location filename="../settingswidget.cpp" line="371"/>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>Dies löscht die persistenten Daten (einschließlich persistenter Cookies und Cache) und beendet die Anwendung.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="374"/>
+        <location filename="../settingswidget.cpp" line="376"/>
         <source>Delete Cookies and Quit Application?</source>
         <translation>Cookies löschen und Anwendung beenden?</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="476"/>
+        <location filename="../settingswidget.cpp" line="478"/>
         <source>| Error</source>
         <translation>| Fehler</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="477"/>
+        <location filename="../settingswidget.cpp" line="479"/>
         <source>Cannot set an empty UserAgent String.</source>
         <translation>Es kann keine leere User-Agent-Zeichenkette gesetzt werden.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="528"/>
+        <location filename="../settingswidget.cpp" line="530"/>
         <source>Automatic theme switching was disabled due to manual theme toggle.</source>
         <translation>Der automatische Designwechsel wurde durch den manuellen Wechsel deaktiviert.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="567"/>
+        <location filename="../settingswidget.cpp" line="569"/>
         <source>App lock is not configured.</source>
         <translation>Die App-Sperre ist nicht eingerichtet.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="571"/>
+        <location filename="../settingswidget.cpp" line="573"/>
         <source>Do you want to setup App lock now?</source>
         <translation>Möchten Sie die App-Sperre jetzt einrichten?</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="613"/>
+        <location filename="../settingswidget.cpp" line="615"/>
         <source>Feature permissions</source>
         <translation>Funktionsberechtigungen</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="679"/>
+        <location filename="../settingswidget.cpp" line="681"/>
         <source>Choose a chat wallpaper</source>
         <translation>Chat-Hintergrund auswählen</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="681"/>
+        <location filename="../settingswidget.cpp" line="683"/>
         <source>Images (%1)</source>
         <translation>Bilder (%1)</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="689"/>
+        <location filename="../settingswidget.cpp" line="691"/>
         <source>Could not use that image: %1</source>
         <translation>Dieses Bild konnte nicht verwendet werden: %1</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="704"/>
+        <location filename="../settingswidget.cpp" line="706"/>
         <source>Choose a CSS file</source>
         <translation>CSS-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="706"/>
+        <location filename="../settingswidget.cpp" line="708"/>
         <source>Stylesheets (*.css);;All files (*)</source>
         <translation>Stylesheets (*.css);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="713"/>
+        <location filename="../settingswidget.cpp" line="715"/>
         <source>Could not read that file: %1</source>
         <translation>Diese Datei konnte nicht gelesen werden: %1</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="782"/>
+        <location filename="../settingswidget.cpp" line="788"/>
         <source>Spell checker (no dictionaries installed)</source>
         <translation>Rechtschreibprüfung (keine Wörterbücher installiert)</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="833"/>
+        <location filename="../settingswidget.cpp" line="839"/>
         <source>None</source>
         <translation>Keine</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="837"/>
+        <location filename="../settingswidget.cpp" line="843"/>
         <source>%1 languages</source>
         <translation>%1 Sprachen</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="919"/>
+        <location filename="../settingswidget.cpp" line="925"/>
         <source>System default</source>
         <translation>Systemstandard</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="952"/>
+        <location filename="../settingswidget.cpp" line="958"/>
         <source>The interface language will change when you restart %1.</source>
         <translation>Die Oberflächensprache ändert sich beim Neustart von %1.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="966"/>
+        <location filename="../settingswidget.cpp" line="972"/>
         <source>App Lock Setup</source>
         <translation>App-Sperre einrichten</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="967"/>
+        <location filename="../settingswidget.cpp" line="973"/>
         <source>Please setup the App lock password first.</source>
         <translation>Richten Sie zuerst das App-Sperrpasswort ein.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="1076"/>
-        <location filename="../settingswidget.cpp" line="1087"/>
+        <location filename="../settingswidget.cpp" line="1082"/>
+        <location filename="../settingswidget.cpp" line="1093"/>
         <source>Select download directory</source>
         <translation>Downloadordner auswählen</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="1127"/>
+        <location filename="../settingswidget.cpp" line="1133"/>
         <source>You are about to change your current app lock password!
 
 This will LogOut your current session.
@@ -1497,7 +1507,7 @@ Dadurch wird Ihre aktuelle Sitzung abgemeldet.
 Möglicherweise ist auch ein vollständiger Neustart der Anwendung erforderlich!</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="1133"/>
+        <location filename="../settingswidget.cpp" line="1139"/>
         <source>Do you want to proceed?</source>
         <translation>Möchten Sie fortfahren?</translation>
     </message>

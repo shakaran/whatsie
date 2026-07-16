@@ -141,6 +141,23 @@ void MainWindow::lockApp() {
   }
 }
 
+// Lock silently when the window hides to the tray, if the user asked for it and
+// a passcode is actually configured. Unlike lockApp() this never nags about a
+// missing password — hiding to the tray should not pop a dialog.
+void MainWindow::lockOnHideIfEnabled() {
+  if (!SettingsManager::instance()
+           .settings()
+           .value("lockOnHideToTray", false)
+           .toBool())
+    return;
+  if (!SettingsManager::instance().settings().value("asdfg").isValid())
+    return;
+  if (m_lockWidget != nullptr && m_lockWidget->getIsLocked())
+    return;
+  initLock();
+  m_lockWidget->lock_app();
+}
+
 void MainWindow::changeLockPassword() {
   SettingsManager::instance().settings().remove("asdfg");
   m_settingsWidget->appLockSetChecked(false);

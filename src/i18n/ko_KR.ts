@@ -447,23 +447,23 @@ WebEngine이 초기화되지 않았습니다.</translation>
         <translation>계속하려면 페이지를 다시 불러와야 합니다.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="815"/>
+        <location filename="../mainwindow.cpp" line="816"/>
         <source>Open</source>
         <translation>열기</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="825"/>
+        <location filename="../mainwindow.cpp" line="826"/>
         <location filename="../mainwindow_tray.cpp" line="16"/>
         <source>New Chat</source>
         <translation>새 대화</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="826"/>
+        <location filename="../mainwindow.cpp" line="827"/>
         <source>Enter a valid WhatsApp number with country code (ex- +91XXXXXXXXXX)</source>
         <translation>국가 번호를 포함한 유효한 WhatsApp 번호를 입력하세요 (예: +82XXXXXXXXXX)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="856"/>
+        <location filename="../mainwindow.cpp" line="857"/>
         <source>Rate Application</source>
         <translation>앱 평가</translation>
     </message>
@@ -702,7 +702,7 @@ Open Settings now?</source>
     <message>
         <location filename="../main.cpp" line="172"/>
         <source>Nothing to migrate from &quot;%1&quot; — already migrated, or no data found there.</source>
-        <translation>"%1"에서 마이그레이션할 항목이 없습니다 — 이미 완료되었거나 데이터가 없습니다.</translation>
+        <translation>&quot;%1&quot;에서 마이그레이션할 항목이 없습니다 — 이미 완료되었거나 데이터가 없습니다.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="177"/>
@@ -772,7 +772,7 @@ Open Settings now?</source>
     <message>
         <location filename="../main.cpp" line="470"/>
         <source>Copy settings and the logged-in session from a previous install (e.g. the older &quot;whatsie&quot; build) into this one, then exit</source>
-        <translation>이전 설치(예: 이전 "whatsie" 빌드)에서 설정과 로그인된 세션을 여기로 복사한 후 종료합니다</translation>
+        <translation>이전 설치(예: 이전 &quot;whatsie&quot; 빌드)에서 설정과 로그인된 세션을 여기로 복사한 후 종료합니다</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="477"/>
@@ -838,17 +838,17 @@ Please setup the password in the Settings first.</source>
         <translation>아키텍처</translation>
     </message>
     <message>
-        <location filename="../utils.cpp" line="480"/>
+        <location filename="../utils.cpp" line="486"/>
         <source>Exception</source>
         <translation>예외</translation>
     </message>
     <message>
-        <location filename="../utils.cpp" line="483"/>
+        <location filename="../utils.cpp" line="489"/>
         <source> has encountered a problem.</source>
         <translation> 에서 문제가 발생했습니다.</translation>
     </message>
     <message>
-        <location filename="../utils.cpp" line="486"/>
+        <location filename="../utils.cpp" line="492"/>
         <source> may need to Restart. Please report the error to developer.</source>
         <translation> 을(를) 다시 시작해야 할 수 있습니다. 개발자에게 오류를 알려 주세요.</translation>
     </message>
@@ -896,48 +896,48 @@ Please setup the password in the Settings first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="33"/>
+        <location filename="../rateapp.ui" line="43"/>
         <source>Rate this app</source>
         <translation>이 앱 평가하기</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="46"/>
+        <location filename="../rateapp.ui" line="56"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you enjoy using this app, would you mind taking a moment to rate it?&lt;/p&gt;&lt;p&gt;It won&apos;t take more than a minute. Thanks you for your support!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;이 앱이 마음에 드셨다면 잠시 시간을 내어 평가해 주시겠어요?&lt;/p&gt;&lt;p&gt;1분도 걸리지 않습니다. 응원해 주셔서 감사합니다!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="63"/>
+        <location filename="../rateapp.ui" line="73"/>
         <source>  Rate in Store</source>
         <translation>  스토어에서 평가</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="89"/>
-        <location filename="../rateapp.ui" line="146"/>
+        <location filename="../rateapp.ui" line="99"/>
+        <location filename="../rateapp.ui" line="156"/>
         <source>Or</source>
         <translation>또는</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="109"/>
+        <location filename="../rateapp.ui" line="119"/>
         <source>Star rate Github repo</source>
         <translation>GitHub 저장소에 별 주기</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="120"/>
+        <location filename="../rateapp.ui" line="130"/>
         <source>Donate via PayPal </source>
         <translation>PayPal로 후원 </translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="166"/>
+        <location filename="../rateapp.ui" line="176"/>
         <source>Donate via OpenCollective</source>
         <translation>OpenCollective로 후원</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="177"/>
+        <location filename="../rateapp.ui" line="187"/>
         <source>Later</source>
         <translation>나중에</translation>
     </message>
     <message>
-        <location filename="../rateapp.ui" line="200"/>
+        <location filename="../rateapp.ui" line="210"/>
         <source>  Already Done  </source>
         <translation>  이미 했어요  </translation>
     </message>
@@ -1031,7 +1031,7 @@ Please setup the password in the Settings first.</source>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="297"/>
-        <location filename="../settingswidget.ui" line="973"/>
+        <location filename="../settingswidget.ui" line="983"/>
         <source> Secs</source>
         <translation> 초</translation>
     </message>
@@ -1122,7 +1122,7 @@ Please setup the password in the Settings first.</source>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="438"/>
-        <location filename="../settingswidget.cpp" line="712"/>
+        <location filename="../settingswidget.cpp" line="714"/>
         <source>Custom CSS</source>
         <translation>사용자 지정 CSS</translation>
     </message>
@@ -1149,7 +1149,7 @@ Please setup the password in the Settings first.</source>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="469"/>
-        <location filename="../settingswidget.cpp" line="783"/>
+        <location filename="../settingswidget.cpp" line="789"/>
         <source>Check spelling as I type</source>
         <translation>입력하는 동안 맞춤법 검사</translation>
     </message>
@@ -1180,7 +1180,7 @@ Please setup the password in the Settings first.</source>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="511"/>
-        <location filename="../settingswidget.cpp" line="688"/>
+        <location filename="../settingswidget.cpp" line="690"/>
         <source>Chat wallpaper</source>
         <translation>채팅 배경</translation>
     </message>
@@ -1294,199 +1294,209 @@ Please setup the password in the Settings first.</source>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="945"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the window hides to the system tray, lock it behind the passcode. Requires a password to be set.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;창이 시스템 트레이로 숨겨질 때 암호로 잠급니다. 비밀번호가 설정되어 있어야 합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../settingswidget.ui" line="948"/>
+        <source>Lock when hidden to tray</source>
+        <translation>트레이로 숨길 때 잠금</translation>
+    </message>
+    <message>
+        <location filename="../settingswidget.ui" line="955"/>
         <source>Current Password</source>
         <translation>현재 비밀번호</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="952"/>
-        <location filename="../settingswidget.ui" line="986"/>
+        <location filename="../settingswidget.ui" line="962"/>
+        <location filename="../settingswidget.ui" line="996"/>
         <source>Change password</source>
         <translation>비밀번호 변경</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="955"/>
-        <location filename="../settingswidget.ui" line="1064"/>
+        <location filename="../settingswidget.ui" line="965"/>
+        <location filename="../settingswidget.ui" line="1074"/>
         <source>Change</source>
         <translation>변경</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="966"/>
+        <location filename="../settingswidget.ui" line="976"/>
         <source>Enable auto locking after</source>
         <translation>다음 시간 후 자동 잠금</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="989"/>
+        <location filename="../settingswidget.ui" line="999"/>
         <source>Reset</source>
         <translation>초기화</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1021"/>
+        <location filename="../settingswidget.ui" line="1031"/>
         <source>View password</source>
         <translation>비밀번호 보기</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1048"/>
+        <location filename="../settingswidget.ui" line="1058"/>
         <source>Default Download location</source>
         <translation>기본 다운로드 위치</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1061"/>
+        <location filename="../settingswidget.ui" line="1071"/>
         <source>Change Download Location</source>
         <translation>다운로드 위치 변경</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1080"/>
+        <location filename="../settingswidget.ui" line="1090"/>
         <source>Storage </source>
         <translation>저장소 </translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1100"/>
+        <location filename="../settingswidget.ui" line="1110"/>
         <source>Property</source>
         <translation>속성</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1107"/>
+        <location filename="../settingswidget.ui" line="1117"/>
         <source>  Clear (requires restart)</source>
         <translation>  비우기 (다시 시작 필요)</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1118"/>
+        <location filename="../settingswidget.ui" line="1128"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Persistent data includes persistent cookies, HTML5 local storage, and visited links.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;지속 데이터에는 지속 쿠키, HTML5 로컬 저장소, 방문한 링크가 포함됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1121"/>
+        <location filename="../settingswidget.ui" line="1131"/>
         <source>Persistent data</source>
         <translation>지속 데이터</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1128"/>
+        <location filename="../settingswidget.ui" line="1138"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1150"/>
+        <location filename="../settingswidget.ui" line="1160"/>
         <source>Size</source>
         <translation>크기</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1172"/>
+        <location filename="../settingswidget.ui" line="1182"/>
         <source>Action</source>
         <translation>동작</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="369"/>
+        <location filename="../settingswidget.cpp" line="371"/>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>영구 데이터(영구 쿠키 및 캐시 포함)를 삭제하고 애플리케이션을 종료합니다.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="374"/>
+        <location filename="../settingswidget.cpp" line="376"/>
         <source>Delete Cookies and Quit Application?</source>
         <translation>쿠키를 삭제하고 애플리케이션을 종료할까요?</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="476"/>
+        <location filename="../settingswidget.cpp" line="478"/>
         <source>| Error</source>
         <translation>| 오류</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="477"/>
+        <location filename="../settingswidget.cpp" line="479"/>
         <source>Cannot set an empty UserAgent String.</source>
         <translation>빈 User-Agent 문자열은 설정할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="528"/>
+        <location filename="../settingswidget.cpp" line="530"/>
         <source>Automatic theme switching was disabled due to manual theme toggle.</source>
         <translation>테마를 직접 변경했기 때문에 자동 테마 전환이 해제되었습니다.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="567"/>
+        <location filename="../settingswidget.cpp" line="569"/>
         <source>App lock is not configured.</source>
         <translation>앱 잠금이 설정되지 않았습니다.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="571"/>
+        <location filename="../settingswidget.cpp" line="573"/>
         <source>Do you want to setup App lock now?</source>
         <translation>지금 앱 잠금을 설정할까요?</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="613"/>
+        <location filename="../settingswidget.cpp" line="615"/>
         <source>Feature permissions</source>
         <translation>기능 권한</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="679"/>
+        <location filename="../settingswidget.cpp" line="681"/>
         <source>Choose a chat wallpaper</source>
         <translation>채팅 배경 선택</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="681"/>
+        <location filename="../settingswidget.cpp" line="683"/>
         <source>Images (%1)</source>
         <translation>이미지 (%1)</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="689"/>
+        <location filename="../settingswidget.cpp" line="691"/>
         <source>Could not use that image: %1</source>
         <translation>이미지를 사용할 수 없습니다: %1</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="704"/>
+        <location filename="../settingswidget.cpp" line="706"/>
         <source>Choose a CSS file</source>
         <translation>CSS 파일 선택</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="706"/>
+        <location filename="../settingswidget.cpp" line="708"/>
         <source>Stylesheets (*.css);;All files (*)</source>
         <translation>스타일시트 (*.css);;모든 파일 (*)</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="713"/>
+        <location filename="../settingswidget.cpp" line="715"/>
         <source>Could not read that file: %1</source>
         <translation>파일을 읽을 수 없습니다: %1</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="782"/>
+        <location filename="../settingswidget.cpp" line="788"/>
         <source>Spell checker (no dictionaries installed)</source>
         <translation>맞춤법 검사기(설치된 사전 없음)</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="833"/>
+        <location filename="../settingswidget.cpp" line="839"/>
         <source>None</source>
         <translation>없음</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="837"/>
+        <location filename="../settingswidget.cpp" line="843"/>
         <source>%1 languages</source>
         <translation>언어 %1개</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="919"/>
+        <location filename="../settingswidget.cpp" line="925"/>
         <source>System default</source>
         <translation>시스템 기본값</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="952"/>
+        <location filename="../settingswidget.cpp" line="958"/>
         <source>The interface language will change when you restart %1.</source>
         <translation>%1 을(를) 다시 시작하면 인터페이스 언어가 바뀝니다.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="966"/>
+        <location filename="../settingswidget.cpp" line="972"/>
         <source>App Lock Setup</source>
         <translation>앱 잠금 설정</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="967"/>
+        <location filename="../settingswidget.cpp" line="973"/>
         <source>Please setup the App lock password first.</source>
         <translation>먼저 앱 잠금 비밀번호를 설정하세요.</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="1076"/>
-        <location filename="../settingswidget.cpp" line="1087"/>
+        <location filename="../settingswidget.cpp" line="1082"/>
+        <location filename="../settingswidget.cpp" line="1093"/>
         <source>Select download directory</source>
         <translation>다운로드 폴더 선택</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="1127"/>
+        <location filename="../settingswidget.cpp" line="1133"/>
         <source>You are about to change your current app lock password!
 
 This will LogOut your current session.
@@ -1497,7 +1507,7 @@ You may also require a complete restart of Application!</source>
 애플리케이션을 완전히 다시 시작해야 할 수도 있습니다!</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="1133"/>
+        <location filename="../settingswidget.cpp" line="1139"/>
         <source>Do you want to proceed?</source>
         <translation>계속할까요?</translation>
     </message>

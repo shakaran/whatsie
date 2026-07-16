@@ -143,6 +143,8 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
       SettingsManager::instance().settings().value("smoothScrolling", false).toBool());
   ui->monochromeTrayIconCheckBox->setChecked(
       SettingsManager::instance().settings().value("monochromeTrayIcon", false).toBool());
+  ui->lockOnMinimizeCheckBox->setChecked(
+      SettingsManager::instance().settings().value("lockOnHideToTray", false).toBool());
   {
     const bool followSystem =
         SettingsManager::instance().settings().value("followSystemTheme", false).toBool();
@@ -739,6 +741,10 @@ void SettingsWidget::on_followSystemThemeCheckBox_toggled(bool checked) {
 void SettingsWidget::on_monochromeTrayIconCheckBox_toggled(bool checked) {
   SettingsManager::instance().settings().setValue("monochromeTrayIcon", checked);
   emit trayIconChanged();
+}
+
+void SettingsWidget::on_lockOnMinimizeCheckBox_toggled(bool checked) {
+  SettingsManager::instance().settings().setValue("lockOnHideToTray", checked);
 }
 
 void SettingsWidget::on_smoothScrollingCheckBox_toggled(bool checked) {

@@ -46,6 +46,7 @@ public slots:
   void showSettings(bool isAskedByCLI = false);
   void showAbout();
   void lockApp();
+  void lockOnHideIfEnabled();
   void toggleTheme();
   void togglePrivacyBlur();
   void newChat();

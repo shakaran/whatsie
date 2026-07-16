@@ -702,6 +702,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
               .settings()
               .value("closeButtonActionCombo", 0)
               .toInt() == 0) {
+    lockOnHideIfEnabled();
     hide();
     event->ignore();
     return;
