@@ -851,7 +851,7 @@ void MainWindow::triggerNewChat(const QString &phone, const QString &text) {
 // ── Rate widget ───────────────────────────────────────────────────────────────
 
 void MainWindow::initRateWidget() {
-  RateApp *rateApp = new RateApp(this, "snap://whatsie", 5, 5, 1000 * 30);
+  RateApp *rateApp = new RateApp(this, "snap://whatly", 5, 5, 1000 * 30);
   rateApp->setWindowTitle(QApplication::applicationDisplayName() + " | " +
                           tr("Rate Application"));
   rateApp->setVisible(false);

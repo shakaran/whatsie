@@ -40,7 +40,7 @@ About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
   reportBugLink = "https://github.com/shakaran/whatly/issues/new";
 
   appSourceCodeLink = "https://github.com/shakaran/whatly";
-  appRateLink = "snap://whatsie";
+  appRateLink = "snap://whatly";
 
   ui->appNameDesc->setText(
       QString("<p style=' margin-top:12px; margin-bottom:12px; margin-left:0px;"
@@ -76,7 +76,7 @@ About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
     ui->source_code->hide();
   }
 
-  // The rate link points at the Snap store (snap://whatsie), which hosts the
+  // The rate link points at the Snap store (snap://whatly), which hosts the
   // upstream project, not this fork — hide it rather than send users elsewhere.
   ui->rate->hide();
 
