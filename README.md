@@ -143,6 +143,8 @@ On top of upstream WhatSie, this fork adds:
 
 <img src="docs/img/card-accounts.png" width="720" alt="Whatly — multiple accounts"/>
 
+<img src="docs/img/card-profiles.png" width="720" alt="Whatly — separate profiles"/>
+
 <img src="docs/img/card-lock.png" width="720" alt="Whatly — app lock"/>
 
 <img src="docs/img/card-spellcheck.png" width="720" alt="Whatly — multi-language spell check"/>

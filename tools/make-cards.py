@@ -297,6 +297,25 @@ def accounts_panel(out):
         d.rounded_rectangle([135, yy+30, 380, yy+40], radius=5, fill=(36, 44, 46))
     im.save(out)
 
+def profiles_panel(out):
+    W, H = 660, 720
+    im = Image.new("RGB", (W, H), (24, 32, 34)); d = ImageDraw.Draw(im)
+    d.text((30, 26), "Separate profiles", font=_font(True, 30), fill=(235, 245, 243))
+    d.text((30, 70), "whatly --profile=<name> — a window of its own", font=_font(False, 20), fill=(150, 200, 190))
+    # two offset windows, each its own session
+    def mini(x, y, title, badge_col):
+        _window(d, x, y, 330, 300, title)
+        d.rounded_rectangle([x+24, y+64, x+130, y+96], radius=8, fill=badge_col)
+        d.text((x+40, y+70), "Chats", font=_font(True, 18), fill=(12, 30, 28))
+        for i in range(3):
+            yy = y+120+i*46
+            d.ellipse([x+24, yy, x+58, yy+34], fill=(40, 48, 50))
+            d.rounded_rectangle([x+70, yy+6, x+300, yy+16], radius=5, fill=(48, 58, 60))
+            d.rounded_rectangle([x+70, yy+24, x+240, yy+32], radius=4, fill=(36, 44, 46))
+    mini(40, 150, "Whatly — Personal", (45, 212, 191))
+    mini(290, 280, "Whatly — Work", (250, 204, 21))
+    im.save(out)
+
 def sidebar_panel(out):
     W, H = 660, 720
     im = Image.new("RGB", (W, H), (24, 32, 34)); d = ImageDraw.Draw(im)
@@ -389,6 +408,8 @@ def main():
     for fn, name, title, sub in [
         (accounts_panel,  "card-accounts.png",  "Multiple accounts",
          "Tabs in one window, or wholly separate windows with --profile — each its own session."),
+        (profiles_panel,  "card-profiles.png",  "Separate profiles",
+         "whatly --profile=work runs a second account in its own window, session and settings file."),
         (sidebar_panel,   "card-sidebar.png",   "Buttons in the sidebar",
          "Toggle the chat theme and the privacy blur from WhatsApp's own sidebar, without opening Settings."),
         (wallpaper_panel, "card-wallpaper.png", "Chat wallpaper",
