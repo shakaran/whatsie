@@ -467,10 +467,10 @@ def main():
          "F1 opens About; the bug report is pre-filled with version, memory and logs."),
         ("scheduled.png", "card-scheduled.png", "Schedule messages",
          "Write a message now and have it sent later — it still goes out on the next launch if the app was closed when it came due."),
-        ("main-dark.png", "card-main-dark.png", "Main screen — dark theme",
+        ("main-dark.png", "card-main-dark.png", "Dark theme",
          "The whole of WhatsApp Web in a native window, following a dark theme — shown here with the privacy blur on."),
-        ("main-light.png", "card-main-light.png", "Main screen — light theme",
-         "The same window in a light theme — the chrome can also track your desktop's light/dark preference, live."),
+        ("main-light.png", "card-main-light.png", "Light theme",
+         "The same main window in a light theme — the chrome can also track your desktop's light/dark preference, live."),
     ]
     for shot, name, title, sub in jobs:
         p = os.path.join(a.shots, shot)
