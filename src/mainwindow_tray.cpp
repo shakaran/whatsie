@@ -78,6 +78,11 @@ void MainWindow::createActions() {
           &MainWindow::showSettings);
   addAction(m_settingsAction);
 
+  m_scheduledMessagesAction = new QAction(tr("Scheduled &messages…"), this);
+  connect(m_scheduledMessagesAction, &QAction::triggered, this,
+          &MainWindow::showScheduledMessages);
+  addAction(m_scheduledMessagesAction);
+
   m_toggleThemeAction = new QAction(tr("&Toggle theme"), this);
   m_toggleThemeAction->setShortcut(
       QKeySequence(Qt::Modifier::CTRL | Qt::Key_T));
@@ -113,6 +118,7 @@ void MainWindow::createTrayIcon() {
   m_trayIconMenu->addAction(m_muteAction);
   m_trayIconMenu->addSeparator();
   m_trayIconMenu->addAction(m_openUrlAction);
+  m_trayIconMenu->addAction(m_scheduledMessagesAction);
   m_trayIconMenu->addAction(m_toggleThemeAction);
   m_trayIconMenu->addAction(m_settingsAction);
   m_trayIconMenu->addAction(m_aboutAction);

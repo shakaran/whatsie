@@ -24,6 +24,8 @@
 #include "webengineprofilemanager.h"
 #include "dictionaries.h"
 #include "privacyblur.h"
+#include "webfont.h"
+#include "mutedstatus.h"
 
 // The theme combo's two entries, in .ui order. The stored value is derived
 // from these, never from the item text — which is translated.
@@ -137,6 +139,7 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
   populateLanguages();
   populateChatThemes();
   populatePrivacyBlur();
+  populateFontFamilies();
   populateSpellCheck();
   updateCustomCssButtons();
   ui->smoothScrollingCheckBox->setChecked(
@@ -145,6 +148,7 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
       SettingsManager::instance().settings().value("monochromeTrayIcon", false).toBool());
   ui->hideTrayIconCheckBox->setChecked(
       SettingsManager::instance().settings().value("hideTrayIcon", false).toBool());
+  ui->hideMutedStatusCheckBox->setChecked(MutedStatus::isEnabled());
   ui->lockOnMinimizeCheckBox->setChecked(
       SettingsManager::instance().settings().value("lockOnHideToTray", false).toBool());
   {
@@ -348,6 +352,7 @@ SettingsWidget::~SettingsWidget() {
 void SettingsWidget::refresh() {
   ui->themeComboBox->setCurrentIndex(themeIndexFromSettings());
   populatePrivacyBlur();
+  populateFontFamilies();
 
   ui->cookieSize->setText(Utils::refreshCacheSize(persistentStoragePath()));
 }
@@ -745,6 +750,11 @@ void SettingsWidget::on_hideTrayIconCheckBox_toggled(bool checked) {
   emit trayIconChanged();
 }
 
+void SettingsWidget::on_hideMutedStatusCheckBox_toggled(bool checked) {
+  MutedStatus::setEnabled(checked);
+  emit mutedStatusChanged();
+}
+
 void SettingsWidget::on_monochromeTrayIconCheckBox_toggled(bool checked) {
   SettingsManager::instance().settings().setValue("monochromeTrayIcon", checked);
   emit trayIconChanged();
@@ -905,6 +915,29 @@ void SettingsWidget::on_privacyBlurComboBox_currentIndexChanged(int index) {
   PrivacyBlur::setCurrentLevelId(
       ui->privacyBlurComboBox->itemData(index).toString());
   emit privacyBlurChanged();
+}
+
+void SettingsWidget::populateFontFamilies() {
+  ui->fontFamilyComboBox->blockSignals(true);
+  ui->fontFamilyComboBox->clear();
+  const QString current = WebFont::currentFamily();
+  // The empty id is WhatsApp's own font; every other entry is a system family
+  // whose display text is the family name itself.
+  ui->fontFamilyComboBox->addItem(tr("WhatsApp default"), QString());
+  for (const QString &family : WebFont::families()) {
+    if (family.isEmpty())
+      continue;
+    ui->fontFamilyComboBox->addItem(family, family);
+    if (family == current)
+      ui->fontFamilyComboBox->setCurrentIndex(ui->fontFamilyComboBox->count() -
+                                              1);
+  }
+  ui->fontFamilyComboBox->blockSignals(false);
+}
+
+void SettingsWidget::on_fontFamilyComboBox_currentIndexChanged(int index) {
+  WebFont::setCurrentFamily(ui->fontFamilyComboBox->itemData(index).toString());
+  emit fontChanged();
 }
 
 void SettingsWidget::on_chatThemeComboBox_currentIndexChanged(int index) {

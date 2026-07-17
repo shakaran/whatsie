@@ -8,6 +8,7 @@
 #include <QScreen>
 
 #include "common.h"
+#include "scheduledmessages.h"
 #include "webenginenotifproxy.h"
 #include "webengineprofilemanager.h"
 #include "webview.h"
@@ -88,6 +89,11 @@ void MainWindow::installPageBridge(QWebEnginePage *page) {
             &MainWindow::toggleTheme);
     connect(m_pageBridge, &PageBridge::privacyBlurToggleRequested, this,
             &MainWindow::togglePrivacyBlur);
+    connect(m_pageBridge, &PageBridge::scheduledMessageFinished, this,
+            [this](const QString &id, bool ok, const QString &error) {
+              if (m_scheduledMessages)
+                m_scheduledMessages->reportResult(id, ok, error);
+            });
   }
   if (!m_webChannel) {
     m_webChannel = new QWebChannel(this);
@@ -127,6 +133,20 @@ void MainWindow::installPageBridge(QWebEnginePage *page) {
   for (const auto &script : stale)
     scripts.remove(script);
   scripts.insert(bridge);
+
+  // The scheduled-message sender rides along on every load: it looks for a job
+  // left in sessionStorage (which survives the navigation the send triggers)
+  // and clicks Send once the chat is open, reporting back over the bridge.
+  QWebEngineScript sender;
+  sender.setName(QStringLiteral("whatly-scheduled-sender"));
+  sender.setSourceCode(ScheduledMessages::senderScriptSource());
+  sender.setInjectionPoint(QWebEngineScript::DocumentReady);
+  sender.setWorldId(QWebEngineScript::MainWorld);
+  sender.setRunsOnSubFrames(false);
+  const auto staleSender = scripts.find(sender.name());
+  for (const auto &script : staleSender)
+    scripts.remove(script);
+  scripts.insert(sender);
 }
 
 void MainWindow::setNotificationPresenter(QWebEngineProfile *profile) {
@@ -350,6 +370,11 @@ void MainWindow::handleLoadFinished(bool loaded) {
     handleZoom();
     if (m_settingsWidget != nullptr)
       m_settingsWidget->refresh();
+    // WhatsApp Web is up: begin (or continue) the scheduled-message queue, so
+    // anything that fell due while the app was closed goes out now. start() is
+    // idempotent and only sends once the page has loaded.
+    if (m_scheduledMessages != nullptr)
+      m_scheduledMessages->start();
   }
 }
 

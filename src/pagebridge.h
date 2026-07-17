@@ -17,9 +17,17 @@ public slots:
   void toggleTheme() { emit themeToggleRequested(); }
   void togglePrivacyBlur() { emit privacyBlurToggleRequested(); }
 
+  // Invoked by the scheduled-message sender once it has clicked Send (or given
+  // up), so the schedule can mark the message sent or failed.
+  void scheduledMessageResult(const QString &id, bool ok, const QString &error) {
+    emit scheduledMessageFinished(id, ok, error);
+  }
+
 signals:
   void themeToggleRequested();
   void privacyBlurToggleRequested();
+  void scheduledMessageFinished(const QString &id, bool ok,
+                                const QString &error);
 };
 
 #endif // PAGEBRIDGE_H

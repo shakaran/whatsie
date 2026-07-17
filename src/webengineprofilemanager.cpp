@@ -8,6 +8,8 @@
 #include "chatwallpaper.h"
 #include "customcss.h"
 #include "privacyblur.h"
+#include "webfont.h"
+#include "mutedstatus.h"
 #include "webtweaks.h"
 
 #include <QDebug>
@@ -243,5 +245,7 @@ void WebEngineProfileManager::applyUserSettingsTo(QWebEngineProfile *profile,
     CustomCss::install(profile);
     ChatTheme::install(profile);
     PrivacyBlur::install(profile);
+    WebFont::install(profile);
+    MutedStatus::install(profile);
     LinkedDeviceName::install(profile, accountLabel(accountId));
 }

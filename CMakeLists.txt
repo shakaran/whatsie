@@ -183,6 +183,10 @@ set(SOURCES
     src/customcss.cpp
     src/globalshortcut.cpp
     src/privacyblur.cpp
+    src/webfont.cpp
+    src/mutedstatus.cpp
+    src/scheduledmessages.cpp
+    src/scheduledmessagesdialog.cpp
     src/webtweaks.cpp
     src/webview.cpp
     src/widgets/elidedlabel/elidedlabel.cpp
@@ -220,6 +224,10 @@ set(HEADERS
     src/chatwallpaper.h
     src/customcss.h
     src/privacyblur.h
+    src/webfont.h
+    src/mutedstatus.h
+    src/scheduledmessages.h
+    src/scheduledmessagesdialog.h
     src/pagebridge.h
     src/webtweaks.h
     src/webview.h

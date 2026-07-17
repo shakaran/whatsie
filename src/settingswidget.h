@@ -31,6 +31,8 @@ signals:
   void followSystemThemeChanged();
   void chatThemeChanged();
   void privacyBlurChanged();
+  void fontChanged();
+  void mutedStatusChanged();
   void spellCheckChanged();
   void notify(QString message);
   void zoomChanged();
@@ -101,6 +103,8 @@ private slots:
   void on_followSystemThemeCheckBox_toggled(bool checked);
   void on_chatThemeComboBox_currentIndexChanged(int index);
   void on_privacyBlurComboBox_currentIndexChanged(int index);
+  void on_fontFamilyComboBox_currentIndexChanged(int index);
+  void on_hideMutedStatusCheckBox_toggled(bool checked);
   void on_spellCheckCheckBox_toggled(bool checked);
   void on_themeToggleButtonCheckBox_toggled(bool checked);
   void on_privacyBlurButtonCheckBox_toggled(bool checked);
@@ -123,6 +127,7 @@ private:
   void updateCustomCssButtons();
   void populateChatThemes();
   void populatePrivacyBlur();
+  void populateFontFamilies();
   void populateSpellCheck();
   void updateSpellCheckSummary();
   void saveSpellCheckLanguages();

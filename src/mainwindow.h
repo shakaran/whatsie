@@ -12,6 +12,7 @@ class WebView;
 class QTabBar;
 class QStackedWidget;
 class GlobalShortcut;
+class ScheduledMessages;
 
 #include "autolockeventfilter.h"
 #include "downloadmanagerwidget.h"
@@ -46,6 +47,7 @@ public slots:
   void handleLoadFinished(bool loaded);
   void showSettings(bool isAskedByCLI = false);
   void showAbout();
+  void showScheduledMessages();
   void lockApp();
   void lockOnHideIfEnabled();
   void toggleTheme();
@@ -174,6 +176,7 @@ private:
   QAction *m_restoreAction = nullptr;
   QAction *m_aboutAction = nullptr;
   QAction *m_settingsAction = nullptr;
+  QAction *m_scheduledMessagesAction = nullptr;
   QAction *m_toggleThemeAction = nullptr;
   QAction *m_quitAction = nullptr;
   QAction *m_lockAction = nullptr;
@@ -189,6 +192,7 @@ private:
   QWebEngineView *m_webEngine = nullptr;
   PageBridge *m_pageBridge = nullptr;
   QWebChannel *m_webChannel = nullptr;
+  ScheduledMessages *m_scheduledMessages = nullptr;
   SettingsWidget *m_settingsWidget = nullptr;
   Lock *m_lockWidget = nullptr;
   AutoLockEventFilter *m_autoLockEventFilter = nullptr;

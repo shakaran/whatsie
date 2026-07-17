@@ -30,6 +30,10 @@
 #include "chatwallpaper.h"
 #include "customcss.h"
 #include "privacyblur.h"
+#include "webfont.h"
+#include "mutedstatus.h"
+#include "scheduledmessages.h"
+#include "scheduledmessagesdialog.h"
 #include "webengineprofilemanager.h"
 #include "webtweaks.h"
 #include "webview.h"
@@ -56,6 +60,21 @@ MainWindow::MainWindow(QWidget *parent)
   restoreMainWindow();
   createActions();
   createTrayIcon();
+
+  // Scheduled messages: the manager persists and times the queue; when a
+  // message comes due it asks here to drive the page. Created before the web
+  // engine so installPageBridge can wire the result callback to it.
+  m_scheduledMessages = new ScheduledMessages(this);
+  connect(m_scheduledMessages, &ScheduledMessages::sendRequested, this,
+          [this](const QString &id, const QString &number, const QString &text) {
+            if (m_webEngine && m_webEngine->page())
+              m_webEngine->page()->runJavaScript(
+                  ScheduledMessages::startJobScript(id, number, text));
+            else
+              m_scheduledMessages->reportResult(
+                  id, false, tr("No WhatsApp window is open"));
+          });
+
   createWebEngine();
   initSettingWidget();
   initRateWidget();
@@ -599,6 +618,22 @@ void MainWindow::initSettingWidget() {
               m_webEngine->page()->runJavaScript(PrivacyBlur::scriptSource());
           });
 
+  connect(m_settingsWidget, &SettingsWidget::fontChanged, m_settingsWidget,
+          [=]() {
+            WebFont::install(WebEngineProfileManager::instance().profile());
+            for (const Account &account : m_accounts)
+              if (account.view && account.view->page())
+                account.view->page()->runJavaScript(WebFont::scriptSource());
+          });
+
+  connect(m_settingsWidget, &SettingsWidget::mutedStatusChanged,
+          m_settingsWidget, [=]() {
+            MutedStatus::install(WebEngineProfileManager::instance().profile());
+            for (const Account &account : m_accounts)
+              if (account.view && account.view->page())
+                account.view->page()->runJavaScript(MutedStatus::scriptSource());
+          });
+
   connect(m_settingsWidget, &SettingsWidget::spellCheckChanged, m_settingsWidget,
           [=]() { WebEngineProfileManager::instance().applyUserSettings(); });
 
@@ -795,6 +830,13 @@ void MainWindow::showAbout() {
   about->adjustSize();
   about->setAttribute(Qt::WA_DeleteOnClose, true);
   about->show();
+}
+
+void MainWindow::showScheduledMessages() {
+  auto *dialog = new ScheduledMessagesDialog(m_scheduledMessages, this);
+  dialog->setWindowFlag(Qt::Dialog);
+  dialog->setAttribute(Qt::WA_DeleteOnClose, true);
+  dialog->show();
 }
 
 void MainWindow::toggleTheme() {
