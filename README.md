@@ -18,6 +18,7 @@ multiple accounts, spell-check and more — on **Linux** and **Windows**.
 ![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)
 [![whatly](https://snapcraft.io/whatly/badge.svg)](https://snapcraft.io/whatly)
 [![whatly](https://snapcraft.io/whatly/trending.svg?name=0)](https://snapcraft.io/whatly)
+[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/shakaran)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-support-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/shakaran)
 [![Wise](https://img.shields.io/badge/Wise-donate-9FE870?logo=wise&logoColor=163300)](https://wise.com/pay/me/angelg1148)
 
@@ -497,6 +498,8 @@ Actions workflow, which uploads a ready-to-run build as an artifact.
 
 ## Credits & license
 
+<img src="docs/img/banner-credits.png" width="100%" alt="Credits and license"/>
+
 Whatly is an MIT-licensed fork of **[WhatSie](https://github.com/keshavbhatt/whatsie)**
 by **Keshav Bhatt** ([ktechpit.com](http://ktechpit.com)); all upstream copyright
 and authorship is preserved. The fork is maintained by
@@ -507,8 +510,17 @@ Released under the [MIT License](LICENSE). Not affiliated with WhatsApp or Meta;
 
 ## Support the project
 
-If Whatly is useful to you, you can support its development:
+<img src="docs/img/banner-support.png" width="100%" alt="Support the project"/>
 
-- **Ko-fi** — [ko-fi.com/shakaran](https://ko-fi.com/shakaran)
-- **Wise** — [wise.com/pay/me/angelg1148](https://wise.com/pay/me/angelg1148)
-- **PayPal** — [paypal.me/shakaran](https://paypal.me/shakaran)
+Whatly is free and MIT-licensed, developed in spare time. If it is useful to you,
+a sponsorship or a one-off tip keeps it maintained — and directly funds new
+features and packaging.
+
+<div align="center">
+
+[![Sponsor on GitHub](https://img.shields.io/badge/Sponsor-GitHub-EA4AAA?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/shakaran)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/shakaran)
+[![Wise](https://img.shields.io/badge/Wise-Donate-9FE870?style=for-the-badge&logo=wise&logoColor=163300)](https://wise.com/pay/me/angelg1148)
+[![PayPal](https://img.shields.io/badge/PayPal-Donate-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/shakaran)
+
+</div>

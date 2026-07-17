@@ -442,6 +442,8 @@ def main():
         ("troubleshooting", "Troubleshooting", "Common fixes for GPU, tray and login issues"),
         ("install",       "Install",           "snap · Flatpak · AppImage · deb · RPM · AUR · Windows"),
         ("cli",           "Command line",      "Drive a running instance from your shell or desktop actions"),
+        ("credits",       "Credits & license", "An MIT-licensed fork of WhatSie by Keshav Bhatt"),
+        ("support",       "Support the project", "If Whatly is useful to you, help keep it maintained"),
     ]:
         section_banner(os.path.join(a.out, "banner-" + slug + ".png"), title, sub)
     # Chat-themes card is drawn from the theme list, not captured.
