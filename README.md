@@ -187,6 +187,18 @@ On top of upstream WhatSie, this fork adds:
 snap install whatly
 ```
 
+A few interfaces do not connect automatically. **For voice and video calls**,
+connect the camera and microphone (and, to keep the screen awake during a call,
+the screen-inhibit interface):
+
+```bash
+sudo snap connect whatly:camera
+sudo snap connect whatly:audio-record
+sudo snap connect whatly:screen-inhibit-control
+# optional: access removable drives when attaching files
+sudo snap connect whatly:removable-media
+```
+
 **Arch (AUR)** — the community [`whatsie-git`](https://aur.archlinux.org/packages/whatsie-git)
 package (maintained by [M0Rf30](https://github.com/M0Rf30)) tracks the **upstream**
 WhatSie project, not this fork:
