@@ -232,6 +232,18 @@ Grab the build from the latest [release](https://github.com/shakaran/whatly/rele
 or the artifact from the **Windows Build** CI run. See
 [docs/WINDOWS_BUILD.md](docs/WINDOWS_BUILD.md) to build it yourself.
 
+### GPU acceleration
+
+On Linux, Whatly runs Chromium with the GPU **disabled** by default. This avoids
+a class of blank-window and crash-on-start bugs on some NVIDIA / Wayland / Flatpak
+setups, at the cost of GPU-accelerated rendering. If your GPU works well and you
+want it back, set your own Chromium flags (a **non-empty** value takes over
+completely; leave out `--disable-gpu`):
+
+```bash
+QTWEBENGINE_CHROMIUM_FLAGS="--disable-translate --no-sandbox" whatly
+```
+
 ## Command line options
 
 Whatly comes with CLI support to interact with an already-running instance.
