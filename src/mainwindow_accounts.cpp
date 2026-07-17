@@ -3,16 +3,30 @@
 // a single-account setup is untouched by any of this.
 #include "mainwindow.h"
 
+#include <QFile>
 #include <QInputDialog>
+#include <QStandardPaths>
 #include <QMenu>
 #include <QStackedWidget>
 #include <QTabBar>
 #include <QVBoxLayout>
 #include <QWidget>
 
+#include "appprofile.h"
 #include "common.h"
 #include "utils.h"
 #include "webview.h"
+
+// The file `whatly --unread` reads: the current unread total for this account.
+// Kept in the runtime dir (cleared on logout) with the profile suffix, so each
+// --profile account has its own.
+static QString unreadCountFile() {
+  QString dir =
+      QStandardPaths::writableLocation(QStandardPaths::RuntimeLocation);
+  if (dir.isEmpty())
+    dir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+  return dir + QStringLiteral("/whatly-unread") + AppProfile::suffix();
+}
 
 void MainWindow::buildAccountArea() {
   auto *central = new QWidget(this);
@@ -141,6 +155,12 @@ void MainWindow::updateTrayUnread() {
   int total = 0;
   for (const Account &a : m_accounts)
     total += a.unread;
+
+  if (QFile f(unreadCountFile());
+      f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+    f.write(QByteArray::number(total));
+    f.close();
+  }
 
   if (total > 0) {
     m_restoreAction->setText(tr("Restore") + " | " + QString::number(total) +

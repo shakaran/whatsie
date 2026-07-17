@@ -184,6 +184,32 @@ static int runCliMigration(int argc, char *argv[]) {
   return 0;
 }
 
+// `whatly --unread` prints the running instance's unread total (per profile) and
+// exits — for panels, scripts and status bars. The running app keeps the count
+// in a runtime file (see MainWindow::updateTrayUnread); this just reads it, so
+// it prints 0 when nothing is running. Returns an exit code when handled, or -1.
+static int runUnreadQuery(int argc, char *argv[]) {
+  bool requested = false;
+  for (int i = 1; i < argc; ++i) {
+    const QString a = QString::fromLocal8Bit(argv[i]);
+    if (a == QLatin1String("--unread") || a == QLatin1String("-u"))
+      requested = true;
+  }
+  if (!requested)
+    return -1;
+
+  QString dir =
+      QStandardPaths::writableLocation(QStandardPaths::RuntimeLocation);
+  if (dir.isEmpty())
+    dir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+  QFile f(dir + QStringLiteral("/whatly-unread") + AppProfile::suffix());
+  QString value = QStringLiteral("0");
+  if (f.open(QIODevice::ReadOnly))
+    value = QString::fromLatin1(f.readAll()).trimmed();
+  QTextStream(stdout) << (value.isEmpty() ? QStringLiteral("0") : value) << '\n';
+  return 0;
+}
+
 // Permission types we had no prompt for were denied outright and the denial was
 // written to the settings, so they stayed denied forever even once we learned
 // how to ask. Clipboard reads were the casualty: WhatsApp Web could not read an
@@ -371,6 +397,11 @@ int main(int argc, char *argv[]) {
   if (const int rc = runCliMigration(argc, argv); rc >= 0)
     return rc;
 
+  // `--unread` just reads a runtime file, so answer it here and exit without
+  // spinning up the GUI or connecting to a running instance.
+  if (const int rc = runUnreadQuery(argc, argv); rc >= 0)
+    return rc;
+
   // Carry user data forward BEFORE anything reads settings. Two layout changes
   // have to be bridged: the organisation rename (keshavnrj → shakaran) and the
   // application rename (WhatSie → whatly), each of which moves every
@@ -487,8 +518,14 @@ int main(int argc, char *argv[]) {
   parser.addOption(reloadAppOption);
   parser.addOption(newChatOption);
   parser.addOption(profileOption);
+  QCommandLineOption unreadOption(
+      QStringList() << "u"
+                    << "unread",
+      QObject::tr("Print the current unread message count and exit"));
+
   parser.addOption(migrateFromOption);
   parser.addOption(dryRunOption);
+  parser.addOption(unreadOption);
 
   secondaryInstanceCLIOptions << showAppWindowOption << openSettingsOption
                               << lockAppOption << openAboutOption

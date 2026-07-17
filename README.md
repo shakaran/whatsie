@@ -251,6 +251,7 @@ Options:
   -t, --toggle-theme    Toggle dark/light theme in a running instance
   -r, --reload-app      Reload the app in a running instance
   -n, --new-chat        Open the new-chat prompt in a running instance
+  -u, --unread          Print the current unread message count and exit
   -p, --profile <name>  Run as a separate account, in its own window
       --migrate-from <name> [--dry-run]
                         Copy settings and the logged-in session from a

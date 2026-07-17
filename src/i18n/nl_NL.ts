@@ -529,64 +529,64 @@ Instellingen nu openen?</translation>
         <translation>&amp;Afsluiten</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="55"/>
+        <location filename="../mainwindow_accounts.cpp" line="69"/>
         <source>Rename…</source>
         <translation>Naam wijzigen…</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="56"/>
+        <location filename="../mainwindow_accounts.cpp" line="70"/>
         <source>Remove account</source>
         <translation>Account verwijderen</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="133"/>
+        <location filename="../mainwindow_accounts.cpp" line="147"/>
         <source>Add another account</source>
         <translation>Nog een account toevoegen</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="146"/>
-        <location filename="../mainwindow_accounts.cpp" line="151"/>
+        <location filename="../mainwindow_accounts.cpp" line="166"/>
+        <location filename="../mainwindow_accounts.cpp" line="171"/>
         <source>Restore</source>
         <translation>Herstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>messages</source>
         <translation>berichten</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>message</source>
         <translation>bericht</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="167"/>
+        <location filename="../mainwindow_accounts.cpp" line="187"/>
         <source>Add account</source>
         <translation>Account toevoegen</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="168"/>
+        <location filename="../mainwindow_accounts.cpp" line="188"/>
         <source>Name for the new account:</source>
         <translation>Naam voor het nieuwe account:</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="169"/>
-        <location filename="../mainwindow_accounts.cpp" line="242"/>
+        <location filename="../mainwindow_accounts.cpp" line="189"/>
+        <location filename="../mainwindow_accounts.cpp" line="262"/>
         <source>Account %1</source>
         <translation>Account %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Rename account</source>
         <translation>Accountnaam wijzigen</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Account name:</source>
         <translation>Accountnaam:</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="238"/>
+        <location filename="../mainwindow_accounts.cpp" line="258"/>
         <source>Account 1</source>
         <translation>Account 1</translation>
     </message>
@@ -720,67 +720,72 @@ Instellingen nu openen?</translation>
         <translation>Voer opnieuw uit zonder --dry-run om de kopie uit te voeren.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="401"/>
+        <location filename="../main.cpp" line="432"/>
         <source>Feature rich WhatsApp web client based on Qt WebEngine</source>
         <translation>Veelzijdige WhatsApp Web-client op basis van Qt WebEngine</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="408"/>
+        <location filename="../main.cpp" line="439"/>
         <source>Displays help on commandline options</source>
         <translation>Toont de hulp voor de opdrachtregelopties</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="413"/>
+        <location filename="../main.cpp" line="444"/>
         <source>Opens Settings dialog in a running instance of </source>
         <translation>Opent de instellingen in een actieve instantie van </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="418"/>
+        <location filename="../main.cpp" line="449"/>
         <source>Locks a running instance of </source>
         <translation>Vergrendelt een actieve instantie van </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="424"/>
+        <location filename="../main.cpp" line="455"/>
         <source>Opens About dialog in a running instance of </source>
         <translation>Opent het venster «Over» in een actieve instantie van </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="430"/>
+        <location filename="../main.cpp" line="461"/>
         <source>Toggle between dark &amp; light theme in a running instance of </source>
         <translation>Wisselt tussen licht en donker thema in een actieve instantie van </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="437"/>
+        <location filename="../main.cpp" line="468"/>
         <source>Reload the app in a running instance of </source>
         <translation>Herlaadt de toepassing in een actieve instantie van </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="443"/>
+        <location filename="../main.cpp" line="474"/>
         <source>Open new chat prompt in a running instance of </source>
         <translation>Opent het venster voor een nieuw gesprek in een actieve instantie van </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="456"/>
+        <location filename="../main.cpp" line="487"/>
         <source>Run as a separate account with its own session and settings, in its own window</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uitvoeren als een apart account met een eigen sessie en instellingen, in een eigen venster&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="463"/>
+        <location filename="../main.cpp" line="494"/>
         <source>Show main window of running instance of </source>
         <translation>Toont het hoofdvenster van de actieve instantie van </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="470"/>
+        <location filename="../main.cpp" line="501"/>
         <source>Copy settings and the logged-in session from a previous install (e.g. the older &quot;whatsie&quot; build) into this one, then exit</source>
         <translation>Kopieer instellingen en de aangemelde sessie van een eerdere installatie (bijv. de oudere &quot;whatsie&quot;-versie) naar deze en sluit af</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="477"/>
+        <location filename="../main.cpp" line="508"/>
         <source>With --migrate-from, only report what would be copied</source>
         <translation>Met --migrate-from alleen tonen wat er gekopieerd zou worden</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="561"/>
+        <location filename="../main.cpp" line="524"/>
+        <source>Print the current unread message count and exit</source>
+        <translation>Toon het huidige aantal ongelezen berichten en sluit af</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="598"/>
         <source>App lock is not configured, 
 Please setup the password in the Settings first.</source>
         <translation>De app-vergrendeling is niet ingesteld.

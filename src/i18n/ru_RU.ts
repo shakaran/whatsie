@@ -529,64 +529,64 @@ Open Settings now?</source>
         <translation>В&amp;ыход</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="55"/>
+        <location filename="../mainwindow_accounts.cpp" line="69"/>
         <source>Rename…</source>
         <translation>Переименовать…</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="56"/>
+        <location filename="../mainwindow_accounts.cpp" line="70"/>
         <source>Remove account</source>
         <translation>Удалить аккаунт</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="133"/>
+        <location filename="../mainwindow_accounts.cpp" line="147"/>
         <source>Add another account</source>
         <translation>Добавить ещё аккаунт</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="146"/>
-        <location filename="../mainwindow_accounts.cpp" line="151"/>
+        <location filename="../mainwindow_accounts.cpp" line="166"/>
+        <location filename="../mainwindow_accounts.cpp" line="171"/>
         <source>Restore</source>
         <translation>Восстановить</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>messages</source>
         <translation>сообщений</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>message</source>
         <translation>сообщение</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="167"/>
+        <location filename="../mainwindow_accounts.cpp" line="187"/>
         <source>Add account</source>
         <translation>Добавить аккаунт</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="168"/>
+        <location filename="../mainwindow_accounts.cpp" line="188"/>
         <source>Name for the new account:</source>
         <translation>Имя нового аккаунта:</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="169"/>
-        <location filename="../mainwindow_accounts.cpp" line="242"/>
+        <location filename="../mainwindow_accounts.cpp" line="189"/>
+        <location filename="../mainwindow_accounts.cpp" line="262"/>
         <source>Account %1</source>
         <translation>Аккаунт %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Rename account</source>
         <translation>Переименовать аккаунт</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Account name:</source>
         <translation>Имя аккаунта:</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="238"/>
+        <location filename="../mainwindow_accounts.cpp" line="258"/>
         <source>Account 1</source>
         <translation>Аккаунт 1</translation>
     </message>
@@ -720,67 +720,72 @@ Open Settings now?</source>
         <translation>Запустите снова без --dry-run, чтобы выполнить копирование.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="401"/>
+        <location filename="../main.cpp" line="432"/>
         <source>Feature rich WhatsApp web client based on Qt WebEngine</source>
         <translation>Многофункциональный клиент WhatsApp Web на основе Qt WebEngine</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="408"/>
+        <location filename="../main.cpp" line="439"/>
         <source>Displays help on commandline options</source>
         <translation>Показывает справку по параметрам командной строки</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="413"/>
+        <location filename="../main.cpp" line="444"/>
         <source>Opens Settings dialog in a running instance of </source>
         <translation>Открывает настройки в запущенном экземпляре </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="418"/>
+        <location filename="../main.cpp" line="449"/>
         <source>Locks a running instance of </source>
         <translation>Блокирует запущенный экземпляр </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="424"/>
+        <location filename="../main.cpp" line="455"/>
         <source>Opens About dialog in a running instance of </source>
         <translation>Открывает окно «О программе» в запущенном экземпляре </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="430"/>
+        <location filename="../main.cpp" line="461"/>
         <source>Toggle between dark &amp; light theme in a running instance of </source>
         <translation>Переключает светлую и тёмную тему в запущенном экземпляре </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="437"/>
+        <location filename="../main.cpp" line="468"/>
         <source>Reload the app in a running instance of </source>
         <translation>Перезагружает приложение в запущенном экземпляре </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="443"/>
+        <location filename="../main.cpp" line="474"/>
         <source>Open new chat prompt in a running instance of </source>
         <translation>Открывает окно нового чата в запущенном экземпляре </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="456"/>
+        <location filename="../main.cpp" line="487"/>
         <source>Run as a separate account with its own session and settings, in its own window</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Запустить как отдельный аккаунт с собственной сессией и настройками, в своём окне&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="463"/>
+        <location filename="../main.cpp" line="494"/>
         <source>Show main window of running instance of </source>
         <translation>Показывает главное окно запущенного экземпляра </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="470"/>
+        <location filename="../main.cpp" line="501"/>
         <source>Copy settings and the logged-in session from a previous install (e.g. the older &quot;whatsie&quot; build) into this one, then exit</source>
         <translation>Скопировать настройки и активный сеанс из предыдущей установки (например, старой версии «whatsie») в эту и выйти</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="477"/>
+        <location filename="../main.cpp" line="508"/>
         <source>With --migrate-from, only report what would be copied</source>
         <translation>С --migrate-from только показать, что будет скопировано</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="561"/>
+        <location filename="../main.cpp" line="524"/>
+        <source>Print the current unread message count and exit</source>
+        <translation>Вывести текущее число непрочитанных сообщений и выйти</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="598"/>
         <source>App lock is not configured, 
 Please setup the password in the Settings first.</source>
         <translation>Блокировка приложения не настроена.

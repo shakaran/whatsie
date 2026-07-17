@@ -529,64 +529,64 @@ Open Settings now?</source>
         <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="55"/>
+        <location filename="../mainwindow_accounts.cpp" line="69"/>
         <source>Rename…</source>
         <translation>重命名…</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="56"/>
+        <location filename="../mainwindow_accounts.cpp" line="70"/>
         <source>Remove account</source>
         <translation>移除账号</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="133"/>
+        <location filename="../mainwindow_accounts.cpp" line="147"/>
         <source>Add another account</source>
         <translation>添加另一个账号</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="146"/>
-        <location filename="../mainwindow_accounts.cpp" line="151"/>
+        <location filename="../mainwindow_accounts.cpp" line="166"/>
+        <location filename="../mainwindow_accounts.cpp" line="171"/>
         <source>Restore</source>
         <translation>还原</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>messages</source>
         <translation>条消息</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>message</source>
         <translation>条消息</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="167"/>
+        <location filename="../mainwindow_accounts.cpp" line="187"/>
         <source>Add account</source>
         <translation>添加账号</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="168"/>
+        <location filename="../mainwindow_accounts.cpp" line="188"/>
         <source>Name for the new account:</source>
         <translation>新账号的名称：</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="169"/>
-        <location filename="../mainwindow_accounts.cpp" line="242"/>
+        <location filename="../mainwindow_accounts.cpp" line="189"/>
+        <location filename="../mainwindow_accounts.cpp" line="262"/>
         <source>Account %1</source>
         <translation>账号 %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Rename account</source>
         <translation>重命名账号</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Account name:</source>
         <translation>账号名称：</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="238"/>
+        <location filename="../mainwindow_accounts.cpp" line="258"/>
         <source>Account 1</source>
         <translation>账号 1</translation>
     </message>
@@ -720,67 +720,72 @@ Open Settings now?</source>
         <translation>不带 --dry-run 重新运行以执行复制。</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="401"/>
+        <location filename="../main.cpp" line="432"/>
         <source>Feature rich WhatsApp web client based on Qt WebEngine</source>
         <translation>基于 Qt WebEngine 的功能丰富的 WhatsApp Web 客户端</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="408"/>
+        <location filename="../main.cpp" line="439"/>
         <source>Displays help on commandline options</source>
         <translation>显示命令行选项的帮助</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="413"/>
+        <location filename="../main.cpp" line="444"/>
         <source>Opens Settings dialog in a running instance of </source>
         <translation>在正在运行的实例中打开设置：</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="418"/>
+        <location filename="../main.cpp" line="449"/>
         <source>Locks a running instance of </source>
         <translation>锁定正在运行的实例：</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="424"/>
+        <location filename="../main.cpp" line="455"/>
         <source>Opens About dialog in a running instance of </source>
         <translation>在正在运行的实例中打开“关于”窗口：</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="430"/>
+        <location filename="../main.cpp" line="461"/>
         <source>Toggle between dark &amp; light theme in a running instance of </source>
         <translation>在正在运行的实例中切换深色与浅色主题：</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="437"/>
+        <location filename="../main.cpp" line="468"/>
         <source>Reload the app in a running instance of </source>
         <translation>在正在运行的实例中重新加载应用：</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="443"/>
+        <location filename="../main.cpp" line="474"/>
         <source>Open new chat prompt in a running instance of </source>
         <translation>在正在运行的实例中打开新建聊天窗口：</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="456"/>
+        <location filename="../main.cpp" line="487"/>
         <source>Run as a separate account with its own session and settings, in its own window</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;以拥有独立会话和设置的独立账号运行，使用独立窗口&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="463"/>
+        <location filename="../main.cpp" line="494"/>
         <source>Show main window of running instance of </source>
         <translation>显示正在运行实例的主窗口：</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="470"/>
+        <location filename="../main.cpp" line="501"/>
         <source>Copy settings and the logged-in session from a previous install (e.g. the older &quot;whatsie&quot; build) into this one, then exit</source>
         <translation>将设置和已登录的会话从之前的安装（例如旧的“whatsie”版本）复制到此处，然后退出</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="477"/>
+        <location filename="../main.cpp" line="508"/>
         <source>With --migrate-from, only report what would be copied</source>
         <translation>使用 --migrate-from 时，仅报告将要复制的内容</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="561"/>
+        <location filename="../main.cpp" line="524"/>
+        <source>Print the current unread message count and exit</source>
+        <translation>打印当前未读消息数并退出</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="598"/>
         <source>App lock is not configured, 
 Please setup the password in the Settings first.</source>
         <translation>尚未配置应用锁。

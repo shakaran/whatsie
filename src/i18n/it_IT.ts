@@ -494,64 +494,64 @@ Aprire le Impostazioni ora?</translation>
         <translation>Esci</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="55"/>
+        <location filename="../mainwindow_accounts.cpp" line="69"/>
         <source>Rename…</source>
         <translation>Rinomina…</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="56"/>
+        <location filename="../mainwindow_accounts.cpp" line="70"/>
         <source>Remove account</source>
         <translation>Rimuovi account</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="133"/>
+        <location filename="../mainwindow_accounts.cpp" line="147"/>
         <source>Add another account</source>
         <translation>Aggiungi un altro account</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>messages</source>
         <translation>messaggi</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>message</source>
         <translation>messaggio</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="167"/>
+        <location filename="../mainwindow_accounts.cpp" line="187"/>
         <source>Add account</source>
         <translation>Aggiungi account</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="168"/>
+        <location filename="../mainwindow_accounts.cpp" line="188"/>
         <source>Name for the new account:</source>
         <translation>Nome del nuovo account:</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="169"/>
-        <location filename="../mainwindow_accounts.cpp" line="242"/>
+        <location filename="../mainwindow_accounts.cpp" line="189"/>
+        <location filename="../mainwindow_accounts.cpp" line="262"/>
         <source>Account %1</source>
         <translation>Account %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Rename account</source>
         <translation>Rinomina account</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Account name:</source>
         <translation>Nome account:</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="238"/>
+        <location filename="../mainwindow_accounts.cpp" line="258"/>
         <source>Account 1</source>
         <translation>Account 1</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="146"/>
-        <location filename="../mainwindow_accounts.cpp" line="151"/>
+        <location filename="../mainwindow_accounts.cpp" line="166"/>
+        <location filename="../mainwindow_accounts.cpp" line="171"/>
         <source>Restore</source>
         <translation>Ripristina</translation>
     </message>
@@ -787,67 +787,72 @@ WebEngine non è inizializzato.</translation>
         <translation>Esegui di nuovo senza --dry-run per eseguire la copia.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="401"/>
+        <location filename="../main.cpp" line="432"/>
         <source>Feature rich WhatsApp web client based on Qt WebEngine</source>
         <translation>Client WhatsApp Web ricco di funzionalità basato su Qt WebEngine</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="408"/>
+        <location filename="../main.cpp" line="439"/>
         <source>Displays help on commandline options</source>
         <translation>Visualizza la guida sulle opzioni della riga di comando</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="413"/>
+        <location filename="../main.cpp" line="444"/>
         <source>Opens Settings dialog in a running instance of </source>
         <translation>Apre la finestra di Impostazioni in un&apos;istanza in esecuzione di </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="418"/>
+        <location filename="../main.cpp" line="449"/>
         <source>Locks a running instance of </source>
         <translation>Blocca un&apos;istanza in esecuzione di </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="424"/>
+        <location filename="../main.cpp" line="455"/>
         <source>Opens About dialog in a running instance of </source>
         <translation>Apre la finestra Info in un&apos;istanza in esecuzione di </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="430"/>
+        <location filename="../main.cpp" line="461"/>
         <source>Toggle between dark &amp; light theme in a running instance of </source>
         <translation>Passa dal tema scuro a quello chiaro in un&apos;istanza in esecuzione di </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="437"/>
+        <location filename="../main.cpp" line="468"/>
         <source>Reload the app in a running instance of </source>
         <translation>Ricarica l&apos;app in un&apos;istanza in esecuzione di </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="443"/>
+        <location filename="../main.cpp" line="474"/>
         <source>Open new chat prompt in a running instance of </source>
         <translation>Apri una nuova chat in un&apos;istanza in esecuzione di </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="456"/>
+        <location filename="../main.cpp" line="487"/>
         <source>Run as a separate account with its own session and settings, in its own window</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Esegui come account separato con sessione e impostazioni proprie, in una finestra dedicata&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="463"/>
+        <location filename="../main.cpp" line="494"/>
         <source>Show main window of running instance of </source>
         <translation>Mostra la finestra principale dell&apos;istanza in esecuzione di </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="470"/>
+        <location filename="../main.cpp" line="501"/>
         <source>Copy settings and the logged-in session from a previous install (e.g. the older &quot;whatsie&quot; build) into this one, then exit</source>
         <translation>Copia le impostazioni e la sessione connessa da un’installazione precedente (es. la vecchia versione &quot;whatsie&quot;) in questa, poi esci</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="477"/>
+        <location filename="../main.cpp" line="508"/>
         <source>With --migrate-from, only report what would be copied</source>
         <translation>Con --migrate-from, mostra solo ciò che verrebbe copiato</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="561"/>
+        <location filename="../main.cpp" line="524"/>
+        <source>Print the current unread message count and exit</source>
+        <translation>Stampa il numero di messaggi non letti ed esce</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="598"/>
         <source>App lock is not configured, 
 Please setup the password in the Settings first.</source>
         <translation>Blocco non configurato, 
@@ -1142,12 +1147,12 @@ Imposta la password nelle Impostazioni.</translation>
     <message>
         <location filename="../settingswidget.ui" line="466"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Remove the system-tray icon entirely. With no tray to restore from, closing the window then quits the app instead of hiding it.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rimuove completamente l'icona del vassoio di sistema. Senza vassoio da cui ripristinare, chiudere la finestra chiude l'app invece di nasconderla.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rimuove completamente l&apos;icona del vassoio di sistema. Senza vassoio da cui ripristinare, chiudere la finestra chiude l&apos;app invece di nasconderla.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="469"/>
         <source>Hide tray icon</source>
-        <translation>Nascondi l'icona nel vassoio</translation>
+        <translation>Nascondi l&apos;icona nel vassoio</translation>
     </message>
     <message>
         <location filename="../settingswidget.ui" line="476"/>

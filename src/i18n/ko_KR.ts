@@ -529,64 +529,64 @@ Open Settings now?</source>
         <translation>종료(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="55"/>
+        <location filename="../mainwindow_accounts.cpp" line="69"/>
         <source>Rename…</source>
         <translation>이름 바꾸기…</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="56"/>
+        <location filename="../mainwindow_accounts.cpp" line="70"/>
         <source>Remove account</source>
         <translation>계정 제거</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="133"/>
+        <location filename="../mainwindow_accounts.cpp" line="147"/>
         <source>Add another account</source>
         <translation>다른 계정 추가</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="146"/>
-        <location filename="../mainwindow_accounts.cpp" line="151"/>
+        <location filename="../mainwindow_accounts.cpp" line="166"/>
+        <location filename="../mainwindow_accounts.cpp" line="171"/>
         <source>Restore</source>
         <translation>복원</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>messages</source>
         <translation>개의 메시지</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="147"/>
+        <location filename="../mainwindow_accounts.cpp" line="167"/>
         <source>message</source>
         <translation>개의 메시지</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="167"/>
+        <location filename="../mainwindow_accounts.cpp" line="187"/>
         <source>Add account</source>
         <translation>계정 추가</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="168"/>
+        <location filename="../mainwindow_accounts.cpp" line="188"/>
         <source>Name for the new account:</source>
         <translation>새 계정 이름:</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="169"/>
-        <location filename="../mainwindow_accounts.cpp" line="242"/>
+        <location filename="../mainwindow_accounts.cpp" line="189"/>
+        <location filename="../mainwindow_accounts.cpp" line="262"/>
         <source>Account %1</source>
         <translation>계정 %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Rename account</source>
         <translation>계정 이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="187"/>
+        <location filename="../mainwindow_accounts.cpp" line="207"/>
         <source>Account name:</source>
         <translation>계정 이름:</translation>
     </message>
     <message>
-        <location filename="../mainwindow_accounts.cpp" line="238"/>
+        <location filename="../mainwindow_accounts.cpp" line="258"/>
         <source>Account 1</source>
         <translation>계정 1</translation>
     </message>
@@ -720,67 +720,72 @@ Open Settings now?</source>
         <translation>복사를 수행하려면 --dry-run 없이 다시 실행하세요.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="401"/>
+        <location filename="../main.cpp" line="432"/>
         <source>Feature rich WhatsApp web client based on Qt WebEngine</source>
         <translation>Qt WebEngine 기반의 다기능 WhatsApp Web 클라이언트</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="408"/>
+        <location filename="../main.cpp" line="439"/>
         <source>Displays help on commandline options</source>
         <translation>명령줄 옵션 도움말을 표시합니다</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="413"/>
+        <location filename="../main.cpp" line="444"/>
         <source>Opens Settings dialog in a running instance of </source>
         <translation>실행 중인 인스턴스에서 설정을 엽니다: </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="418"/>
+        <location filename="../main.cpp" line="449"/>
         <source>Locks a running instance of </source>
         <translation>실행 중인 인스턴스를 잠급니다: </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="424"/>
+        <location filename="../main.cpp" line="455"/>
         <source>Opens About dialog in a running instance of </source>
         <translation>실행 중인 인스턴스에서 «정보» 창을 엽니다: </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="430"/>
+        <location filename="../main.cpp" line="461"/>
         <source>Toggle between dark &amp; light theme in a running instance of </source>
         <translation>실행 중인 인스턴스에서 밝은 테마와 어두운 테마를 전환합니다: </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="437"/>
+        <location filename="../main.cpp" line="468"/>
         <source>Reload the app in a running instance of </source>
         <translation>실행 중인 인스턴스에서 앱을 새로 고칩니다: </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="443"/>
+        <location filename="../main.cpp" line="474"/>
         <source>Open new chat prompt in a running instance of </source>
         <translation>실행 중인 인스턴스에서 새 대화 창을 엽니다: </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="456"/>
+        <location filename="../main.cpp" line="487"/>
         <source>Run as a separate account with its own session and settings, in its own window</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;자체 세션과 설정을 가진 별도 계정으로, 별도의 창에서 실행합니다&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="463"/>
+        <location filename="../main.cpp" line="494"/>
         <source>Show main window of running instance of </source>
         <translation>실행 중인 인스턴스의 기본 창을 표시합니다: </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="470"/>
+        <location filename="../main.cpp" line="501"/>
         <source>Copy settings and the logged-in session from a previous install (e.g. the older &quot;whatsie&quot; build) into this one, then exit</source>
         <translation>이전 설치(예: 이전 &quot;whatsie&quot; 빌드)에서 설정과 로그인된 세션을 여기로 복사한 후 종료합니다</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="477"/>
+        <location filename="../main.cpp" line="508"/>
         <source>With --migrate-from, only report what would be copied</source>
         <translation>--migrate-from와 함께 사용하면 복사될 항목만 표시합니다</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="561"/>
+        <location filename="../main.cpp" line="524"/>
+        <source>Print the current unread message count and exit</source>
+        <translation>현재 읽지 않은 메시지 수를 출력하고 종료합니다</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="598"/>
         <source>App lock is not configured, 
 Please setup the password in the Settings first.</source>
         <translation>앱 잠금이 설정되어 있지 않습니다.
