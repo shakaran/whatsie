@@ -87,6 +87,11 @@ About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
     QDesktopServices::openUrl(QUrl(QStringLiteral("https://ko-fi.com/shakaran")));
   });
 
+  connect(ui->wise, &QPushButton::clicked, [=]() {
+    QDesktopServices::openUrl(
+        QUrl(QStringLiteral("https://wise.com/pay/me/angelg1148")));
+  });
+
   connect(ui->rate, &QPushButton::clicked,
           [=]() { QDesktopServices::openUrl(QUrl(appRateLink)); });
   connect(ui->more_apps, &QPushButton::clicked,

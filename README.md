@@ -19,6 +19,7 @@ multiple accounts, spell-check and more — on **Linux** and **Windows**.
 [![whatly](https://snapcraft.io/whatly/badge.svg)](https://snapcraft.io/whatly)
 [![whatly](https://snapcraft.io/whatly/trending.svg?name=0)](https://snapcraft.io/whatly)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-support-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/shakaran)
+[![Wise](https://img.shields.io/badge/Wise-donate-9FE870?logo=wise&logoColor=163300)](https://wise.com/pay/me/angelg1148)
 
 <a href="https://snapcraft.io/whatly">
   <picture>
@@ -449,3 +450,11 @@ and authorship is preserved. The fork is maintained by
 
 Released under the [MIT License](LICENSE). Not affiliated with WhatsApp or Meta;
 "WhatsApp" is a trademark of its respective owner.
+
+## Support the project
+
+If Whatly is useful to you, you can support its development:
+
+- **Ko-fi** — [ko-fi.com/shakaran](https://ko-fi.com/shakaran)
+- **Wise** — [wise.com/pay/me/angelg1148](https://wise.com/pay/me/angelg1148)
+- **PayPal** — [paypal.me/shakaran](https://paypal.me/shakaran)
