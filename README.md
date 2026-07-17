@@ -143,6 +143,10 @@ On top of upstream WhatSie, this fork adds:
 
 <div align="center">
 
+<img src="docs/img/card-main-dark.png" width="720" alt="Whatly — main screen, dark theme"/>
+<br/>
+<img src="docs/img/card-main-light.png" width="720" alt="Whatly — main screen, light theme"/>
+
 <img src="docs/img/card-chat.png" width="720" alt="Whatly — chat themes and a privacy blur"/>
 <br/>
 <img src="docs/img/card-scheduled.png" width="720" alt="Whatly — schedule messages"/>
