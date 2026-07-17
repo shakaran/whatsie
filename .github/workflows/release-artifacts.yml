@@ -60,16 +60,21 @@ jobs:
   # swapped for the checked-out tree so CI always packages the pushed commit.
   flatpak:
     runs-on: ubuntu-latest
-    container:
-      image: bilelmoussaoui/flatpak-github-actions:kde-6.9
-      options: --privileged
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Build from the checked-out tree
+      - name: Install flatpak-builder + the KDE 6.9 runtime
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y flatpak flatpak-builder
+          flatpak remote-add --if-not-exists --user \
+            flathub https://flathub.org/repo/flathub.flatpakrepo
+
+      - name: Build the checked-out tree
+        run: |
+          # Package the pushed commit, not the manifest's pinned git tag.
           python3 - <<'PY'
           import re
           p = "packaging/flatpak/net.shakaran.whatly.yml"
@@ -78,12 +83,10 @@ jobs:
                      "    sources:\n      - type: dir\n        path: ../../\n", t)
           open(p, "w").write(t)
           PY
-
-      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
-        with:
-          bundle: whatly.flatpak
-          manifest-path: packaging/flatpak/net.shakaran.whatly.yml
-          cache-key: flatpak-builder-${{ github.sha }}
+          flatpak-builder --user --install-deps-from=flathub --disable-rofiles-fuse \
+            --repo=fp-repo --force-clean fp-build \
+            packaging/flatpak/net.shakaran.whatly.yml
+          flatpak build-bundle fp-repo whatly.flatpak net.shakaran.whatly
 
       - name: Attach to release
         uses: softprops/action-gh-release@v2
@@ -105,7 +108,9 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.10.*'
-          modules: 'qtwebengine qtwebchannel qtpositioning'
+          # qtserialport: the qtpositioning nmea plugin links it, and
+          # linuxdeploy-plugin-qt fails to deploy without the library present.
+          modules: 'qtwebengine qtwebchannel qtpositioning qtserialport'
           cache: true
 
       - name: Build dependencies
