@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whatly — a feature-rich desktop client for WhatsApp Web</title>
+<meta name="description" content="Whatly puts WhatsApp Web in a native desktop window: chat themes, a privacy blur, scheduled messages, multiple accounts, spell-check, an app lock and more. MIT-licensed, for Linux and Windows.">
+<meta property="og:title" content="Whatly — a feature-rich desktop client for WhatsApp Web">
+<meta property="og:description" content="WhatsApp Web as a real desktop app: themes, privacy, scheduled messages, everywhere.">
+<meta property="og:image" content="img/banner-snapcraft.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root{ --teal:#0d9488; --teal-d:#064e46; --accent:#2dd4bf; --ink:#eafcf8; --muted:#a7d7cf; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:-apple-system,Segoe UI,Roboto,"DejaVu Sans",sans-serif; color:var(--ink);
+        background:linear-gradient(160deg,#0b3d38,#053f39 60%,#032b27); line-height:1.55; }
+  a{ color:var(--accent); text-decoration:none; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  header{ text-align:center; padding:64px 24px 32px; }
+  header img.banner{ width:100%; max-width:900px; border-radius:18px; box-shadow:0 24px 70px rgba(0,0,0,.4); }
+  h1{ font-size:clamp(28px,5vw,52px); margin:28px 0 8px; letter-spacing:-.02em; }
+  .tag{ color:var(--muted); font-size:clamp(16px,2.4vw,22px); max-width:720px; margin:0 auto 28px; }
+  .btns{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:24px 0; }
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:100px;
+        font-weight:700; font-size:15px; background:rgba(255,255,255,.08); color:var(--ink);
+        border:1px solid rgba(45,212,191,.35); transition:transform .12s, background .12s; }
+  .btn:hover{ transform:translateY(-2px); background:rgba(45,212,191,.16); }
+  .btn.primary{ background:var(--accent); color:#053f39; border-color:transparent; }
+  section{ padding:48px 0; }
+  h2{ font-size:clamp(22px,3.4vw,34px); text-align:center; margin-bottom:8px; }
+  .sub{ text-align:center; color:var(--muted); margin-bottom:32px; }
+  video{ width:100%; border-radius:16px; box-shadow:0 24px 70px rgba(0,0,0,.45); display:block; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; }
+  .grid img{ width:100%; border-radius:14px; box-shadow:0 14px 40px rgba(0,0,0,.35); }
+  pre{ background:rgba(0,0,0,.35); border:1px solid rgba(45,212,191,.25); border-radius:12px;
+       padding:16px 20px; overflow-x:auto; color:var(--ink); font-family:"DejaVu Sans Mono",monospace; }
+  .install{ max-width:640px; margin:0 auto; }
+  footer{ text-align:center; color:var(--muted); padding:48px 24px; border-top:1px solid rgba(255,255,255,.08); font-size:14px; }
+  footer a{ font-weight:600; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <img class="banner" src="img/banner-snapcraft.png" alt="Whatly">
+    <h1>WhatsApp Web, as a real desktop app</h1>
+    <p class="tag">A feature-rich, MIT-licensed desktop client for WhatsApp Web — chat themes,
+       a privacy blur, scheduled messages, multiple accounts, spell-check, an app lock and more.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://snapcraft.io/whatly">Get it from the Snap Store</a>
+      <a class="btn" href="https://github.com/shakaran/whatly/releases">Downloads</a>
+      <a class="btn" href="https://github.com/shakaran/whatly">Source on GitHub</a>
+      <a class="btn" href="https://github.com/sponsors/shakaran">♥ Sponsor</a>
+    </div>
+  </div>
+</header>
+
+<section id="video">
+  <div class="wrap">
+    <video controls preload="metadata" poster="img/card-main-dark.png">
+      <source src="whatly-promo.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap install">
+    <h2>Install</h2>
+    <p class="sub">On any distribution with <code>snapd</code>:</p>
+    <pre>snap install whatly</pre>
+    <p class="sub" style="margin-top:24px">Also available as Flatpak, AppImage, Debian/Ubuntu, Fedora/COPR, Arch (AUR) and Windows —
+       see the <a href="https://github.com/shakaran/whatly#install">install guide</a>.</p>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2>Everything it does</h2>
+    <p class="sub">One codebase, a proper desktop app.</p>
+    <div class="grid">
+      <img src="img/card-main-dark.png" alt="Main window, dark theme" loading="lazy">
+      <img src="img/card-main-light.png" alt="Main window, light theme" loading="lazy">
+      <img src="img/card-scheduled.png" alt="Scheduled messages" loading="lazy">
+      <img src="img/card-themes.png" alt="Fourteen chat themes" loading="lazy">
+      <img src="img/card-chat.png" alt="Chat themes and a privacy blur" loading="lazy">
+      <img src="img/card-accounts.png" alt="Multiple accounts" loading="lazy">
+      <img src="img/card-lock.png" alt="App lock" loading="lazy">
+      <img src="img/card-spellcheck.png" alt="Multi-language spell checker" loading="lazy">
+      <img src="img/card-shortcuts.png" alt="Keyboard shortcuts" loading="lazy">
+      <img src="img/card-tray.png" alt="A smarter system tray" loading="lazy">
+      <img src="img/card-notifications.png" alt="Native notifications" loading="lazy">
+      <img src="img/card-installers.png" alt="Available everywhere" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Whatly is an MIT-licensed fork of
+     <a href="https://github.com/keshavbhatt/whatsie">WhatSie</a> by Keshav Bhatt,
+     maintained by <a href="https://shakaran.net">Ángel Guzmán Maeso</a>.</p>
+  <p style="margin-top:8px">Not affiliated with WhatsApp or Meta. "WhatsApp" is a trademark of its respective owner.</p>
+  <p style="margin-top:16px">
+    <a href="https://ko-fi.com/shakaran">Ko-fi</a> ·
+    <a href="https://wise.com/pay/me/angelg1148">Wise</a> ·
+    <a href="https://github.com/sponsors/shakaran">GitHub Sponsors</a>
+  </p>
+</footer>
+
+</body>
+</html>
