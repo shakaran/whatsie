@@ -20,7 +20,7 @@ jobs:
   windows:
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -50,10 +50,10 @@ jobs:
           echo "ASSET=$name" >> $env:GITHUB_ENV
 
       - name: Attach to release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
-          files: ${{ env.ASSET }}
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.inputs.tag || github.ref_name }}" "$env:ASSET" --clobber --repo $env:GITHUB_REPOSITORY
 
   # ── Flatpak ────────────────────────────────────────────────────────────────
   # Built inside the KDE 6.9 flatpak SDK image; the manifest's git source is
@@ -61,7 +61,7 @@ jobs:
   flatpak:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
 
@@ -89,10 +89,9 @@ jobs:
           flatpak build-bundle fp-repo whatly.flatpak net.shakaran.whatly
 
       - name: Attach to release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
-          files: whatly.flatpak
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.inputs.tag || github.ref_name }}" whatly.flatpak --clobber --repo "$GITHUB_REPOSITORY"
 
   # ── AppImage (+ .zsync delta updates) ───────────────────────────────────────
   appimage:
@@ -100,7 +99,7 @@ jobs:
     env:
       APPIMAGE_EXTRACT_AND_RUN: 1   # runners have no FUSE
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
 
@@ -142,9 +141,6 @@ jobs:
             --plugin qt --output appimage
 
       - name: Attach to release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
-          files: |
-            Whatly-*-x86_64.AppImage
-            Whatly-*-x86_64.AppImage.zsync
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.inputs.tag || github.ref_name }}" Whatly-*-x86_64.AppImage Whatly-*-x86_64.AppImage.zsync --clobber --repo "$GITHUB_REPOSITORY"
