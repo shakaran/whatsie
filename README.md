@@ -144,6 +144,9 @@ On top of upstream WhatSie, this fork adds:
 
 <div align="center">
 
+<a href="https://youtu.be/SObO0PqbTzQ" title="Watch the 30-second promo"><img src="https://img.youtube.com/vi/SObO0PqbTzQ/maxresdefault.jpg" width="720" alt="▶ Watch the Whatly promo (30s)"/></a>
+<br/><sub>▶ <a href="https://youtu.be/SObO0PqbTzQ">Watch the 30-second promo</a></sub>
+
 <img src="docs/img/card-main-dark.png" width="720" alt="Whatly — main screen, dark theme"/>
 <br/>
 <img src="docs/img/card-main-light.png" width="720" alt="Whatly — main screen, light theme"/>
