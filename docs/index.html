@@ -9,6 +9,7 @@
 <meta property="og:description" content="WhatsApp Web as a real desktop app: themes, privacy, scheduled messages, everywhere.">
 <meta property="og:image" content="img/banner-snapcraft.png">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#053f39">
 <link rel="icon" type="image/png" href="favicon.png">
 <script type="application/ld+json">
 {
@@ -26,65 +27,122 @@
   "author": { "@type": "Person", "name": "Ángel Guzmán Maeso", "url": "https://shakaran.net" }
 }
 </script>
+<script>
+  // Apply the saved / preferred theme before first paint to avoid a flash.
+  (function(){
+    try{
+      var t = localStorage.getItem("whatly-theme");
+      if (!t) t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", t);
+    }catch(e){ document.documentElement.setAttribute("data-theme","dark"); }
+  })();
+</script>
 <style>
-  :root{ --teal:#0d9488; --teal-d:#064e46; --accent:#2dd4bf; --ink:#eafcf8; --muted:#a7d7cf; }
+  :root, :root[data-theme="dark"]{
+    --accent:#2dd4bf; --on-accent:#053f39;
+    --bg1:#0b3d38; --bg2:#053f39; --bg3:#032b27;
+    --ink:#eafcf8; --muted:#a7d7cf;
+    --card:rgba(255,255,255,.05); --card-border:rgba(45,212,191,.22);
+    --surface:rgba(0,0,0,.3); --surface-strong:rgba(0,0,0,.35);
+    --nav:rgba(5,45,41,.72); --line:rgba(255,255,255,.08);
+    --btn:rgba(255,255,255,.08); --btn-hover:rgba(45,212,191,.16);
+    --shadow:rgba(0,0,0,.4); --mark:rgba(45,212,191,.35);
+    --row-alt:rgba(255,255,255,.03);
+  }
+  :root[data-theme="light"]{
+    --accent:#0d9488; --on-accent:#f0faf7;
+    --bg1:#e6f4f1; --bg2:#f2fbf8; --bg3:#dcefeb;
+    --ink:#06302b; --muted:#3d6b64;
+    --card:rgba(13,148,136,.06); --card-border:rgba(13,148,136,.24);
+    --surface:rgba(13,148,136,.08); --surface-strong:rgba(13,148,136,.10);
+    --nav:rgba(242,251,248,.82); --line:rgba(6,48,43,.12);
+    --btn:rgba(13,148,136,.08); --btn-hover:rgba(13,148,136,.16);
+    --shadow:rgba(6,48,43,.16); --mark:rgba(13,148,136,.28);
+    --row-alt:rgba(13,148,136,.05);
+  }
   *{ box-sizing:border-box; margin:0; padding:0; }
   html{ scroll-behavior:smooth; }
   body{ font-family:-apple-system,Segoe UI,Roboto,"DejaVu Sans",sans-serif; color:var(--ink);
-        background:linear-gradient(160deg,#0b3d38,#053f39 60%,#032b27); line-height:1.55; }
+        background:linear-gradient(160deg,var(--bg1),var(--bg2) 60%,var(--bg3)); background-attachment:fixed;
+        line-height:1.55; transition:background .3s, color .3s; }
   a{ color:var(--accent); text-decoration:none; }
   .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
 
-  /* sticky nav */
   nav.top{ position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
-           background:rgba(5,45,41,.72); border-bottom:1px solid rgba(45,212,191,.18); }
+           background:var(--nav); border-bottom:1px solid var(--card-border); }
   nav.top .wrap{ display:flex; align-items:center; gap:18px; height:56px; }
-  nav.top .brand{ display:flex; align-items:center; gap:9px; font-weight:800; letter-spacing:-.01em; }
+  nav.top .brand{ display:flex; align-items:center; gap:9px; font-weight:800; letter-spacing:-.01em; color:var(--ink); }
   nav.top .brand img{ width:26px; height:26px; }
-  nav.top .links{ display:flex; gap:6px; margin-left:auto; flex-wrap:wrap; }
+  nav.top .links{ display:flex; gap:6px; margin-left:auto; flex-wrap:wrap; align-items:center; }
   nav.top .links a{ color:var(--muted); font-size:14px; font-weight:600; padding:7px 12px; border-radius:8px; }
-  nav.top .links a:hover{ color:var(--ink); background:rgba(45,212,191,.12); }
-  @media (max-width:640px){ nav.top .links a{ padding:6px 8px; font-size:13px; } nav.top .brand span{ display:none; } }
+  nav.top .links a:hover{ color:var(--ink); background:var(--btn-hover); }
+  #theme-toggle{ background:var(--btn); border:1px solid var(--card-border); color:var(--ink); cursor:pointer;
+       width:38px; height:38px; border-radius:10px; font-size:17px; line-height:1; }
+  #theme-toggle:hover{ background:var(--btn-hover); }
+  @media (max-width:680px){ nav.top .links a{ padding:6px 8px; font-size:13px; } nav.top .brand span{ display:none; }
+       nav.top .links a.hide-sm{ display:none; } }
 
-  header{ text-align:center; padding:56px 24px 32px; }
-  header img.banner{ width:100%; max-width:900px; border-radius:18px; box-shadow:0 24px 70px rgba(0,0,0,.4); }
+  header{ text-align:center; padding:56px 24px 24px; }
+  header img.banner{ width:100%; max-width:900px; border-radius:18px; box-shadow:0 24px 70px var(--shadow); }
   h1{ font-size:clamp(28px,5vw,52px); margin:28px 0 8px; letter-spacing:-.02em; }
-  .tag{ color:var(--muted); font-size:clamp(16px,2.4vw,22px); max-width:720px; margin:0 auto 28px; }
+  .tag{ color:var(--muted); font-size:clamp(16px,2.4vw,22px); max-width:720px; margin:0 auto 20px; }
+  .badges{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:0 auto 20px; }
+  .badge-pill{ font-size:12.5px; font-weight:700; color:var(--muted); background:var(--surface);
+       border:1px solid var(--card-border); border-radius:100px; padding:5px 12px; }
+  .badge-pill b{ color:var(--accent); }
   .btns{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:24px 0; }
   .btn{ display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:100px;
-        font-weight:700; font-size:15px; background:rgba(255,255,255,.08); color:var(--ink);
-        border:1px solid rgba(45,212,191,.35); transition:transform .12s, background .12s; cursor:pointer; }
-  .btn:hover{ transform:translateY(-2px); background:rgba(45,212,191,.16); }
-  .btn.primary{ background:var(--accent); color:#053f39; border-color:transparent; }
+        font-weight:700; font-size:15px; background:var(--btn); color:var(--ink);
+        border:1px solid var(--card-border); transition:transform .12s, background .12s; cursor:pointer; }
+  .btn:hover{ transform:translateY(-2px); background:var(--btn-hover); }
+  .btn.primary{ background:var(--accent); color:var(--on-accent); border-color:transparent; }
   section{ padding:48px 0; scroll-margin-top:64px; }
   h2{ font-size:clamp(22px,3.4vw,34px); text-align:center; margin-bottom:8px; }
   .sub{ text-align:center; color:var(--muted); margin-bottom:32px; }
-  .video-embed{ position:relative; padding-top:56.25%; border-radius:16px; overflow:hidden; box-shadow:0 24px 70px rgba(0,0,0,.45); }
+  .video-embed{ position:relative; padding-top:56.25%; border-radius:16px; overflow:hidden; box-shadow:0 24px 70px var(--shadow); }
   .video-embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
   .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; }
-  .grid img{ width:100%; border-radius:14px; box-shadow:0 14px 40px rgba(0,0,0,.35); cursor:zoom-in; transition:transform .12s; }
+  .grid img{ width:100%; border-radius:14px; box-shadow:0 14px 40px var(--shadow); cursor:zoom-in; transition:transform .12s; }
   .grid img:hover{ transform:scale(1.015); }
   .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
-  .card{ background:rgba(255,255,255,.05); border:1px solid rgba(45,212,191,.22); border-radius:16px; padding:22px 24px; }
+  .card{ background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:22px 24px; }
   .card h3{ font-size:19px; margin-bottom:8px; }
   .card p{ color:var(--muted); font-size:15px; }
-  code{ background:rgba(0,0,0,.3); padding:2px 7px; border-radius:6px; font-family:"DejaVu Sans Mono",monospace; font-size:.92em; }
-  pre{ background:rgba(0,0,0,.35); border:1px solid rgba(45,212,191,.25); border-radius:12px;
+  code{ background:var(--surface); padding:2px 7px; border-radius:6px; font-family:"DejaVu Sans Mono",monospace; font-size:.92em; }
+  pre{ background:var(--surface-strong); border:1px solid var(--card-border); border-radius:12px;
        padding:16px 20px; overflow-x:auto; color:var(--ink); font-family:"DejaVu Sans Mono",monospace; }
   .install{ max-width:640px; margin:0 auto; }
   .cmd{ position:relative; }
   .cmd button.copy{ position:absolute; top:8px; right:8px; padding:6px 12px; font-size:13px; font-weight:700;
-       border-radius:8px; border:1px solid rgba(45,212,191,.35); background:rgba(45,212,191,.14); color:var(--ink); cursor:pointer; }
-  .cmd button.copy:hover{ background:rgba(45,212,191,.26); }
+       border-radius:8px; border:1px solid var(--card-border); background:var(--btn-hover); color:var(--ink); cursor:pointer; }
+  .cmd button.copy:hover{ background:var(--accent); color:var(--on-accent); }
+
+  /* comparison table */
+  .compare-wrap{ overflow-x:auto; max-width:960px; margin:0 auto; border-radius:16px; border:1px solid var(--card-border); }
+  table.compare{ width:100%; border-collapse:collapse; min-width:560px; font-size:15px; }
+  table.compare th, table.compare td{ padding:13px 16px; text-align:left; border-bottom:1px solid var(--line); }
+  table.compare thead th{ background:var(--surface); font-size:14px; letter-spacing:.01em; }
+  table.compare thead th:not(:first-child){ text-align:center; }
+  table.compare td:not(:first-child){ text-align:center; font-weight:700; }
+  table.compare tbody tr:nth-child(even){ background:var(--row-alt); }
+  table.compare th.whatly, table.compare td.whatly{ background:var(--btn-hover); }
+  .yes{ color:var(--accent); } .no{ color:var(--muted); opacity:.6; } .partial{ color:var(--muted); }
+  .compare-note{ text-align:center; color:var(--muted); font-size:13px; margin-top:14px; }
+
+  /* system requirements */
+  .req{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; max-width:960px; margin:0 auto; }
+  .req .card h3{ display:flex; align-items:center; gap:8px; }
+  .req ul{ margin:10px 0 0 18px; color:var(--muted); font-size:14.5px; }
+  .req li{ margin:5px 0; }
 
   /* changelog */
   .cl-tools{ max-width:820px; margin:0 auto 22px; }
   .cl-tools input{ width:100%; padding:13px 16px; border-radius:12px; font-size:15px; color:var(--ink);
-       background:rgba(0,0,0,.28); border:1px solid rgba(45,212,191,.3); outline:none; }
+       background:var(--surface); border:1px solid var(--card-border); outline:none; }
   .cl-tools input::placeholder{ color:var(--muted); }
   .cl-tools input:focus{ border-color:var(--accent); }
   .changelog{ max-width:820px; margin:0 auto; }
-  details.ver{ background:rgba(255,255,255,.04); border:1px solid rgba(45,212,191,.2); border-radius:14px;
+  details.ver{ background:var(--card); border:1px solid var(--card-border); border-radius:14px;
        margin-bottom:12px; overflow:hidden; }
   details.ver > summary{ list-style:none; cursor:pointer; padding:16px 20px; display:flex; align-items:baseline; gap:12px;
        font-weight:700; font-size:18px; }
@@ -93,7 +151,7 @@
   details.ver[open] > summary::before{ transform:rotate(90deg); }
   details.ver > summary .date{ color:var(--muted); font-weight:500; font-size:14px; margin-left:auto; }
   details.ver > summary .badge{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
-       background:var(--accent); color:#053f39; border-radius:100px; padding:3px 9px; }
+       background:var(--accent); color:var(--on-accent); border-radius:100px; padding:3px 9px; }
   .cl-body{ padding:2px 22px 20px; color:var(--muted); }
   .cl-body h4{ color:var(--ink); font-size:15px; margin:16px 0 6px; }
   .cl-body p{ margin:10px 0; }
@@ -101,26 +159,30 @@
   .cl-body li{ margin:5px 0; }
   .cl-body strong{ color:var(--ink); }
   .cl-empty,.cl-loading{ text-align:center; color:var(--muted); padding:24px; }
-  mark{ background:rgba(45,212,191,.35); color:var(--ink); border-radius:3px; padding:0 2px; }
+  mark{ background:var(--mark); color:var(--ink); border-radius:3px; padding:0 2px; }
+
+  /* roadmap */
+  .roadmap{ max-width:820px; margin:0 auto; text-align:center; }
+  .roadmap .cards{ margin-top:8px; }
+  .roadmap .card{ text-align:left; }
 
   /* faq */
   .faq{ max-width:820px; margin:0 auto; }
-  details.q{ border-bottom:1px solid rgba(45,212,191,.16); }
+  details.q{ border-bottom:1px solid var(--card-border); }
   details.q > summary{ list-style:none; cursor:pointer; padding:18px 4px; font-weight:700; font-size:17px; display:flex; gap:12px; align-items:center; }
   details.q > summary::-webkit-details-marker{ display:none; }
   details.q > summary::before{ content:"+"; color:var(--accent); font-weight:800; width:16px; }
   details.q[open] > summary::before{ content:"–"; }
   details.q .a{ padding:0 4px 18px 32px; color:var(--muted); }
 
-  footer{ text-align:center; color:var(--muted); padding:48px 24px; border-top:1px solid rgba(255,255,255,.08); font-size:14px; }
+  footer{ text-align:center; color:var(--muted); padding:48px 24px; border-top:1px solid var(--line); font-size:14px; }
   footer a{ font-weight:600; }
 
   #top{ position:fixed; bottom:22px; right:22px; z-index:60; width:46px; height:46px; border-radius:50%;
-       border:1px solid rgba(45,212,191,.4); background:rgba(5,45,41,.85); color:var(--ink); font-size:20px;
+       border:1px solid var(--card-border); background:var(--nav); color:var(--ink); font-size:20px;
        cursor:pointer; opacity:0; pointer-events:none; transition:opacity .2s; backdrop-filter:blur(8px); }
   #top.show{ opacity:1; pointer-events:auto; }
 
-  /* lightbox */
   #lb{ position:fixed; inset:0; z-index:80; background:rgba(0,0,0,.88); display:none; align-items:center; justify-content:center; padding:32px; cursor:zoom-out; }
   #lb.show{ display:flex; }
   #lb img{ max-width:100%; max-height:100%; border-radius:12px; box-shadow:0 30px 90px rgba(0,0,0,.6); }
@@ -132,12 +194,14 @@
   <div class="wrap">
     <a class="brand" href="#"><img src="favicon.png" alt=""><span>Whatly</span></a>
     <div class="links">
-      <a href="#video">Video</a>
+      <a href="#video" class="hide-sm">Video</a>
       <a href="#highlights">Features</a>
+      <a href="#compare" class="hide-sm">Compare</a>
       <a href="#install">Install</a>
       <a href="#changelog">Changelog</a>
       <a href="#faq">FAQ</a>
-      <a href="https://github.com/shakaran/whatly">GitHub</a>
+      <a href="https://github.com/shakaran/whatly" class="hide-sm">GitHub</a>
+      <button id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">🌙</button>
     </div>
   </div>
 </nav>
@@ -148,6 +212,12 @@
     <h1>WhatsApp Web, as a real desktop app</h1>
     <p class="tag">A feature-rich, MIT-licensed desktop client for WhatsApp Web — chat themes,
        a privacy blur, scheduled messages, multiple accounts, spell-check, an app lock and more.</p>
+    <div class="badges">
+      <span class="badge-pill">Version <b>6.1.1</b></span>
+      <span class="badge-pill">License <b>MIT</b></span>
+      <span class="badge-pill">Linux <b>&amp;</b> Windows</span>
+      <span class="badge-pill">Qt 6 · <b>free</b></span>
+    </div>
     <div class="btns">
       <a class="btn primary" href="https://snapcraft.io/whatly">Get it from the Snap Store</a>
       <a class="btn" href="https://github.com/shakaran/whatly/releases">Downloads</a>
@@ -184,6 +254,42 @@
   </div>
 </section>
 
+<section id="compare">
+  <div class="wrap">
+    <h2>How it compares</h2>
+    <p class="sub">The same WhatsApp Web, with the desktop conveniences a browser tab can't give you.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Browser tab</th>
+            <th>WhatSie (upstream)</th>
+            <th class="whatly">Whatly</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Runs as its own desktop app</td><td class="no">✗</td><td class="yes">✓</td><td class="whatly yes">✓</td></tr>
+          <tr><td>System tray with unread badge</td><td class="no">✗</td><td class="yes">✓</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Chat themes, wallpaper &amp; custom CSS</td><td class="no">✗</td><td class="yes">✓</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Privacy blur</td><td class="no">✗</td><td class="yes">✓</td><td class="whatly yes">✓</td></tr>
+          <tr><td>App lock / passcode</td><td class="no">✗</td><td class="yes">✓</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Multiple accounts, separate sessions</td><td class="partial">~</td><td class="partial">~</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Spell check in many languages at once</td><td class="partial">~</td><td class="no">✗</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Scheduled messages</td><td class="no">✗</td><td class="no">✗</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Font-family picker</td><td class="no">✗</td><td class="no">✗</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Follows system light/dark, live</td><td class="yes">✓</td><td class="partial">~</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Linux packages (snap · Flatpak · AppImage · deb · rpm · AUR)</td><td class="no">—</td><td class="partial">~</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Windows build</td><td class="no">—</td><td class="no">✗</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Open source (MIT)</td><td class="no">—</td><td class="yes">✓</td><td class="whatly yes">✓</td></tr>
+          <tr><td>Actively maintained</td><td class="no">—</td><td class="partial">~</td><td class="whatly yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-note">✓ full&nbsp;&nbsp;·&nbsp;&nbsp;~ partial or needs a workaround&nbsp;&nbsp;·&nbsp;&nbsp;✗ not available&nbsp;&nbsp;·&nbsp;&nbsp;— not applicable</p>
+  </div>
+</section>
+
 <section id="install">
   <div class="wrap install">
     <h2>Install</h2>
@@ -201,6 +307,45 @@
       <a class="btn" href="https://github.com/shakaran/whatly/tree/main/packaging/rpm">Fedora / COPR</a>
       <a class="btn" href="https://aur.archlinux.org/packages/whatsie-git">Arch (AUR)</a>
       <a class="btn" href="https://github.com/shakaran/whatly/releases">Windows</a>
+    </div>
+  </div>
+</section>
+
+<section id="requirements">
+  <div class="wrap">
+    <h2>System requirements</h2>
+    <p class="sub">Modest — it's WhatsApp Web in a native shell.</p>
+    <div class="req">
+      <div class="card">
+        <h3>🐧 Linux</h3>
+        <ul>
+          <li>Any modern distribution (X11 or Wayland)</li>
+          <li>Qt&nbsp;6 runtime — bundled in the snap, Flatpak and AppImage</li>
+          <li>A desktop with a system tray / notification service</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🪟 Windows</h3>
+        <ul>
+          <li>Windows&nbsp;10 or newer, 64-bit</li>
+          <li>No separate runtime to install</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🛠️ Building from source</h3>
+        <ul>
+          <li>CMake&nbsp;≥&nbsp;3.24 and Ninja</li>
+          <li>Qt&nbsp;6.8+ with Qt&nbsp;WebEngine</li>
+          <li>A C++17 compiler</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>💾 Footprint</h3>
+        <ul>
+          <li>~200&nbsp;MB on disk</li>
+          <li>Memory use is Chromium's — like an extra browser tab</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -235,6 +380,18 @@
     </div>
     <div class="changelog" id="changelog-list">
       <p class="cl-loading">Loading the changelog…</p>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap roadmap">
+    <h2>Roadmap &amp; contributing</h2>
+    <p class="sub">Whatly is developed in the open — issues, milestones and the project board are all public.</p>
+    <div class="cards">
+      <div class="card"><h3>🗺️ Project board</h3><p>Planned and in-progress work lives on the <a href="https://github.com/users/shakaran/projects/2">Whatly project board</a>.</p></div>
+      <div class="card"><h3>🐞 Issues &amp; ideas</h3><p>Report bugs or request features on the <a href="https://github.com/shakaran/whatly/issues">issue tracker</a> — or press <code>F1</code> in the app.</p></div>
+      <div class="card"><h3>🤝 Contribute</h3><p>Pull requests are welcome. New interface strings ship translated into 15 languages. See the <a href="https://github.com/shakaran/whatly">repository</a>.</p></div>
     </div>
   </div>
 </section>
@@ -275,6 +432,21 @@
 (function(){
   "use strict";
 
+  /* ---- theme toggle ---- */
+  var tt = document.getElementById("theme-toggle");
+  function paintToggle(){
+    var t = document.documentElement.getAttribute("data-theme");
+    tt.textContent = (t === "light") ? "☀️" : "🌙";
+    tt.setAttribute("aria-pressed", t === "light");
+  }
+  paintToggle();
+  tt.addEventListener("click", function(){
+    var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    try{ localStorage.setItem("whatly-theme", next); }catch(e){}
+    paintToggle();
+  });
+
   /* ---- copy-to-clipboard on install command ---- */
   document.querySelectorAll("button.copy").forEach(function(b){
     b.addEventListener("click", function(){
@@ -308,21 +480,18 @@
 
   function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
-  // inline markdown -> html (bold, italic, code, links, issue refs)
   function inline(s){
     s = esc(s);
     s = s.replace(/`([^`]+)`/g, function(_,c){ return "<code>"+c+"</code>"; });
     s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
     s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     s = s.replace(/(^|[^*])\*([^*]+)\*/g, "$1<em>$2</em>");
-    // issue / PR references like #250 -> link (skip if already inside a tag attr)
     s = s.replace(/(^|[\s(])#(\d+)/g, function(_,pre,n){
       return pre + '<a href="https://github.com/'+REPO+'/issues/'+n+'" rel="noopener">#'+n+'</a>';
     });
     return s;
   }
 
-  // block-level markdown -> html for a version body
   function renderBody(lines){
     var out = [], ul = null;
     function closeUl(){ if (ul){ out.push("<ul>"+ul.join("")+"</ul>"); ul = null; } }
@@ -342,7 +511,6 @@
   }
 
   function render(md){
-    // split into blocks at level-2 headers
     var lines = md.split(/\r?\n/), blocks = [], cur = null;
     lines.forEach(function(l){
       if (/^##\s+/.test(l)){ if (cur) blocks.push(cur); cur = {head:l.replace(/^##\s+/,""), body:[]}; }
@@ -353,7 +521,7 @@
     var html = "", first = true, versions = 0;
     blocks.forEach(function(blk){
       var m = blk.head.match(/^(\d+\.\d+(?:\.\d+)?)\s*(?:\(([^)]+)\))?/);
-      if (!m) return; // skip non-version sections (e.g. legacy "Change log:")
+      if (!m) return;
       versions++;
       var ver = m[1], date = m[2] || "";
       var body = renderBody(blk.body);
@@ -375,7 +543,6 @@
   function wireSearch(){
     var input = document.getElementById("cl-search");
     var items = Array.prototype.slice.call(listEl.querySelectorAll("details.ver"));
-    // remember the untouched body html so we can strip <mark> on new searches
     items.forEach(function(d){ d._html = d.querySelector(".cl-body").innerHTML;
                                d._text = (d.getAttribute("data-ver")+" "+d.textContent).toLowerCase(); });
     var note = document.createElement("p");
@@ -383,7 +550,6 @@
     listEl.appendChild(note);
 
     function highlight(html, q){
-      // highlight matches outside of html tags
       var re = new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");
       return html.replace(/(>)([^<]+)(?=<)/g, function(_,gt,txt){ return gt + txt.replace(re,"<mark>$1</mark>"); });
     }
