@@ -103,6 +103,14 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="6.1.1" date="2026-07-18">
+      <description>
+        <p>Bug-fix release:</p>
+        <ul>
+          <li>Native notifications now use a high-resolution app icon, so the logo no longer looks blurry on desktops with large notification popups such as Cinnamon on Linux Mint (issue #2)</li>
+        </ul>
+      </description>
+    </release>
     <release version="6.1.0" date="2026-07-17">
       <description>
         <p>New features and more ways to install:</p>

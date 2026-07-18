@@ -1,3 +1,12 @@
+## 6.1.1 (2026-07-18)
+
+Bug-fix release.
+
+**Sharper notification icons.** Native notifications carried their app icon as a
+32-pixel image, which looked blurry on desktops that draw large notification
+popups (for example Cinnamon on Linux Mint). Whatly now hands the notification
+daemon a 256-pixel icon, so the logo stays crisp at any popup size (issue #2).
+
 ## 6.1.0 (2026-07-17)
 
 New features and more ways to install.

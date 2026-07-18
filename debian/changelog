@@ -1,3 +1,12 @@
+whatly (6.1.1) unstable; urgency=medium
+
+  * Native notifications now use a high-resolution app icon, so the logo no
+    longer looks blurry on desktops with large notification popups such as
+    Cinnamon on Linux Mint (issue #2).
+  * See CHANGELOG.md for the full list.
+
+ -- Ángel Guzmán Maeso <angel@guzmanmaeso.com>  Sat, 18 Jul 2026 00:00:00 +0200
+
 whatly (6.0.0) unstable; urgency=medium
 
   * Rebrand WhatSie -> Whatly with a new teal identity.

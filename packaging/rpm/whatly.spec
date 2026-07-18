@@ -1,5 +1,5 @@
 Name:           whatly
-Version:        6.0.0
+Version:        6.1.1
 Release:        1%{?dist}
 Summary:        Feature-rich WhatsApp Web client based on Qt WebEngine
 
@@ -53,5 +53,7 @@ not affiliated with WhatsApp or Meta.
 %{_datadir}/whatly/
 
 %changelog
+* Sat Jul 18 2026 Ángel Guzmán Maeso <angel@guzmanmaeso.com> - 6.1.1-1
+- High-resolution native notification icon (issue #2); see CHANGELOG.md
 * Thu Jul 16 2026 Ángel Guzmán Maeso <angel@guzmanmaeso.com> - 6.0.0-1
 - Initial Whatly package (rebrand of WhatSie); see CHANGELOG.md
