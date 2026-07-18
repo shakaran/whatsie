@@ -1,0 +1,308 @@
+<template>
+  <div id="root" data-composition-id="09-outro" data-width="1920" data-height="1080" data-start="0" data-duration="4">
+
+    <!-- ===== Full-bleed teal ground (lowest track, full duration) ===== -->
+    <div class="clip f09-outro-bg" data-start="0" data-duration="4" data-track-index="0"></div>
+
+    <!-- ===== Closing atmosphere: concentric rings + dot grid + center glow ===== -->
+    <div class="clip f09-outro-atmos" data-start="0" data-duration="4" data-track-index="1">
+      <div class="f09-outro-dots"></div>
+      <div class="f09-outro-ring f09-outro-ring-a"></div>
+      <div class="f09-outro-ring f09-outro-ring-b"></div>
+      <div class="f09-outro-ring f09-outro-ring-c"></div>
+      <div class="f09-outro-centerglow"></div>
+    </div>
+
+    <!-- ===== Foreground content (camera wrapper gets the final push) ===== -->
+    <div class="clip f09-outro-stage" data-start="0" data-duration="4" data-track-index="2">
+      <div id="f09-outro-camera">
+
+        <!-- card-installers: rises + presents the packaging formats (Scene 1) -->
+        <div class="f09-outro-card-wrap">
+          <img id="f09-outro-card" class="f09-outro-card" src="assets/card-installers.png" alt="" />
+        </div>
+
+        <!-- logo + Whatly wordmark lockup returns to center (Scene 2) -->
+        <div class="f09-outro-lockup-wrap">
+          <img id="f09-outro-mark" class="f09-outro-mark" src="assets/logo.png" alt="" />
+          <div id="f09-outro-wordmark" class="f09-outro-wordmark">
+            <span class="f09-outro-ch">W</span><span class="f09-outro-ch">h</span><span class="f09-outro-ch">a</span><span class="f09-outro-ch">t</span><span class="f09-outro-ch">l</span><span class="f09-outro-ch">y</span>
+          </div>
+        </div>
+
+        <!-- accent underline draws under the lockup (Scene 4) -->
+        <div class="f09-outro-underline-wrap">
+          <svg class="f09-outro-underline-svg" viewBox="0 0 460 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path id="f09-outro-underline-path" d="M 7 7 L 453 7" />
+          </svg>
+        </div>
+
+        <!-- CTA slams in (Scene 3) -->
+        <div class="f09-outro-cta-wrap">
+          <div id="f09-outro-cta" class="f09-outro-cta">snap install whatly</div>
+        </div>
+
+        <!-- URL beneath the CTA (Scene 3) -->
+        <div class="f09-outro-url-wrap">
+          <div id="f09-outro-url" class="f09-outro-url">snapcraft.io/whatly</div>
+        </div>
+
+      </div>
+    </div>
+
+    <style>
+@font-face{font-family:'DejaVu Sans';src:local('DejaVu Sans'),local('DejaVu Sans Book');font-weight:400;font-style:normal}@font-face{font-family:'DejaVu Sans';src:local('DejaVu Sans Bold');font-weight:700;font-style:normal}
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        font-family: "DejaVu Sans", sans-serif;
+      }
+
+      /* --- Teal ground --- */
+      .f09-outro-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 50% 36%, #14a597 0%, #0d9488 34%, #086055 72%, #053f39 100%);
+      }
+
+      /* --- Atmosphere --- */
+      .f09-outro-atmos {
+        position: absolute;
+        inset: 0;
+      }
+      .f09-outro-dots {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(204, 251, 241, 0.10) 2px, transparent 2px);
+        background-size: 46px 46px;
+        opacity: 0.5;
+      }
+      .f09-outro-ring {
+        position: absolute;
+        left: 50%;
+        top: 430px;
+        border-radius: 50%;
+        border: 2px solid rgba(45, 212, 191, 0.14);
+      }
+      .f09-outro-ring-a { width: 760px;  height: 760px;  margin-left: -380px;  margin-top: -380px; }
+      .f09-outro-ring-b { width: 1120px; height: 1120px; margin-left: -560px;  margin-top: -560px; border-color: rgba(45,212,191,0.10); }
+      .f09-outro-ring-c { width: 1520px; height: 1520px; margin-left: -760px;  margin-top: -760px; border-color: rgba(45,212,191,0.06); }
+      .f09-outro-centerglow {
+        position: absolute;
+        left: 50%;
+        top: 430px;
+        width: 900px;
+        height: 900px;
+        margin-left: -450px;
+        margin-top: -450px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(45,212,191,0.20) 0%, rgba(45,212,191,0.0) 60%);
+      }
+
+      /* --- Camera (final confident push rides here) --- */
+      #f09-outro-camera {
+        position: absolute;
+        inset: 0;
+        transform-origin: 50% 42%;
+        will-change: transform;
+      }
+
+      /* --- card-installers --- */
+      .f09-outro-card-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 150px;
+        display: flex;
+        justify-content: center;
+      }
+      .f09-outro-card {
+        width: 908px;
+        height: auto;
+        border-radius: 18px;
+        box-shadow: 0 34px 80px rgba(3, 40, 36, 0.55);
+        transform-origin: 50% 50%;
+        will-change: transform, opacity;
+      }
+
+      /* --- Lockup: mark + wordmark --- */
+      .f09-outro-lockup-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 196px;
+        height: 156px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 26px;
+      }
+      .f09-outro-mark {
+        width: 132px;
+        height: 132px;
+        filter: drop-shadow(0 10px 26px rgba(3, 40, 36, 0.45));
+        transform-origin: 50% 50%;
+        will-change: transform, opacity;
+      }
+      .f09-outro-wordmark {
+        display: flex;
+        font-weight: 700;
+        font-size: 96px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+        text-shadow: 0 6px 26px rgba(3, 40, 36, 0.4);
+      }
+      .f09-outro-ch {
+        display: inline-block;
+        transform-origin: 50% 100%;
+        will-change: transform, opacity;
+      }
+
+      /* --- Accent underline --- */
+      .f09-outro-underline-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 360px;
+        display: flex;
+        justify-content: center;
+      }
+      .f09-outro-underline-svg {
+        width: 460px;
+        height: 14px;
+      }
+      .f09-outro-underline-svg path {
+        fill: none;
+        stroke: #2dd4bf;
+        stroke-width: 6;
+        stroke-linecap: round;
+      }
+
+      /* --- CTA (the one solid element) --- */
+      .f09-outro-cta-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 466px;
+        display: flex;
+        justify-content: center;
+      }
+      .f09-outro-cta {
+        font-weight: 700;
+        font-size: 42px;
+        letter-spacing: 0.005em;
+        color: #053f39;
+        background: #2dd4bf;
+        padding: 24px 58px;
+        border-radius: 100px;
+        box-shadow: 0 18px 44px rgba(45, 212, 191, 0.42);
+        transform-origin: 50% 50%;
+        will-change: transform, opacity, filter;
+      }
+
+      /* --- URL --- */
+      .f09-outro-url-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 600px;
+        display: flex;
+        justify-content: center;
+      }
+      .f09-outro-url {
+        font-weight: 400;
+        font-size: 32px;
+        letter-spacing: 0.06em;
+        color: #ccfbf1;
+        transform-origin: 50% 50%;
+        will-change: transform, opacity;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        var tl = gsap.timeline({ paused: true });
+
+        // Prepare the underline stroke draw (measured geometry, not a magic number).
+        var underline = document.getElementById("f09-outro-underline-path");
+        var LEN = underline.getTotalLength();
+        underline.style.strokeDasharray = LEN;
+
+        // ===== Scene 1 (0.0–1.0s): card-installers rises + presents (spring-pop-entrance) =====
+        tl.fromTo(
+          "#f09-outro-card",
+          { scale: 0.7, y: 96, opacity: 0 },
+          { scale: 1, y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+          0.1
+        );
+
+        // ===== Scene 2 (1.0–2.0s): card recedes; logo + wordmark return to center (logo-assemble-lockup) =====
+        // Card recedes into depth (scale down + fade) so the lockup owns the center.
+        tl.to(
+          "#f09-outro-card",
+          { scale: 0.86, y: -26, opacity: 0, duration: 0.7, ease: "power2.inOut" },
+          1.0
+        );
+        // Logo mark assembles (smooth pop).
+        tl.fromTo(
+          "#f09-outro-mark",
+          { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" },
+          1.15
+        );
+        // "Whatly" wordmark cascades in left->right with a small overshoot.
+        var chars = gsap.utils.toArray(".f09-outro-ch");
+        chars.forEach(function (el, i) {
+          tl.fromTo(
+            el,
+            { x: 44, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5, ease: "back.out(1.5)" },
+            1.38 + i * 0.05
+          );
+        });
+
+        // ===== Scene 3 (2.0–2.8s): CTA slams in (kinetic-beat-slam) + URL beneath =====
+        var PULSE = 0.4;
+        var BEATS = [PULSE * 5, PULSE * 6]; // CTA, URL — one shared beat grid
+        // CTA — hard slam (scale + blur, power4.out)
+        tl.fromTo(
+          "#f09-outro-cta",
+          { scale: 1.4, filter: "blur(14px)", opacity: 0 },
+          { scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.5, ease: "power4.out" },
+          BEATS[0]
+        );
+        // URL — distinct entrance (rise + snap, expo.out)
+        tl.fromTo(
+          "#f09-outro-url",
+          { y: 36, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" },
+          BEATS[1]
+        );
+
+        // ===== Scene 4 (2.8–4.0s): accent underline draws (svg-path-draw) + confident final hold =====
+        tl.fromTo(
+          "#f09-outro-underline-path",
+          { strokeDashoffset: LEN },
+          { strokeDashoffset: 0, duration: 0.85, ease: "power2.out" },
+          2.78
+        );
+        // Confident final hold: a slow, single-pass push on the foreground (final frame — no exit).
+        tl.to(
+          "#f09-outro-camera",
+          { scale: 1.02, duration: 1.1, ease: "power1.out" },
+          2.9
+        );
+
+        window.__timelines["09-outro"] = tl;
+      })();
+    </script>
+
+  </div>
+</template>

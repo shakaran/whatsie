@@ -1,0 +1,231 @@
+<template>
+  <div
+    id="root"
+    data-composition-id="01-logo"
+    data-start="0"
+    data-duration="3.1"
+    data-width="1920"
+    data-height="1080"
+  >
+    <!-- Full-bleed teal gradient ground (rides on its own clip layer, never on #root) -->
+    <div
+      class="clip"
+      id="01-logo-bg"
+      data-start="0"
+      data-duration="3.1"
+      data-track-index="0"
+    ></div>
+
+    <!-- Content stage: logo + wordmark + tagline lockup -->
+    <div
+      class="clip"
+      id="01-logo-stage"
+      data-start="0"
+      data-duration="3.1"
+      data-track-index="1"
+    >
+      <div class="01-logo-lockup">
+        <div class="01-logo-row">
+          <div class="01-logo-markwrap">
+            <div id="01-logo-glow"></div>
+            <img id="01-logo-mark" src="assets/logo.png" alt="Whatly" />
+          </div>
+          <div id="01-logo-wordmark">Whatly</div>
+        </div>
+        <div id="01-logo-tagline">A feature-rich desktop client for WhatsApp Web</div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @font-face {
+      font-family: "DejaVu Sans";
+      font-weight: 400;
+      font-style: normal;
+      src: url("assets/fonts/DejaVuSans.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "DejaVu Sans";
+      font-weight: 700;
+      font-style: normal;
+      src: url("assets/fonts/DejaVuSans-Bold.ttf") format("truetype");
+    }
+
+    #root {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+    }
+
+    /* NB: CSS identifiers can't start with a digit, so the digit-prefixed
+       ids/classes are matched via attribute selectors (valid + robust). */
+    [id="01-logo-bg"] {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0d9488 0%, #075e54 55%, #064e46 100%);
+    }
+
+    [id="01-logo-stage"] {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    [class~="01-logo-lockup"] {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 44px;
+      /* Nudge the lockup slightly above the true center so it never crowds
+         the bottom 17% keep-out band. */
+      transform: translateY(-26px);
+    }
+
+    [class~="01-logo-row"] {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 48px;
+    }
+
+    [class~="01-logo-markwrap"] {
+      position: relative;
+      width: 244px;
+      height: 244px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Ambient accent halo — sits BEHIND the mark */
+    [id="01-logo-glow"] {
+      position: absolute;
+      z-index: 1;
+      inset: -240px;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(45, 212, 191, 0.55) 0%,
+        rgba(45, 212, 191, 0.28) 34%,
+        rgba(45, 212, 191, 0) 70%
+      );
+      opacity: 0;
+      transform: scale(0.85);
+      transform-origin: 50% 50%;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+
+    [id="01-logo-mark"] {
+      position: relative;
+      z-index: 2;
+      display: block;
+      width: 244px;
+      height: 244px;
+      transform-origin: 50% 50%;
+      will-change: transform, opacity;
+    }
+
+    [id="01-logo-wordmark"] {
+      font-family: "DejaVu Sans", sans-serif;
+      font-weight: 700;
+      font-size: 156px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      white-space: nowrap;
+      /* Wipe reveal is driven by clip-path in GSAP (fromTo) */
+      will-change: clip-path, opacity;
+    }
+
+    [id="01-logo-tagline"] {
+      font-family: "DejaVu Sans", sans-serif;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+      color: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      white-space: nowrap;
+      will-change: transform, opacity;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    const glow = document.getElementById("01-logo-glow");
+    const mark = document.getElementById("01-logo-mark");
+    const wordmark = document.getElementById("01-logo-wordmark");
+    const tagline = document.getElementById("01-logo-tagline");
+
+    // ── Scene 1 (0.0–0.9) — logo springs 0.6 → 1.0 (spring-pop-entrance,
+    //    smooth power3.out settle, no overshoot) with the accent halo blooming
+    //    in behind it (ambient-glow-bloom Form A). They land as one beat.
+    tl.fromTo(
+      mark,
+      { scale: 0.6, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.8, ease: "power3.out" },
+      0
+    );
+    tl.fromTo(
+      glow,
+      { opacity: 0, scale: 0.85 },
+      { opacity: 0.3, scale: 1, duration: 0.85, ease: "power2.out" },
+      0.05
+    );
+
+    // ── Scene 2 (0.7–1.4) — "Whatly" wordmark wipes in left→right
+    //    (clip-path reveal), a hair of opacity to soften the leading edge.
+    tl.fromTo(
+      wordmark,
+      { clipPath: "inset(0 100% 0 0)", opacity: 0 },
+      {
+        clipPath: "inset(0 0% 0 0)",
+        opacity: 1,
+        duration: 0.62,
+        ease: "power2.out",
+      },
+      0.72
+    );
+
+    // ── Scene 3 (1.3–2.0) — tagline fades up beneath the lockup.
+    tl.fromTo(
+      tagline,
+      { opacity: 0, y: 22 },
+      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+      1.32
+    );
+
+    // ── Scene 4 (2.0–2.6) — gentle hold; the halo breathes.
+    //    Bounded, seek-safe sine breathe (NOT a repeat/yoyo loop). The phase
+    //    proxy runs from the bloom's settle through the end of the frame so the
+    //    halo feels alive across the hold; sin(0) = 0 → no jump at the seam.
+    const BLOOM_END = 0.9;
+    const PEAK = 0.3;
+    const OPACITY_AMP = 0.04;
+    const SCALE_AMP = 0.02;
+    const breatheDur = 2.6 - BLOOM_END; // 1.7s
+    const phase = { p: 0 };
+    tl.to(
+      phase,
+      {
+        p: Math.PI * 2 * 0.9, // ~0.9 slow breaths across the hold
+        duration: breatheDur,
+        ease: "none",
+        onUpdate: () => {
+          const s = Math.sin(phase.p);
+          glow.style.opacity = String(PEAK + s * OPACITY_AMP);
+          glow.style.transform = `scale(${1 + s * SCALE_AMP})`;
+        },
+      },
+      BLOOM_END
+    );
+
+    window.__timelines["01-logo"] = tl;
+  </script>
+</template>

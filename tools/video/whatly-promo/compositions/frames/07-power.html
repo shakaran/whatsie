@@ -1,0 +1,188 @@
+<template>
+  <div id="root" data-composition-id="07-power" data-duration="3" data-width="1920" data-height="1080">
+
+    <!-- Full-bleed teal ground (lives on a clip layer, never on #root) -->
+    <div class="clip" id="07-power-bg" data-start="0" data-duration="3" data-track-index="0"></div>
+
+    <!-- Card stage: both feature cards share one footprint and swap directionally -->
+    <div id="07-power-stage">
+      <div id="07-power-spellcheck">
+        <img src="assets/card-spellcheck.png" alt="Spell-check" />
+      </div>
+      <div id="07-power-shortcuts">
+        <img src="assets/card-shortcuts.png" alt="Keyboard shortcuts" />
+      </div>
+    </div>
+
+    <!-- Title block -->
+    <div id="07-power-titleblock">
+      <div id="07-power-eyebrow">POWER USER</div>
+      <div id="07-power-accentwrap"><div id="07-power-accent"></div></div>
+      <div id="07-power-titlewrap">
+        <div id="07-power-title">Spell-check in 31 languages&nbsp;&middot;&nbsp;every shortcut</div>
+      </div>
+    </div>
+
+  </div>
+
+  <style>
+@font-face{font-family:'DejaVu Sans';src:local('DejaVu Sans'),local('DejaVu Sans Book');font-weight:400;font-style:normal}@font-face{font-family:'DejaVu Sans';src:local('DejaVu Sans Bold');font-weight:700;font-style:normal}
+
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "DejaVu Sans", sans-serif;
+    }
+
+    [id="07-power-bg"] {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(155deg, #0d9488 0%, #095c53 55%, #064e46 100%);
+    }
+
+    [id="07-power-stage"] {
+      position: absolute;
+      left: 460px;
+      top: 108px;
+      width: 1000px;
+      height: 563px;
+    }
+
+    [id="07-power-stage"] > div {
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 1.5px solid rgba(45, 212, 191, 0.45);
+      box-shadow: 0 30px 70px rgba(4, 40, 36, 0.55), 0 8px 20px rgba(4, 40, 36, 0.4);
+      overflow: hidden;
+      will-change: transform, opacity;
+    }
+    [id="07-power-spellcheck"] { z-index: 1; }
+    [id="07-power-shortcuts"] { z-index: 2; }
+
+    [id="07-power-stage"] img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    [id="07-power-titleblock"] {
+      position: absolute;
+      left: 0;
+      top: 700px;
+      width: 1920px;
+      text-align: center;
+    }
+
+    [id="07-power-eyebrow"] {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #2dd4bf;
+      will-change: transform, opacity;
+    }
+
+    [id="07-power-accentwrap"] {
+      width: 1920px;
+      text-align: center;
+      margin: 16px 0 18px;
+      line-height: 0;
+    }
+    [id="07-power-accent"] {
+      display: inline-block;
+      width: 84px;
+      height: 4px;
+      border-radius: 2px;
+      background: #2dd4bf;
+      transform-origin: left center;
+      will-change: transform;
+    }
+
+    [id="07-power-titlewrap"] {
+      display: inline-block;
+      max-width: 1820px;
+      overflow: hidden;
+    }
+    [id="07-power-title"] {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 50px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #ffffff;
+      will-change: transform;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+
+      var byId = function (id) { return document.getElementById(id); };
+      var spell = byId("07-power-spellcheck");
+      var shortcuts = byId("07-power-shortcuts");
+      var eyebrow = byId("07-power-eyebrow");
+      var accent = byId("07-power-accent");
+      var title = byId("07-power-title");
+
+      var tl = gsap.timeline({ paused: true });
+
+      // Scene 1 (0.0-0.8): card-spellcheck swipes in from the right (scale-swap entrance)
+      tl.fromTo(
+        spell,
+        { opacity: 0, x: 360, scale: 0.9 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: "back.out(1.5)" },
+        0
+      );
+
+      // Scene 2 (0.8-1.6): spellcheck shrinks + drifts out as card-shortcuts swaps in from the left
+      tl.to(
+        spell,
+        { opacity: 0, x: -170, scale: 0.82, duration: 0.42, ease: "power2.in" },
+        0.8
+      );
+      tl.fromTo(
+        shortcuts,
+        { opacity: 0, x: -360, scale: 0.9 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.62, ease: "back.out(1.6)" },
+        0.98
+      );
+
+      // Title beat (1.0-1.6): eyebrow rises, accent line draws, title wipes in left->right
+      tl.fromTo(
+        eyebrow,
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
+        0.92
+      );
+      tl.fromTo(
+        accent,
+        { scaleX: 0 },
+        { scaleX: 1, duration: 0.4, ease: "power2.out" },
+        1.02
+      );
+      tl.fromTo(
+        title,
+        { xPercent: -102 },
+        { xPercent: 0, duration: 0.6, ease: "power3.out" },
+        1.06
+      );
+
+      // Scene 3 (1.6-3.0): hold with a slow, gentle push on the shortcuts card
+      tl.to(
+        shortcuts,
+        { scale: 1.03, duration: 1.4, ease: "sine.inOut" },
+        1.6
+      );
+
+      window.__timelines["07-power"] = tl;
+    })();
+  </script>
+</template>

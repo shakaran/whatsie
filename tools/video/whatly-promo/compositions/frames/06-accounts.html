@@ -1,0 +1,300 @@
+<template>
+  <div
+    id="root"
+    data-composition-id="06-accounts"
+    data-start="0"
+    data-duration="3.6"
+    data-width="1920"
+    data-height="1080"
+  >
+    <style>
+@font-face{font-family:'DejaVu Sans';src:local('DejaVu Sans'),local('DejaVu Sans Book');font-weight:400;font-style:normal}@font-face{font-family:'DejaVu Sans';src:local('DejaVu Sans Bold');font-weight:700;font-style:normal}
+
+      /* ---- frame root: sizing + type context only (never a background here) ---- */
+      #root {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        font-family: "DejaVu Sans", sans-serif;
+        color: #ffffff;
+      }
+
+      /* ---- full-bleed teal ground (lives on a clip layer, not #root) ---- */
+      .f06-accounts-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            1100px 720px at 22% 20%,
+            rgba(45, 212, 191, 0.28),
+            rgba(45, 212, 191, 0) 62%
+          ),
+          radial-gradient(
+            900px 900px at 88% 92%,
+            rgba(6, 78, 70, 0.55),
+            rgba(6, 78, 70, 0) 60%
+          ),
+          linear-gradient(135deg, #0d9488 0%, #0a6b62 46%, #064e46 100%);
+      }
+      /* soft dot texture for depth */
+      .f06-accounts-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.05) 1.5px,
+          transparent 1.6px
+        );
+        background-size: 46px 46px;
+        opacity: 0.5;
+      }
+
+      /* ---- stage (perspective owner for the 3D card moves) ---- */
+      .f06-accounts-stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1800px;
+      }
+
+      /* ---- title cluster, anchored top-left in the clear band ---- */
+      .f06-accounts-title {
+        position: absolute;
+        left: 96px;
+        top: 70px;
+        width: 1000px;
+        z-index: 20;
+      }
+      .f06-accounts-accent-line {
+        display: block;
+        width: 84px;
+        height: 6px;
+        border-radius: 3px;
+        background: #2dd4bf;
+        transform-origin: left center;
+        margin-bottom: 22px;
+        box-shadow: 0 0 22px rgba(45, 212, 191, 0.55);
+      }
+      .f06-accounts-eyebrow {
+        display: block;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #2dd4bf;
+        margin-bottom: 14px;
+      }
+      .f06-accounts-h1 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 82px;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+        text-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+      }
+      .f06-accounts-line {
+        display: block;
+        will-change: transform, filter, opacity;
+      }
+      .f06-accounts-em {
+        color: #2dd4bf;
+      }
+
+      /* ---- card stack ---- */
+      .f06-accounts-cards {
+        position: absolute;
+        inset: 0;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+      .f06-accounts-card {
+        position: absolute;
+        width: 720px;
+        height: 405px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        object-fit: cover;
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+      }
+      .f06-accounts-card-lock {
+        left: 990px;
+        top: 300px;
+        z-index: 5;
+        filter: brightness(0.86) saturate(0.95);
+        box-shadow: 0 40px 90px rgba(2, 30, 27, 0.55);
+      }
+      .f06-accounts-card-accounts {
+        left: 150px;
+        top: 315px;
+        z-index: 10;
+        box-shadow: 0 34px 84px rgba(2, 30, 27, 0.5);
+      }
+      /* accent rim under the hero card */
+      .f06-accounts-card-accounts::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 20px;
+        box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.35),
+          0 0 40px rgba(45, 212, 191, 0.25);
+        pointer-events: none;
+      }
+    </style>
+
+    <!-- teal ground -->
+    <div
+      class="clip f06-accounts-bg"
+      data-start="0"
+      data-duration="3.6"
+      data-track-index="0"
+    ></div>
+
+    <!-- content stage -->
+    <div
+      class="clip f06-accounts-stage"
+      data-start="0"
+      data-duration="3.6"
+      data-track-index="1"
+    >
+      <div class="f06-accounts-cards">
+        <img
+          class="f06-accounts-card f06-accounts-card-lock"
+          src="assets/card-lock.png"
+          alt=""
+        />
+        <img
+          class="f06-accounts-card f06-accounts-card-accounts"
+          src="assets/card-accounts.png"
+          alt=""
+        />
+      </div>
+
+      <div class="f06-accounts-title">
+        <span class="f06-accounts-accent-line"></span>
+        <span class="f06-accounts-eyebrow">Accounts &amp; privacy</span>
+        <h1 class="f06-accounts-h1">
+          <span class="f06-accounts-line">Multiple accounts,</span>
+          <span class="f06-accounts-line"
+            ><span class="f06-accounts-em">locked down</span></span
+          >
+        </h1>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      /* =========================================================
+         Scene 1 (0.0–0.9s) — cards assemble
+         - card-accounts (hero) pushes in from depth  → orbit-3d-entry
+         - card-lock overlaps behind with a +8° tilt  → split-tilt-cards
+         ========================================================= */
+
+      // hero: Z push from far + 3D flip settling flat (fromTo → visible well before 0.5s)
+      tl.fromTo(
+        ".f06-accounts-card-accounts",
+        { z: -520, rotateX: 16, rotateY: -22, scale: 0.72, opacity: 0 },
+        {
+          z: 0,
+          rotateX: 0,
+          rotateY: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.9,
+          ease: "back.out(1.3)",
+        },
+        0.0
+      );
+
+      // behind card: slides in from the right, settles to a static +8° tilt
+      tl.fromTo(
+        ".f06-accounts-card-lock",
+        { x: 230, rotateY: 16, opacity: 0 },
+        {
+          x: 0,
+          rotateY: 8,
+          opacity: 0.94,
+          duration: 0.85,
+          ease: "power3.out",
+        },
+        0.15
+      );
+
+      /* =========================================================
+         Scene 2 (0.9–1.5s) — title slams in  → kinetic-beat-slam
+         one beat anchor; distinct entrance per line
+         ========================================================= */
+      const BEAT = 0.9;
+
+      // accent line wipes out from the left
+      tl.fromTo(
+        ".f06-accounts-accent-line",
+        { scaleX: 0, opacity: 0 },
+        { scaleX: 1, opacity: 1, duration: 0.4, ease: "power3.out" },
+        BEAT - 0.08
+      );
+
+      tl.fromTo(
+        ".f06-accounts-eyebrow",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+        BEAT
+      );
+
+      // line 1 — hard slam (scale + blur)
+      tl.fromTo(
+        ".f06-accounts-line:nth-child(1)",
+        { scale: 1.32, filter: "blur(14px)", opacity: 0 },
+        {
+          scale: 1,
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 0.5,
+          ease: "power4.out",
+        },
+        BEAT + 0.1
+      );
+
+      // line 2 — side-snap (distinct entrance)
+      tl.fromTo(
+        ".f06-accounts-line:nth-child(2)",
+        { x: -170, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.45, ease: "expo.out" },
+        BEAT + 0.32
+      );
+
+      /* =========================================================
+         Scene 3 (1.5–3.0s) — hold with a slight parallax settle
+         counter-phase float + a gentle camera push (finite, seek-safe)
+         ========================================================= */
+      const HOLD = 1.55;
+
+      // gentle camera push on the whole stack
+      tl.to(
+        ".f06-accounts-cards",
+        { scale: 1.03, duration: 1.45, ease: "sine.inOut" },
+        HOLD
+      );
+
+      // counter-phase parallax: hero drifts up, back card drifts down (one breath)
+      tl.to(
+        ".f06-accounts-card-accounts",
+        { y: -12, duration: 0.72, ease: "sine.inOut", yoyo: true, repeat: 1 },
+        HOLD
+      );
+      tl.to(
+        ".f06-accounts-card-lock",
+        { y: 12, duration: 0.72, ease: "sine.inOut", yoyo: true, repeat: 1 },
+        HOLD
+      );
+
+      window.__timelines["06-accounts"] = tl;
+    </script>
+  </div>
+</template>

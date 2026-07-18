@@ -1,0 +1,221 @@
+<template>
+  <div id="root" data-composition-id="05-themes" data-duration="3.5" data-width="1920" data-height="1080">
+    <style>
+      @font-face {
+        font-family: "DejaVu Sans";
+        font-style: normal;
+        font-weight: 400;
+        src: url("assets/fonts/DejaVuSans.ttf") format("truetype");
+      }
+      @font-face {
+        font-family: "DejaVu Sans";
+        font-style: normal;
+        font-weight: 700;
+        src: url("assets/fonts/DejaVuSans-Bold.ttf") format("truetype");
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        font-family: "DejaVu Sans", sans-serif;
+      }
+
+      /* Full-bleed teal ground (lives on a clip layer, not #root).
+         Class/id selectors are written as attribute selectors because the
+         required "05-themes-" prefix starts with a digit (invalid in a
+         bare .class / #id selector). */
+      [class~="05-themes-bg"] {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(120% 90% at 18% 12%, rgba(45, 212, 191, 0.28) 0%, rgba(45, 212, 191, 0) 55%),
+          linear-gradient(135deg, #0d9488 0%, #0a6f66 48%, #064e46 100%);
+      }
+
+      /* Scene / camera stage */
+      [class~="05-themes-scene"] {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        perspective: 1600px;
+      }
+      [class~="05-themes-stage"] {
+        position: absolute;
+        inset: 0;
+        transform-style: preserve-3d;
+      }
+
+      [class~="05-themes-card"] {
+        position: absolute;
+        width: 720px;
+        height: 405px;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1.5px solid rgba(45, 212, 191, 0.35);
+        transform-style: preserve-3d;
+        will-change: transform, filter, opacity;
+        background: #063f3a;
+      }
+      [class~="05-themes-card"] img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* card-themes = back / left, faces right -> shadow falls right */
+      [id="05-themes-card-themes"] {
+        left: 150px;
+        top: 315px;
+        z-index: 1;
+        filter: url(#05-themes-streak-themes);
+        box-shadow:
+          34px 40px 90px rgba(4, 40, 36, 0.55),
+          0 0 26px rgba(45, 212, 191, 0.18);
+      }
+      /* card-chat = front / right, faces left -> shadow falls left */
+      [id="05-themes-card-chat"] {
+        left: 1010px;
+        top: 360px;
+        z-index: 2;
+        filter: url(#05-themes-streak-chat);
+        box-shadow:
+          -34px 40px 100px rgba(4, 40, 36, 0.6),
+          0 0 30px rgba(45, 212, 191, 0.2);
+      }
+
+      /* Accent line + title (top-left, above the cards) */
+      [class~="05-themes-accent"] {
+        position: absolute;
+        left: 162px;
+        top: 96px;
+        width: 72px;
+        height: 5px;
+        border-radius: 3px;
+        background: #2dd4bf;
+        transform-origin: left center;
+        will-change: transform, opacity;
+      }
+      [class~="05-themes-titlewrap"] {
+        position: absolute;
+        left: 160px;
+        top: 122px;
+        max-width: 1600px;
+        overflow: hidden;
+        padding: 6px 4px 12px 4px;
+      }
+      [class~="05-themes-title"] {
+        display: inline-block;
+        white-space: nowrap;
+        font-family: "DejaVu Sans", sans-serif;
+        font-weight: 700;
+        font-size: 62px;
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+        will-change: transform, opacity;
+      }
+      [class~="05-themes-title"] em {
+        font-style: normal;
+        color: #2dd4bf;
+      }
+    </style>
+
+    <!-- Full-bleed teal ground -->
+    <div class="05-themes-bg clip" data-start="0" data-duration="3.5" data-track-index="0"></div>
+
+    <!-- Scene with the two parallax cards + title -->
+    <div class="05-themes-scene clip" data-start="0" data-duration="3.5" data-track-index="1">
+      <!-- Directional motion-blur filters (X-axis smear, resolves to 0 on settle) -->
+      <svg width="0" height="0" aria-hidden="true" style="position: absolute">
+        <defs>
+          <filter id="05-themes-streak-themes" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur id="05-themes-blur-themes" in="SourceGraphic" stdDeviation="0 0" />
+          </filter>
+          <filter id="05-themes-streak-chat" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur id="05-themes-blur-chat" in="SourceGraphic" stdDeviation="0 0" />
+          </filter>
+        </defs>
+      </svg>
+
+      <div class="05-themes-stage">
+        <div id="05-themes-card-themes" class="05-themes-card">
+          <img src="assets/card-themes.png" alt="Fourteen chat themes — colour swatches" />
+        </div>
+        <div id="05-themes-card-chat" class="05-themes-card">
+          <img src="assets/card-chat.png" alt="Chat themes and a privacy blur" />
+        </div>
+      </div>
+
+      <div id="05-themes-accent" class="05-themes-accent"></div>
+      <div class="05-themes-titlewrap">
+        <div id="05-themes-title" class="05-themes-title">
+          Make it yours — <em>14 themes</em>, privacy blur
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Element refs (getElementById is digit-prefix safe; GSAP selector strings would not be).
+      const cardThemes = document.getElementById("05-themes-card-themes");
+      const cardChat = document.getElementById("05-themes-card-chat");
+      const accent = document.getElementById("05-themes-accent");
+      const title = document.getElementById("05-themes-title");
+
+      // --- motion-blur-streak (Path A): proxy -> feGaussianBlur stdDeviation, X-axis only ---
+      const blurThemesNode = document.getElementById("05-themes-blur-themes");
+      const blurChatNode = document.getElementById("05-themes-blur-chat");
+      const blurThemes = { v: 16 };
+      const blurChat = { v: 18 };
+      const writeThemes = () => blurThemesNode.setAttribute("stdDeviation", blurThemes.v + " 0");
+      const writeChat = () => blurChatNode.setAttribute("stdDeviation", blurChat.v + " 0");
+      writeThemes(); // seed frame 0 so a seek to t=0 shows the streaked start
+      writeChat();
+
+      // --- Scene 1 (0.0-1.0): split-tilt-cards parallax entry (different depth/speed, +/-6 tilt) ---
+      // card-themes: back/left, slides in from the left, faces right (+Y), slightly smaller (further)
+      tl.fromTo(
+        cardThemes,
+        { x: -700, rotateY: 15, scale: 0.9, opacity: 0 },
+        { x: 0, rotateY: 6, scale: 0.96, opacity: 1, duration: 0.9, ease: "power3.out" },
+        0.0,
+      );
+      tl.to(blurThemes, { v: 0, duration: 0.9, ease: "power3.out", onUpdate: writeThemes }, 0.0);
+
+      // card-chat: front/right, slides in from the right, faces left (-Y), full size (nearer, faster)
+      tl.fromTo(
+        cardChat,
+        { x: 760, rotateY: -15, scale: 0.94, opacity: 0 },
+        { x: 0, rotateY: -6, scale: 1.0, opacity: 1, duration: 0.9, ease: "power3.out" },
+        0.14,
+      );
+      tl.to(blurChat, { v: 0, duration: 0.9, ease: "power3.out", onUpdate: writeChat }, 0.14);
+
+      // --- Scene 2 (0.8-1.45): accent line grows, title wipes in left->right ---
+      tl.fromTo(
+        accent,
+        { scaleX: 0, opacity: 0 },
+        { scaleX: 1, opacity: 1, duration: 0.4, ease: "power2.out" },
+        0.8,
+      );
+      tl.fromTo(
+        title,
+        { xPercent: -102, opacity: 0.35 },
+        { xPercent: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+        0.85,
+      );
+
+      // --- Scene 3 (1.4-3.0): slow lateral pan underneath, with depth parallax ---
+      // back card drifts less, front card drifts more (parallax); counter y for life. No exit.
+      tl.to(cardThemes, { x: -35, y: -8, duration: 1.6, ease: "sine.inOut" }, 1.4);
+      tl.to(cardChat, { x: -35, y: 8, duration: 1.6, ease: "sine.inOut" }, 1.4);
+
+      window.__timelines["05-themes"] = tl;
+    </script>
+  </div>
+</template>

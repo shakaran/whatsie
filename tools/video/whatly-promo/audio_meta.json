@@ -1,0 +1,10 @@
+{
+  "bgm": {
+    "path": "assets/bgm/track.mp3",
+    "volume": 0.9,
+    "query": "upbeat",
+    "duration_s": 27
+  },
+  "voices": [],
+  "sfx": []
+}

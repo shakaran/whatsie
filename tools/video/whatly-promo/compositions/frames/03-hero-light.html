@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- head is metadata for the source file only; the runtime ignores it -->
+  </head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DejaVu Sans';src:local('DejaVu Sans'),local('DejaVu Sans Book');font-weight:400;font-style:normal}@font-face{font-family:'DejaVu Sans';src:local('DejaVu Sans Bold');font-weight:700;font-style:normal}
+
+        /* Root styled via #root (never a class — scoping would drop it).
+           Element ids/classes use the frame-unique, selector-safe prefix
+           `hl03-` (a CSS identifier may not begin with a digit, so the raw
+           frame_id "03-hero-light-" cannot be used in a selector). */
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: "DejaVu Sans", sans-serif;
+          overflow: hidden;
+        }
+
+        /* Full-bleed teal ground — a dedicated class="clip" layer, not #root. */
+        .hl03-bg {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(
+            120% 90% at 50% 8%,
+            #ecfbf8 0%,
+            #d3f3ec 46%,
+            #b8ebe0 100%
+          );
+        }
+
+        /* Hero app window (the light-theme card). */
+        .hl03-stage {
+          position: absolute;
+          left: 380px;
+          top: 100px;
+          width: 1160px;
+          height: 652px;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow:
+            0 44px 110px rgba(11, 61, 56, 0.30),
+            0 14px 34px rgba(11, 61, 56, 0.18);
+          will-change: transform;
+        }
+        .hl03-card {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform-origin: 50% 50%;
+          will-change: transform, opacity;
+        }
+        #hl03-dark {
+          z-index: 1;
+        }
+        #hl03-light {
+          z-index: 2;
+        }
+        /* The horizontal wipe — a glossy light bar sweeping across the swap. */
+        #hl03-sweep {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 190px;
+          height: 100%;
+          z-index: 3;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.75) 42%,
+            rgba(45, 212, 191, 0.85) 56%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          will-change: transform;
+        }
+
+        /* Caption group (below the hero, above the caption keep-out at y=896). */
+        .hl03-caption {
+          position: absolute;
+          left: 0;
+          top: 782px;
+          width: 1920px;
+          text-align: center;
+        }
+        #hl03-accent {
+          width: 72px;
+          height: 4px;
+          margin: 0 auto 18px;
+          border-radius: 2px;
+          background: #2dd4bf;
+          transform-origin: left center;
+          will-change: transform;
+        }
+        #hl03-title {
+          margin: 0;
+          width: 100%;
+          font-size: 48px;
+          font-weight: 700;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          color: #0b3d38;
+          will-change: transform, opacity;
+        }
+        #hl03-title .muted {
+          font-weight: 500;
+          color: #0d9488;
+        }
+      </style>
+
+      <div
+        id="root"
+        data-composition-id="03-hero-light"
+        data-width="1920"
+        data-height="1080"
+       data-start="0" data-duration="3.3">
+        <!-- Full-bleed teal ground -->
+        <div
+          class="clip hl03-bg"
+          data-start="0"
+          data-duration="3.3"
+          data-track-index="0"
+        ></div>
+
+        <!-- Hero app window: dark card cross-dissolves to light (scale-swap) -->
+        <div class="hl03-stage" id="hl03-stage">
+          <img class="hl03-card" id="hl03-dark" src="assets/card-main-dark.png" alt="" />
+          <img class="hl03-card" id="hl03-light" src="assets/card-main-light.png" alt="" />
+          <div id="hl03-sweep"></div>
+        </div>
+
+        <!-- Caption -->
+        <div class="hl03-caption">
+          <div id="hl03-accent"></div>
+          <h2 id="hl03-title">
+            Light or dark <span class="muted">&mdash; or follow your desktop</span>
+          </h2>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        // Scene 1 (0.0-0.7): a horizontal wipe reveals the light card as if the
+        // dark hero flips over — scale-swap-transition (outgoing shrink+fade,
+        // incoming pop-in with overshoot) plus a sweeping wipe bar.
+        tl.fromTo(
+          "#hl03-dark",
+          { opacity: 1, scale: 1 },
+          { opacity: 0, scale: 0.94, duration: 0.5, ease: "power2.in" },
+          0.1
+        );
+        tl.fromTo(
+          "#hl03-light",
+          { opacity: 0, scale: 0.94 },
+          { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" },
+          0.12
+        );
+        tl.fromTo(
+          "#hl03-sweep",
+          { x: -220 },
+          { x: 1220, duration: 0.62, ease: "power1.inOut" },
+          0.08
+        );
+
+        // Scene 2 (0.7-1.3): caption wipes in — accent line grows from the left,
+        // headline slides in on the same horizontal gesture.
+        tl.fromTo(
+          "#hl03-accent",
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.45, ease: "power3.out" },
+          0.72
+        );
+        tl.fromTo(
+          "#hl03-title",
+          { opacity: 0, x: -44 },
+          { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" },
+          0.8
+        );
+
+        // Scene 3 (1.3-2.8): gentle drift + hold on the hero window.
+        tl.fromTo(
+          "#hl03-stage",
+          { y: 0, scale: 1 },
+          { y: -14, scale: 1.018, duration: 1.5, ease: "power1.inOut" },
+          1.3
+        );
+
+        window.__timelines["03-hero-light"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

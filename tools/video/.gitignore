@@ -1,0 +1,6 @@
+# HyperFrames promo project — ignore installed deps and generated output
+node_modules/
+whatly-promo/renders/
+whatly-promo/snapshots/
+whatly-promo/.flatpak-builder/
+whatly-promo/build-*/
