@@ -103,6 +103,20 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="6.2.0" date="2026-07-18">
+      <description>
+        <p>Desktop-integration features and finer control:</p>
+        <ul>
+          <li>Taskbar unread badge via the Unity LauncherEntry protocol (KDE, Dash-to-Dock and others)</li>
+          <li>Adjustable interface font size, separate from the WhatsApp Web zoom</li>
+          <li>Optional automatic reload if the page process crashes</li>
+          <li>"Waiting for network" shown in the tray tooltip when disconnected</li>
+          <li>HiDPI/4K: QT_SCALE_FACTOR now scales the web content too; WHATLY_MAX_FPS lifts the frame-rate cap</li>
+          <li>Build a subset of spell-check dictionaries with -DWHATLY_DICTIONARIES</li>
+          <li>Optional Windows code signing via SignPath Foundation</li>
+        </ul>
+      </description>
+    </release>
     <release version="6.1.1" date="2026-07-18">
       <description>
         <p>Bug-fix release:</p>

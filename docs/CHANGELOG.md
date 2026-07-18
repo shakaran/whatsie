@@ -1,3 +1,42 @@
+## 6.2.0 (2026-07-18)
+
+Desktop-integration features and finer control, from a sweep of the upstream
+issue tracker.
+
+**Taskbar unread badge.** The unread total is now published as a launcher badge
+over the standard `com.canonical.Unity.LauncherEntry` D-Bus protocol, so KDE
+Plasma's task manager, GNOME's Dash-to-Dock and others paint the count on
+Whatly's taskbar button — no extra dependency, ignored where it isn't supported
+(issue #122).
+
+**Interface font size.** Settings → Appearance has a new *Interface font size*
+control that scales the app's own chrome — menus, dialogs and Settings itself —
+independently of WhatsApp Web's zoom. Applied live and on the next launch (issue
+#76).
+
+**Reload automatically after a crash.** An optional setting reloads WhatsApp
+Web's page process by itself if it ever crashes, instead of interrupting you with
+a prompt (issue #225).
+
+**Network status in the tray.** The tray tooltip now reads "Waiting for network…"
+while disconnected, so a silent drop after a suspend/resume is noticeable beyond
+the dimmed icon (issue #208).
+
+**HiDPI / 4K scaling.** Setting `QT_SCALE_FACTOR` now also scales WhatsApp Web's
+content to match, so a single variable enlarges both the window chrome and the
+page on high-density displays (issue #203). Setting `WHATLY_MAX_FPS` to a
+non-zero value lifts Chromium's frame-rate cap for those who want it (issue #221).
+
+**Build.** Source distributions can now build a subset of the spell-check
+dictionaries with `-DWHATLY_DICTIONARIES="en-US;es-ES;…"` instead of all 31
+(issue #61).
+
+**Windows.** The release workflow can optionally code-sign the Windows build via
+the SignPath Foundation free open-source programme; it stays off until configured
+(issue #325, see `packaging/windows-signing.md`).
+
+All new interface strings are translated into the 15 shipped languages.
+
 ## 6.1.1 (2026-07-18)
 
 Bug-fix release.

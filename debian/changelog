@@ -1,3 +1,14 @@
+whatly (6.2.0) unstable; urgency=medium
+
+  * Taskbar unread badge (Unity LauncherEntry), adjustable interface font size,
+    optional auto-reload after a page crash, network status in the tray tooltip.
+  * HiDPI: QT_SCALE_FACTOR scales the web content; WHATLY_MAX_FPS lifts the FPS
+    cap. Build a dictionary subset with -DWHATLY_DICTIONARIES.
+  * Optional Windows code signing via SignPath Foundation.
+  * See CHANGELOG.md for the full list.
+
+ -- Ángel Guzmán Maeso <angel@guzmanmaeso.com>  Sat, 18 Jul 2026 12:00:00 +0200
+
 whatly (6.1.1) unstable; urgency=medium
 
   * Native notifications now use a high-resolution app icon, so the logo no
