@@ -10,6 +10,22 @@
 <meta property="og:image" content="img/banner-snapcraft.png">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="favicon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Whatly",
+  "applicationCategory": "CommunicationApplication",
+  "operatingSystem": "Linux, Windows",
+  "description": "A feature-rich, MIT-licensed desktop client for WhatsApp Web: chat themes, a privacy blur, scheduled messages, multiple accounts, spell-check and an app lock.",
+  "url": "https://shakaran.github.io/whatly/",
+  "downloadUrl": "https://github.com/shakaran/whatly/releases",
+  "softwareVersion": "6.1.1",
+  "license": "https://opensource.org/licenses/MIT",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Ángel Guzmán Maeso", "url": "https://shakaran.net" }
+}
+</script>
 <style>
   :root{ --teal:#0d9488; --teal-d:#064e46; --accent:#2dd4bf; --ink:#eafcf8; --muted:#a7d7cf; }
   *{ box-sizing:border-box; margin:0; padding:0; }
@@ -18,23 +34,36 @@
         background:linear-gradient(160deg,#0b3d38,#053f39 60%,#032b27); line-height:1.55; }
   a{ color:var(--accent); text-decoration:none; }
   .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
-  header{ text-align:center; padding:64px 24px 32px; }
+
+  /* sticky nav */
+  nav.top{ position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
+           background:rgba(5,45,41,.72); border-bottom:1px solid rgba(45,212,191,.18); }
+  nav.top .wrap{ display:flex; align-items:center; gap:18px; height:56px; }
+  nav.top .brand{ display:flex; align-items:center; gap:9px; font-weight:800; letter-spacing:-.01em; }
+  nav.top .brand img{ width:26px; height:26px; }
+  nav.top .links{ display:flex; gap:6px; margin-left:auto; flex-wrap:wrap; }
+  nav.top .links a{ color:var(--muted); font-size:14px; font-weight:600; padding:7px 12px; border-radius:8px; }
+  nav.top .links a:hover{ color:var(--ink); background:rgba(45,212,191,.12); }
+  @media (max-width:640px){ nav.top .links a{ padding:6px 8px; font-size:13px; } nav.top .brand span{ display:none; } }
+
+  header{ text-align:center; padding:56px 24px 32px; }
   header img.banner{ width:100%; max-width:900px; border-radius:18px; box-shadow:0 24px 70px rgba(0,0,0,.4); }
   h1{ font-size:clamp(28px,5vw,52px); margin:28px 0 8px; letter-spacing:-.02em; }
   .tag{ color:var(--muted); font-size:clamp(16px,2.4vw,22px); max-width:720px; margin:0 auto 28px; }
   .btns{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:24px 0; }
   .btn{ display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:100px;
         font-weight:700; font-size:15px; background:rgba(255,255,255,.08); color:var(--ink);
-        border:1px solid rgba(45,212,191,.35); transition:transform .12s, background .12s; }
+        border:1px solid rgba(45,212,191,.35); transition:transform .12s, background .12s; cursor:pointer; }
   .btn:hover{ transform:translateY(-2px); background:rgba(45,212,191,.16); }
   .btn.primary{ background:var(--accent); color:#053f39; border-color:transparent; }
-  section{ padding:48px 0; }
+  section{ padding:48px 0; scroll-margin-top:64px; }
   h2{ font-size:clamp(22px,3.4vw,34px); text-align:center; margin-bottom:8px; }
   .sub{ text-align:center; color:var(--muted); margin-bottom:32px; }
   .video-embed{ position:relative; padding-top:56.25%; border-radius:16px; overflow:hidden; box-shadow:0 24px 70px rgba(0,0,0,.45); }
   .video-embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
   .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; }
-  .grid img{ width:100%; border-radius:14px; box-shadow:0 14px 40px rgba(0,0,0,.35); }
+  .grid img{ width:100%; border-radius:14px; box-shadow:0 14px 40px rgba(0,0,0,.35); cursor:zoom-in; transition:transform .12s; }
+  .grid img:hover{ transform:scale(1.015); }
   .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
   .card{ background:rgba(255,255,255,.05); border:1px solid rgba(45,212,191,.22); border-radius:16px; padding:22px 24px; }
   .card h3{ font-size:19px; margin-bottom:8px; }
@@ -43,11 +72,75 @@
   pre{ background:rgba(0,0,0,.35); border:1px solid rgba(45,212,191,.25); border-radius:12px;
        padding:16px 20px; overflow-x:auto; color:var(--ink); font-family:"DejaVu Sans Mono",monospace; }
   .install{ max-width:640px; margin:0 auto; }
+  .cmd{ position:relative; }
+  .cmd button.copy{ position:absolute; top:8px; right:8px; padding:6px 12px; font-size:13px; font-weight:700;
+       border-radius:8px; border:1px solid rgba(45,212,191,.35); background:rgba(45,212,191,.14); color:var(--ink); cursor:pointer; }
+  .cmd button.copy:hover{ background:rgba(45,212,191,.26); }
+
+  /* changelog */
+  .cl-tools{ max-width:820px; margin:0 auto 22px; }
+  .cl-tools input{ width:100%; padding:13px 16px; border-radius:12px; font-size:15px; color:var(--ink);
+       background:rgba(0,0,0,.28); border:1px solid rgba(45,212,191,.3); outline:none; }
+  .cl-tools input::placeholder{ color:var(--muted); }
+  .cl-tools input:focus{ border-color:var(--accent); }
+  .changelog{ max-width:820px; margin:0 auto; }
+  details.ver{ background:rgba(255,255,255,.04); border:1px solid rgba(45,212,191,.2); border-radius:14px;
+       margin-bottom:12px; overflow:hidden; }
+  details.ver > summary{ list-style:none; cursor:pointer; padding:16px 20px; display:flex; align-items:baseline; gap:12px;
+       font-weight:700; font-size:18px; }
+  details.ver > summary::-webkit-details-marker{ display:none; }
+  details.ver > summary::before{ content:"▸"; color:var(--accent); transition:transform .15s; font-size:14px; }
+  details.ver[open] > summary::before{ transform:rotate(90deg); }
+  details.ver > summary .date{ color:var(--muted); font-weight:500; font-size:14px; margin-left:auto; }
+  details.ver > summary .badge{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
+       background:var(--accent); color:#053f39; border-radius:100px; padding:3px 9px; }
+  .cl-body{ padding:2px 22px 20px; color:var(--muted); }
+  .cl-body h4{ color:var(--ink); font-size:15px; margin:16px 0 6px; }
+  .cl-body p{ margin:10px 0; }
+  .cl-body ul{ margin:8px 0 8px 20px; }
+  .cl-body li{ margin:5px 0; }
+  .cl-body strong{ color:var(--ink); }
+  .cl-empty,.cl-loading{ text-align:center; color:var(--muted); padding:24px; }
+  mark{ background:rgba(45,212,191,.35); color:var(--ink); border-radius:3px; padding:0 2px; }
+
+  /* faq */
+  .faq{ max-width:820px; margin:0 auto; }
+  details.q{ border-bottom:1px solid rgba(45,212,191,.16); }
+  details.q > summary{ list-style:none; cursor:pointer; padding:18px 4px; font-weight:700; font-size:17px; display:flex; gap:12px; align-items:center; }
+  details.q > summary::-webkit-details-marker{ display:none; }
+  details.q > summary::before{ content:"+"; color:var(--accent); font-weight:800; width:16px; }
+  details.q[open] > summary::before{ content:"–"; }
+  details.q .a{ padding:0 4px 18px 32px; color:var(--muted); }
+
   footer{ text-align:center; color:var(--muted); padding:48px 24px; border-top:1px solid rgba(255,255,255,.08); font-size:14px; }
   footer a{ font-weight:600; }
+
+  #top{ position:fixed; bottom:22px; right:22px; z-index:60; width:46px; height:46px; border-radius:50%;
+       border:1px solid rgba(45,212,191,.4); background:rgba(5,45,41,.85); color:var(--ink); font-size:20px;
+       cursor:pointer; opacity:0; pointer-events:none; transition:opacity .2s; backdrop-filter:blur(8px); }
+  #top.show{ opacity:1; pointer-events:auto; }
+
+  /* lightbox */
+  #lb{ position:fixed; inset:0; z-index:80; background:rgba(0,0,0,.88); display:none; align-items:center; justify-content:center; padding:32px; cursor:zoom-out; }
+  #lb.show{ display:flex; }
+  #lb img{ max-width:100%; max-height:100%; border-radius:12px; box-shadow:0 30px 90px rgba(0,0,0,.6); }
 </style>
 </head>
 <body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="favicon.png" alt=""><span>Whatly</span></a>
+    <div class="links">
+      <a href="#video">Video</a>
+      <a href="#highlights">Features</a>
+      <a href="#install">Install</a>
+      <a href="#changelog">Changelog</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/shakaran/whatly">GitHub</a>
+    </div>
+  </div>
+</nav>
 
 <header>
   <div class="wrap">
@@ -95,7 +188,10 @@
   <div class="wrap install">
     <h2>Install</h2>
     <p class="sub">On any distribution with <code>snapd</code>:</p>
-    <pre>snap install whatly</pre>
+    <div class="cmd">
+      <pre id="snap-cmd">snap install whatly</pre>
+      <button class="copy" data-target="snap-cmd">Copy</button>
+    </div>
     <p class="sub" style="margin-top:24px">Available everywhere:</p>
     <div class="btns">
       <a class="btn" href="https://snapcraft.io/whatly">Snap</a>
@@ -112,8 +208,8 @@
 <section id="features">
   <div class="wrap">
     <h2>Everything it does</h2>
-    <p class="sub">One codebase, a proper desktop app.</p>
-    <div class="grid">
+    <p class="sub">One codebase, a proper desktop app. Click any shot to enlarge.</p>
+    <div class="grid" id="gallery">
       <img src="img/card-main-dark.png" alt="Main window, dark theme" loading="lazy">
       <img src="img/card-main-light.png" alt="Main window, light theme" loading="lazy">
       <img src="img/card-scheduled.png" alt="Scheduled messages" loading="lazy">
@@ -130,6 +226,36 @@
   </div>
 </section>
 
+<section id="changelog">
+  <div class="wrap">
+    <h2>Changelog</h2>
+    <p class="sub">Every release, newest first. <a href="https://github.com/shakaran/whatly/blob/main/CHANGELOG.md">Full file on GitHub</a>.</p>
+    <div class="cl-tools">
+      <input id="cl-search" type="search" placeholder="Search the changelog… (e.g. notifications, spell check, #250)" autocomplete="off" aria-label="Search the changelog">
+    </div>
+    <div class="changelog" id="changelog-list">
+      <p class="cl-loading">Loading the changelog…</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>FAQ</h2>
+    <p class="sub">The questions people ask before installing.</p>
+    <div class="faq">
+      <details class="q"><summary>Is this an official WhatsApp app?</summary><div class="a">No. Whatly is an unofficial, independent desktop client that loads WhatsApp Web in a native window. It is not affiliated with, endorsed by, or connected to WhatsApp or Meta. "WhatsApp" is a trademark of its respective owner.</div></details>
+      <details class="q"><summary>Does Whatly see my messages or data?</summary><div class="a">No. Whatly runs the real WhatsApp Web inside Qt WebEngine (the same Chromium engine a browser uses); your session and messages stay between your device and WhatsApp exactly as they would in a browser tab. Whatly adds no servers of its own. It is fully open source (MIT), so you can read every line.</div></details>
+      <details class="q"><summary>Which platforms does it run on?</summary><div class="a">Linux (snap, Flatpak, AppImage, Debian/Ubuntu <code>.deb</code>, Fedora/COPR, and the Arch AUR) and Windows 10 or newer. The source builds with CMake + Qt 6.</div></details>
+      <details class="q"><summary>Can I use more than one WhatsApp account?</summary><div class="a">Yes. Add accounts as tabs inside one window, or run wholly separate windows with <code>whatly --profile=&lt;name&gt;</code> — each has its own session, settings and Chromium storage, and the tray badge sums the unread count across them all.</div></details>
+      <details class="q"><summary>How do scheduled messages work if the app is closed?</summary><div class="a">The schedule is saved to disk. While Whatly is open, a timer sends messages when they come due. If the app was closed when a message was due, it is sent as a catch-up the next time you open Whatly. Sending opens the recipient's chat.</div></details>
+      <details class="q"><summary>Is it free? How can I support it?</summary><div class="a">Yes, it is free and MIT-licensed. If you would like to support development you can do so via <a href="https://ko-fi.com/shakaran">Ko-fi</a>, <a href="https://wise.com/pay/me/angelg1148">Wise</a> or <a href="https://github.com/sponsors/shakaran">GitHub Sponsors</a>.</div></details>
+      <details class="q"><summary>How is this different from upstream WhatSie?</summary><div class="a">Whatly is an actively maintained fork of <a href="https://github.com/keshavbhatt/whatsie">WhatSie</a> by Keshav Bhatt, rebranded with a teal identity and a large set of fixes and features on top — a working spell checker, scheduled messages, a font picker, more packaging formats and many bug fixes. See the changelog above for the full list.</div></details>
+      <details class="q"><summary>Where do I report a bug?</summary><div class="a">Press <code>F1</code> in the app and use <strong>Report a Bug</strong> — it pre-fills a GitHub issue with your version, commit and recent log. Or open one directly on the <a href="https://github.com/shakaran/whatly/issues">issue tracker</a>.</div></details>
+    </div>
+  </div>
+</section>
+
 <footer>
   <p>Whatly is an MIT-licensed fork of
      <a href="https://github.com/keshavbhatt/whatsie">WhatSie</a> by Keshav Bhatt,
@@ -141,6 +267,156 @@
     <a href="https://github.com/sponsors/shakaran">GitHub Sponsors</a>
   </p>
 </footer>
+
+<button id="top" aria-label="Back to top" title="Back to top">↑</button>
+<div id="lb" aria-hidden="true"><img src="" alt=""></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- copy-to-clipboard on install command ---- */
+  document.querySelectorAll("button.copy").forEach(function(b){
+    b.addEventListener("click", function(){
+      var el = document.getElementById(b.dataset.target);
+      var text = (el.textContent || "").trim();
+      navigator.clipboard.writeText(text).then(function(){
+        var old = b.textContent; b.textContent = "Copied!";
+        setTimeout(function(){ b.textContent = old; }, 1400);
+      });
+    });
+  });
+
+  /* ---- back-to-top ---- */
+  var top = document.getElementById("top");
+  top.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+  window.addEventListener("scroll", function(){
+    top.classList.toggle("show", window.scrollY > 600);
+  }, {passive:true});
+
+  /* ---- lightbox ---- */
+  var lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
+  document.getElementById("gallery").addEventListener("click", function(e){
+    if (e.target.tagName === "IMG"){ lbImg.src = e.target.src; lbImg.alt = e.target.alt; lb.classList.add("show"); }
+  });
+  lb.addEventListener("click", function(){ lb.classList.remove("show"); lbImg.src = ""; });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") { lb.classList.remove("show"); lbImg.src=""; } });
+
+  /* ---- changelog: fetch, parse, render, search ---- */
+  var listEl = document.getElementById("changelog-list");
+  var REPO = "shakaran/whatly";
+
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  // inline markdown -> html (bold, italic, code, links, issue refs)
+  function inline(s){
+    s = esc(s);
+    s = s.replace(/`([^`]+)`/g, function(_,c){ return "<code>"+c+"</code>"; });
+    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
+    s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    s = s.replace(/(^|[^*])\*([^*]+)\*/g, "$1<em>$2</em>");
+    // issue / PR references like #250 -> link (skip if already inside a tag attr)
+    s = s.replace(/(^|[\s(])#(\d+)/g, function(_,pre,n){
+      return pre + '<a href="https://github.com/'+REPO+'/issues/'+n+'" rel="noopener">#'+n+'</a>';
+    });
+    return s;
+  }
+
+  // block-level markdown -> html for a version body
+  function renderBody(lines){
+    var out = [], ul = null;
+    function closeUl(){ if (ul){ out.push("<ul>"+ul.join("")+"</ul>"); ul = null; } }
+    var para = [];
+    function closePara(){ if (para.length){ out.push("<p>"+inline(para.join(" "))+"</p>"); para = []; } }
+    lines.forEach(function(raw){
+      var line = raw.replace(/\s+$/,"");
+      if (!line.trim()){ closeUl(); closePara(); return; }
+      var h = line.match(/^#{3,6}\s+(.*)$/);
+      if (h){ closeUl(); closePara(); out.push("<h4>"+inline(h[1])+"</h4>"); return; }
+      var b = line.match(/^\s*[*-]\s+(.*)$/);
+      if (b){ closePara(); (ul = ul || []).push("<li>"+inline(b[1])+"</li>"); return; }
+      closeUl(); para.push(line.trim());
+    });
+    closeUl(); closePara();
+    return out.join("\n");
+  }
+
+  function render(md){
+    // split into blocks at level-2 headers
+    var lines = md.split(/\r?\n/), blocks = [], cur = null;
+    lines.forEach(function(l){
+      if (/^##\s+/.test(l)){ if (cur) blocks.push(cur); cur = {head:l.replace(/^##\s+/,""), body:[]}; }
+      else if (cur) cur.body.push(l);
+    });
+    if (cur) blocks.push(cur);
+
+    var html = "", first = true, versions = 0;
+    blocks.forEach(function(blk){
+      var m = blk.head.match(/^(\d+\.\d+(?:\.\d+)?)\s*(?:\(([^)]+)\))?/);
+      if (!m) return; // skip non-version sections (e.g. legacy "Change log:")
+      versions++;
+      var ver = m[1], date = m[2] || "";
+      var body = renderBody(blk.body);
+      var open = first ? " open" : "";
+      var badge = first ? '<span class="badge">Latest</span>' : "";
+      html += '<details class="ver"'+open+' data-ver="'+esc(ver)+'">'
+            +   '<summary>'+badge+' <span class="v">v'+esc(ver)+'</span>'
+            +   (date ? '<span class="date">'+esc(date)+'</span>' : "")+'</summary>'
+            +   '<div class="cl-body">'+body+'</div>'
+            + '</details>';
+      first = false;
+    });
+    if (!versions){ listEl.innerHTML = '<p class="cl-empty">Could not parse the changelog. <a href="https://github.com/'+REPO+'/blob/main/CHANGELOG.md">Read it on GitHub</a>.</p>'; return; }
+    html += '<p class="cl-loading"><a href="https://github.com/'+REPO+'/blob/main/CHANGELOG.md">See the full changelog on GitHub →</a></p>';
+    listEl.innerHTML = html;
+    wireSearch();
+  }
+
+  function wireSearch(){
+    var input = document.getElementById("cl-search");
+    var items = Array.prototype.slice.call(listEl.querySelectorAll("details.ver"));
+    // remember the untouched body html so we can strip <mark> on new searches
+    items.forEach(function(d){ d._html = d.querySelector(".cl-body").innerHTML;
+                               d._text = (d.getAttribute("data-ver")+" "+d.textContent).toLowerCase(); });
+    var note = document.createElement("p");
+    note.className = "cl-empty"; note.style.display = "none"; note.textContent = "No releases match your search.";
+    listEl.appendChild(note);
+
+    function highlight(html, q){
+      // highlight matches outside of html tags
+      var re = new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");
+      return html.replace(/(>)([^<]+)(?=<)/g, function(_,gt,txt){ return gt + txt.replace(re,"<mark>$1</mark>"); });
+    }
+
+    input.addEventListener("input", function(){
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      items.forEach(function(d){
+        var bodyEl = d.querySelector(".cl-body");
+        if (!q){ d.hidden = false; bodyEl.innerHTML = d._html; d.open = (d === items[0]); shown++; return; }
+        var hit = d._text.indexOf(q) !== -1;
+        d.hidden = !hit;
+        if (hit){ shown++; d.open = true; bodyEl.innerHTML = highlight(d._html, q); }
+      });
+      note.style.display = shown ? "none" : "block";
+    });
+  }
+
+  var sources = [
+    "https://raw.githubusercontent.com/"+REPO+"/main/CHANGELOG.md",
+    "CHANGELOG.md"
+  ];
+  (function tryFetch(i){
+    if (i >= sources.length){
+      listEl.innerHTML = '<p class="cl-empty">Could not load the changelog. <a href="https://github.com/'+REPO+'/blob/main/CHANGELOG.md">Read it on GitHub</a>.</p>';
+      return;
+    }
+    fetch(sources[i]).then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(render)
+      .catch(function(){ tryFetch(i+1); });
+  })(0);
+})();
+</script>
 
 </body>
 </html>
