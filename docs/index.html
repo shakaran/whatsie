@@ -86,10 +86,9 @@
   header img.banner{ width:100%; max-width:900px; border-radius:18px; box-shadow:0 24px 70px var(--shadow); }
   h1{ font-size:clamp(28px,5vw,52px); margin:28px 0 8px; letter-spacing:-.02em; }
   .tag{ color:var(--muted); font-size:clamp(16px,2.4vw,22px); max-width:720px; margin:0 auto 20px; }
-  .badges{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:0 auto 20px; }
-  .badge-pill{ font-size:12.5px; font-weight:700; color:var(--muted); background:var(--surface);
-       border:1px solid var(--card-border); border-radius:100px; padding:5px 12px; }
-  .badge-pill b{ color:var(--accent); }
+  .badges{ display:flex; flex-wrap:wrap; gap:9px; justify-content:center; align-items:center; margin:0 auto 20px; min-height:22px; }
+  .badges a{ line-height:0; }
+  .badges img{ height:22px; display:block; border-radius:5px; }
   .btns{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:24px 0; }
   .btn{ display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:100px;
         font-weight:700; font-size:15px; background:var(--btn); color:var(--ink);
@@ -128,6 +127,11 @@
   table.compare th.whatly, table.compare td.whatly{ background:var(--btn-hover); }
   .yes{ color:var(--accent); } .no{ color:var(--muted); opacity:.6; } .partial{ color:var(--muted); }
   .compare-note{ text-align:center; color:var(--muted); font-size:13px; margin-top:14px; }
+  .theme-showcase{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; max-width:960px; margin:34px auto 0; }
+  .theme-showcase figure{ margin:0; }
+  .theme-showcase img{ width:100%; border-radius:14px; box-shadow:0 14px 40px var(--shadow); cursor:zoom-in; transition:transform .12s; }
+  .theme-showcase img:hover{ transform:scale(1.015); }
+  .theme-showcase figcaption{ text-align:center; color:var(--muted); font-size:14px; margin-top:10px; font-weight:600; }
 
   /* system requirements */
   .req{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; max-width:960px; margin:0 auto; }
@@ -213,10 +217,12 @@
     <p class="tag">A feature-rich, MIT-licensed desktop client for WhatsApp Web — chat themes,
        a privacy blur, scheduled messages, multiple accounts, spell-check, an app lock and more.</p>
     <div class="badges">
-      <span class="badge-pill">Version <b>6.1.1</b></span>
-      <span class="badge-pill">License <b>MIT</b></span>
-      <span class="badge-pill">Linux <b>&amp;</b> Windows</span>
-      <span class="badge-pill">Qt 6 · <b>free</b></span>
+      <a href="https://github.com/shakaran/whatly/releases"><img alt="Latest release" loading="lazy" src="https://img.shields.io/github/v/release/shakaran/whatly?style=flat&label=release&color=0d9488&labelColor=1f2937"></a>
+      <a href="https://github.com/shakaran/whatly/blob/main/LICENSE"><img alt="License" loading="lazy" src="https://img.shields.io/github/license/shakaran/whatly?style=flat&color=0d9488&labelColor=1f2937"></a>
+      <a href="https://github.com/shakaran/whatly/stargazers"><img alt="Stars" loading="lazy" src="https://img.shields.io/github/stars/shakaran/whatly?style=flat&color=0d9488&labelColor=1f2937"></a>
+      <a href="https://github.com/shakaran/whatly/commits/main"><img alt="Last commit" loading="lazy" src="https://img.shields.io/github/last-commit/shakaran/whatly?style=flat&color=0d9488&labelColor=1f2937"></a>
+      <a href="https://github.com/shakaran/whatly/issues"><img alt="Open issues" loading="lazy" src="https://img.shields.io/github/issues/shakaran/whatly?style=flat&color=0d9488&labelColor=1f2937"></a>
+      <a href="https://snapcraft.io/whatly"><img alt="Get it from the Snap Store" loading="lazy" src="https://snapcraft.io/whatly/badge.svg"></a>
     </div>
     <div class="btns">
       <a class="btn primary" href="https://snapcraft.io/whatly">Get it from the Snap Store</a>
@@ -287,6 +293,16 @@
       </table>
     </div>
     <p class="compare-note">✓ full&nbsp;&nbsp;·&nbsp;&nbsp;~ partial or needs a workaround&nbsp;&nbsp;·&nbsp;&nbsp;✗ not available&nbsp;&nbsp;·&nbsp;&nbsp;— not applicable</p>
+    <div class="theme-showcase" id="theme-showcase">
+      <figure>
+        <img src="img/card-main-dark.png" alt="Whatly's main window in a dark theme, with the privacy blur on" loading="lazy">
+        <figcaption>🌙 Dark theme, privacy blur on</figcaption>
+      </figure>
+      <figure>
+        <img src="img/card-main-light.png" alt="Whatly's main window in a light theme" loading="lazy">
+        <figcaption>☀️ Light theme</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -468,9 +484,14 @@
 
   /* ---- lightbox ---- */
   var lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
-  document.getElementById("gallery").addEventListener("click", function(e){
-    if (e.target.tagName === "IMG"){ lbImg.src = e.target.src; lbImg.alt = e.target.alt; lb.classList.add("show"); }
-  });
+  function zoomFrom(container){
+    if (!container) return;
+    container.addEventListener("click", function(e){
+      if (e.target.tagName === "IMG"){ lbImg.src = e.target.src; lbImg.alt = e.target.alt; lb.classList.add("show"); }
+    });
+  }
+  zoomFrom(document.getElementById("gallery"));
+  zoomFrom(document.getElementById("theme-showcase"));
   lb.addEventListener("click", function(){ lb.classList.remove("show"); lbImg.src = ""; });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape") { lb.classList.remove("show"); lbImg.src=""; } });
 
