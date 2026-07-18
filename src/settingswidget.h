@@ -105,6 +105,8 @@ private slots:
   void on_privacyBlurComboBox_currentIndexChanged(int index);
   void on_fontFamilyComboBox_currentIndexChanged(int index);
   void on_hideMutedStatusCheckBox_toggled(bool checked);
+  void on_autoRestartCheckBox_toggled(bool checked);
+  void on_interfaceFontSizeSpinBox_valueChanged(int arg1);
   void on_spellCheckCheckBox_toggled(bool checked);
   void on_themeToggleButtonCheckBox_toggled(bool checked);
   void on_privacyBlurButtonCheckBox_toggled(bool checked);

@@ -346,6 +346,10 @@ Do you wish to override the security check and continue ?   </source>
 <context>
     <name>MainWindow</name>
     <message>
+        <source>Waiting for network…</source>
+        <translation>नेटवर्क की प्रतीक्षा…</translation>
+    </message>
+    <message>
         <source>No WhatsApp window is open</source>
         <translation>कोई WhatsApp विंडो खुली नहीं है</translation>
     </message>
@@ -892,6 +896,26 @@ Please setup the password in the Settings first.</source>
 </context>
 <context>
     <name>SettingsWidget</name>
+    <message>
+        <source>Interface font size</source>
+        <translation>इंटरफ़ेस फ़ॉन्ट आकार</translation>
+    </message>
+    <message>
+        <source> pt</source>
+        <translation> pt</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point size of the app's own interface — menus, settings and dialogs. This does not affect WhatsApp Web's text; use the zoom for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ऐप के अपने इंटरफ़ेस — मेन्यू, सेटिंग्स और डायलॉग — का पॉइंट आकार। यह WhatsApp Web के टेक्स्ट को प्रभावित नहीं करता; उसके लिए ज़ूम का उपयोग करें।&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reload automatically after a crash</source>
+        <translation>क्रैश के बाद स्वचालित रूप से पुनः लोड करें</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If WhatsApp Web's page process crashes, reload it automatically instead of asking first.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;यदि WhatsApp Web की पेज प्रक्रिया क्रैश हो जाए, तो पहले पूछने के बजाय उसे स्वचालित रूप से पुनः लोड करें।&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>

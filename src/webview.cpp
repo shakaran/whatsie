@@ -11,6 +11,8 @@
 #include <mainwindow.h>
 #include <QWebEngineContextMenuRequest>
 
+#include "settingsmanager.h"
+
 using QWebEngineContextMenuData = QWebEngineContextMenuRequest;
 
 WebView::WebView(QWidget *parent)
@@ -44,6 +46,24 @@ WebView::WebView(QWidget *parent)
               status = tr("Render process killed");
               break;
             }
+            // A normal exit is not a crash (it happens on a deliberate reload),
+            // so never act on it. For the crash/kill/abnormal cases, honour the
+            // "reload automatically after a crash" setting: reload without
+            // interrupting the user, otherwise ask as before (issue #225).
+            if (termStatus == QWebEnginePage::NormalTerminationStatus)
+              return;
+
+            const bool autoRestart = SettingsManager::instance()
+                                         .settings()
+                                         .value("autoRestartOnCrash", false)
+                                         .toBool();
+            if (autoRestart) {
+              qWarning() << "Render process ended:" << status
+                         << "code" << statusCode << "- reloading automatically.";
+              QTimer::singleShot(0, this, [this] { this->reload(); });
+              return;
+            }
+
             QMessageBox::StandardButton btn =
                 QMessageBox::question(window(), status,
                                       tr("Render process exited with code: %1\n"

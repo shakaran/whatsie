@@ -346,6 +346,10 @@ Apakah Anda ingin melewati pemeriksaan keamanan dan melanjutkan?   </translation
 <context>
     <name>MainWindow</name>
     <message>
+        <source>Waiting for network…</source>
+        <translation>Menunggu jaringan…</translation>
+    </message>
+    <message>
         <source>No WhatsApp window is open</source>
         <translation>Tidak ada jendela WhatsApp yang terbuka</translation>
     </message>
@@ -892,6 +896,26 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
 </context>
 <context>
     <name>SettingsWidget</name>
+    <message>
+        <source>Interface font size</source>
+        <translation>Ukuran font antarmuka</translation>
+    </message>
+    <message>
+        <source> pt</source>
+        <translation> pt</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point size of the app's own interface — menus, settings and dialogs. This does not affect WhatsApp Web's text; use the zoom for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ukuran titik antarmuka aplikasi sendiri — menu, pengaturan, dan dialog. Ini tidak memengaruhi teks WhatsApp Web; gunakan zoom untuk itu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reload automatically after a crash</source>
+        <translation>Muat ulang otomatis setelah crash</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If WhatsApp Web's page process crashes, reload it automatically instead of asking first.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jika proses halaman WhatsApp Web crash, muat ulang secara otomatis alih-alih bertanya dahulu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>

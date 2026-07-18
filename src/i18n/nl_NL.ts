@@ -346,6 +346,10 @@ Wilt u de beveiligingscontrole negeren en doorgaan?   </translation>
 <context>
     <name>MainWindow</name>
     <message>
+        <source>Waiting for network…</source>
+        <translation>Wachten op netwerk…</translation>
+    </message>
+    <message>
         <source>No WhatsApp window is open</source>
         <translation>Er is geen WhatsApp-venster geopend</translation>
     </message>
@@ -892,6 +896,26 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
 </context>
 <context>
     <name>SettingsWidget</name>
+    <message>
+        <source>Interface font size</source>
+        <translation>Lettergrootte van de interface</translation>
+    </message>
+    <message>
+        <source> pt</source>
+        <translation> pt</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point size of the app's own interface — menus, settings and dialogs. This does not affect WhatsApp Web's text; use the zoom for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Puntgrootte van de eigen interface van de app — menu's, instellingen en dialoogvensters. Dit heeft geen invloed op de tekst van WhatsApp Web; gebruik daarvoor de zoom.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reload automatically after a crash</source>
+        <translation>Automatisch herladen na een crash</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If WhatsApp Web's page process crashes, reload it automatically instead of asking first.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Als het paginaproces van WhatsApp Web crasht, dit automatisch herladen in plaats van eerst te vragen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>

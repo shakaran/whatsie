@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QFont>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -408,6 +409,19 @@ int main(int argc, char *argv[]) {
   installTranslations();
   clearSilentlyDeniedPermissions();
   normalizeWindowTheme();
+
+  // #76: apply the user's chosen interface font size (menus, dialogs, settings).
+  // 0/unset leaves Qt's default alone. WhatsApp Web's own text is unaffected;
+  // that is the page zoom's job.
+  if (const int ptSize = SettingsManager::instance()
+                             .settings()
+                             .value("interfaceFontSize", 0)
+                             .toInt();
+      ptSize > 0) {
+    QFont f = qApp->font();
+    f.setPointSize(ptSize);
+    qApp->setFont(f);
+  }
 
   // Qt reads QTWEBENGINE_DICTIONARIES_PATH once, when the profile is
   // constructed, so this has to happen before anything touches the profile.

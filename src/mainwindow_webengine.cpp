@@ -314,6 +314,13 @@ void MainWindow::checkConnectionHealth() {
         if (connected != m_trayConnected) {
           m_trayConnected = connected;
           updateTrayUnread();   // repaint the tray icon in the new state
+          // #208: spell the state out in the tray tooltip too, so a silent
+          // disconnect after a suspend/resume is noticeable, not just a dimmer
+          // icon.
+          if (m_systemTrayIcon)
+            m_systemTrayIcon->setToolTip(
+                connected ? QApplication::applicationDisplayName()
+                          : tr("Waiting for network…"));
         }
 
         if (state == QLatin1String("ok")) {

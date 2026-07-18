@@ -346,6 +346,10 @@ Do you wish to override the security check and continue ?   </source>
 <context>
     <name>MainWindow</name>
     <message>
+        <source>Waiting for network…</source>
+        <translation>正在等待网络…</translation>
+    </message>
+    <message>
         <source>No WhatsApp window is open</source>
         <translation>没有打开的 WhatsApp 窗口</translation>
     </message>
@@ -892,6 +896,26 @@ Please setup the password in the Settings first.</source>
 </context>
 <context>
     <name>SettingsWidget</name>
+    <message>
+        <source>Interface font size</source>
+        <translation>界面字体大小</translation>
+    </message>
+    <message>
+        <source> pt</source>
+        <translation> pt</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point size of the app's own interface — menus, settings and dialogs. This does not affect WhatsApp Web's text; use the zoom for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;应用自身界面（菜单、设置和对话框）的磅值大小。这不会影响 WhatsApp Web 的文本；那请使用缩放。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reload automatically after a crash</source>
+        <translation>崩溃后自动重新加载</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If WhatsApp Web's page process crashes, reload it automatically instead of asking first.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果 WhatsApp Web 的页面进程崩溃，则自动重新加载，而不是先询问。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>

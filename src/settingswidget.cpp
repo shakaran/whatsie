@@ -149,6 +149,15 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
   ui->hideTrayIconCheckBox->setChecked(
       SettingsManager::instance().settings().value("hideTrayIcon", false).toBool());
   ui->hideMutedStatusCheckBox->setChecked(MutedStatus::isEnabled());
+  ui->autoRestartCheckBox->setChecked(
+      SettingsManager::instance().settings().value("autoRestartOnCrash", false).toBool());
+  ui->interfaceFontSizeSpinBox->blockSignals(true);
+  ui->interfaceFontSizeSpinBox->setValue(
+      SettingsManager::instance()
+          .settings()
+          .value("interfaceFontSize", qApp->font().pointSize())
+          .toInt());
+  ui->interfaceFontSizeSpinBox->blockSignals(false);
   ui->lockOnMinimizeCheckBox->setChecked(
       SettingsManager::instance().settings().value("lockOnHideToTray", false).toBool());
   {
@@ -758,6 +767,18 @@ void SettingsWidget::on_hideMutedStatusCheckBox_toggled(bool checked) {
 void SettingsWidget::on_monochromeTrayIconCheckBox_toggled(bool checked) {
   SettingsManager::instance().settings().setValue("monochromeTrayIcon", checked);
   emit trayIconChanged();
+}
+
+void SettingsWidget::on_autoRestartCheckBox_toggled(bool checked) {
+  SettingsManager::instance().settings().setValue("autoRestartOnCrash", checked);
+}
+
+void SettingsWidget::on_interfaceFontSizeSpinBox_valueChanged(int arg1) {
+  SettingsManager::instance().settings().setValue("interfaceFontSize", arg1);
+  // Apply live so the change is visible without a restart.
+  QFont f = qApp->font();
+  f.setPointSize(arg1);
+  qApp->setFont(f);
 }
 
 void SettingsWidget::on_lockOnMinimizeCheckBox_toggled(bool checked) {

@@ -346,6 +346,10 @@ Do you wish to override the security check and continue ?   </source>
 <context>
     <name>MainWindow</name>
     <message>
+        <source>Waiting for network…</source>
+        <translation>네트워크 대기 중…</translation>
+    </message>
+    <message>
         <source>No WhatsApp window is open</source>
         <translation>열려 있는 WhatsApp 창이 없습니다</translation>
     </message>
@@ -892,6 +896,26 @@ Please setup the password in the Settings first.</source>
 </context>
 <context>
     <name>SettingsWidget</name>
+    <message>
+        <source>Interface font size</source>
+        <translation>인터페이스 글꼴 크기</translation>
+    </message>
+    <message>
+        <source> pt</source>
+        <translation> pt</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point size of the app's own interface — menus, settings and dialogs. This does not affect WhatsApp Web's text; use the zoom for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;앱 자체 인터페이스(메뉴, 설정, 대화 상자)의 포인트 크기입니다. WhatsApp Web의 텍스트에는 영향을 주지 않습니다. 그것은 확대/축소를 사용하세요.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reload automatically after a crash</source>
+        <translation>충돌 후 자동으로 다시 로드</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If WhatsApp Web's page process crashes, reload it automatically instead of asking first.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;WhatsApp Web의 페이지 프로세스가 충돌하면 먼저 묻지 않고 자동으로 다시 로드합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>

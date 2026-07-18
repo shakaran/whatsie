@@ -352,6 +352,10 @@ Desideri ignorare il controllo di sicurezza e continuare?</translation>
 <context>
     <name>MainWindow</name>
     <message>
+        <source>Waiting for network…</source>
+        <translation>In attesa della rete…</translation>
+    </message>
+    <message>
         <source>Rate Application</source>
         <translation>Lascia una Recensione</translation>
     </message>
@@ -898,6 +902,26 @@ Imposta la password nelle Impostazioni.</translation>
 </context>
 <context>
     <name>SettingsWidget</name>
+    <message>
+        <source>Interface font size</source>
+        <translation>Dimensione del carattere dell'interfaccia</translation>
+    </message>
+    <message>
+        <source> pt</source>
+        <translation> pt</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point size of the app's own interface — menus, settings and dialogs. This does not affect WhatsApp Web's text; use the zoom for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dimensione in punti dell'interfaccia dell'app — menu, impostazioni e finestre di dialogo. Non influisce sul testo di WhatsApp Web; per quello usa lo zoom.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reload automatically after a crash</source>
+        <translation>Ricarica automaticamente dopo un arresto anomalo</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If WhatsApp Web's page process crashes, reload it automatically instead of asking first.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se il processo della pagina di WhatsApp Web va in crash, ricaricalo automaticamente invece di chiedere prima.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation>Form</translation>

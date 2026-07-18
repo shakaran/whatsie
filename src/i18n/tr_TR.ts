@@ -346,6 +346,10 @@ Güvenlik denetimini atlayıp devam etmek istiyor musunuz?   </translation>
 <context>
     <name>MainWindow</name>
     <message>
+        <source>Waiting for network…</source>
+        <translation>Ağ bekleniyor…</translation>
+    </message>
+    <message>
         <source>No WhatsApp window is open</source>
         <translation>Açık bir WhatsApp penceresi yok</translation>
     </message>
@@ -892,6 +896,26 @@ Lütfen önce ayarlardan parolayı belirleyin.</translation>
 </context>
 <context>
     <name>SettingsWidget</name>
+    <message>
+        <source>Interface font size</source>
+        <translation>Arayüz yazı tipi boyutu</translation>
+    </message>
+    <message>
+        <source> pt</source>
+        <translation> pt</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point size of the app's own interface — menus, settings and dialogs. This does not affect WhatsApp Web's text; use the zoom for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uygulamanın kendi arayüzünün — menüler, ayarlar ve iletişim kutuları — punto boyutu. Bu, WhatsApp Web'in metnini etkilemez; bunun için yakınlaştırmayı kullanın.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reload automatically after a crash</source>
+        <translation>Çökme sonrası otomatik olarak yeniden yükle</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If WhatsApp Web's page process crashes, reload it automatically instead of asking first.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;WhatsApp Web'in sayfa süreci çökerse, önce sormak yerine otomatik olarak yeniden yükle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>

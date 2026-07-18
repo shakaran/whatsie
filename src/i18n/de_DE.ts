@@ -346,6 +346,10 @@ Möchten Sie die Sicherheitsprüfung übergehen und fortfahren?   </translation>
 <context>
     <name>MainWindow</name>
     <message>
+        <source>Waiting for network…</source>
+        <translation>Warten auf Netzwerk…</translation>
+    </message>
+    <message>
         <source>No WhatsApp window is open</source>
         <translation>Kein WhatsApp-Fenster ist geöffnet</translation>
     </message>
@@ -892,6 +896,26 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
 </context>
 <context>
     <name>SettingsWidget</name>
+    <message>
+        <source>Interface font size</source>
+        <translation>Schriftgröße der Oberfläche</translation>
+    </message>
+    <message>
+        <source> pt</source>
+        <translation> pt</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point size of the app's own interface — menus, settings and dialogs. This does not affect WhatsApp Web's text; use the zoom for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Punktgröße der App-eigenen Oberfläche – Menüs, Einstellungen und Dialoge. Dies wirkt sich nicht auf den Text von WhatsApp Web aus; verwende dafür den Zoom.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reload automatically after a crash</source>
+        <translation>Nach einem Absturz automatisch neu laden</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If WhatsApp Web's page process crashes, reload it automatically instead of asking first.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wenn der Seitenprozess von WhatsApp Web abstürzt, ihn automatisch neu laden, statt vorher zu fragen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>

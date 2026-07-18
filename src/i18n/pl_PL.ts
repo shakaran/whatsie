@@ -346,6 +346,10 @@ Czy chcesz pominąć kontrolę bezpieczeństwa i kontynuować?   </translation>
 <context>
     <name>MainWindow</name>
     <message>
+        <source>Waiting for network…</source>
+        <translation>Oczekiwanie na sieć…</translation>
+    </message>
+    <message>
         <source>No WhatsApp window is open</source>
         <translation>Żadne okno WhatsApp nie jest otwarte</translation>
     </message>
@@ -892,6 +896,26 @@ Najpierw ustaw hasło w ustawieniach.</translation>
 </context>
 <context>
     <name>SettingsWidget</name>
+    <message>
+        <source>Interface font size</source>
+        <translation>Rozmiar czcionki interfejsu</translation>
+    </message>
+    <message>
+        <source> pt</source>
+        <translation> pt</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point size of the app's own interface — menus, settings and dialogs. This does not affect WhatsApp Web's text; use the zoom for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rozmiar w punktach interfejsu aplikacji — menu, ustawień i okien dialogowych. Nie wpływa to na tekst WhatsApp Web; do tego użyj powiększenia.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reload automatically after a crash</source>
+        <translation>Automatycznie przeładuj po awarii</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If WhatsApp Web's page process crashes, reload it automatically instead of asking first.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeśli proces strony WhatsApp Web ulegnie awarii, przeładuj go automatycznie zamiast najpierw pytać.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>
