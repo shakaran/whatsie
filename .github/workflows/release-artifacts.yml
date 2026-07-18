@@ -19,6 +19,12 @@ permissions:
 jobs:
   windows:
     runs-on: windows-2022
+    # Optional Windows code signing via the SignPath Foundation free OSS program
+    # (issue #325). Everything below is a no-op until the SIGNPATH_API_TOKEN
+    # secret and SIGNPATH_ORGANIZATION_ID variable are set; see
+    # packaging/windows-signing.md for the one-time application and setup.
+    env:
+      SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
     steps:
       - uses: actions/checkout@v5
 
@@ -38,6 +44,30 @@ jobs:
 
       - name: Deploy Qt runtime
         run: '& "$env:QT_ROOT_DIR\bin\windeployqt.exe" build\Release\whatly.exe'
+
+      # ── Optional: code-sign the built .exe via SignPath (issue #325) ──────────
+      # Skipped entirely unless SIGNPATH_API_TOKEN is configured. When it is, the
+      # unsigned .exe is uploaded, signed by SignPath's cloud, and the signed
+      # copy is written back over build\Release\whatly.exe before it is packaged.
+      - name: Upload unsigned .exe for signing
+        if: env.SIGNPATH_API_TOKEN != ''
+        id: upload-unsigned
+        uses: actions/upload-artifact@v4
+        with:
+          name: whatly-unsigned-exe
+          path: build/Release/whatly.exe
+
+      - name: Code-sign with SignPath
+        if: env.SIGNPATH_API_TOKEN != ''
+        uses: signpath/github-action-submit-signing-request@v1
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: whatly
+          signing-policy-slug: release-signing
+          github-artifact-id: ${{ steps.upload-unsigned.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: build/Release
 
       - name: Package
         shell: pwsh
