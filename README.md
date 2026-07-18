@@ -284,6 +284,27 @@ completely; leave out `--disable-gpu`):
 QTWEBENGINE_CHROMIUM_FLAGS="--disable-translate --no-sandbox" whatly
 ```
 
+### HiDPI &amp; display
+
+On a HiDPI / 4K display where everything looks too small, set `QT_SCALE_FACTOR`.
+Whatly mirrors it into WhatsApp Web's own scaling, so a single value enlarges
+**both** the window chrome and the page:
+
+```bash
+QT_SCALE_FACTOR=1.5 whatly
+```
+
+To let WhatsApp Web run at your display's full refresh rate instead of Chromium's
+default cap, set `WHATLY_MAX_FPS` to any non-zero value:
+
+```bash
+WHATLY_MAX_FPS=1 whatly
+```
+
+The **interface** font size (menus, dialogs, Settings — not the chat text) can
+also be set from **Settings → Appearance → Interface font size**; for the chat
+text itself, use the zoom.
+
 ## Command line options
 
 <img src="docs/img/banner-cli.png" width="100%" alt="Command line"/>
