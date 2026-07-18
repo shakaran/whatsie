@@ -28,20 +28,25 @@
     </p>
     <p>Core features:</p>
     <ul>
-      <li>Light and Dark themes with automatic OS-level switching</li>
-      <li>Custom in-app notification popups and native system notifications</li>
-      <li>Built-in download manager</li>
-      <li>Spell checker with support for 31 languages</li>
-      <li>App lock with PIN protection and configurable auto-lock timeout</li>
-      <li>Global keyboard shortcuts</li>
-      <li>Per-session audio mute and notification suppression</li>
+      <li>Multiple WhatsApp accounts: as separate windows or as tabs in one window, each with its own session and settings</li>
+      <li>Scheduled messages, sent later and delivered on the next launch if the app was closed when they came due</li>
+      <li>Fourteen chat themes, a chat wallpaper and custom CSS</li>
+      <li>Privacy blur that hides the chat list and open conversation until you hover</li>
+      <li>Choose the font family WhatsApp Web renders in, plus an adjustable interface font size</li>
+      <li>Spell checker with 31 languages, several checked at once</li>
+      <li>App lock with PIN protection and a configurable auto-lock timeout</li>
+      <li>Light and Dark themes, optionally following the system preference live</li>
     </ul>
-    <p>Additional settings:</p>
+    <p>Desktop integration:</p>
     <ul>
-      <li>Do-not-disturb mode</li>
-      <li>Configurable notification popup timeout</li>
-      <li>Minimize to system tray on start or window close</li>
-      <li>Custom user-agent string and zoom control</li>
+      <li>Native system notifications and custom in-app notification popups</li>
+      <li>System tray with an unread badge, an optional monochrome icon and a connection-status indicator</li>
+      <li>Unread count shown on the taskbar (Unity LauncherEntry: KDE, Dash-to-Dock and others)</li>
+      <li>Connection watchdog that reloads a stalled session, and optional automatic reload after a page crash</li>
+      <li>Global keyboard shortcuts and a built-in download manager</li>
+      <li>Per-session audio mute and notification suppression</li>
+      <li>HiDPI/4K scaling, configurable zoom and a custom user-agent string</li>
+      <li>Runs on Linux and Windows; interface translated into 15 languages</li>
     </ul>
   </description>
 
