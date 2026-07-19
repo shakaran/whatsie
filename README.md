@@ -6,14 +6,15 @@
 
 **A feature-rich desktop client for WhatsApp Web.**
 Native window, system tray, notifications, chat themes, privacy blur,
-multiple accounts, spell-check and more — on **Linux** and **Windows**.
+multiple accounts, spell-check and more — on **Linux** and **Windows**, with an
+experimental **macOS** build.
 
 [![Release](https://img.shields.io/github/v/release/shakaran/whatly?sort=semver&color=0d9488&label=release)](https://github.com/shakaran/whatly/releases/latest)
 [![Windows Build](https://github.com/shakaran/whatly/actions/workflows/windows-build.yml/badge.svg)](https://github.com/shakaran/whatly/actions/workflows/windows-build.yml)
 [![Downloads](https://img.shields.io/github/downloads/shakaran/whatly/total?color=0d9488&label=downloads)](https://github.com/shakaran/whatly/releases)
 [![License: MIT](https://img.shields.io/github/license/shakaran/whatly?color=0d9488)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/shakaran/whatly?color=0d9488)](https://github.com/shakaran/whatly/stargazers)
-![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows-0d9488)
+![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-0d9488)
 ![Qt](https://img.shields.io/badge/Qt-6.10%2B-41cd52?logo=qt&logoColor=white)
 ![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)
 [![whatly](https://snapcraft.io/whatly/badge.svg)](https://snapcraft.io/whatly)
@@ -56,6 +57,7 @@ multiple accounts, spell-check and more — on **Linux** and **Windows**.
 | 🌗 **Follows your desktop** | Optionally track the system light/dark preference, live. |
 | 🌍 **15 languages** | The interface is translated, with an in-app language picker. |
 | 🪟 **Windows 10+** | One codebase, native toasts and a proper GUI executable. |
+| 🍎 **macOS** *(experimental)* | Builds as an unsigned `.app`/`.dmg`; not yet runtime-validated. |
 
 ## What Whatly is (and is not)
 
@@ -118,6 +120,9 @@ On top of upstream WhatSie, this fork adds:
   behind `Q_OS_*` guards, so Linux behaviour is unchanged. Native toast
   notifications, Win32 Caps Lock detection and a GUI-subsystem executable with
   icon/version resources. Every push is compile-checked by a Windows CI workflow.
+- **Experimental macOS build** — a CI job builds a `.app` bundle and packages a
+  `.dmg`, attached to each release. It is unsigned (first launch needs a
+  right-click → *Open*) and not yet validated at runtime; feedback welcome.
 - **Connection watchdog** — WhatsApp Web's WebSocket can die or freeze, leaving
   the app stuck on *"Connecting…"* with messages that never send. A health probe
   now detects it and reloads the page automatically, capped at 3 attempts per
@@ -271,6 +276,16 @@ or the artifact from the **Windows Build** CI run. See
 <div align="center">
 <img src="docs/img/card-windows.png" width="720" alt="Whatly runs on Windows too"/>
 </div>
+
+### macOS (experimental)
+
+A `Whatly-<version>-macos.dmg` is attached to each
+[release](https://github.com/shakaran/whatly/releases), built by the **macOS
+Build** CI job. It is **unsigned**, so the first launch needs a right-click →
+*Open* (or removing the quarantine flag). It has **not yet been validated at
+runtime** — notifications, tray and calls in particular — so treat it as a
+community-testing preview and please report back. Build it yourself with CMake +
+Qt 6 exactly as on Linux.
 
 ### GPU acceleration
 

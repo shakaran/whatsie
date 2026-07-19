@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Whatly — a feature-rich desktop client for WhatsApp Web</title>
-<meta name="description" content="Whatly puts WhatsApp Web in a native desktop window: chat themes, a privacy blur, scheduled messages, multiple accounts, spell-check, an app lock and more. MIT-licensed, for Linux and Windows.">
+<meta name="description" content="Whatly puts WhatsApp Web in a native desktop window: chat themes, a privacy blur, scheduled messages, multiple accounts, spell-check, an app lock and more. MIT-licensed, for Linux, Windows and macOS.">
 <meta property="og:title" content="Whatly — a feature-rich desktop client for WhatsApp Web">
 <meta property="og:description" content="WhatsApp Web as a real desktop app: themes, privacy, scheduled messages, everywhere.">
 <meta property="og:image" content="img/banner-snapcraft.png">
@@ -17,7 +17,7 @@
   "@type": "SoftwareApplication",
   "name": "Whatly",
   "applicationCategory": "CommunicationApplication",
-  "operatingSystem": "Linux, Windows",
+  "operatingSystem": "Linux, Windows, macOS",
   "description": "A feature-rich, MIT-licensed desktop client for WhatsApp Web: chat themes, a privacy blur, scheduled messages, multiple accounts, spell-check and an app lock.",
   "url": "https://shakaran.github.io/whatly/",
   "downloadUrl": "https://github.com/shakaran/whatly/releases",
@@ -255,7 +255,7 @@
       <div class="card"><h3>🔒 App lock</h3><p>Guard the window behind a passcode, with optional auto-locking after a period of inactivity.</p></div>
       <div class="card"><h3>🔔 Real desktop citizen</h3><p>Native notifications, a smarter system tray (badge, monochrome, connection status), and a connection watchdog that reconnects itself.</p></div>
       <div class="card"><h3>🌗 Follows your desktop</h3><p>Light or dark — or track your system's light/dark preference, live.</p></div>
-      <div class="card"><h3>🪟 Linux &amp; Windows</h3><p>One codebase, a native app on Linux and Windows 10+.</p></div>
+      <div class="card"><h3>🪟 Linux, Windows &amp; macOS</h3><p>One codebase — a native app on Linux and Windows 10+, plus an experimental macOS build.</p></div>
     </div>
   </div>
 </section>
@@ -287,6 +287,7 @@
           <tr><td>Follows system light/dark, live</td><td class="yes">✓</td><td class="partial">~</td><td class="whatly yes">✓</td></tr>
           <tr><td>Linux packages (snap · Flatpak · AppImage · deb · rpm · AUR)</td><td class="no">—</td><td class="partial">~</td><td class="whatly yes">✓</td></tr>
           <tr><td>Windows build</td><td class="no">—</td><td class="no">✗</td><td class="whatly yes">✓</td></tr>
+          <tr><td>macOS build (experimental)</td><td class="no">—</td><td class="no">✗</td><td class="whatly partial">~</td></tr>
           <tr><td>Open source (MIT)</td><td class="no">—</td><td class="yes">✓</td><td class="whatly yes">✓</td></tr>
           <tr><td>Actively maintained</td><td class="no">—</td><td class="partial">~</td><td class="whatly yes">✓</td></tr>
         </tbody>
@@ -323,6 +324,7 @@
       <a class="btn" href="https://github.com/shakaran/whatly/tree/main/packaging/rpm">Fedora / COPR</a>
       <a class="btn" href="https://aur.archlinux.org/packages/whatsie-git">Arch (AUR)</a>
       <a class="btn" href="https://github.com/shakaran/whatly/releases">Windows</a>
+      <a class="btn" href="https://github.com/shakaran/whatly/releases">macOS (experimental)</a>
     </div>
   </div>
 </section>
@@ -419,7 +421,7 @@
     <div class="faq">
       <details class="q"><summary>Is this an official WhatsApp app?</summary><div class="a">No. Whatly is an unofficial, independent desktop client that loads WhatsApp Web in a native window. It is not affiliated with, endorsed by, or connected to WhatsApp or Meta. "WhatsApp" is a trademark of its respective owner.</div></details>
       <details class="q"><summary>Does Whatly see my messages or data?</summary><div class="a">No. Whatly runs the real WhatsApp Web inside Qt WebEngine (the same Chromium engine a browser uses); your session and messages stay between your device and WhatsApp exactly as they would in a browser tab. Whatly adds no servers of its own. It is fully open source (MIT), so you can read every line.</div></details>
-      <details class="q"><summary>Which platforms does it run on?</summary><div class="a">Linux (snap, Flatpak, AppImage, Debian/Ubuntu <code>.deb</code>, Fedora/COPR, and the Arch AUR) and Windows 10 or newer. The source builds with CMake + Qt 6.</div></details>
+      <details class="q"><summary>Which platforms does it run on?</summary><div class="a">Linux (snap, Flatpak, AppImage, Debian/Ubuntu <code>.deb</code>, Fedora/COPR, and the Arch AUR) and Windows 10 or newer. There is also an experimental, unsigned macOS <code>.dmg</code> attached to each release (community-testing preview). The source builds with CMake + Qt 6.</div></details>
       <details class="q"><summary>Can I use more than one WhatsApp account?</summary><div class="a">Yes. Add accounts as tabs inside one window, or run wholly separate windows with <code>whatly --profile=&lt;name&gt;</code> — each has its own session, settings and Chromium storage, and the tray badge sums the unread count across them all.</div></details>
       <details class="q"><summary>How do scheduled messages work if the app is closed?</summary><div class="a">The schedule is saved to disk. While Whatly is open, a timer sends messages when they come due. If the app was closed when a message was due, it is sent as a catch-up the next time you open Whatly. Sending opens the recipient's chat.</div></details>
       <details class="q"><summary>Is it free? How can I support it?</summary><div class="a">Yes, it is free and MIT-licensed. If you would like to support development you can do so via <a href="https://ko-fi.com/shakaran">Ko-fi</a>, <a href="https://wise.com/pay/me/angelg1148">Wise</a> or <a href="https://github.com/sponsors/shakaran">GitHub Sponsors</a>.</div></details>

@@ -35,6 +35,15 @@ dictionaries with `-DWHATLY_DICTIONARIES="en-US;es-ES;…"` instead of all 31
 the SignPath Foundation free open-source programme; it stays off until configured
 (issue #325, see `packaging/windows-signing.md`).
 
+**macOS (experimental).** Whatly now builds as a macOS `.app` bundle; CI produces
+a `.dmg` and attaches it to the release. It is **unsigned** (first launch needs a
+right-click → Open) and has not yet been validated at runtime — community testing
+is welcome (issue #119).
+
+**Small screens.** The window and dialog minimum sizes now adapt to the display,
+so Whatly fits on small screens such as a Linux phone in portrait instead of
+being pinned too large (issue #239).
+
 All new interface strings are translated into the 15 shipped languages.
 
 ## 6.1.1 (2026-07-18)
