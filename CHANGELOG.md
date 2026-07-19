@@ -1,3 +1,17 @@
+## Unreleased
+
+**About screen icons.** The buttons on the About dialog (Donate, Ko-fi, Wise,
+Rate, More apps, Source code, Report a bug, Debug info) were rendering without
+their icons. They are set from the bundled resources again, and two new icons —
+`heart-line` and `github-line` — were added for the Ko-fi and Source-code
+buttons. The Rate-the-app screen's logo and button icons were verified to be
+correct and unchanged.
+
+**Unit tests.** A QtTest suite now guards the UI assets: it checks every icon and
+logo resource loads, and that the About and Rate screens actually have their
+logo and button icons set — so a blank-icon regression fails the build. Build
+with `-DWHATLY_TESTS=ON` and run with `ctest`; it also runs in CI on every push.
+
 ## 6.2.0 (2026-07-18)
 
 Desktop-integration features and finer control, from a sweep of the upstream

@@ -508,6 +508,20 @@ sudo cmake --install build
 For detailed build instructions, see [`docs/BUILD_QUICK_REFERENCE.md`](docs/BUILD_QUICK_REFERENCE.md)
 and [`docs/CMAKE_MIGRATION.md`](docs/CMAKE_MIGRATION.md).
 
+### Running the tests
+
+There is a small [QtTest](tests/) suite that guards the UI assets (icons and
+logos load; the About and Rate screens actually have their icons set). It is off
+by default and builds without WebEngine, so it is quick and headless:
+
+```bash
+cmake -B build -DWHATLY_TESTS=ON
+cmake --build build --target tst_ui_assets
+QT_QPA_PLATFORM=offscreen ctest --test-dir build --output-on-failure
+```
+
+It also runs in CI on every push (`.github/workflows/tests.yml`).
+
 ## Build from Source (Windows)
 
 <img src="docs/img/banner-build-windows.png" width="100%" alt="Build on Windows"/>

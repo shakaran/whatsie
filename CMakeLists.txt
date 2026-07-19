@@ -558,3 +558,11 @@ message(STATUS "Flatpak Build:            ${FLATPAK_BUILD}")
 message(STATUS "================================================")
 message(STATUS "")
 
+
+# ── Unit tests ────────────────────────────────────────────────────────────────
+# Off by default; enable with -DWHATLY_TESTS=ON. See tests/.
+option(WHATLY_TESTS "Build the unit tests (QtTest)" OFF)
+if(WHATLY_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()

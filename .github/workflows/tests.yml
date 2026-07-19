@@ -1,0 +1,39 @@
+name: Unit Tests
+
+# Builds and runs the QtTest suite (headless) on every push and PR, so an icon,
+# logo or resource regression like the blank About buttons is caught in CI.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.10.*'
+          host: linux
+          target: desktop
+          arch: linux_gcc_64
+          modules: 'qtwebengine qtwebchannel qtpositioning'
+          cache: true
+
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y ninja-build libx11-dev libxcb1-dev
+
+      - name: Configure (tests on)
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DWHATLY_TESTS=ON -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR"
+
+      - name: Build the tests
+        run: cmake --build build --target tst_ui_assets
+
+      - name: Run the tests (headless)
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: ctest --test-dir build --output-on-failure

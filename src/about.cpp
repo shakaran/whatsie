@@ -1,6 +1,8 @@
 #include "about.h"
 #include <QClipboard>
+#include <QIcon>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QUrlQuery>
 #include <QGuiApplication>
 #include "ui_about.h"
@@ -12,6 +14,21 @@
 
 About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
   ui->setupUi(this);
+
+  // The .ui defines the action buttons without icons; set them here from the
+  // bundled resources so they never render blank (guarded by tests/tst_ui_assets).
+  ui->donate->setIcon(QIcon(QStringLiteral(":/icons/paypal-line.png")));
+  ui->kofi->setIcon(QIcon(QStringLiteral(":/icons/heart-line.png")));
+  ui->wise->setIcon(QIcon(QStringLiteral(":/icons/funds-line.png")));
+  ui->rate->setIcon(QIcon(QStringLiteral(":/icons/star-line.png")));
+  ui->more_apps->setIcon(QIcon(QStringLiteral(":/icons/grid-line.png")));
+  ui->source_code->setIcon(QIcon(QStringLiteral(":/icons/github-line.png")));
+  ui->report_bug->setIcon(QIcon(QStringLiteral(":/icons/error-warning-line.png")));
+  ui->debugInfoButton->setIcon(QIcon(QStringLiteral(":/icons/terminal-box-line.png")));
+  const QSize aboutIconSize(18, 18);
+  for (QPushButton *b : {ui->donate, ui->kofi, ui->wise, ui->rate, ui->more_apps,
+                         ui->source_code, ui->report_bug, ui->debugInfoButton})
+    b->setIconSize(aboutIconSize);
 
   // init
   appName = QApplication::applicationDisplayName();
