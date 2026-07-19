@@ -38,6 +38,7 @@ private slots:
   void aboutButtonIcons();
   void aboutDebugInfoToggle();
   void linkButtonsExercised();
+  void rateAppShouldShowStates();
 };
 
 void TstUiAssets::initTestCase() {
@@ -166,6 +167,19 @@ void TstUiAssets::linkButtonsExercised() {
   for (const QString &s : schemes)
     QDesktopServices::unsetUrlHandler(s);
   QVERIFY2(sink.count >= 1, "no link button routed through openUrl");
+}
+
+void TstUiAssets::rateAppShouldShowStates() {
+  // "already rated" makes shouldShow() return false, so the delayed timer path
+  // frees the dialog. Heap-allocate because that path calls deleteLater().
+  auto &s = SettingsManager::instance().settings();
+  const bool saved = s.value(QStringLiteral("rated_already"), false).toBool();
+  s.setValue(QStringLiteral("rated_already"), true);
+  auto *r = new RateApp(nullptr, QStringLiteral("snap://whatly"), 0, 0, 1);
+  QMetaObject::invokeMethod(r, "delayShowEvent");
+  QTest::qWait(60); // timer fires -> shouldShow()==false -> deleteLater()
+  s.setValue(QStringLiteral("rated_already"), saved);
+  QVERIFY(true);
 }
 
 QTEST_MAIN(TstUiAssets)

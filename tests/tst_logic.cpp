@@ -19,6 +19,7 @@
 #include "common.h"
 #include "debuglog.h"
 #include "appprofile.h"
+#include "settingsmanager.h"
 #include "dictionaries.h"
 #include "identicons.h"
 #include "theme.h"
@@ -167,6 +168,38 @@ private slots:
     QVERIFY(all.size() >= 0);
     Dictionaries::preferredDictionary();
     Dictionaries::selectedDictionaries();
+  }
+  // Point the resolver at a directory of fake .bdic files so the full selection
+  // logic (availability, locale preference, stored-list filtering) runs.
+  void withFixture() {
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    for (const QString &n : {"en-US", "es-ES", "fr"}) {
+      QFile f(dir.filePath(n + QStringLiteral(".bdic")));
+      QVERIFY(f.open(QIODevice::WriteOnly));
+      f.write("BDIC-stub");
+      f.close();
+    }
+    qputenv("QTWEBENGINE_DICTIONARIES_PATH", dir.path().toLocal8Bit());
+
+    QCOMPARE(QDir(Dictionaries::dictionaryPath()).canonicalPath(),
+             QDir(dir.path()).canonicalPath());
+    const QStringList all = Dictionaries::availableDictionaries();
+    QVERIFY(all.contains(QStringLiteral("en-US")));
+    QVERIFY(all.contains(QStringLiteral("es-ES")));
+    QVERIFY(!Dictionaries::preferredDictionary().isEmpty());
+
+    // Stored selection: keep the installed ones, drop the uninstalled.
+    SettingsManager::instance().settings().setValue(
+        QStringLiteral("spellCheckLanguages"),
+        QStringList{QStringLiteral("es-ES"), QStringLiteral("zz-ZZ")});
+    const QStringList sel = Dictionaries::selectedDictionaries();
+    QVERIFY(sel.contains(QStringLiteral("es-ES")));
+    QVERIFY(!sel.contains(QStringLiteral("zz-ZZ")));
+
+    SettingsManager::instance().settings().remove(
+        QStringLiteral("spellCheckLanguages"));
+    qunsetenv("QTWEBENGINE_DICTIONARIES_PATH");
   }
 };
 
@@ -601,6 +634,26 @@ private slots:
       }
     QVERIFY(found);
     sm2.remove(id); // clean up
+  }
+  // A Failed status must round-trip through disk (covers load()'s status parse).
+  void failedStatusPersists() {
+    QString id;
+    {
+      ScheduledMessages sm;
+      id = sm.add(QStringLiteral("34600111222"), QStringLiteral("F"),
+                  QStringLiteral("boom"),
+                  QDateTime::currentDateTime().addSecs(3600));
+      sm.reportResult(id, false, QStringLiteral("nope")); // Failed, kept on disk
+    }
+    ScheduledMessages sm2;
+    bool found = false;
+    for (const auto &e : sm2.entries())
+      if (e.id == id) {
+        QCOMPARE(e.status, ScheduledMessages::Status::Failed);
+        found = true;
+      }
+    QVERIFY(found);
+    sm2.remove(id);
   }
 };
 
