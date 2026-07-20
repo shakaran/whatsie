@@ -143,7 +143,7 @@ Riprova.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore</translation>
     </message>
     <message>
         <source>If you wish so, you may continue with an unverified certificate. Accepting an unverified certificate mean you may not be connected with the host you tried to connect to.
@@ -210,6 +210,17 @@ Desideri ignorare il controllo di sicurezza e continuare?</translation>
     <message>
         <source>Graphite</source>
         <translation>Grafite</translation>
+    </message>
+</context>
+<context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>Tavolozza comandi</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>Digita un comando…</translation>
     </message>
 </context>
 <context>
@@ -445,6 +456,10 @@ Aprire le Impostazioni ora?</translation>
         <translation>Vista a griglia</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>Tavolozza comandi</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>Info</translation>
     </message>
@@ -459,6 +474,14 @@ Aprire le Impostazioni ora?</translation>
     <message>
         <source>Remove account</source>
         <translation>Rimuovi account</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>Passa all'account: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>Aggiungi account…</translation>
     </message>
     <message>
         <source>Add another account</source>
@@ -798,7 +821,7 @@ Imposta la password nelle Impostazioni.</translation>
     <name>RateApp</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Rate this app</source>
@@ -1484,7 +1507,7 @@ Imposta la password nelle Impostazioni.</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>Property</source>

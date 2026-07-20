@@ -207,6 +207,17 @@ Do you wish to override the security check and continue ?   </source>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>Paleta de comandos</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>Escribe un comando…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Configure primero la contraseña en los ajustes.
         <translation>Vista en cuadrícula</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>Paleta de comandos</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>&amp;Acerca de</translation>
     </message>
@@ -487,6 +502,14 @@ Configure primero la contraseña en los ajustes.
     <message>
         <source>Remove account</source>
         <translation>Eliminar cuenta</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>Cambiar a la cuenta: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>Añadir cuenta…</translation>
     </message>
     <message>
         <source>Add another account</source>

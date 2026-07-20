@@ -136,6 +136,8 @@ private:
   ViewMode m_viewMode = ViewMode::Tabs;
   QAction *m_viewTabsAction = nullptr;
   QAction *m_viewGridAction = nullptr;
+  QAction *m_commandPaletteAction = nullptr;
+  void showCommandPalette();
   void initSettingWidget();
   void tryLock();
   void ensureLockVisible();

@@ -1,5 +1,10 @@
 ## Unreleased
 
+**Command palette (Ctrl+K).** A quick "do anything" switcher: press
+`Ctrl+K`, type, and fuzzy-jump to any menu action, account, or the theme
+toggle, then run it with Enter. The fuzzy matcher is covered by unit tests
+(`TstFuzzy`).
+
 **Do Not Disturb & keyword highlights.** Settings → notifications now has a daily
 quiet period that suppresses notification popups (unread badges still update),
 plus a list of highlight keywords that always break through — even during Do Not

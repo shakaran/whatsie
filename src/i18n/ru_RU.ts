@@ -207,6 +207,17 @@ Do you wish to override the security check and continue ?   </source>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>Палитра команд</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>Введите команду…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Open Settings now?</source>
         <translation>Вид сеткой</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>Палитра команд</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>&amp;О программе</translation>
     </message>
@@ -487,6 +502,14 @@ Open Settings now?</source>
     <message>
         <source>Remove account</source>
         <translation>Удалить аккаунт</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>Переключиться на аккаунт: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>Добавить аккаунт…</translation>
     </message>
     <message>
         <source>Add another account</source>

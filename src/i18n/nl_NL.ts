@@ -207,6 +207,17 @@ Wilt u de beveiligingscontrole negeren en doorgaan?   </translation>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>Opdrachtenpalet</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>Typ een opdracht…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Instellingen nu openen?</translation>
         <translation>Rasterweergave</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>Opdrachtenpalet</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>&amp;Over</translation>
     </message>
@@ -487,6 +502,14 @@ Instellingen nu openen?</translation>
     <message>
         <source>Remove account</source>
         <translation>Account verwijderen</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>Overschakelen naar account: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>Account toevoegen…</translation>
     </message>
     <message>
         <source>Add another account</source>
@@ -1045,7 +1068,7 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
     </message>
     <message>
         <source>Comma-separated words that always notify, even during Do Not Disturb (case-insensitive).</source>
-        <translation>Door komma's gescheiden woorden die altijd een melding geven, zelfs tijdens Niet storen (niet hoofdlettergevoelig).</translation>
+        <translation>Door komma&apos;s gescheiden woorden die altijd een melding geven, zelfs tijdens Niet storen (niet hoofdlettergevoelig).</translation>
     </message>
     <message>
         <source>e.g. urgent, boss, invoice</source>

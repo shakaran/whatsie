@@ -34,6 +34,7 @@
 #include "chatwallpaper.h"
 #include "customcss.h"
 #include "customjs.h"
+#include "commandpalette.h"
 #include "webtweaks.h"
 #include "linkeddevicename.h"
 #include "performance.h"
@@ -931,6 +932,39 @@ private slots:
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Fuzzy: the command-palette matcher. Subsequence matching, ranking, and the
+// non-match / empty-query cases.
+class TstFuzzy : public QObject {
+  Q_OBJECT
+private slots:
+  void emptyQueryMatchesAll() {
+    QCOMPARE(Fuzzy::score(QString(), QStringLiteral("anything")), 0);
+  }
+  void nonSubsequenceIsRejected() {
+    QVERIFY(Fuzzy::score(QStringLiteral("xyz"), QStringLiteral("reload")) < 0);
+    QVERIFY(Fuzzy::score(QStringLiteral("zzz"), QStringLiteral("")) < 0);
+  }
+  void subsequenceMatches() {
+    QVERIFY(Fuzzy::score(QStringLiteral("rl"), QStringLiteral("Reload")) >= 0);
+    QVERIFY(Fuzzy::score(QStringLiteral("tog"), QStringLiteral("Toggle theme")) >= 0);
+  }
+  void caseInsensitive() {
+    QVERIFY(Fuzzy::score(QStringLiteral("REL"), QStringLiteral("reload")) >= 0);
+  }
+  void contiguousBeatsScattered() {
+    const int contiguous = Fuzzy::score(QStringLiteral("set"), QStringLiteral("Settings"));
+    const int scattered = Fuzzy::score(QStringLiteral("set"), QStringLiteral("Save exit tab"));
+    QVERIFY(contiguous > scattered);
+  }
+  void wordStartBonus() {
+    // "at" as a word-start ("Add Tab") should beat "at" mid-word ("Waterfall").
+    const int wordStart = Fuzzy::score(QStringLiteral("at"), QStringLiteral("Add Tab"));
+    const int midWord = Fuzzy::score(QStringLiteral("at"), QStringLiteral("Waterfall"));
+    QVERIFY(wordStart > midWord);
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 // NotificationRules: shouldNotify() is a pure function of the stored rules, so
 // the DND window (including wrap-around) and keyword override are testable.
 class TstNotificationRules : public QObject {
@@ -1223,6 +1257,7 @@ int main(int argc, char *argv[]) {
   { TstCustomJs t;            run(&t); }
   { TstChatWallpaper t;       run(&t); }
   { TstPerformance t;         run(&t); }
+  { TstFuzzy t;               run(&t); }
   { TstNotificationRules t;   run(&t); }
   { TstNetworkProxy t;        run(&t); }
   { TstAutostart t;           run(&t); }

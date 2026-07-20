@@ -207,6 +207,17 @@ Do you wish to override the security check and continue ?   </source>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>コマンドパレット</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>コマンドを入力…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Open Settings now?</source>
         <translation>グリッド表示</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>コマンドパレット</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>このアプリについて(&amp;A)</translation>
     </message>
@@ -487,6 +502,14 @@ Open Settings now?</source>
     <message>
         <source>Remove account</source>
         <translation>アカウントを削除</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>アカウントに切り替え: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>アカウントを追加…</translation>
     </message>
     <message>
         <source>Add another account</source>

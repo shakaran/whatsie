@@ -207,6 +207,17 @@ Do you wish to override the security check and continue ?   </source>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>कमांड पैलेट</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>कोई कमांड टाइप करें…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Open Settings now?</source>
         <translation>ग्रिड दृश्य</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>कमांड पैलेट</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>परिचय (&amp;A)</translation>
     </message>
@@ -487,6 +502,14 @@ Open Settings now?</source>
     <message>
         <source>Remove account</source>
         <translation>खाता हटाएँ</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>इस खाते पर स्विच करें: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>खाता जोड़ें…</translation>
     </message>
     <message>
         <source>Add another account</source>

@@ -18,6 +18,7 @@
 
 #include "settingsmanager.h"
 #include "customtitlebar.h"
+#include "commandpalette.h"
 
 #ifdef Q_OS_LINUX
 #include <QDBusConnection>
@@ -119,6 +120,37 @@ void MainWindow::buildAccountArea() {
             else if (chosen == remove)
               removeAccount(index);
           });
+}
+
+void MainWindow::showCommandPalette() {
+  QList<CommandPalette::Command> cmds;
+
+  // Every menu/keyboard action, by its (cleaned) text.
+  const QList<QAction *> actions = {
+      m_reloadAction,      m_minimizeAction,  m_restoreAction,
+      m_lockAction,        m_muteAction,      m_fullscreenAction,
+      m_openUrlAction,     m_scheduledMessagesAction, m_toggleThemeAction,
+      m_settingsAction,    m_aboutAction,     m_viewTabsAction,
+      m_viewGridAction,    m_quitAction};
+  for (QAction *a : actions) {
+    if (!a)
+      continue;
+    QString label = a->text();
+    label.remove(QLatin1Char('&')); // strip mnemonics
+    cmds.append({label, [a]() { a->trigger(); }});
+  }
+
+  // Switch to each account.
+  for (int i = 0; i < m_accounts.size(); ++i) {
+    const QString name = m_accounts[i].name;
+    cmds.append({tr("Switch to account: %1").arg(name),
+                 [this, i]() { setActiveAccount(i); }});
+  }
+  cmds.append({tr("Add account…"), [this]() { promptAddAccount(); }});
+
+  auto *palette = new CommandPalette(cmds, this);
+  palette->setAttribute(Qt::WA_DeleteOnClose);
+  palette->exec();
 }
 
 void MainWindow::relayoutGrid() {

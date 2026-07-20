@@ -207,6 +207,17 @@ Voulez-vous ignorer le contrôle de sécurité et continuer ?   </translation>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>Palette de commandes</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>Saisissez une commande…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Ouvrir les paramètres maintenant ?</translation>
         <translation>Vue en grille</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>Palette de commandes</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>À &amp;propos</translation>
     </message>
@@ -487,6 +502,14 @@ Ouvrir les paramètres maintenant ?</translation>
     <message>
         <source>Remove account</source>
         <translation>Supprimer le compte</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>Basculer vers le compte : %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>Ajouter un compte…</translation>
     </message>
     <message>
         <source>Add another account</source>

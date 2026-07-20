@@ -207,6 +207,17 @@ Güvenlik denetimini atlayıp devam etmek istiyor musunuz?   </translation>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>Komut paleti</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>Bir komut yazın…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Ayarlar şimdi açılsın mı?</translation>
         <translation>Izgara görünümü</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>Komut paleti</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>&amp;Hakkında</translation>
     </message>
@@ -487,6 +502,14 @@ Ayarlar şimdi açılsın mı?</translation>
     <message>
         <source>Remove account</source>
         <translation>Hesabı kaldır</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>Hesaba geç: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>Hesap ekle…</translation>
     </message>
     <message>
         <source>Add another account</source>

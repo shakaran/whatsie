@@ -207,6 +207,17 @@ Do you wish to override the security check and continue ?   </source>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>命令面板</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>输入命令…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Open Settings now?</source>
         <translation>网格视图</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>命令面板</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>关于(&amp;A)</translation>
     </message>
@@ -487,6 +502,14 @@ Open Settings now?</source>
     <message>
         <source>Remove account</source>
         <translation>移除账号</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>切换到账户：%1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>添加账户…</translation>
     </message>
     <message>
         <source>Add another account</source>

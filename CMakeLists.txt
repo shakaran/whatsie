@@ -195,6 +195,7 @@ set(SOURCES
     src/chatwallpaper.cpp
     src/customcss.cpp
     src/customjs.cpp
+    src/commandpalette.cpp
     src/globalshortcut.cpp
     src/privacyblur.cpp
     src/performance.cpp
@@ -245,6 +246,7 @@ set(HEADERS
     src/chatwallpaper.h
     src/customcss.h
     src/customjs.h
+    src/commandpalette.h
     src/privacyblur.h
     src/performance.h
     src/notificationrules.h

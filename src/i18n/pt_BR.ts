@@ -207,6 +207,17 @@ Deseja ignorar a verificação de segurança e continuar?   </translation>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>Paleta de comandos</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>Digite um comando…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Abrir as configurações agora?</translation>
         <translation>Visualização em grade</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>Paleta de comandos</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>&amp;Sobre</translation>
     </message>
@@ -487,6 +502,14 @@ Abrir as configurações agora?</translation>
     <message>
         <source>Remove account</source>
         <translation>Remover conta</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>Alternar para a conta: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>Adicionar conta…</translation>
     </message>
     <message>
         <source>Add another account</source>

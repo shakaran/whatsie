@@ -207,6 +207,17 @@ Do you wish to override the security check and continue ?   </source>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>لوحة الأوامر</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>اكتب أمرًا…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Open Settings now?</source>
         <translation>عرض شبكي</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>لوحة الأوامر</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>حول (&amp;A)</translation>
     </message>
@@ -487,6 +502,14 @@ Open Settings now?</source>
     <message>
         <source>Remove account</source>
         <translation>إزالة الحساب</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>التبديل إلى الحساب: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>إضافة حساب…</translation>
     </message>
     <message>
         <source>Add another account</source>

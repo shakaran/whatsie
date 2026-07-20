@@ -207,6 +207,17 @@ Möchten Sie die Sicherheitsprüfung übergehen und fortfahren?   </translation>
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>Befehlspalette</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>Befehl eingeben…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Einstellungen jetzt öffnen?</translation>
         <translation>Rasteransicht</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>Befehlspalette</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>&amp;Über</translation>
     </message>
@@ -487,6 +502,14 @@ Einstellungen jetzt öffnen?</translation>
     <message>
         <source>Remove account</source>
         <translation>Konto entfernen</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>Zu Konto wechseln: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>Konto hinzufügen…</translation>
     </message>
     <message>
         <source>Add another account</source>

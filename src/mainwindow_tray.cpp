@@ -113,6 +113,12 @@ void MainWindow::createActions() {
   });
   addAction(m_viewGridAction);
 
+  m_commandPaletteAction = new QAction(tr("Command palette"), this);
+  m_commandPaletteAction->setShortcut(QKeySequence(Qt::Modifier::CTRL | Qt::Key_K));
+  connect(m_commandPaletteAction, &QAction::triggered, this,
+          &MainWindow::showCommandPalette);
+  addAction(m_commandPaletteAction);
+
   m_aboutAction = new QAction(tr("&About"), this);
   // The only way to this dialog used to be the tray menu, and the tray is
   // exactly what is missing or misbehaving on the desktops people file bugs

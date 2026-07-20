@@ -207,6 +207,17 @@ Apakah Anda ingin melewati pemeriksaan keamanan dan melanjutkan?   </translation
     </message>
 </context>
 <context>
+    <name>CommandPalette</name>
+    <message>
+        <source>Command palette</source>
+        <translation>Palet perintah</translation>
+    </message>
+    <message>
+        <source>Type a command…</source>
+        <translation>Ketik perintah…</translation>
+    </message>
+</context>
+<context>
     <name>CustomTitleBar</name>
     <message>
         <source>Minimise</source>
@@ -473,6 +484,10 @@ Buka pengaturan sekarang?</translation>
         <translation>Tampilan kisi</translation>
     </message>
     <message>
+        <source>Command palette</source>
+        <translation>Palet perintah</translation>
+    </message>
+    <message>
         <source>&amp;About</source>
         <translation>&amp;Tentang</translation>
     </message>
@@ -487,6 +502,14 @@ Buka pengaturan sekarang?</translation>
     <message>
         <source>Remove account</source>
         <translation>Hapus akun</translation>
+    </message>
+    <message>
+        <source>Switch to account: %1</source>
+        <translation>Beralih ke akun: %1</translation>
+    </message>
+    <message>
+        <source>Add account…</source>
+        <translation>Tambah akun…</translation>
     </message>
     <message>
         <source>Add another account</source>
