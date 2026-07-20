@@ -22,6 +22,10 @@ class ScheduledMessages : public QObject {
 public:
   enum class Status { Pending, Sent, Failed };
 
+  // How a schedule repeats. None fires once; the others reschedule to the next
+  // occurrence after each successful fire.
+  enum class Recurrence { None, Daily, Weekdays, Weekly };
+
   struct Entry {
     QString id;
     QString number; // digits only, international format
@@ -31,6 +35,8 @@ public:
     QDateTime createdAt;
     Status status = Status::Pending;
     QString error; // set when status == Failed
+    Recurrence recurrence = Recurrence::None;
+    bool reminder = false; // true = notify me instead of sending a message
   };
 
   explicit ScheduledMessages(QObject *parent = nullptr);
@@ -39,7 +45,14 @@ public:
 
   // Adds a message and returns its id. number is normalised to digits only.
   QString add(const QString &number, const QString &name, const QString &text,
-              const QDateTime &dueAt);
+              const QDateTime &dueAt,
+              Recurrence recurrence = Recurrence::None, bool reminder = false);
+
+  // The next time a recurring schedule should fire after `from` (>= from's day).
+  // Recurrence::None returns an invalid QDateTime. Pure and unit-tested.
+  static QDateTime nextOccurrence(const QDateTime &from, Recurrence recurrence);
+
+  static QString recurrenceLabel(Recurrence recurrence);
   void remove(const QString &id);
   void removeCompleted(); // drop everything already Sent or Failed
 
@@ -63,6 +76,9 @@ signals:
   // Emitted when a message comes due: MainWindow should open the chat and send.
   void sendRequested(const QString &id, const QString &number,
                      const QString &text);
+  // Emitted when a reminder (not a message) comes due: MainWindow should show a
+  // desktop notification. Reminders never touch the page.
+  void reminderDue(const QString &id, const QString &name, const QString &text);
   // Emitted whenever the list or a status changes (the dialog listens).
   void changed();
 
@@ -70,6 +86,7 @@ private:
   void load();
   void save() const;
   void checkDue();
+  void advanceOrComplete(Entry &e);
   QString storagePath() const;
   Entry *find(const QString &id);
 

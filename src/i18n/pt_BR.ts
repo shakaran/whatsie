@@ -380,6 +380,14 @@ Deseja ignorar a verificação de segurança e continuar?   </translation>
         <translation>Nenhuma janela do WhatsApp está aberta</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>Lembrete</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>Lembrete: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| Erro</translation>
     </message>
@@ -861,6 +869,22 @@ Defina primeiro a senha nas configurações.</translation>
         <translation>Tempo esgotado aguardando o envio da mensagem</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>Diariamente</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Dias úteis</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Semanalmente</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Uma vez</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>Enviado</translation>
     </message>
@@ -906,6 +930,30 @@ Defina primeiro a senha nas configurações.</translation>
     <message>
         <source>Name</source>
         <translation>Nome</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Uma vez</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>Diariamente</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Dias úteis</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Semanalmente</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>Repetir</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>Lembrar-me em vez de enviar (notificar, não enviar mensagem)</translation>
     </message>
     <message>
         <source>Message to send</source>

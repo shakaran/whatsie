@@ -380,6 +380,14 @@ Do you wish to override the security check and continue ?   </source>
         <translation>WhatsApp のウィンドウが開いていません</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>リマインダー</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>リマインダー: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| エラー</translation>
     </message>
@@ -861,6 +869,22 @@ Please setup the password in the Settings first.</source>
         <translation>メッセージ送信の待機がタイムアウトしました</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>毎日</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>平日</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>毎週</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>1回のみ</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>送信済み</translation>
     </message>
@@ -906,6 +930,30 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>Name</source>
         <translation>名前</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>1回のみ</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>毎日</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>平日</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>毎週</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>繰り返し</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>送信せずにリマインドする（通知のみ、メッセージは送らない）</translation>
     </message>
     <message>
         <source>Message to send</source>

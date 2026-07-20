@@ -84,6 +84,13 @@ MainWindow::MainWindow(QWidget *parent)
               m_scheduledMessages->reportResult(
                   id, false, tr("No WhatsApp window is open"));
           });
+  connect(m_scheduledMessages, &ScheduledMessages::reminderDue, this,
+          [this](const QString &, const QString &name, const QString &text) {
+            const QString title =
+                name.isEmpty() ? tr("Reminder") : tr("Reminder: %1").arg(name);
+            if (m_systemTrayIcon && QSystemTrayIcon::supportsMessages())
+              m_systemTrayIcon->showMessage(title, text, windowIcon(), 15000);
+          });
 
   createWebEngine();
   initSettingWidget();

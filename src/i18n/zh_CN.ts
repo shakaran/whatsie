@@ -380,6 +380,14 @@ Do you wish to override the security check and continue ?   </source>
         <translation>没有打开的 WhatsApp 窗口</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>提醒</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>提醒：%1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| 错误</translation>
     </message>
@@ -861,6 +869,22 @@ Please setup the password in the Settings first.</source>
         <translation>等待消息发送超时</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>每天</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>工作日</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>每周</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>一次</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>已发送</translation>
     </message>
@@ -906,6 +930,30 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>Name</source>
         <translation>名称</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>一次</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>每天</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>工作日</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>每周</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>重复</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>提醒我而不是发送（仅通知，不发送消息）</translation>
     </message>
     <message>
         <source>Message to send</source>

@@ -54,6 +54,30 @@ ScheduledMessages::Status statusFromString(const QString &s) {
   return ScheduledMessages::Status::Pending;
 }
 
+QString recurrenceToString(ScheduledMessages::Recurrence r) {
+  switch (r) {
+  case ScheduledMessages::Recurrence::Daily:
+    return QStringLiteral("daily");
+  case ScheduledMessages::Recurrence::Weekdays:
+    return QStringLiteral("weekdays");
+  case ScheduledMessages::Recurrence::Weekly:
+    return QStringLiteral("weekly");
+  case ScheduledMessages::Recurrence::None:
+    break;
+  }
+  return QStringLiteral("none");
+}
+
+ScheduledMessages::Recurrence recurrenceFromString(const QString &s) {
+  if (s == QLatin1String("daily"))
+    return ScheduledMessages::Recurrence::Daily;
+  if (s == QLatin1String("weekdays"))
+    return ScheduledMessages::Recurrence::Weekdays;
+  if (s == QLatin1String("weekly"))
+    return ScheduledMessages::Recurrence::Weekly;
+  return ScheduledMessages::Recurrence::None;
+}
+
 // A JS double-quoted literal.
 QString jsString(const QString &value) {
   QString e = value;
@@ -97,6 +121,8 @@ void ScheduledMessages::load() {
         qint64(o.value("createdAt").toDouble()));
     e.status = statusFromString(o.value("status").toString());
     e.error = o.value("error").toString();
+    e.recurrence = recurrenceFromString(o.value("recurrence").toString());
+    e.reminder = o.value("reminder").toBool(false);
     if (!e.id.isEmpty())
       m_entries.append(e);
   }
@@ -114,6 +140,8 @@ void ScheduledMessages::save() const {
     o["createdAt"] = double(e.createdAt.toMSecsSinceEpoch());
     o["status"] = statusToString(e.status);
     o["error"] = e.error;
+    o["recurrence"] = recurrenceToString(e.recurrence);
+    o["reminder"] = e.reminder;
     arr.append(o);
   }
   QSaveFile f(storagePath());
@@ -131,7 +159,8 @@ ScheduledMessages::Entry *ScheduledMessages::find(const QString &id) {
 }
 
 QString ScheduledMessages::add(const QString &number, const QString &name,
-                               const QString &text, const QDateTime &dueAt) {
+                               const QString &text, const QDateTime &dueAt,
+                               Recurrence recurrence, bool reminder) {
   Entry e;
   e.id = newId();
   e.number = digitsOnly(number);
@@ -140,6 +169,8 @@ QString ScheduledMessages::add(const QString &number, const QString &name,
   e.dueAt = dueAt;
   e.createdAt = QDateTime::currentDateTime();
   e.status = Status::Pending;
+  e.recurrence = recurrence;
+  e.reminder = reminder;
   m_entries.append(e);
   save();
   emit changed();
@@ -175,8 +206,13 @@ void ScheduledMessages::removeCompleted() {
 void ScheduledMessages::reportResult(const QString &id, bool ok,
                                      const QString &error) {
   if (Entry *e = find(id)) {
-    e->status = ok ? Status::Sent : Status::Failed;
-    e->error = ok ? QString() : error;
+    if (ok) {
+      // A recurring message reschedules itself; a one-shot is marked Sent.
+      advanceOrComplete(*e);
+    } else {
+      e->status = Status::Failed;
+      e->error = error;
+    }
     save();
     emit changed();
   }
@@ -214,9 +250,25 @@ void ScheduledMessages::checkDue() {
     return; // do not send until WhatsApp Web is up (start() gates this)
 
   const QDateTime now = QDateTime::currentDateTime();
+
+  // Reminders never touch the page, so fire every overdue one immediately
+  // (advancing recurrence) without occupying the single send slot.
+  bool firedReminder = false;
+  for (Entry &e : m_entries) {
+    if (e.reminder && e.status == Status::Pending && e.dueAt <= now) {
+      emit reminderDue(e.id, e.name, e.text);
+      advanceOrComplete(e);
+      firedReminder = true;
+    }
+  }
+  if (firedReminder) {
+    save();
+    emit changed();
+  }
+
   Entry *due = nullptr;
   for (Entry &e : m_entries) {
-    if (e.status != Status::Pending || e.dueAt > now)
+    if (e.reminder || e.status != Status::Pending || e.dueAt > now)
       continue;
     if (!due || e.dueAt < due->dueAt)
       due = &e;
@@ -227,6 +279,58 @@ void ScheduledMessages::checkDue() {
   m_sendingId = due->id;
   m_sendingSince = now;
   emit sendRequested(due->id, due->number, due->text);
+}
+
+// After a successful fire: a recurring entry is rescheduled to its next
+// occurrence and stays Pending; a one-shot is marked Sent.
+void ScheduledMessages::advanceOrComplete(Entry &e) {
+  if (e.recurrence != Recurrence::None) {
+    const QDateTime next = nextOccurrence(e.dueAt, e.recurrence);
+    if (next.isValid()) {
+      e.dueAt = next;
+      e.status = Status::Pending;
+      e.error.clear();
+      return;
+    }
+  }
+  e.status = Status::Sent;
+}
+
+QDateTime ScheduledMessages::nextOccurrence(const QDateTime &from,
+                                            Recurrence recurrence) {
+  if (recurrence == Recurrence::None || !from.isValid())
+    return QDateTime();
+  QDateTime next = from;
+  switch (recurrence) {
+  case Recurrence::Daily:
+    return next.addDays(1);
+  case Recurrence::Weekly:
+    return next.addDays(7);
+  case Recurrence::Weekdays: {
+    // Skip to the next Mon–Fri day at the same time.
+    do {
+      next = next.addDays(1);
+    } while (next.date().dayOfWeek() > 5); // 6 = Sat, 7 = Sun
+    return next;
+  }
+  case Recurrence::None:
+    break;
+  }
+  return QDateTime();
+}
+
+QString ScheduledMessages::recurrenceLabel(Recurrence recurrence) {
+  switch (recurrence) {
+  case Recurrence::Daily:
+    return tr("Daily");
+  case Recurrence::Weekdays:
+    return tr("Weekdays");
+  case Recurrence::Weekly:
+    return tr("Weekly");
+  case Recurrence::None:
+    break;
+  }
+  return tr("Once");
 }
 
 QString ScheduledMessages::statusLabel(Status status) {

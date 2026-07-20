@@ -477,7 +477,7 @@ Aprire le Impostazioni ora?</translation>
     </message>
     <message>
         <source>Switch to account: %1</source>
-        <translation>Passa all'account: %1</translation>
+        <translation>Passa all&apos;account: %1</translation>
     </message>
     <message>
         <source>Add account…</source>
@@ -526,6 +526,14 @@ Aprire le Impostazioni ora?</translation>
     <message>
         <source>No WhatsApp window is open</source>
         <translation>Nessuna finestra di WhatsApp è aperta</translation>
+    </message>
+    <message>
+        <source>Reminder</source>
+        <translation>Promemoria</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>Promemoria: %1</translation>
     </message>
     <message>
         <source>| Error</source>
@@ -867,6 +875,22 @@ Imposta la password nelle Impostazioni.</translation>
         <translation>Tempo scaduto in attesa dell&apos;invio del messaggio</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>Giornaliero</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Giorni feriali</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Settimanale</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Una volta</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>Inviato</translation>
     </message>
@@ -912,6 +936,30 @@ Imposta la password nelle Impostazioni.</translation>
     <message>
         <source>Name</source>
         <translation>Nome</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Una volta</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>Giornaliero</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Giorni feriali</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Settimanale</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>Ripeti</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>Ricordamelo invece di inviare (notifica, non inviare il messaggio)</translation>
     </message>
     <message>
         <source>Message to send</source>

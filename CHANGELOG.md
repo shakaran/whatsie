@@ -1,5 +1,12 @@
 ## Unreleased
 
+**Recurring scheduled messages & reminders.** A scheduled message can now
+repeat — daily, on weekdays, or weekly — rescheduling itself to the next
+occurrence after each successful send. There is also a *remind me* mode
+that pops a desktop notification at the due time instead of sending a
+message. Covered by new unit tests for the next-occurrence maths and the
+reschedule-on-send flow.
+
 **Command palette (Ctrl+K).** A quick "do anything" switcher: press
 `Ctrl+K`, type, and fuzzy-jump to any menu action, account, or the theme
 toggle, then run it with Enter. The fuzzy matcher is covered by unit tests

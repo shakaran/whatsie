@@ -380,6 +380,14 @@ Do you wish to override the security check and continue ?   </source>
         <translation>Нет открытого окна WhatsApp</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>Напоминание</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>Напоминание: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| Ошибка</translation>
     </message>
@@ -861,6 +869,22 @@ Please setup the password in the Settings first.</source>
         <translation>Истекло время ожидания отправки сообщения</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>Ежедневно</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>По будням</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Еженедельно</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Один раз</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>Отправлено</translation>
     </message>
@@ -906,6 +930,30 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>Name</source>
         <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Один раз</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>Ежедневно</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>По будням</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Еженедельно</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>Повтор</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>Напомнить вместо отправки (уведомить, не отправлять сообщение)</translation>
     </message>
     <message>
         <source>Message to send</source>

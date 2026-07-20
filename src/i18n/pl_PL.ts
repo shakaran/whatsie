@@ -380,6 +380,14 @@ Czy chcesz pominąć kontrolę bezpieczeństwa i kontynuować?   </translation>
         <translation>Żadne okno WhatsApp nie jest otwarte</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>Przypomnienie</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>Przypomnienie: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| Błąd</translation>
     </message>
@@ -861,6 +869,22 @@ Najpierw ustaw hasło w ustawieniach.</translation>
         <translation>Przekroczono czas oczekiwania na wysłanie wiadomości</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>Codziennie</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Dni robocze</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Co tydzień</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Jednorazowo</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>Wysłano</translation>
     </message>
@@ -906,6 +930,30 @@ Najpierw ustaw hasło w ustawieniach.</translation>
     <message>
         <source>Name</source>
         <translation>Nazwa</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Jednorazowo</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>Codziennie</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Dni robocze</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Co tydzień</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>Powtarzaj</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>Przypomnij mi zamiast wysyłać (powiadom, nie wysyłaj wiadomości)</translation>
     </message>
     <message>
         <source>Message to send</source>

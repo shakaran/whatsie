@@ -266,6 +266,41 @@ private slots:
 class TstScheduled : public QObject {
   Q_OBJECT
 private slots:
+  void recurrenceNextOccurrence() {
+    using R = ScheduledMessages::Recurrence;
+    const QDateTime base(QDate(2026, 1, 1), QTime(9, 0)); // Thu 2026-01-01
+    QCOMPARE(ScheduledMessages::nextOccurrence(base, R::None), QDateTime());
+    QCOMPARE(ScheduledMessages::nextOccurrence(base, R::Daily),
+             base.addDays(1));
+    QCOMPARE(ScheduledMessages::nextOccurrence(base, R::Weekly),
+             base.addDays(7));
+    // 2026-01-01 is a Thursday → next weekday is Friday (the 2nd).
+    QCOMPARE(ScheduledMessages::nextOccurrence(base, R::Weekdays).date(),
+             QDate(2026, 1, 2));
+    // From a Friday, weekdays should skip the weekend to Monday.
+    const QDateTime fri(QDate(2026, 1, 2), QTime(9, 0));
+    QCOMPARE(ScheduledMessages::nextOccurrence(fri, R::Weekdays).date(),
+             QDate(2026, 1, 5)); // Monday
+  }
+  void recurringReschedulesOnSend() {
+    ScheduledMessages sm;
+    const QDateTime due = QDateTime::currentDateTime().addSecs(-10); // overdue
+    const QString id = sm.add(QStringLiteral("34600000000"), QStringLiteral("R"),
+                              QStringLiteral("daily ping"), due,
+                              ScheduledMessages::Recurrence::Daily);
+    sm.reportResult(id, true, QString());
+    // Still pending (rescheduled), with a due time in the future.
+    const auto entries = sm.entries();
+    bool found = false;
+    for (const auto &e : entries)
+      if (e.id == id) {
+        found = true;
+        QCOMPARE(e.status, ScheduledMessages::Status::Pending);
+        QVERIFY(e.dueAt > QDateTime::currentDateTime());
+      }
+    QVERIFY(found);
+    sm.remove(id);
+  }
   void addRemoveAndStatus() {
     ScheduledMessages sm;
     const int before = sm.entries().size();

@@ -380,6 +380,14 @@ Apakah Anda ingin melewati pemeriksaan keamanan dan melanjutkan?   </translation
         <translation>Tidak ada jendela WhatsApp yang terbuka</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>Pengingat</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>Pengingat: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| Kesalahan</translation>
     </message>
@@ -861,6 +869,22 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
         <translation>Waktu habis menunggu pesan terkirim</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>Harian</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Hari kerja</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Mingguan</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Sekali</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>Terkirim</translation>
     </message>
@@ -906,6 +930,30 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
     <message>
         <source>Name</source>
         <translation>Nama</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Sekali</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>Harian</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Hari kerja</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Mingguan</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>Ulangi</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>Ingatkan saya alih-alih mengirim (beri tahu, jangan kirim pesan)</translation>
     </message>
     <message>
         <source>Message to send</source>

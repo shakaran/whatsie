@@ -380,6 +380,14 @@ Do you wish to override the security check and continue ?   </source>
         <translation>열려 있는 WhatsApp 창이 없습니다</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>알림</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>알림: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| 오류</translation>
     </message>
@@ -861,6 +869,22 @@ Please setup the password in the Settings first.</source>
         <translation>메시지 전송을 기다리는 중 시간이 초과되었습니다</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>매일</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>평일</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>매주</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>한 번</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>전송됨</translation>
     </message>
@@ -906,6 +930,30 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>Name</source>
         <translation>이름</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>한 번</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>매일</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>평일</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>매주</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>반복</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>보내지 않고 알림 받기 (메시지 전송 없이 알림)</translation>
     </message>
     <message>
         <source>Message to send</source>

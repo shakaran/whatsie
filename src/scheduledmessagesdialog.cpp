@@ -7,6 +7,8 @@
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QLabel>
+#include <QComboBox>
+#include <QCheckBox>
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QPlainTextEdit>
@@ -47,6 +49,21 @@ ScheduledMessagesDialog::ScheduledMessagesDialog(ScheduledMessages *manager,
   m_when->setCalendarPopup(true);
   m_when->setDisplayFormat(QStringLiteral("yyyy-MM-dd HH:mm"));
   form->addRow(tr("When"), m_when);
+
+  m_recurrence = new QComboBox(this);
+  m_recurrence->addItem(tr("Once"),
+                        int(ScheduledMessages::Recurrence::None));
+  m_recurrence->addItem(tr("Daily"),
+                        int(ScheduledMessages::Recurrence::Daily));
+  m_recurrence->addItem(tr("Weekdays"),
+                        int(ScheduledMessages::Recurrence::Weekdays));
+  m_recurrence->addItem(tr("Weekly"),
+                        int(ScheduledMessages::Recurrence::Weekly));
+  form->addRow(tr("Repeat"), m_recurrence);
+
+  m_reminder = new QCheckBox(
+      tr("Remind me instead of sending (notify, don't message)"), this);
+  form->addRow(QString(), m_reminder);
 
   m_message = new QPlainTextEdit(this);
   m_message->setPlaceholderText(tr("Message to send"));
@@ -105,10 +122,15 @@ void ScheduledMessagesDialog::addFromForm() {
         QMessageBox::Yes)
       return;
 
-  m_manager->add(number, m_name->text(), text, m_when->dateTime());
+  const auto recurrence = static_cast<ScheduledMessages::Recurrence>(
+      m_recurrence->currentData().toInt());
+  m_manager->add(number, m_name->text(), text, m_when->dateTime(), recurrence,
+                 m_reminder->isChecked());
   m_number->clear();
   m_name->clear();
   m_message->clear();
+  m_reminder->setChecked(false);
+  m_recurrence->setCurrentIndex(0);
   m_when->setDateTime(QDateTime::currentDateTime().addSecs(300));
 }
 

@@ -380,6 +380,14 @@ Do you wish to override the security check and continue ?   </source>
         <translation>No hay ninguna ventana de WhatsApp abierta</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>Recordatorio</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>Recordatorio: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| Error</translation>
     </message>
@@ -861,6 +869,22 @@ Configure primero la contraseña en los ajustes.</translation>
         <translation>Se agotó el tiempo de espera para enviar el mensaje</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>Diariamente</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Días laborables</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Semanalmente</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Una vez</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>Enviado</translation>
     </message>
@@ -906,6 +930,30 @@ Configure primero la contraseña en los ajustes.</translation>
     <message>
         <source>Name</source>
         <translation>Nombre</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Una vez</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>Diariamente</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Días laborables</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Semanalmente</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>Repetir</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>Recordármelo en lugar de enviar (avisar, no enviar mensaje)</translation>
     </message>
     <message>
         <source>Message to send</source>

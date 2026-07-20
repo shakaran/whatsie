@@ -380,6 +380,14 @@ Güvenlik denetimini atlayıp devam etmek istiyor musunuz?   </translation>
         <translation>Açık bir WhatsApp penceresi yok</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>Hatırlatıcı</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>Hatırlatıcı: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| Hata</translation>
     </message>
@@ -861,6 +869,22 @@ Lütfen önce ayarlardan parolayı belirleyin.</translation>
         <translation>Mesajın gönderilmesi beklenirken zaman aşımına uğradı</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>Günlük</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Hafta içi</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Haftalık</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Bir kez</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>Gönderildi</translation>
     </message>
@@ -906,6 +930,30 @@ Lütfen önce ayarlardan parolayı belirleyin.</translation>
     <message>
         <source>Name</source>
         <translation>Ad</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Bir kez</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>Günlük</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Hafta içi</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Haftalık</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>Yinele</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>Göndermek yerine bana hatırlat (bildir, mesaj gönderme)</translation>
     </message>
     <message>
         <source>Message to send</source>

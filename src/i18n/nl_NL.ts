@@ -380,6 +380,14 @@ Wilt u de beveiligingscontrole negeren en doorgaan?   </translation>
         <translation>Er is geen WhatsApp-venster geopend</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>Herinnering</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>Herinnering: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| Fout</translation>
     </message>
@@ -861,6 +869,22 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
         <translation>Time-out bij het wachten op het verzenden van het bericht</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>Dagelijks</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Doordeweeks</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Wekelijks</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Eenmalig</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>Verzonden</translation>
     </message>
@@ -906,6 +930,30 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
     <message>
         <source>Name</source>
         <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>Eenmalig</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>Dagelijks</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>Doordeweeks</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>Wekelijks</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>Herhalen</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>Herinner mij in plaats van te verzenden (melden, geen bericht sturen)</translation>
     </message>
     <message>
         <source>Message to send</source>

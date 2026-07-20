@@ -380,6 +380,14 @@ Do you wish to override the security check and continue ?   </source>
         <translation>لا توجد نافذة واتساب مفتوحة</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>تذكير</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>تذكير: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| خطأ</translation>
     </message>
@@ -861,6 +869,22 @@ Please setup the password in the Settings first.</source>
         <translation>انتهت المهلة أثناء انتظار إرسال الرسالة</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>يوميًا</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>أيام الأسبوع</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>أسبوعيًا</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>مرة واحدة</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>أُرسلت</translation>
     </message>
@@ -906,6 +930,30 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>Name</source>
         <translation>الاسم</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>مرة واحدة</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>يوميًا</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>أيام الأسبوع</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>أسبوعيًا</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>تكرار</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>ذكّرني بدلاً من الإرسال (تنبيه دون إرسال رسالة)</translation>
     </message>
     <message>
         <source>Message to send</source>

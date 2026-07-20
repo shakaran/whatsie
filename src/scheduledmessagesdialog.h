@@ -8,6 +8,8 @@ class QTableWidget;
 class QLineEdit;
 class QPlainTextEdit;
 class QDateTimeEdit;
+class QComboBox;
+class QCheckBox;
 
 // Lists scheduled messages and lets the user add or remove them. Purely a view
 // over ScheduledMessages: it never sends anything itself.
@@ -28,6 +30,8 @@ private:
   QLineEdit *m_number;
   QLineEdit *m_name;
   QDateTimeEdit *m_when;
+  QComboBox *m_recurrence;
+  QCheckBox *m_reminder;
   QPlainTextEdit *m_message;
 };
 

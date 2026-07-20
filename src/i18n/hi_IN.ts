@@ -380,6 +380,14 @@ Do you wish to override the security check and continue ?   </source>
         <translation>कोई WhatsApp विंडो खुली नहीं है</translation>
     </message>
     <message>
+        <source>Reminder</source>
+        <translation>अनुस्मारक</translation>
+    </message>
+    <message>
+        <source>Reminder: %1</source>
+        <translation>अनुस्मारक: %1</translation>
+    </message>
+    <message>
         <source>| Error</source>
         <translation>| त्रुटि</translation>
     </message>
@@ -861,6 +869,22 @@ Please setup the password in the Settings first.</source>
         <translation>संदेश भेजने की प्रतीक्षा में समय समाप्त हो गया</translation>
     </message>
     <message>
+        <source>Daily</source>
+        <translation>दैनिक</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>कार्यदिवस</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>साप्ताहिक</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>एक बार</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>भेजा गया</translation>
     </message>
@@ -906,6 +930,30 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>Name</source>
         <translation>नाम</translation>
+    </message>
+    <message>
+        <source>Once</source>
+        <translation>एक बार</translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation>दैनिक</translation>
+    </message>
+    <message>
+        <source>Weekdays</source>
+        <translation>कार्यदिवस</translation>
+    </message>
+    <message>
+        <source>Weekly</source>
+        <translation>साप्ताहिक</translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation>दोहराएँ</translation>
+    </message>
+    <message>
+        <source>Remind me instead of sending (notify, don&apos;t message)</source>
+        <translation>भेजने के बजाय मुझे याद दिलाएँ (सूचित करें, संदेश न भेजें)</translation>
     </message>
     <message>
         <source>Message to send</source>
