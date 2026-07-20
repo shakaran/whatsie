@@ -36,6 +36,9 @@ CustomTitleBar::CustomTitleBar(QWidget *window, QWidget *parent)
     b->setAutoRaise(true);
     b->setIcon(st->standardIcon(pm));
     b->setToolTip(tip);
+    // Icon-only buttons need an accessible name; without one a screen reader
+    // announces nothing at all.
+    b->setAccessibleName(tip);
     b->setFocusPolicy(Qt::NoFocus);
     layout->addWidget(b);
     return b;

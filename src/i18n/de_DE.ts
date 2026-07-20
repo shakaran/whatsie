@@ -216,6 +216,14 @@ Möchten Sie die Sicherheitsprüfung übergehen und fortfahren?   </translation>
         <source>Type a command…</source>
         <translation>Befehl eingeben…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>Befehlssuche</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>Passende Befehle</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

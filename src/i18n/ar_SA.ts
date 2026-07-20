@@ -216,6 +216,14 @@ Do you wish to override the security check and continue ?   </source>
         <source>Type a command…</source>
         <translation>اكتب أمرًا…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>بحث الأوامر</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>الأوامر المطابقة</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

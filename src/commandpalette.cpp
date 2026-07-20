@@ -53,8 +53,10 @@ CommandPalette::CommandPalette(QList<Command> commands, QWidget *parent)
   m_search = new QLineEdit(this);
   m_search->setPlaceholderText(tr("Type a command…"));
   m_search->setClearButtonEnabled(true);
+  m_search->setAccessibleName(tr("Command search"));
   layout->addWidget(m_search);
   m_list = new QListWidget(this);
+  m_list->setAccessibleName(tr("Matching commands"));
   layout->addWidget(m_list);
 
   connect(m_search, &QLineEdit::textChanged, this, [this]() { refilter(); });

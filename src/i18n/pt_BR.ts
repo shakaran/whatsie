@@ -216,6 +216,14 @@ Deseja ignorar a verificação de segurança e continuar?   </translation>
         <source>Type a command…</source>
         <translation>Digite um comando…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>Busca de comandos</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>Comandos correspondentes</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

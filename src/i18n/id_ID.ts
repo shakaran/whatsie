@@ -216,6 +216,14 @@ Apakah Anda ingin melewati pemeriksaan keamanan dan melanjutkan?   </translation
         <source>Type a command…</source>
         <translation>Ketik perintah…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>Pencarian perintah</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>Perintah yang cocok</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

@@ -216,6 +216,14 @@ Do you wish to override the security check and continue ?   </source>
         <source>Type a command…</source>
         <translation>输入命令…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>命令搜索</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>匹配的命令</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

@@ -216,6 +216,14 @@ Wilt u de beveiligingscontrole negeren en doorgaan?   </translation>
         <source>Type a command…</source>
         <translation>Typ een opdracht…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>Opdracht zoeken</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>Overeenkomende opdrachten</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

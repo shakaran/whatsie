@@ -216,6 +216,14 @@ Güvenlik denetimini atlayıp devam etmek istiyor musunuz?   </translation>
         <source>Type a command…</source>
         <translation>Bir komut yazın…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>Komut arama</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>Eşleşen komutlar</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

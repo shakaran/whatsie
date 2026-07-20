@@ -1,5 +1,11 @@
 ## Unreleased
 
+**Accessibility.** The icon-only controls added in this release (the custom
+title bar's window buttons, the command palette's search field and result
+list) now carry accessible names, and each grid tile's view is named after
+its account — so a screen reader announces something meaningful instead of
+nothing.
+
 **Saved replies.** Store the short texts you send often (Settings → *Saved
 replies*) and insert one from the command palette: `Ctrl+K`, type
 "Insert", pick it, and the text is typed into the message box — going

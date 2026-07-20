@@ -222,6 +222,14 @@ Desideri ignorare il controllo di sicurezza e continuare?</translation>
         <source>Type a command…</source>
         <translation>Digita un comando…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>Ricerca comandi</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>Comandi corrispondenti</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

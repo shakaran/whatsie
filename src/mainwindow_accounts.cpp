@@ -211,6 +211,9 @@ void MainWindow::relayoutGrid() {
     caption->setObjectName(QStringLiteral("gridCellCaption"));
     caption->setAlignment(Qt::AlignCenter);
     caption->setContentsMargins(4, 2, 4, 2);
+    // The caption labels its tile for assistive tech, and the view itself gets
+    // the account name so focus announcements are meaningful.
+    view->setAccessibleName(m_accounts[i].name);
     box->addWidget(caption);
     box->addWidget(view, 1);
     m_gridLabels.append(caption);

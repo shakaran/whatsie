@@ -216,6 +216,14 @@ Do you wish to override the security check and continue ?   </source>
         <source>Type a command…</source>
         <translation>कोई कमांड टाइप करें…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>कमांड खोज</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>मेल खाने वाले कमांड</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

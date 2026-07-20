@@ -216,6 +216,14 @@ Do you wish to override the security check and continue ?   </source>
         <source>Type a command…</source>
         <translation>コマンドを入力…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>コマンド検索</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>一致するコマンド</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>

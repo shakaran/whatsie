@@ -216,6 +216,14 @@ Czy chcesz pominąć kontrolę bezpieczeństwa i kontynuować?   </translation>
         <source>Type a command…</source>
         <translation>Wpisz polecenie…</translation>
     </message>
+    <message>
+        <source>Command search</source>
+        <translation>Wyszukiwanie poleceń</translation>
+    </message>
+    <message>
+        <source>Matching commands</source>
+        <translation>Pasujące polecenia</translation>
+    </message>
 </context>
 <context>
     <name>CustomTitleBar</name>
