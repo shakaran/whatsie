@@ -1583,6 +1583,14 @@ Please setup the password in the Settings first.</source>
         <translation>사이트당 프로세스 하나 (메모리 절약)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>대화 목록의 연락처 이름과 메시지 미리보기를 숨깁니다(마우스를 올리면 하나만 표시). 화면 공유 시 유용합니다. 열려 있는 대화는 그대로 유지됩니다.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>집중 모드 (대화 목록 미리보기 숨기기)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>프록시를 거치지 않는 연결에서 WebRTC가 로컬 IP 주소를 노출하지 못하도록 합니다.</translation>
     </message>

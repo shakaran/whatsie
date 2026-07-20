@@ -1583,6 +1583,14 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
         <translation>Satu proses per situs (memori lebih rendah)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>Sembunyikan nama kontak dan pratinjau pesan di daftar obrolan (arahkan kursor untuk menampilkan satu). Berguna saat berbagi layar. Percakapan yang terbuka tidak berubah.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>Mode fokus (sembunyikan pratinjau obrolan)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>Cegah WebRTC mengungkapkan alamat IP lokal Anda melalui koneksi tanpa proksi.</translation>
     </message>

@@ -1,5 +1,11 @@
 ## Unreleased
 
+**Focus mode.** A new privacy toggle masks the contact names and message
+previews in the chat list (hover to reveal one), leaving the conversation
+you are actually reading untouched — for screen sharing, screenshots and
+open-plan desks, where the hover-to-reveal privacy blur is still too
+revealing. Covered by unit tests (`TstFocusMode`).
+
 **Screen sharing in calls.** Screen-share requests from WhatsApp Web were
 being dropped silently (a black screen for the other side). Whatly now
 shows a picker listing your screens and windows, and routes WebRTC capture

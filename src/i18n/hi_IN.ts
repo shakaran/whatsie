@@ -1583,6 +1583,14 @@ Please setup the password in the Settings first.</source>
         <translation>प्रति साइट एक प्रक्रिया (कम मेमोरी)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>चैट सूची में संपर्क नाम और संदेश पूर्वावलोकन छिपाएँ (एक दिखाने के लिए होवर करें)। स्क्रीन साझा करते समय उपयोगी। खुली बातचीत अपरिवर्तित रहती है।</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>फ़ोकस मोड (चैट सूची पूर्वावलोकन छिपाएँ)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>WebRTC को गैर-प्रॉक्सी कनेक्शनों पर आपका स्थानीय IP पता उजागर करने से रोकें।</translation>
     </message>

@@ -34,6 +34,7 @@
 #include "customtitlebar.h"
 #include "updatechecker.h"
 #include "quickreply.h"
+#include "focusmode.h"
 
 #include <QTimer>
 #include <QDesktopServices>
@@ -660,6 +661,14 @@ void MainWindow::initSettingWidget() {
             for (const Account &account : m_accounts)
               if (account.view && account.view->page())
                 account.view->page()->runJavaScript(CustomCss::scriptSource());
+          });
+
+  connect(m_settingsWidget, &SettingsWidget::focusModeChanged, m_settingsWidget,
+          [=]() {
+            FocusMode::install(WebEngineProfileManager::instance().profile());
+            for (const Account &account : m_accounts)
+              if (account.view && account.view->page())
+                account.view->page()->runJavaScript(FocusMode::scriptSource());
           });
 
   connect(m_settingsWidget, &SettingsWidget::customJsChanged, m_settingsWidget,

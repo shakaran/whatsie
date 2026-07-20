@@ -1583,6 +1583,14 @@ Najpierw ustaw hasło w ustawieniach.</translation>
         <translation>Jeden proces na witrynę (mniejsze zużycie pamięci)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>Ukrywa nazwy kontaktów i podglądy wiadomości na liście czatów (najedź, aby odsłonić jeden). Przydatne przy udostępnianiu ekranu. Otwarta rozmowa pozostaje bez zmian.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>Tryb skupienia (ukryj podglądy czatów)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>Uniemożliw WebRTC ujawnianie Twojego lokalnego adresu IP przez połączenia bez serwera proxy.</translation>
     </message>

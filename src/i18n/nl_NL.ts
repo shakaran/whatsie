@@ -1583,6 +1583,14 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
         <translation>Eén proces per site (minder geheugen)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>Verberg contactnamen en berichtvoorbeelden in de chatlijst (beweeg de muis eroverheen om er één te tonen). Handig bij schermdelen. Het geopende gesprek blijft ongewijzigd.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>Focusmodus (voorbeelden verbergen)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>Voorkom dat WebRTC uw lokale IP-adres onthult via niet-geproxyde verbindingen.</translation>
     </message>

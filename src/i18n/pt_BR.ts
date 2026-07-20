@@ -1583,6 +1583,14 @@ Defina primeiro a senha nas configurações.</translation>
         <translation>Um processo por site (menos memória)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>Oculta nomes de contatos e prévias de mensagens na lista de conversas (passe o mouse para revelar uma). Útil ao compartilhar a tela. A conversa aberta não é alterada.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>Modo foco (ocultar prévias da lista)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>Impede que o WebRTC revele seu endereço IP local em conexões sem proxy.</translation>
     </message>

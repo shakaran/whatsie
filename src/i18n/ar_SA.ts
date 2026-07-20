@@ -1583,6 +1583,14 @@ Please setup the password in the Settings first.</source>
         <translation>عملية واحدة لكل موقع (ذاكرة أقل)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>إخفاء أسماء جهات الاتصال ومعاينات الرسائل في قائمة المحادثات (مرّر المؤشر لإظهار واحدة). مفيد عند مشاركة الشاشة. المحادثة المفتوحة تبقى كما هي.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>وضع التركيز (إخفاء معاينات المحادثات)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>منع WebRTC من كشف عنوان IP المحلي الخاص بك عبر الاتصالات غير الوسيطة.</translation>
     </message>

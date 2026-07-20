@@ -1583,6 +1583,14 @@ Définissez d&apos;abord le mot de passe dans les paramètres.</translation>
         <translation>Un processus par site (moins de mémoire)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>Masque les noms de contacts et les aperçus de messages dans la liste des discussions (survolez pour en révéler un). Utile lors du partage d’écran. La conversation ouverte reste intacte.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>Mode concentration (masquer les aperçus)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>Empêche WebRTC de révéler votre adresse IP locale sur les connexions non relayées par un proxy.</translation>
     </message>

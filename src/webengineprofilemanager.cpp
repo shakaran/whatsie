@@ -8,6 +8,7 @@
 #include "chatwallpaper.h"
 #include "customcss.h"
 #include "customjs.h"
+#include "focusmode.h"
 #include "privacyblur.h"
 #include "webfont.h"
 #include "mutedstatus.h"
@@ -249,6 +250,7 @@ void WebEngineProfileManager::applyUserSettingsTo(QWebEngineProfile *profile,
     ChatWallpaper::install(profile);
     CustomCss::install(profile);
     CustomJs::install(profile);
+    FocusMode::install(profile);
     ChatTheme::install(profile);
     PrivacyBlur::install(profile);
     WebFont::install(profile);

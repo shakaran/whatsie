@@ -41,6 +41,7 @@
 #include "backup.h"
 #include "screenlock.h"
 #include "quickreply.h"
+#include "focusmode.h"
 #include "webtweaks.h"
 #include "linkeddevicename.h"
 #include "performance.h"
@@ -984,6 +985,39 @@ private slots:
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// FocusMode: the chat-list masking stylesheet toggles with the setting.
+class TstFocusMode : public QObject {
+  Q_OBJECT
+private slots:
+  void offProducesNoStyle() {
+    FocusMode::setEnabled(false);
+    QVERIFY(!FocusMode::isEnabled());
+    const QString js = FocusMode::scriptSource();
+    QVERIFY(js.contains(QLatin1String("var ON = false")));
+  }
+  void onMasksTheChatList() {
+    FocusMode::setEnabled(true);
+    QVERIFY(FocusMode::isEnabled());
+    const QString js = FocusMode::scriptSource();
+    QVERIFY(js.contains(QLatin1String("var ON = true")));
+    QVERIFY(js.contains(QLatin1String("pane-side")));   // the chat list
+    QVERIFY(js.contains(QLatin1String("blur(")));       // masked, not removed
+    QVERIFY(js.contains(QLatin1String(":hover")));      // hover reveals one
+    QVERIFY(js.contains(QLatin1String("catch")));       // never breaks the page
+    FocusMode::setEnabled(false);
+  }
+  void installOnProfile() {
+    FocusMode::setEnabled(true);
+    QWebEngineProfile profile(QStringLiteral("tst_focus"));
+    FocusMode::install(&profile);
+    QCOMPARE(profile.scripts()->find(QStringLiteral("whatly-focus-mode")).size(), 1);
+    FocusMode::setEnabled(false);
+    FocusMode::install(&profile);
+    QCOMPARE(profile.scripts()->find(QStringLiteral("whatly-focus-mode")).size(), 0);
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 // QuickReply: the composer-focus snippet injected when a notification is opened.
 class TstQuickReply : public QObject {
   Q_OBJECT
@@ -1501,6 +1535,7 @@ int main(int argc, char *argv[]) {
   { TstBackup t;              run(&t); }
   { TstScreenLock t;          run(&t); }
   { TstQuickReply t;          run(&t); }
+  { TstFocusMode t;           run(&t); }
   { TstStorageInfo t;         run(&t); }
   { TstUpdateCheck t;         run(&t); }
   { TstFuzzy t;               run(&t); }

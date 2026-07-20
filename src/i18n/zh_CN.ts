@@ -1583,6 +1583,14 @@ Please setup the password in the Settings first.</source>
         <translation>每个站点一个进程（更低内存）</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>隐藏聊天列表中的联系人姓名和消息预览（悬停可显示其中一条）。共享屏幕时很有用。已打开的对话不受影响。</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>专注模式（隐藏聊天列表预览）</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>阻止 WebRTC 通过非代理连接暴露您的本地 IP 地址。</translation>
     </message>

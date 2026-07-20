@@ -1486,6 +1486,14 @@ Imposta la password nelle Impostazioni.</translation>
         <translation>Un processo per sito (meno memoria)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>Nasconde i nomi dei contatti e le anteprime dei messaggi nell’elenco chat (passa il mouse per rivelarne uno). Utile quando condividi lo schermo. La conversazione aperta resta invariata.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>Modalità concentrazione (nascondi anteprime)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>Impedisci a WebRTC di rivelare il tuo indirizzo IP locale su connessioni non proxate.</translation>
     </message>

@@ -1583,6 +1583,14 @@ Please setup the password in the Settings first.</source>
         <translation>サイトごとに 1 プロセス（メモリ削減）</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>チャット一覧の連絡先名とメッセージのプレビューを隠します（ホバーで1件だけ表示）。画面共有時に便利です。開いている会話はそのままです。</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>フォーカスモード（チャット一覧のプレビューを隠す）</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>プロキシを経由しない接続で WebRTC がローカル IP アドレスを露呈するのを防ぎます。</translation>
     </message>

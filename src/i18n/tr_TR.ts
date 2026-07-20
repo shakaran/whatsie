@@ -1583,6 +1583,14 @@ Lütfen önce ayarlardan parolayı belirleyin.</translation>
         <translation>Site başına bir işlem (daha az bellek)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>Sohbet listesindeki kişi adlarını ve mesaj önizlemelerini gizler (birini görmek için üzerine gelin). Ekran paylaşırken kullanışlıdır. Açık sohbet değişmez.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>Odak modu (sohbet önizlemelerini gizle)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>WebRTC&apos;nin yerel IP adresinizi proxy kullanılmayan bağlantılar üzerinden ifşa etmesini engelleyin.</translation>
     </message>

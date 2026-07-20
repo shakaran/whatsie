@@ -1583,6 +1583,14 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
         <translation>Ein Prozess pro Website (weniger Speicher)</translation>
     </message>
     <message>
+        <source>Hide contact names and message previews in the chat list (hover to reveal one). Useful when sharing your screen. The open conversation is untouched.</source>
+        <translation>Kontaktnamen und Nachrichtenvorschauen in der Chatliste ausblenden (zum Anzeigen mit der Maus darüberfahren). Nützlich beim Teilen des Bildschirms. Die geöffnete Unterhaltung bleibt unverändert.</translation>
+    </message>
+    <message>
+        <source>Focus mode (hide chat-list previews)</source>
+        <translation>Fokusmodus (Chat-Vorschauen ausblenden)</translation>
+    </message>
+    <message>
         <source>Stop WebRTC from revealing your local IP address over non-proxied connections.</source>
         <translation>Verhindert, dass WebRTC deine lokale IP-Adresse über nicht per Proxy geleitete Verbindungen preisgibt.</translation>
     </message>
