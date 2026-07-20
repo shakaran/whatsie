@@ -512,6 +512,38 @@ Ouvrir les paramètres maintenant ?</translation>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Recharger</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>Réduire dans la zone de notification</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Verrouiller</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>Couper le son</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>Nouvelle discussion / ouvrir une URL</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Paramètres</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>Changer de thème</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Quitter</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>Renommer…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Définissez d&apos;abord le mot de passe dans les paramètres.</translation>
         <translation>Supprimer</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>Raccourcis clavier</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>Cliquez sur un champ et appuyez sur la combinaison de touches. Videz un champ pour supprimer le raccourci. Les modifications s'appliquent après un redémarrage.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>Ceci supprimera les données persistantes (y compris les cookies persistants et le cache) et fermera l&apos;application.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Définissez d&apos;abord le mot de passe dans les paramètres.</translation>
     <message>
         <source>None</source>
         <translation>Aucune</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>Raccourci déjà utilisé</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>Ce raccourci est déjà utilisé par une autre action.</translation>
     </message>
     <message>
         <source>Clear cache</source>

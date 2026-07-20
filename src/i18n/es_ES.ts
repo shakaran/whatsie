@@ -512,6 +512,38 @@ Configure primero la contraseña en los ajustes.
         <translation>&amp;Salir</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Recargar</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>Minimizar a la bandeja</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Bloquear</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>Silenciar audio</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>Nuevo chat / abrir URL</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Ajustes</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>Cambiar tema</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Salir</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>Renombrar…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Configure primero la contraseña en los ajustes.</translation>
         <translation>Eliminar</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>Atajos de teclado</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>Haz clic en un campo y pulsa la combinación de teclas. Borra un campo para eliminar el atajo. Los cambios se aplican tras reiniciar.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>Esto eliminará los datos persistentes (incluidas las cookies persistentes y la caché) y cerrará la aplicación.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Configure primero la contraseña en los ajustes.</translation>
     <message>
         <source>None</source>
         <translation>Ninguno</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>Atajo en uso</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>Ese atajo ya lo utiliza otra acción.</translation>
     </message>
     <message>
         <source>Clear cache</source>

@@ -198,6 +198,7 @@ set(SOURCES
     src/commandpalette.cpp
     src/updatechecker.cpp
     src/storageinfo.cpp
+    src/shortcuts.cpp
     src/globalshortcut.cpp
     src/privacyblur.cpp
     src/performance.cpp
@@ -251,6 +252,7 @@ set(HEADERS
     src/commandpalette.h
     src/updatechecker.h
     src/storageinfo.h
+    src/shortcuts.h
     src/privacyblur.h
     src/performance.h
     src/notificationrules.h

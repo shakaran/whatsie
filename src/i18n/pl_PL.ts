@@ -512,6 +512,38 @@ Otworzyć ustawienia teraz?</translation>
         <translation>&amp;Zakończ</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Załaduj ponownie</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>Zminimalizuj do zasobnika</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Zablokuj</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>Wycisz dźwięk</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>Nowy czat / otwórz URL</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Ustawienia</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>Przełącz motyw</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Zakończ</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>Zmień nazwę…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Najpierw ustaw hasło w ustawieniach.</translation>
         <translation>Usuń</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>Skróty klawiszowe</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>Kliknij pole i naciśnij kombinację klawiszy. Wyczyść pole, aby usunąć skrót. Zmiany zostaną zastosowane po ponownym uruchomieniu.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>Spowoduje to usunięcie danych trwałych (w tym trwałych plików cookie i pamięci podręcznej) i zamknięcie aplikacji.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Najpierw ustaw hasło w ustawieniach.</translation>
     <message>
         <source>None</source>
         <translation>Brak</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>Skrót jest już używany</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>Ten skrót jest już używany przez inną akcję.</translation>
     </message>
     <message>
         <source>Clear cache</source>

@@ -512,6 +512,38 @@ Instellingen nu openen?</translation>
         <translation>&amp;Afsluiten</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Opnieuw laden</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>Minimaliseren naar systeemvak</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Vergrendelen</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>Geluid dempen</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>Nieuwe chat / URL openen</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Instellingen</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>Thema wisselen</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Afsluiten</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>Naam wijzigen…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
         <translation>Verwijderen</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>Sneltoetsen</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>Klik op een veld en druk op de toetsencombinatie. Wis een veld om de sneltoets te verwijderen. Wijzigingen worden na een herstart toegepast.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>Hiermee worden de persistente gegevens (inclusief persistente cookies en cache) verwijderd en wordt de toepassing afgesloten.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
     <message>
         <source>None</source>
         <translation>Geen</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>Sneltoets al in gebruik</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>Die sneltoets wordt al door een andere actie gebruikt.</translation>
     </message>
     <message>
         <source>Clear cache</source>

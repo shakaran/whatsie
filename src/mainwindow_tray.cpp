@@ -8,6 +8,8 @@
 #include <QStyleHints>
 #include <QActionGroup>
 #include <QPainter>
+
+#include "shortcuts.h"
 #include <QPalette>
 #include <QSvgRenderer>
 
@@ -132,6 +134,35 @@ void MainWindow::createActions() {
   m_quitAction->setShortcut(QKeySequence(Qt::Modifier::CTRL | Qt::Key_Q));
   connect(m_quitAction, &QAction::triggered, this, &MainWindow::quitApp);
   addAction(m_quitAction);
+
+  // Register each action's current (hard-coded) shortcut as its default, then
+  // apply any stored user override. The Settings dialog edits these; changes
+  // take effect on the next launch.
+  const struct {
+    QAction *action;
+    const char *id;
+    QString label;
+  } shortcutRegistry[] = {
+      {m_reloadAction, "reload", tr("Reload")},
+      {m_minimizeAction, "minimize", tr("Minimise to tray")},
+      {m_lockAction, "lock", tr("Lock")},
+      {m_muteAction, "mute", tr("Mute audio")},
+      {m_fullscreenAction, "fullscreen", tr("Fullscreen")},
+      {m_openUrlAction, "openChat", tr("New chat / open URL")},
+      {m_zoomResetAction, "zoomReset", tr("Reset zoom")},
+      {m_settingsAction, "settings", tr("Settings")},
+      {m_toggleThemeAction, "toggleTheme", tr("Toggle theme")},
+      {m_viewGridAction, "gridView", tr("Grid view")},
+      {m_commandPaletteAction, "commandPalette", tr("Command palette")},
+      {m_quitAction, "quit", tr("Quit")},
+  };
+  for (const auto &r : shortcutRegistry) {
+    if (!r.action)
+      continue;
+    Shortcuts::registerAction(QString::fromLatin1(r.id), r.label,
+                              r.action->shortcut());
+    r.action->setShortcut(Shortcuts::get(QString::fromLatin1(r.id)));
+  }
 }
 
 // ── Tray icon ─────────────────────────────────────────────────────────────────

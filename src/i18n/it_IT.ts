@@ -468,6 +468,38 @@ Aprire le Impostazioni ora?</translation>
         <translation>Esci</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Ricarica</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>Riduci a icona nell'area di notifica</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Blocca</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>Disattiva audio</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>Nuova chat / apri URL</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Impostazioni</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>Cambia tema</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Esci</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>Rinomina…</translation>
     </message>
@@ -1526,6 +1558,14 @@ Imposta la password nelle Impostazioni.</translation>
         <translation>Rimuovi</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>Scorciatoie da tastiera</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>Fai clic su un campo e premi la combinazione di tasti. Svuota un campo per rimuovere la scorciatoia. Le modifiche vengono applicate dopo un riavvio.</translation>
+    </message>
+    <message>
         <source>Quit</source>
         <translation>Esci</translation>
     </message>
@@ -1744,6 +1784,14 @@ Imposta la password nelle Impostazioni.</translation>
     <message>
         <source>None</source>
         <translation>Nessuna</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>Scorciatoia in uso</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>Questa scorciatoia è già usata da un'altra azione.</translation>
     </message>
     <message>
         <source>Clear cache</source>

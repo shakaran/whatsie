@@ -1,5 +1,12 @@
 ## Unreleased
 
+**Customisable keyboard shortcuts.** Settings → *Keyboard shortcuts* lets
+you remap the app's actions (reload, lock, mute, theme, grid, command
+palette, quit, …). Clashing a shortcut with another action is rejected;
+clearing a field removes it. Changes apply after a restart. The registry,
+override round-trip and conflict detection are covered by unit tests
+(`TstShortcuts`).
+
 **Storage manager.** Settings → Storage now also shows the cache size and
 has its own *Clear cache* button (separate from clearing all persistent
 data), so you can reclaim space without signing out. The size helpers are

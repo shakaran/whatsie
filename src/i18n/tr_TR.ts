@@ -512,6 +512,38 @@ Ayarlar şimdi açılsın mı?</translation>
         <translation>&amp;Çıkış</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Yeniden yükle</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>Sistem tepsisine küçült</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Kilitle</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>Sesi kapat</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>Yeni sohbet / URL aç</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Ayarlar</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>Temayı değiştir</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Çıkış</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>Yeniden adlandır…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Lütfen önce ayarlardan parolayı belirleyin.</translation>
         <translation>Kaldır</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>Klavye kısayolları</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>Bir alana tıklayın ve tuş bileşimine basın. Kısayolu kaldırmak için alanı temizleyin. Değişiklikler yeniden başlatmadan sonra uygulanır.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>Bu, kalıcı verileri (kalıcı çerezler ve önbellek dahil) silecek ve uygulamayı kapatacaktır.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Lütfen önce ayarlardan parolayı belirleyin.</translation>
     <message>
         <source>None</source>
         <translation>Yok</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>Kısayol kullanımda</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>Bu kısayol zaten başka bir işlem tarafından kullanılıyor.</translation>
     </message>
     <message>
         <source>Clear cache</source>

@@ -512,6 +512,38 @@ Buka pengaturan sekarang?</translation>
         <translation>&amp;Keluar</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Muat ulang</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>Kecilkan ke baki</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Kunci</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>Bisukan audio</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>Obrolan baru / buka URL</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Pengaturan</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>Alihkan tema</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Keluar</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>Ganti nama…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
         <translation>Hapus</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>Pintasan keyboard</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>Klik sebuah bidang dan tekan kombinasi tombol. Kosongkan bidang untuk menghapus pintasan. Perubahan berlaku setelah dimulai ulang.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>Ini akan menghapus data persisten (termasuk cookie persisten dan cache) dan menutup aplikasi.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
     <message>
         <source>None</source>
         <translation>Tidak ada</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>Pintasan sedang digunakan</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>Pintasan itu sudah digunakan oleh tindakan lain.</translation>
     </message>
     <message>
         <source>Clear cache</source>

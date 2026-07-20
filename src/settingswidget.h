@@ -161,6 +161,7 @@ private:
   void loadPerformanceSettings();
   void loadNetworkSettings();
   void loadNotificationRules();
+  void loadShortcuts();
   void refreshJsAddonsList();
   void updateChatWallpaperButtons();
   void updateCustomCssButtons();

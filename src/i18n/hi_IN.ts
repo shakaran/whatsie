@@ -512,6 +512,38 @@ Open Settings now?</source>
         <translation>बाहर निकलें (&amp;Q)</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>पुनः लोड करें</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>ट्रे में छोटा करें</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>लॉक करें</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>ऑडियो म्यूट करें</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>नई चैट / URL खोलें</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>सेटिंग्स</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>थीम टॉगल करें</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>बाहर निकलें</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>नाम बदलें…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Please setup the password in the Settings first.</source>
         <translation>हटाएँ</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>कीबोर्ड शॉर्टकट</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>किसी फ़ील्ड पर क्लिक करें और कुंजी संयोजन दबाएँ। शॉर्टकट हटाने के लिए फ़ील्ड साफ़ करें। परिवर्तन पुनरारंभ के बाद लागू होते हैं।</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>यह स्थायी डेटा (स्थायी कुकीज़ और कैश सहित) हटा देगा और एप्लिकेशन बंद कर देगा।</translation>
     </message>
@@ -1737,6 +1777,14 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>None</source>
         <translation>कोई नहीं</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>शॉर्टकट उपयोग में है</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>यह शॉर्टकट पहले से किसी अन्य क्रिया द्वारा उपयोग किया जा रहा है।</translation>
     </message>
     <message>
         <source>Clear cache</source>

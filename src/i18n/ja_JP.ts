@@ -512,6 +512,38 @@ Open Settings now?</source>
         <translation>終了(&amp;Q)</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>再読み込み</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>トレイに最小化</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>ロック</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>音声をミュート</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>新規チャット / URL を開く</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>設定</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>テーマを切り替え</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>終了</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>名前を変更…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Please setup the password in the Settings first.</source>
         <translation>削除</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>キーボードショートカット</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>フィールドをクリックしてキーの組み合わせを押します。ショートカットを削除するにはフィールドを空にします。変更は再起動後に適用されます。</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>永続データ（永続的な Cookie とキャッシュを含む）を削除し、アプリケーションを終了します。</translation>
     </message>
@@ -1737,6 +1777,14 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>None</source>
         <translation>なし</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>ショートカットは使用中です</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>そのショートカットは既に別の操作で使用されています。</translation>
     </message>
     <message>
         <source>Clear cache</source>

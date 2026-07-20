@@ -1786,6 +1786,28 @@ background:transparent;
          </layout>
         </widget>
        </item>
+       <item>
+        <widget class="QGroupBox" name="groupBoxShortcuts">
+         <property name="title">
+          <string>Keyboard shortcuts</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayoutShortcuts">
+          <item>
+           <widget class="QLabel" name="shortcutsHintLabel">
+            <property name="text">
+             <string>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="shortcutsFormHost" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>

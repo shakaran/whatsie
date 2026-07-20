@@ -512,6 +512,38 @@ Open Settings now?</source>
         <translation>В&amp;ыход</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Перезагрузить</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>Свернуть в трей</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Заблокировать</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>Отключить звук</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>Новый чат / открыть URL</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Настройки</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>Переключить тему</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Выход</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>Переименовать…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Please setup the password in the Settings first.</source>
         <translation>Удалить</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>Сочетания клавиш</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>Щёлкните поле и нажмите сочетание клавиш. Очистите поле, чтобы удалить сочетание. Изменения вступают в силу после перезапуска.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>Это удалит постоянные данные (включая постоянные файлы cookie и кэш) и закроет приложение.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>None</source>
         <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>Сочетание уже используется</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>Это сочетание клавиш уже используется другим действием.</translation>
     </message>
     <message>
         <source>Clear cache</source>

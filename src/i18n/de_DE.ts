@@ -512,6 +512,38 @@ Einstellungen jetzt öffnen?</translation>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Neu laden</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>In den Infobereich minimieren</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Sperren</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>Ton stummschalten</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>Neuer Chat / URL öffnen</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>Design umschalten</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Beenden</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>Umbenennen…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
         <translation>Entfernen</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>Tastenkürzel</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>Klicken Sie in ein Feld und drücken Sie die Tastenkombination. Leeren Sie ein Feld, um das Tastenkürzel zu entfernen. Änderungen werden nach einem Neustart wirksam.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>Dies löscht die persistenten Daten (einschließlich persistenter Cookies und Cache) und beendet die Anwendung.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
     <message>
         <source>None</source>
         <translation>Keine</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>Tastenkürzel bereits belegt</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>Dieses Tastenkürzel wird bereits von einer anderen Aktion verwendet.</translation>
     </message>
     <message>
         <source>Clear cache</source>

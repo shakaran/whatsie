@@ -512,6 +512,38 @@ Open Settings now?</source>
         <translation>종료(&amp;Q)</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>새로 고침</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>트레이로 최소화</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>잠금</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>오디오 음소거</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>새 채팅 / URL 열기</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>설정</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>테마 전환</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>종료</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>이름 바꾸기…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Please setup the password in the Settings first.</source>
         <translation>제거</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>키보드 단축키</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>필드를 클릭하고 키 조합을 누르세요. 단축키를 제거하려면 필드를 비우세요. 변경 사항은 다시 시작한 후에 적용됩니다.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>영구 데이터(영구 쿠키 및 캐시 포함)를 삭제하고 애플리케이션을 종료합니다.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>None</source>
         <translation>없음</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>단축키 사용 중</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>해당 단축키는 이미 다른 동작에서 사용 중입니다.</translation>
     </message>
     <message>
         <source>Clear cache</source>

@@ -36,10 +36,13 @@
 #include "notificationrules.h"
 #include "updatechecker.h"
 #include "storageinfo.h"
+#include "shortcuts.h"
 
 #include <QListWidget>
 #include <QTimeEdit>
 #include <QTime>
+#include <QFormLayout>
+#include <QKeySequenceEdit>
 
 // The theme combo's two entries, in .ui order. The stored value is derived
 // from these, never from the item text — which is translated.
@@ -175,6 +178,7 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
   loadPerformanceSettings();
   loadNetworkSettings();
   loadNotificationRules();
+  loadShortcuts();
   refreshJsAddonsList();
   ui->lockOnMinimizeCheckBox->setChecked(
       SettingsManager::instance().settings().value("lockOnHideToTray", false).toBool());
@@ -384,6 +388,31 @@ void SettingsWidget::refresh() {
   ui->cookieSize->setText(Utils::refreshCacheSize(persistentStoragePath()));
   ui->cacheSize->setText(
       StorageInfo::humanReadable(StorageInfo::directorySize(cachePath())));
+}
+
+void SettingsWidget::loadShortcuts() {
+  auto *host = ui->shortcutsFormHost;
+  if (!host || host->layout())
+    return; // build once
+  auto *form = new QFormLayout(host);
+  form->setContentsMargins(0, 0, 0, 0);
+  for (const Shortcuts::Def &d : Shortcuts::registered()) {
+    auto *edit = new QKeySequenceEdit(Shortcuts::get(d.id), host);
+    const QString id = d.id;
+    connect(edit, &QKeySequenceEdit::editingFinished, this, [this, edit, id]() {
+      const QKeySequence seq = edit->keySequence();
+      const QString clash = Shortcuts::conflictId(id, seq);
+      if (!clash.isEmpty()) {
+        QMessageBox::warning(
+            this, tr("Shortcut in use"),
+            tr("That shortcut is already used by another action."));
+        edit->setKeySequence(Shortcuts::get(id)); // revert
+        return;
+      }
+      Shortcuts::set(id, seq);
+    });
+    form->addRow(d.label, edit);
+  }
 }
 
 void SettingsWidget::on_clearCacheButton_clicked() {

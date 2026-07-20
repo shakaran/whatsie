@@ -512,6 +512,38 @@ Open Settings now?</source>
         <translation>退出(&amp;Q)</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>重新加载</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>最小化到托盘</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>锁定</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>静音</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>新建聊天 / 打开 URL</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>切换主题</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>退出</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>重命名…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Please setup the password in the Settings first.</source>
         <translation>移除</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>键盘快捷键</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>点击某个字段并按下组合键。清空字段可移除该快捷键。更改将在重启后生效。</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>这将删除持久数据（包括持久 Cookie 和缓存）并退出应用程序。</translation>
     </message>
@@ -1737,6 +1777,14 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>None</source>
         <translation>无</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>快捷键已被占用</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>该快捷键已被另一个操作使用。</translation>
     </message>
     <message>
         <source>Clear cache</source>

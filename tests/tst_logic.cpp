@@ -37,6 +37,7 @@
 #include "commandpalette.h"
 #include "updatechecker.h"
 #include "storageinfo.h"
+#include "shortcuts.h"
 #include "webtweaks.h"
 #include "linkeddevicename.h"
 #include "performance.h"
@@ -969,6 +970,47 @@ private slots:
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Shortcuts: the registry, override round-trip, reset and conflict detection.
+class TstShortcuts : public QObject {
+  Q_OBJECT
+private slots:
+  void init() {
+    Shortcuts::clearRegistryForTest();
+    Shortcuts::registerAction("reload", "Reload", QKeySequence(Qt::Key_F5));
+    Shortcuts::registerAction("lock", "Lock",
+                              QKeySequence(Qt::CTRL | Qt::Key_L));
+    // Clear any stored overrides from a previous run.
+    Shortcuts::reset("reload");
+    Shortcuts::reset("lock");
+  }
+  void defaultsAndOverride() {
+    QCOMPARE(Shortcuts::get("reload"), QKeySequence(Qt::Key_F5));
+    Shortcuts::set("reload", QKeySequence(Qt::CTRL | Qt::Key_R));
+    QCOMPARE(Shortcuts::get("reload"), QKeySequence(Qt::CTRL | Qt::Key_R));
+    Shortcuts::reset("reload");
+    QCOMPARE(Shortcuts::get("reload"), QKeySequence(Qt::Key_F5));
+  }
+  void conflictDetection() {
+    // Nothing else uses Ctrl+R yet.
+    QVERIFY(Shortcuts::conflictId("reload",
+                                  QKeySequence(Qt::CTRL | Qt::Key_R)).isEmpty());
+    // "lock" holds Ctrl+L → assigning it to "reload" conflicts with "lock".
+    QCOMPARE(Shortcuts::conflictId("reload", QKeySequence(Qt::CTRL | Qt::Key_L)),
+             QStringLiteral("lock"));
+    // Its own current sequence is not a conflict against itself.
+    QVERIFY(Shortcuts::conflictId("lock", QKeySequence(Qt::CTRL | Qt::Key_L))
+                .isEmpty());
+    // An empty sequence never conflicts.
+    QVERIFY(Shortcuts::conflictId("reload", QKeySequence()).isEmpty());
+  }
+  void registeredListsInOrder() {
+    const auto all = Shortcuts::registered();
+    QCOMPARE(all.size(), 2);
+    QCOMPARE(all.first().id, QStringLiteral("reload"));
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 // StorageInfo: recursive directory size and the human-readable formatter.
 class TstStorageInfo : public QObject {
   Q_OBJECT
@@ -1353,6 +1395,7 @@ int main(int argc, char *argv[]) {
   { TstCustomJs t;            run(&t); }
   { TstChatWallpaper t;       run(&t); }
   { TstPerformance t;         run(&t); }
+  { TstShortcuts t;           run(&t); }
   { TstStorageInfo t;         run(&t); }
   { TstUpdateCheck t;         run(&t); }
   { TstFuzzy t;               run(&t); }

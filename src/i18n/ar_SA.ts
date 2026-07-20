@@ -512,6 +512,38 @@ Open Settings now?</source>
         <translation>خروج (&amp;Q)</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>إعادة التحميل</translation>
+    </message>
+    <message>
+        <source>Minimise to tray</source>
+        <translation>التصغير إلى شريط النظام</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>قفل</translation>
+    </message>
+    <message>
+        <source>Mute audio</source>
+        <translation>كتم الصوت</translation>
+    </message>
+    <message>
+        <source>New chat / open URL</source>
+        <translation>محادثة جديدة / فتح URL</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>الإعدادات</translation>
+    </message>
+    <message>
+        <source>Toggle theme</source>
+        <translation>تبديل السمة</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>خروج</translation>
+    </message>
+    <message>
         <source>Rename…</source>
         <translation>إعادة تسمية…</translation>
     </message>
@@ -1623,6 +1655,14 @@ Please setup the password in the Settings first.</source>
         <translation>إزالة</translation>
     </message>
     <message>
+        <source>Keyboard shortcuts</source>
+        <translation>اختصارات لوحة المفاتيح</translation>
+    </message>
+    <message>
+        <source>Click a field and press the key combination. Clear a field to remove the shortcut. Changes apply after a restart.</source>
+        <translation>انقر فوق حقل واضغط على تركيبة المفاتيح. امسح الحقل لإزالة الاختصار. تُطبَّق التغييرات بعد إعادة التشغيل.</translation>
+    </message>
+    <message>
         <source>This will delete Persistent Data ! Persistent data includes persistent cookies and Cache, and Quit the application.</source>
         <translation>سيؤدي هذا إلى حذف البيانات الدائمة (بما في ذلك ملفات تعريف الارتباط الدائمة وذاكرة التخزين المؤقت) وإغلاق التطبيق.</translation>
     </message>
@@ -1737,6 +1777,14 @@ Please setup the password in the Settings first.</source>
     <message>
         <source>None</source>
         <translation>لا شيء</translation>
+    </message>
+    <message>
+        <source>Shortcut in use</source>
+        <translation>الاختصار قيد الاستخدام</translation>
+    </message>
+    <message>
+        <source>That shortcut is already used by another action.</source>
+        <translation>هذا الاختصار مستخدَم بالفعل من قِبل إجراء آخر.</translation>
     </message>
     <message>
         <source>Clear cache</source>
