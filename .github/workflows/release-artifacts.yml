@@ -188,3 +188,91 @@ jobs:
           gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
             || gh release create "$tag" --repo "$GITHUB_REPOSITORY" --title "$tag" --generate-notes || true
           gh release upload "$tag" Whatly-*-x86_64.AppImage Whatly-*-x86_64.AppImage.zsync --clobber --repo "$GITHUB_REPOSITORY"
+
+  # ── .deb and .rpm (Qt bundled under /opt/whatly, built with fpm) ─────────────
+  # The app needs Qt 6.10, which stable distros do not ship, so — like the
+  # AppImage/Flatpak/snap — Qt is bundled. The package installs the app under
+  # /opt/whatly (RPATH-relocated by linuxdeploy) with a /usr/bin/whatly symlink
+  # and the desktop entry + icon in /usr/share, so it works on any distro.
+  # Standalone job: a failure here never blocks the other artifacts.
+  packages:
+    runs-on: ubuntu-22.04
+    env:
+      APPIMAGE_EXTRACT_AND_RUN: 1
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.10.*'
+          modules: 'qtwebengine qtwebchannel qtpositioning qtserialport'
+          cache: true
+
+      - name: Build dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ninja-build libx11-dev libxcb1-dev libfuse2 \
+            ruby ruby-dev rpm
+          sudo gem install --no-document fpm
+
+      - name: Build and bundle into AppDir
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR"
+          cmake --build build --parallel
+          DESTDIR="$PWD/AppDir" cmake --install build
+          qtbase=https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous
+          base=https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous
+          wget -q "$base/linuxdeploy-x86_64.AppImage"
+          wget -q "$qtbase/linuxdeploy-plugin-qt-x86_64.AppImage"
+          chmod +x linuxdeploy*.AppImage
+          export QMAKE="$QT_ROOT_DIR/bin/qmake"
+          # Populate AppDir with the bundled Qt runtime (RPATH => $ORIGIN/../lib).
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir \
+            --desktop-file AppDir/usr/share/applications/net.shakaran.whatly.desktop \
+            --icon-file AppDir/usr/share/icons/hicolor/256x256/apps/net.shakaran.whatly.png \
+            --plugin qt
+
+      - name: Stage the package tree
+        run: |
+          rm -rf pkg
+          mkdir -p pkg/opt/whatly pkg/usr/bin pkg/usr/share/applications \
+            pkg/usr/share/icons/hicolor/256x256/apps
+          cp -a AppDir/usr/. pkg/opt/whatly/
+          ln -sf /opt/whatly/bin/whatly pkg/usr/bin/whatly
+          # Desktop entry + icon at the system locations, pointing into /opt.
+          sed 's|^Exec=whatly|Exec=/opt/whatly/bin/whatly|' \
+            AppDir/usr/share/applications/net.shakaran.whatly.desktop \
+            > pkg/usr/share/applications/net.shakaran.whatly.desktop
+          cp AppDir/usr/share/icons/hicolor/256x256/apps/net.shakaran.whatly.png \
+            pkg/usr/share/icons/hicolor/256x256/apps/ || true
+
+      - name: Build .deb and .rpm
+        run: |
+          tag="${{ github.event.inputs.tag || github.ref_name }}"
+          ver="${tag#v}"
+          common=(-s dir -n whatly -v "$ver" --license MIT \
+            --description "Feature-rich WhatsApp Web desktop client (Qt WebEngine)" \
+            --url "https://github.com/shakaran/whatly" \
+            --maintainer "Angel Guzman Maeso <angel@guzmanmaeso.com>" \
+            -C pkg --force)
+          fpm "${common[@]}" -t deb \
+            -d libglib2.0-0 -d libnss3 -d libxcomposite1 -d libxdamage1 \
+            -d libxrandr2 -d libxkbcommon0 -d libasound2 \
+            -p "whatly_${ver}_amd64.deb" opt usr
+          fpm "${common[@]}" -t rpm \
+            -d glib2 -d nss -d libXcomposite -d libXdamage -d libXrandr \
+            -d libxkbcommon -d alsa-lib \
+            -p "whatly-${ver}-1.x86_64.rpm" opt usr
+
+      - name: Attach to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ github.event.inputs.tag || github.ref_name }}"
+          gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
+            || gh release create "$tag" --repo "$GITHUB_REPOSITORY" --title "$tag" --generate-notes || true
+          gh release upload "$tag" whatly_*_amd64.deb whatly-*.x86_64.rpm --clobber --repo "$GITHUB_REPOSITORY"
