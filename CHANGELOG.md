@@ -1,6 +1,7 @@
-## Unreleased
+## 6.3.0 (2026-07-20)
 
-A sweep of engine-tuning features, with every existing feature kept intact.
+A sweep of engine-tuning, connectivity and customisation features, with every
+existing feature kept intact.
 
 **Performance & privacy settings.** Settings → *Performance & Privacy* now
 exposes the rendering-engine knobs that used to be hard-coded. Whatly still

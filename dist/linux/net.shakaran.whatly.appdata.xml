@@ -108,6 +108,21 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="6.3.0" date="2026-07-20">
+      <description>
+        <p>A sweep of engine-tuning, connectivity and customisation features:</p>
+        <ul>
+          <li>Performance &amp; Privacy settings: GPU, process-model, JavaScript-heap and HTTP-cache controls, plus a WebRTC IP-leak shield</li>
+          <li>Network proxy: system, direct, or a manual SOCKS5 / HTTP proxy with credentials</li>
+          <li>Start at login, a configurable interface scale, and an optional custom (frameless) window title bar</li>
+          <li>Portal-based notifications for Flatpak, selectable per delivery backend</li>
+          <li>Custom JavaScript addons, sandboxed and toggleable; custom CSS and addons are now stored per account</li>
+          <li>Grid view to show every in-window account at once, alongside tabs and separate windows</li>
+          <li>A first-run setup wizard</li>
+          <li>A native ARM64 AppImage is now built for each release</li>
+        </ul>
+      </description>
+    </release>
     <release version="6.2.1" date="2026-07-19">
       <description>
         <p>Bug-fix and hardening release:</p>

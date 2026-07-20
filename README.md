@@ -91,12 +91,13 @@ On top of upstream WhatSie, this fork adds:
   formatting are left untouched.
 - **Hide muted status updates** — an optional toggle removes the "Muted updates"
   section of the Status panel, so statuses from muted contacts do not show up.
-- **Multiple WhatsApp accounts** — either as separate windows with
-  `whatly --profile=<name>`, or as tabs inside one window. Each account is a
-  fully separate session with its own storage; the tray badge sums the unread
-  count across all of them. Add a tab with the **+**, and rename or remove one by
-  right-clicking it. With a single account the tab bar is hidden, so nothing
-  changes if you do not use this.
+- **Multiple WhatsApp accounts** — as separate windows with
+  `whatly --profile=<name>`, as tabs inside one window, or **all at once in a
+  grid** (tray menu → *Grid view*, or <kbd>Ctrl</kbd>+<kbd>G</kbd>). Each account
+  is a fully separate session with its own storage; the tray badge sums the
+  unread count across all of them. Add a tab with the **+**, and rename or remove
+  one by right-clicking it. With a single account the tab bar is hidden, so
+  nothing changes if you do not use this.
 - **Spell checker** — actually works now. Qt WebEngine needs Chromium `.bdic`
   dictionaries, not hunspell's; the fork converts and ships them, so the language
   list is no longer empty. Pick **one or several** languages in Settings and
@@ -105,8 +106,27 @@ On top of upstream WhatSie, this fork adds:
   themes), set your own image behind the chats, or blur them until you hover so
   nobody reads over your shoulder. Toggle the theme and the blur from buttons in
   WhatsApp's own sidebar.
-- **Custom CSS and smooth scrolling** — load a community stylesheet (catppuccin
-  and friends) to restyle WhatsApp Web, and turn on animated scrolling.
+- **Custom CSS, JavaScript addons and smooth scrolling** — load a community
+  stylesheet (catppuccin and friends) to restyle WhatsApp Web, add your own
+  `.js` addons (each runs in its own sandbox, toggle them individually), and turn
+  on animated scrolling. Custom CSS and addons are stored **per account**.
+- **Performance & privacy controls** — the rendering-engine switches that used to
+  be hard-coded are now yours: turn GPU acceleration back on (or off), ignore the
+  driver blocklist, pick a lower-memory process model, cap the JavaScript heap,
+  choose the HTTP cache type/size, and shield your local IP from WebRTC leaks
+  (Settings → *Performance & Privacy*).
+- **Network proxy** — route Whatly through your system proxy, none (direct), or a
+  manual SOCKS5 / HTTP proxy with optional credentials (Settings → *Network &
+  Startup*).
+- **Start at login, interface scale and an optional custom window frame** — have
+  Whatly launch when you log in, set a UI scale factor without an environment
+  variable, or replace the system title bar with Whatly's own slim one
+  (frameless, off by default).
+- **Portal notifications** — on Linux, notifications can go through the XDG
+  desktop portal (Flatpak-friendly) or the system service; *Automatic* picks the
+  right one.
+- **A first-run wizard** — a short welcome that sets a few sensible defaults, then
+  points at the QR code to sign in.
 - **A smarter system tray** — an optional **monochrome** icon that matches your
   panel, an unread-count badge, and a **connection-status** dim when WhatsApp is
   offline.
@@ -291,9 +311,14 @@ Qt 6 exactly as on Linux.
 
 On Linux, Whatly runs Chromium with the GPU **disabled** by default. This avoids
 a class of blank-window and crash-on-start bugs on some NVIDIA / Wayland / Flatpak
-setups, at the cost of GPU-accelerated rendering. If your GPU works well and you
-want it back, set your own Chromium flags (a **non-empty** value takes over
-completely; leave out `--disable-gpu`):
+setups, at the cost of GPU-accelerated rendering. The easiest way to change this
+is **Settings → Performance & Privacy**: turn GPU acceleration back on, ignore the
+driver blocklist, or pick the workaround that fits your setup — no environment
+variable needed (the change applies after a restart).
+
+If you prefer, you can still drive Chromium directly with your own flags (a
+**non-empty** value takes over the base flags completely; leave out
+`--disable-gpu`):
 
 ```bash
 QTWEBENGINE_CHROMIUM_FLAGS="--disable-translate --no-sandbox" whatly
@@ -351,7 +376,7 @@ Options:
 
 ### Multiple accounts
 
-Two independent ways to be signed in to more than one account:
+Three independent ways to be signed in to more than one account:
 
 - **Separate windows** — `whatly --profile=work` runs a wholly separate account
   with its own WhatsApp session, its own settings file and its own window. Run as
@@ -360,6 +385,9 @@ Two independent ways to be signed in to more than one account:
 - **Tabs in one window** — click the **+** on the account tab bar to add another
   account inside the current window. Right-click a tab to rename or remove it. The
   tray icon's unread badge is the total across every tab.
+- **Grid view** — show every in-window account at once in a tiled grid instead of
+  one at a time. Toggle it from the tray menu (*Grid view* / *Tabbed view*) or
+  with <kbd>Ctrl</kbd>+<kbd>G</kbd>; the choice is remembered.
 
 <div align="center">
 <img src="docs/img/card-accounts.png" width="380" alt="Multiple accounts"/>
