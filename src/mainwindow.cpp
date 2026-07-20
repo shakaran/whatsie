@@ -113,6 +113,14 @@ MainWindow::MainWindow(QWidget *parent)
       QStringLiteral("org.freedesktop.portal.Settings"),
       QStringLiteral("SettingChanged"), this,
       SLOT(onPortalSettingChanged(QString, QString, QDBusVariant)));
+
+  // Lock Whatly when the desktop session locks (freedesktop + GNOME savers).
+  for (const QString &iface : {QStringLiteral("org.freedesktop.ScreenSaver"),
+                               QStringLiteral("org.gnome.ScreenSaver")}) {
+    QDBusConnection::sessionBus().connect(
+        QString(), QString(), iface, QStringLiteral("ActiveChanged"), this,
+        SLOT(onScreenSaverActiveChanged(bool)));
+  }
 #endif
   connect(qApp->styleHints(), &QStyleHints::colorSchemeChanged, this,
           [this](Qt::ColorScheme) { applySystemThemeIfEnabled(); });

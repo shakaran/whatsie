@@ -1415,6 +1415,14 @@ Configure primero la contraseña en los ajustes.</translation>
         <translation>Bloquear al ocultar en la bandeja</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Bloquear también Whatly cuando se bloquee la sesión del escritorio. Requiere tener una contraseña configurada. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Bloquear cuando se bloquee la pantalla</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>Contraseña actual</translation>
     </message>

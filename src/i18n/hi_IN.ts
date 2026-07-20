@@ -1415,6 +1415,14 @@ Please setup the password in the Settings first.</source>
         <translation>ट्रे में छिपाने पर लॉक करें</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>डेस्कटॉप सत्र लॉक होने पर Whatly को भी लॉक करें। पासवर्ड सेट होना आवश्यक है। (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>स्क्रीन लॉक होने पर लॉक करें</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>वर्तमान पासवर्ड</translation>
     </message>

@@ -38,6 +38,7 @@
 #include "storageinfo.h"
 #include "shortcuts.h"
 #include "backup.h"
+#include "screenlock.h"
 
 #include <QListWidget>
 #include <QTimeEdit>
@@ -183,6 +184,12 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
   refreshJsAddonsList();
   ui->lockOnMinimizeCheckBox->setChecked(
       SettingsManager::instance().settings().value("lockOnHideToTray", false).toBool());
+  ui->lockOnScreenLockCheckBox->blockSignals(true);
+  ui->lockOnScreenLockCheckBox->setChecked(ScreenLock::isEnabled());
+  ui->lockOnScreenLockCheckBox->blockSignals(false);
+#ifndef Q_OS_LINUX
+  ui->lockOnScreenLockCheckBox->setVisible(false);
+#endif
   {
     const bool followSystem =
         SettingsManager::instance().settings().value("followSystemTheme", false).toBool();
@@ -894,6 +901,10 @@ void SettingsWidget::on_interfaceFontSizeSpinBox_valueChanged(int arg1) {
 
 void SettingsWidget::on_lockOnMinimizeCheckBox_toggled(bool checked) {
   SettingsManager::instance().settings().setValue("lockOnHideToTray", checked);
+}
+
+void SettingsWidget::on_lockOnScreenLockCheckBox_toggled(bool checked) {
+  ScreenLock::setEnabled(checked);
 }
 
 void SettingsWidget::loadPerformanceSettings() {

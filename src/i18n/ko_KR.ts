@@ -1415,6 +1415,14 @@ Please setup the password in the Settings first.</source>
         <translation>트레이로 숨길 때 잠금</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>데스크톱 세션이 잠길 때 Whatly도 잠급니다. 비밀번호가 설정되어 있어야 합니다. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>화면이 잠길 때 잠그기</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>현재 비밀번호</translation>
     </message>

@@ -39,6 +39,7 @@
 #include "storageinfo.h"
 #include "shortcuts.h"
 #include "backup.h"
+#include "screenlock.h"
 #include "webtweaks.h"
 #include "linkeddevicename.h"
 #include "performance.h"
@@ -971,6 +972,27 @@ private slots:
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ScreenLock: the lock-on-session-lock decision.
+class TstScreenLock : public QObject {
+  Q_OBJECT
+private slots:
+  void decision() {
+    ScreenLock::setEnabled(true);
+    QVERIFY(ScreenLock::shouldLock(true, true));    // active + configured + on
+    QVERIFY(!ScreenLock::shouldLock(false, true));  // saver not active
+    QVERIFY(!ScreenLock::shouldLock(true, false));  // no passcode
+    ScreenLock::setEnabled(false);
+    QVERIFY(!ScreenLock::shouldLock(true, true));   // feature off
+  }
+  void settingRoundTrips() {
+    ScreenLock::setEnabled(true);
+    QVERIFY(ScreenLock::isEnabled());
+    ScreenLock::setEnabled(false);
+    QVERIFY(!ScreenLock::isEnabled());
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Backup: the archive/extract and recursive-copy primitives (round-trip on temp
 // dirs, using the system tar).
 class TstBackup : public QObject {
@@ -1445,6 +1467,7 @@ int main(int argc, char *argv[]) {
   { TstPerformance t;         run(&t); }
   { TstShortcuts t;           run(&t); }
   { TstBackup t;              run(&t); }
+  { TstScreenLock t;          run(&t); }
   { TstStorageInfo t;         run(&t); }
   { TstUpdateCheck t;         run(&t); }
   { TstFuzzy t;               run(&t); }

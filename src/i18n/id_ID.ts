@@ -1415,6 +1415,14 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
         <translation>Kunci saat disembunyikan ke baki</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Kunci juga Whatly saat sesi desktop terkunci. Memerlukan kata sandi yang telah diatur. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Kunci saat layar terkunci</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>Kata sandi saat ini</translation>
     </message>

@@ -1415,6 +1415,14 @@ Please setup the password in the Settings first.</source>
         <translation>Блокировать при сворачивании в трей</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Также блокировать Whatly при блокировке сеанса рабочего стола. Требуется установленный пароль. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Блокировать при блокировке экрана</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>Текущий пароль</translation>
     </message>

@@ -1415,6 +1415,14 @@ Définissez d&apos;abord le mot de passe dans les paramètres.</translation>
         <translation>Verrouiller une fois masqué dans la zone de notification</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Verrouiller aussi Whatly lorsque la session de bureau se verrouille. Nécessite un mot de passe défini. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Verrouiller quand l’écran se verrouille</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>Mot de passe actuel</translation>
     </message>

@@ -1415,6 +1415,14 @@ Please setup the password in the Settings first.</source>
         <translation>トレイに隠したときにロック</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>デスクトップセッションのロック時に Whatly もロックします。パスワードの設定が必要です。(Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>画面ロック時にロックする</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>現在のパスワード</translation>
     </message>

@@ -1,5 +1,11 @@
 ## Unreleased
 
+**Lock when the screen locks.** With a passcode configured, Whatly can now
+lock itself the moment the desktop session locks (it listens for the
+freedesktop/GNOME screensaver signal over D-Bus), not just on a timer or
+when hiding to the tray. Opt in from the app-lock settings. Covered by
+unit tests (`TstScreenLock`).
+
 **Profile backup & restore.** Settings → Storage can now export an entire
 account — settings, the logged-in session and your custom CSS/JS addons —
 to a single `.tar.gz`, and import one back (with a clear warning that the

@@ -1415,6 +1415,14 @@ Please setup the password in the Settings first.</source>
         <translation>隐藏到托盘时锁定</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>桌面会话锁定时也锁定 Whatly。需要先设置密码。(Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>屏幕锁定时锁定</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>当前密码</translation>
     </message>

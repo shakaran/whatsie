@@ -250,6 +250,7 @@ private slots:
   // system theme if we are following it.
   void onPortalSettingChanged(const QString &nspace, const QString &key,
                               const QDBusVariant &value);
+  void onScreenSaverActiveChanged(bool active);
 #endif
   void quitApp();
   void changeLockPassword();

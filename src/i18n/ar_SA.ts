@@ -1415,6 +1415,14 @@ Please setup the password in the Settings first.</source>
         <translation>القفل عند الإخفاء إلى شريط النظام</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>قفل Whatly أيضًا عند قفل جلسة سطح المكتب. يتطلب تعيين كلمة مرور. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>القفل عند قفل الشاشة</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>كلمة المرور الحالية</translation>
     </message>

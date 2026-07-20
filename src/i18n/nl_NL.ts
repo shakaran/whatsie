@@ -1415,6 +1415,14 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
         <translation>Vergrendelen bij verbergen naar systeemvak</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Vergrendel Whatly ook wanneer de bureaubladsessie vergrendelt. Vereist een ingesteld wachtwoord. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Vergrendelen wanneer het scherm vergrendelt</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>Huidig wachtwoord</translation>
     </message>

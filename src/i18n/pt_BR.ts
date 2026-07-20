@@ -1415,6 +1415,14 @@ Defina primeiro a senha nas configurações.</translation>
         <translation>Bloquear ao ocultar na bandeja</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Bloquear também o Whatly quando a sessão da área de trabalho for bloqueada. Requer uma senha definida. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Bloquear quando a tela bloquear</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>Senha atual</translation>
     </message>

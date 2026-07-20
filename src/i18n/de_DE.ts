@@ -1415,6 +1415,14 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
         <translation>Beim Ausblenden in den Tray sperren</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Whatly auch sperren, wenn die Desktop-Sitzung gesperrt wird. Erfordert ein eingerichtetes Passwort. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Sperren, wenn der Bildschirm gesperrt wird</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>Aktuelles Passwort</translation>
     </message>

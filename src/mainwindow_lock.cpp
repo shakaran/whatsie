@@ -1,5 +1,6 @@
 // App lock, auto-lock, and session-logout helpers.
 #include "mainwindow.h"
+#include "screenlock.h"
 
 #include "common.h"
 
@@ -157,6 +158,21 @@ void MainWindow::lockOnHideIfEnabled() {
   initLock();
   m_lockWidget->lock_app();
 }
+
+#ifdef Q_OS_LINUX
+// The session's screensaver/lock became active (or inactive). When it activated
+// and the user opted in with a passcode configured, lock Whatly too.
+void MainWindow::onScreenSaverActiveChanged(bool active) {
+  const bool passcodeConfigured =
+      SettingsManager::instance().settings().value("asdfg").isValid();
+  if (!ScreenLock::shouldLock(active, passcodeConfigured))
+    return;
+  if (m_lockWidget != nullptr && m_lockWidget->getIsLocked())
+    return;
+  initLock();
+  m_lockWidget->lock_app();
+}
+#endif
 
 void MainWindow::changeLockPassword() {
   SettingsManager::instance().settings().remove("asdfg");

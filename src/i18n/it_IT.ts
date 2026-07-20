@@ -1378,6 +1378,14 @@ Imposta la password nelle Impostazioni.</translation>
         <translation>Blocca quando nascosto nel vassoio</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Blocca anche Whatly quando la sessione del desktop si blocca. Richiede una password impostata. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Blocca quando lo schermo si blocca</translation>
+    </message>
+    <message>
         <source>Enable auto locking after</source>
         <translation>Abilita blocco automatico dopo</translation>
     </message>

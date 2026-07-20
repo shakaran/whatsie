@@ -1415,6 +1415,14 @@ Najpierw ustaw hasło w ustawieniach.</translation>
         <translation>Zablokuj po ukryciu do zasobnika</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Blokuj też Whatly, gdy sesja pulpitu zostanie zablokowana. Wymaga ustawionego hasła. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Blokuj, gdy ekran się zablokuje</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>Bieżące hasło</translation>
     </message>

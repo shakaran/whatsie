@@ -1415,6 +1415,14 @@ Lütfen önce ayarlardan parolayı belirleyin.</translation>
         <translation>Tepsiye gizlenince kilitle</translation>
     </message>
     <message>
+        <source>Also lock Whatly when the desktop session locks. Requires a password to be set. (Linux)</source>
+        <translation>Masaüstü oturumu kilitlendiğinde Whatly’yi de kilitle. Bir parola ayarlanmış olmalıdır. (Linux)</translation>
+    </message>
+    <message>
+        <source>Lock when the screen locks</source>
+        <translation>Ekran kilitlendiğinde kilitle</translation>
+    </message>
+    <message>
         <source>Current Password</source>
         <translation>Mevcut parola</translation>
     </message>
@@ -1856,11 +1864,11 @@ Lütfen önce ayarlardan parolayı belirleyin.</translation>
     </message>
     <message>
         <source>This overwrites the current account&apos;s data with the archive, then Whatly must be restarted. Continue?</source>
-        <translation>Bu, mevcut hesabın verilerinin üzerine arşivi yazar, ardından Whatly'nin yeniden başlatılması gerekir. Devam edilsin mi?</translation>
+        <translation>Bu, mevcut hesabın verilerinin üzerine arşivi yazar, ardından Whatly&apos;nin yeniden başlatılması gerekir. Devam edilsin mi?</translation>
     </message>
     <message>
         <source>Profile imported. Please restart Whatly.</source>
-        <translation>Profil içe aktarıldı. Lütfen Whatly'yi yeniden başlatın.</translation>
+        <translation>Profil içe aktarıldı. Lütfen Whatly&apos;yi yeniden başlatın.</translation>
     </message>
     <message>
         <source>%1 languages</source>
