@@ -8,7 +8,7 @@ whatly (6.3.0) unstable; urgency=medium
   * Custom JavaScript addons (sandboxed); custom CSS and addons stored per
     account.
   * Grid view for multiple in-window accounts, alongside tabs and windows.
-  * First-run setup wizard, and a native ARM64 AppImage. See CHANGELOG.md.
+  * First-run setup wizard, and an optional custom window frame. See CHANGELOG.md.
 
  -- Ángel Guzmán Maeso <angel@guzmanmaeso.com>  Mon, 20 Jul 2026 12:00:00 +0200
 

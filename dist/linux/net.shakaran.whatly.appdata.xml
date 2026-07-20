@@ -119,7 +119,6 @@
           <li>Custom JavaScript addons, sandboxed and toggleable; custom CSS and addons are now stored per account</li>
           <li>Grid view to show every in-window account at once, alongside tabs and separate windows</li>
           <li>A first-run setup wizard</li>
-          <li>A native ARM64 AppImage is now built for each release</li>
         </ul>
       </description>
     </release>

@@ -55,8 +55,8 @@ not affiliated with WhatsApp or Meta.
 %changelog
 * Mon Jul 20 2026 Ángel Guzmán Maeso <angel@guzmanmaeso.com> - 6.3.0-1
 - Performance/privacy engine controls, network proxy, portal notifications,
-  custom JS addons + per-account CSS/JS, grid view, setup wizard, ARM64
-  AppImage; see CHANGELOG.md
+  custom JS addons + per-account CSS/JS, grid view, setup wizard, optional
+  custom window frame; see CHANGELOG.md
 * Sat Jul 19 2026 Ángel Guzmán Maeso <angel@guzmanmaeso.com> - 6.2.1-1
 - Automatic-theme crash fix, graceful SIGTERM, quieter terminal, About icons,
   and a unit-test suite; see CHANGELOG.md
