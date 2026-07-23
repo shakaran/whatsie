@@ -1,10 +1,18 @@
 #include "debuglog.h"
 
 #include <QDateTime>
+#include <QDir>
+#include <QFile>
 #include <QMutex>
 #include <QMutexLocker>
+#include <QStandardPaths>
 #include <QStringList>
 #include <QtGlobal>
+
+#ifdef Q_OS_UNIX
+#include <fcntl.h>
+#include <unistd.h>
+#endif
 
 namespace {
 
@@ -13,6 +21,7 @@ const int kMaxLines = 400;
 QMutex g_mutex;
 QStringList g_lines;
 QtMessageHandler g_previousHandler = nullptr;
+QString g_nativeStderrLogPath;
 
 // Benign noise emitted by Qt/Chromium (Qt WebEngine) as its worker threads and
 // thread-local storage are torn down at exit. It says nothing actionable but
@@ -81,5 +90,46 @@ void install() {
   installed = true;
   g_previousHandler = qInstallMessageHandler(messageHandler);
 }
+
+bool rotateCaptureFile(const QString &path) {
+  // Keep the previous session's file (which may hold a crash) alongside, then
+  // start this session fresh so the log stays small and self-describing.
+  const QString prev = path + QStringLiteral(".prev");
+  QFile::remove(prev);
+  QFile::rename(path, prev);
+  QFile f(path);
+  if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate))
+    return false;
+  f.close();
+  return true;
+}
+
+void captureNativeStderr() {
+#ifdef Q_OS_UNIX
+  // A terminal user already sees Chromium's stderr; only redirect the
+  // desktop/systemd launch, where it would otherwise be lost.
+  if (::isatty(STDERR_FILENO))
+    return;
+  const QString dir =
+      QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+  if (dir.isEmpty())
+    return;
+  QDir().mkpath(dir);
+  const QString path = dir + QStringLiteral("/whatly-webengine.log");
+  if (!rotateCaptureFile(path))
+    return;
+
+  const int fd = ::open(path.toLocal8Bit().constData(), O_WRONLY | O_APPEND);
+  if (fd < 0)
+    return;
+  // The kernel commits each write() to the file immediately, so even the last
+  // line Chromium emits before an abort survives — unlike an in-process reader.
+  ::dup2(fd, STDERR_FILENO);
+  ::close(fd);
+  g_nativeStderrLogPath = path;
+#endif
+}
+
+QString nativeStderrLogPath() { return g_nativeStderrLogPath; }
 
 } // namespace DebugLog

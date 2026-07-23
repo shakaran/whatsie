@@ -1,5 +1,15 @@
 ## Unreleased
 
+**Recover from a start-up crash (#3).** If Qt WebEngine aborts while
+initialising GPU/GL against an incompatible system driver — seen on some
+Linux setups before WhatsApp Web ever loads — the next launch automatically
+switches to progressively safer software rendering and tells you so; a clean
+load resets it. Chromium's own diagnostics are now also written to a log file
+(`whatly-webengine.log`) on a desktop/systemd launch, so the crash cause lands
+in a bug report instead of vanishing into the journal. The release packaging
+now verifies the bundled Qt WebEngine runtime is complete before shipping.
+Covered by unit tests (`TstPerformance`, `TstDebugLog`).
+
 **Raise the window from the tray.** A left click (or double click) on the
 tray icon now reliably brings the window to the front — shown, un-minimised
 and focused — which used to fail on Windows and when minimised. Only a

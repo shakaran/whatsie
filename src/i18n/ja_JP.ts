@@ -894,6 +894,10 @@ Please setup the password in the Settings first.</source>
         <comment>WebTweaks</comment>
         <translation>チャットをぼかす</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>起動時のクラッシュから安全なレンダリングに切り替えて復旧しました。設定 → パフォーマンスで調整できます。</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

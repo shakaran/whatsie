@@ -17,6 +17,7 @@
 #include <QLocale>
 #include <QStandardPaths>
 #include <QTextStream>
+#include <QTimer>
 #include <QTranslator>
 #include <QtWidgets>
 #include <QtWebEngineCore>
@@ -381,6 +382,10 @@ int main(int argc, char *argv[]) {
   qputenv("QT_FORCE_STDERR_LOGGING", "1");
 #endif
 
+  // Detect a previous launch that crashed before WhatsApp Web loaded, so the
+  // Chromium flags built next can escalate to safer rendering (issue #3).
+  Performance::evaluateStartup();
+
   setChromiumFlags();
 
   // The account id is folded into SingleApplication's instance key (it hashes
@@ -402,6 +407,11 @@ int main(int argc, char *argv[]) {
   QApplication::setOrganizationDomain("net.shakaran");
   QApplication::setOrganizationName("shakaran");
   QApplication::setApplicationVersion(VERSIONSTR);
+
+  // Now that the app/org names (and thus the data path) are set, persist
+  // Chromium's own fd-2 output to a file for bug reports. Must be before Qt
+  // WebEngine starts, which the profile creation below is the first to do.
+  DebugLog::captureNativeStderr();
 
   // Install the configured network proxy before any account profile opens a
   // connection (Qt WebEngine honours the application-wide proxy).
@@ -708,6 +718,11 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  // Arm the start-up crash watch just before we commit to loading the page:
+  // markStartupSucceeded() (on the first successful load) disarms it, so if the
+  // process dies before that the next launch escalates to safer rendering.
+  Performance::armStartupWatch();
+
   if (QSystemTrayIcon::isSystemTrayAvailable() &&
       SettingsManager::instance()
           .settings()
@@ -716,6 +731,19 @@ int main(int argc, char *argv[]) {
     whatly.runMinimized();
   } else {
     whatly.show();
+  }
+
+  // If we are here because a previous start crashed before the page loaded, let
+  // the user know rendering was dialled back — and how to tune it — once the UI
+  // is up. It self-heals: a clean load resets the level back to normal.
+  if (Performance::recoveryLevel() > 0) {
+    QTimer::singleShot(1500, &whatly, [&whatly] {
+      whatly.showNotification(
+          QApplication::applicationDisplayName(),
+          QObject::tr("Recovered from a start-up crash by switching to safe "
+                      "rendering. You can adjust this in Settings → "
+                      "Performance."));
+    });
   }
 
 #ifdef Q_OS_UNIX

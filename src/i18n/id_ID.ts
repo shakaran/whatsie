@@ -894,6 +894,10 @@ Silakan atur kata sandi di pengaturan terlebih dahulu.</translation>
         <comment>WebTweaks</comment>
         <translation>Buramkan obrolan</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>Dipulihkan dari kegagalan saat memulai dengan beralih ke rendering aman. Anda dapat menyesuaikannya di Pengaturan → Kinerja.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

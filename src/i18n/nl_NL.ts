@@ -894,6 +894,10 @@ Stel eerst het wachtwoord in bij de instellingen.</translation>
         <comment>WebTweaks</comment>
         <translation>Chats vervagen</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>Hersteld van een crash bij het opstarten door over te schakelen naar veilige weergave. Je kunt dit aanpassen in Instellingen → Prestaties.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

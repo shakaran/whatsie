@@ -894,6 +894,10 @@ Please setup the password in the Settings first.</source>
         <comment>WebTweaks</comment>
         <translation>تمويه المحادثات</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>تمت الاستعادة من تعطل عند بدء التشغيل عبر التبديل إلى العرض الآمن. يمكنك ضبط ذلك من الإعدادات → الأداء.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

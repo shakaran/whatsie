@@ -894,6 +894,10 @@ Définissez d&apos;abord le mot de passe dans les paramètres.</translation>
         <comment>WebTweaks</comment>
         <translation>Flouter les discussions</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>Récupéré après un plantage au démarrage en passant au rendu sécurisé. Vous pouvez l'ajuster dans Paramètres → Performances.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

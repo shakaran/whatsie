@@ -894,6 +894,10 @@ Please setup the password in the Settings first.</source>
         <comment>WebTweaks</comment>
         <translation>Размыть чаты</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>Восстановлено после сбоя при запуске путём переключения на безопасный режим отображения. Это можно изменить в Настройки → Производительность.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

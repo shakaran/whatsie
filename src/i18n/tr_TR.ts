@@ -894,6 +894,10 @@ Lütfen önce ayarlardan parolayı belirleyin.</translation>
         <comment>WebTweaks</comment>
         <translation>Sohbetleri bulanıklaştır</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>Başlangıçtaki bir çökmeden güvenli işlemeye geçilerek kurtarıldı. Bunu Ayarlar → Performans bölümünden ayarlayabilirsiniz.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

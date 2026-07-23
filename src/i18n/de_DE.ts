@@ -894,6 +894,10 @@ Bitte legen Sie zuerst das Passwort in den Einstellungen fest.</translation>
         <comment>WebTweaks</comment>
         <translation>Chats verwischen</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>Nach einem Startabsturz wurde auf sicheres Rendering umgeschaltet. Du kannst dies unter Einstellungen → Leistung anpassen.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

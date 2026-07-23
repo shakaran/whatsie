@@ -894,6 +894,10 @@ Please setup the password in the Settings first.</source>
         <comment>WebTweaks</comment>
         <translation>模糊聊天</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>已通过切换到安全渲染从启动崩溃中恢复。你可以在设置 → 性能中调整此项。</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

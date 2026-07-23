@@ -15,6 +15,7 @@
 #include "identicons.h"
 #include "portalnotification.h"
 #include "notificationrules.h"
+#include "performance.h"
 
 #include <QDateTime>
 
@@ -439,6 +440,9 @@ void MainWindow::checkConnectionHealth() {
 void MainWindow::handleLoadFinished(bool loaded) {
   if (loaded) {
     qDebug() << "Loaded";
+    // The page rendered: disarm the start-up crash watch and reset any safe-
+    // rendering recovery level, so a one-off crash does not stick (issue #3).
+    Performance::markStartupSucceeded();
     m_watchdogStrikes = 0; // fresh document, start clean
     checkLoadedCorrectly();
     updatePageTheme();

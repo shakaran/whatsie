@@ -894,6 +894,10 @@ Please setup the password in the Settings first.</source>
         <comment>WebTweaks</comment>
         <translation>चैट धुंधली करें</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>स्टार्ट-अप क्रैश से सुरक्षित रेंडरिंग पर स्विच करके पुनर्प्राप्त किया गया। आप इसे सेटिंग्स → प्रदर्शन में समायोजित कर सकते हैं।</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

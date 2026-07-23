@@ -15,6 +15,9 @@ constexpr bool kDefaultDisableGpu = true;
 #endif
 constexpr bool kDefaultDisableGpuCompositing = true;
 
+// Cap on how far start-up crash recovery escalates the rendering flags.
+constexpr int kMaxRecoveryLevel = 2;
+
 bool b(const QString &key, bool def) {
   return Performance::settings().value(key, def).toBool();
 }
@@ -84,6 +87,39 @@ void setInterfaceScaleFactor(double factor) {
                       factor < 0.0 ? 0.0 : factor);
 }
 
+void evaluateStartup() {
+  QSettings &s = settings();
+  if (!s.value(QStringLiteral("perf/startupPending"), false).toBool())
+    return;
+  // The previous GUI launch armed the watch but never cleared it → it crashed
+  // before the page loaded. Bump the recovery level (capped) and consume the
+  // pending flag so this crash is counted exactly once.
+  const int level = qMin(
+      kMaxRecoveryLevel,
+      s.value(QStringLiteral("perf/recoveryLevel"), 0).toInt() + 1);
+  s.setValue(QStringLiteral("perf/recoveryLevel"), level);
+  s.setValue(QStringLiteral("perf/startupPending"), false);
+  s.sync();
+}
+
+int recoveryLevel() {
+  return qBound(
+      0, settings().value(QStringLiteral("perf/recoveryLevel"), 0).toInt(),
+      kMaxRecoveryLevel);
+}
+
+void armStartupWatch() {
+  settings().setValue(QStringLiteral("perf/startupPending"), true);
+  settings().sync();
+}
+
+void markStartupSucceeded() {
+  QSettings &s = settings();
+  s.setValue(QStringLiteral("perf/startupPending"), false);
+  s.setValue(QStringLiteral("perf/recoveryLevel"), 0);
+  s.sync();
+}
+
 QString chromiumFlagFragment() {
   QStringList f;
   if (disableGpu())
@@ -107,6 +143,23 @@ QString chromiumFlagFragment() {
     f << QStringLiteral("--enable-features=WebRTCPipeWireCapturer");
   if (const int mb = jsMemoryLimitMb(); mb > 0)
     f << QStringLiteral("--js-flags=--max-old-space-size=%1").arg(mb);
+
+  // Start-up crash recovery (issue #3): after a crash before the page loaded,
+  // force progressively safer rendering. Level 1 drops all GPU/GL use for the
+  // pure-software compositor (which renders WhatsApp Web's 2D content fine);
+  // level 2 also folds the GPU work into the browser process. Deduplicated
+  // against whatever the user's own GPU settings already added.
+  if (const int level = recoveryLevel(); level > 0) {
+    QStringList safe{QStringLiteral("--disable-gpu"),
+                     QStringLiteral("--disable-gpu-compositing"),
+                     QStringLiteral("--disable-software-rasterizer")};
+    if (level >= 2)
+      safe << QStringLiteral("--in-process-gpu")
+           << QStringLiteral("--disable-gpu-sandbox");
+    for (const QString &flag : std::as_const(safe))
+      if (!f.contains(flag))
+        f << flag;
+  }
   return f.join(QLatin1Char(' '));
 }
 

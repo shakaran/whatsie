@@ -894,6 +894,10 @@ Configure primero la contraseña en los ajustes.</translation>
         <comment>WebTweaks</comment>
         <translation>Desenfocar los chats</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>Se recuperó de un fallo de inicio cambiando a renderizado seguro. Puedes ajustarlo en Ajustes → Rendimiento.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

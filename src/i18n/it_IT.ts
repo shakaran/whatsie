@@ -900,6 +900,10 @@ Imposta la password nelle Impostazioni.</translation>
         <comment>WebTweaks</comment>
         <translation>Sfoca le chat</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>Ripristinato da un arresto anomalo all'avvio passando al rendering sicuro. Puoi regolarlo in Impostazioni → Prestazioni.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

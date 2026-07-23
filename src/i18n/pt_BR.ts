@@ -894,6 +894,10 @@ Defina primeiro a senha nas configurações.</translation>
         <comment>WebTweaks</comment>
         <translation>Desfocar as conversas</translation>
     </message>
+    <message>
+        <source>Recovered from a start-up crash by switching to safe rendering. You can adjust this in Settings → Performance.</source>
+        <translation>Recuperado de uma falha na inicialização alternando para renderização segura. Você pode ajustar isso em Configurações → Desempenho.</translation>
+    </message>
 </context>
 <context>
     <name>RateApp</name>

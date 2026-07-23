@@ -63,8 +63,32 @@ void setCacheType(const QString &type);
 void setCacheMaxMb(int mb);
 void setInterfaceScaleFactor(double factor);
 
-// Build the extra QTWEBENGINE_CHROMIUM_FLAGS fragment from the settings above.
-// Pure function of the stored values, so it is unit-tested directly.
+// ── Start-up crash recovery ("safe rendering") ─────────────────────────────
+// A relocated/bundled Qt WebEngine can hard-abort (SIGTRAP) while initialising
+// GPU/GL against an incompatible system driver, before WhatsApp Web ever loads
+// (issue #3: RPM on Fedora 44). These track that across launches and escalate
+// to progressively safer rendering flags so the app heals itself instead of
+// crashing on every start.
+
+// Read once at start-up, before the flags are built. If the previous launch
+// armed the watch but never reported success, that is treated as a crash: the
+// recovery level is bumped and persisted, and the pending flag is consumed so a
+// single crash is counted once. Safe to call from any invocation.
+void evaluateStartup();
+
+// Current recovery level: 0 = normal, higher = safer (and slower) rendering.
+int recoveryLevel();
+
+// Mark that a GUI launch is about to load the page. Call right before the
+// window is shown, on the primary GUI path only.
+void armStartupWatch();
+
+// WhatsApp Web loaded successfully: clear the pending flag and reset recovery.
+void markStartupSucceeded();
+
+// Build the extra QTWEBENGINE_CHROMIUM_FLAGS fragment from the settings above,
+// plus any start-up recovery flags. Pure function of the stored values, so it
+// is unit-tested directly.
 QString chromiumFlagFragment();
 
 // Apply the HTTP-cache choice to a profile (done when the profile is built).

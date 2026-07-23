@@ -590,6 +590,47 @@ private slots:
     QVERIFY(recent.contains(QLatin1String("whatly-test-info-line")));
     QVERIFY(recent.contains(QLatin1String("QThreadStorage: entry 7")));
   }
+
+  // The file-management half of captureNativeStderr() (issue #3): each session
+  // starts a fresh capture file and keeps the previous one as "<name>.prev", so
+  // a crash log survives one relaunch. Tested without the fd-2 redirect, which
+  // would hijack the test runner's own stderr.
+  void rotateCaptureKeepsPrevious() {
+    const QString path =
+        QDir::tempPath() + QStringLiteral("/whatly_capture_test.log");
+    const QString prev = path + QStringLiteral(".prev");
+    QFile::remove(path);
+    QFile::remove(prev);
+
+    // First session: creates a fresh, empty file; no .prev yet.
+    QVERIFY(DebugLog::rotateCaptureFile(path));
+    QVERIFY(QFile::exists(path));
+    QVERIFY(!QFile::exists(prev));
+
+    // Simulate a crash having written to it.
+    {
+      QFile f(path);
+      QVERIFY(f.open(QIODevice::WriteOnly));
+      f.write("[FATAL] Check failed: previous session\n");
+      f.close();
+    }
+
+    // Second session: the crash log is preserved as .prev and a fresh, empty
+    // file is left in place.
+    QVERIFY(DebugLog::rotateCaptureFile(path));
+    QVERIFY(QFile::exists(prev));
+    QVERIFY(QFile::exists(path));
+    QCOMPARE(QFileInfo(path).size(), qint64(0));
+    {
+      QFile f(prev);
+      QVERIFY(f.open(QIODevice::ReadOnly));
+      QVERIFY(f.readAll().contains("previous session"));
+      f.close();
+    }
+
+    QFile::remove(path);
+    QFile::remove(prev);
+  }
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -808,10 +849,71 @@ private slots:
     Performance::setJsMemoryLimitMb(0);
     Performance::setCacheType(QStringLiteral("disk"));
     Performance::setCacheMaxMb(0);
+    // No start-up crash recovery pending: level 0, watch disarmed.
+    Performance::markStartupSucceeded();
   }
 
   void emptyWhenAllOff() {
     QCOMPARE(Performance::chromiumFlagFragment(), QString());
+  }
+
+  // Start-up crash recovery (issue #3): a launch that arms the watch but never
+  // reports success is treated as a crash on the next evaluateStartup(), which
+  // escalates the recovery level (capped) and adds safe-rendering flags. A
+  // successful load resets it.
+  void recoveryEscalatesThenResets() {
+    QCOMPARE(Performance::recoveryLevel(), 0);
+    QVERIFY(!Performance::chromiumFlagFragment().contains(
+        QLatin1String("--disable-software-rasterizer")));
+
+    // No crash pending → evaluateStartup() is a no-op.
+    Performance::evaluateStartup();
+    QCOMPARE(Performance::recoveryLevel(), 0);
+
+    // Arm, then a crash: evaluateStartup() sees the pending flag → level 1.
+    Performance::armStartupWatch();
+    Performance::evaluateStartup();
+    QCOMPARE(Performance::recoveryLevel(), 1);
+    const QString l1 = Performance::chromiumFlagFragment();
+    QVERIFY(l1.contains(QLatin1String("--disable-gpu")));
+    QVERIFY(l1.contains(QLatin1String("--disable-software-rasterizer")));
+    QVERIFY(!l1.contains(QLatin1String("--in-process-gpu")));
+
+    // A single crash is counted once: evaluating again without re-arming does
+    // not bump the level.
+    Performance::evaluateStartup();
+    QCOMPARE(Performance::recoveryLevel(), 1);
+
+    // A second crash → level 2 adds the stronger flags.
+    Performance::armStartupWatch();
+    Performance::evaluateStartup();
+    QCOMPARE(Performance::recoveryLevel(), 2);
+    QVERIFY(Performance::chromiumFlagFragment().contains(
+        QLatin1String("--in-process-gpu")));
+
+    // Capped at 2.
+    Performance::armStartupWatch();
+    Performance::evaluateStartup();
+    QCOMPARE(Performance::recoveryLevel(), 2);
+
+    // A clean load resets everything.
+    Performance::markStartupSucceeded();
+    QCOMPARE(Performance::recoveryLevel(), 0);
+    QVERIFY(!Performance::chromiumFlagFragment().contains(
+        QLatin1String("--disable-software-rasterizer")));
+  }
+
+  // The recovery flags must not duplicate a switch the user's own GPU settings
+  // already added.
+  void recoveryDoesNotDuplicateFlags() {
+    Performance::setDisableGpu(true); // user already forced --disable-gpu
+    Performance::armStartupWatch();
+    Performance::evaluateStartup();   // → level 1, also wants --disable-gpu
+    const QStringList tokens =
+        Performance::chromiumFlagFragment().split(QLatin1Char(' '),
+                                                  Qt::SkipEmptyParts);
+    QCOMPARE(tokens.count(QStringLiteral("--disable-gpu")), 1);
+    Performance::markStartupSucceeded();
   }
 
   void gpuFlagsMapCorrectly() {

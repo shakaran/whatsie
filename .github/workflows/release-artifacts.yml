@@ -250,6 +250,34 @@ jobs:
           cp AppDir/usr/share/icons/hicolor/256x256/apps/net.shakaran.whatly.png \
             pkg/usr/share/icons/hicolor/256x256/apps/ || true
 
+      - name: Verify the bundled Qt WebEngine runtime is complete
+        run: |
+          # A relocated Qt WebEngine that is missing its helper process or its
+          # resource/locale data aborts (SIGTRAP) on the first page load — the
+          # class of crash reported in issue #3. Fail the build here rather than
+          # shipping a package that cannot render anything.
+          root=pkg/opt/whatly
+          fail=0
+          need_file() {
+            if ! find "$root" -name "$1" -print -quit | grep -q .; then
+              echo "::error::missing from the bundle: $1"
+              fail=1
+            else
+              echo "ok: $1 -> $(find "$root" -name "$1" -print -quit)"
+            fi
+          }
+          need_file QtWebEngineProcess
+          need_file icudtl.dat
+          need_file qtwebengine_resources.pak
+          # At least one localised .pak must be present.
+          if ! find "$root" -path '*qtwebengine_locales*.pak' -print -quit | grep -q .; then
+            echo "::error::missing from the bundle: qtwebengine_locales/*.pak"
+            fail=1
+          else
+            echo "ok: qtwebengine_locales/*.pak present"
+          fi
+          exit $fail
+
       - name: Build .deb and .rpm
         run: |
           tag="${{ github.event.inputs.tag || github.ref_name }}"
