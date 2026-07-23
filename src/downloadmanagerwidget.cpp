@@ -26,7 +26,7 @@ void DownloadManagerWidget::downloadRequested(
   QDir().mkpath(path);
 
   auto proposed_file_name =
-      path + QDir::separator() + download->downloadFileName();
+      path + QLatin1Char('/') + download->downloadFileName();
 
   QFileInfo p_file_info(proposed_file_name);
 
@@ -39,7 +39,7 @@ void DownloadManagerWidget::downloadRequested(
     msgBox.setDefaultButton(QMessageBox::Save);
     switch (msgBox.exec()) {
     case QMessageBox::Save: {
-      QString n_proposed_file_name = path + QDir::separator() +
+      QString n_proposed_file_name = path + QLatin1Char('/') +
                                      Utils::generateRandomId(5) + "_" +
                                      download->downloadFileName();
       download->setDownloadFileName(n_proposed_file_name);
@@ -78,7 +78,7 @@ void DownloadManagerWidget::on_open_download_dir_clicked() {
   Utils::desktopOpenUrl(SettingsManager::instance().settings().value("defaultDownloadLocation",
                                    QStandardPaths::writableLocation(
                                        QStandardPaths::DownloadLocation) +
-                                       QDir::separator() +
+                                       QLatin1Char('/') +
                                        QApplication::applicationDisplayName())
                             .toString());
 }
