@@ -6,6 +6,7 @@
 #include <algorithm>
 
 #include <QStyleHints>
+#include <QDateTime>
 #include <QActionGroup>
 #include <QPainter>
 
@@ -256,7 +257,14 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason) {
   // window to the front reliably (raise + activate + clear minimised) — the
   // part that used to fail on Windows and when minimised. Only when it is
   // already frontmost, and the user opted into it, does a click hide it again.
-  const bool frontmost = isVisible() && !isMinimized() && isActiveWindow();
+  // On Windows the tray click hands focus to the shell before this runs, so
+  // isActiveWindow() is already false for a window that WAS frontmost; a short
+  // grace window (m_lastDeactivationMs, stamped in changeEvent) recovers that,
+  // so "hide when clicked while frontmost" still works.
+  const bool frontmost =
+      isVisible() && !isMinimized() &&
+      (isActiveWindow() ||
+       QDateTime::currentMSecsSinceEpoch() - m_lastDeactivationMs < 300);
   const bool minimizeOnClick = SettingsManager::instance()
                                    .settings()
                                    .value("minimizeOnTrayIconClick", false)

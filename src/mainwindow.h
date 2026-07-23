@@ -221,6 +221,9 @@ private:
 
   QMenu *m_trayIconMenu = nullptr;
   QSystemTrayIcon *m_systemTrayIcon = nullptr;
+  // Timestamp of the last time the window lost activation, for the tray-click
+  // "was frontmost a moment ago" heuristic in iconActivated().
+  qint64 m_lastDeactivationMs = 0;
   QWebEngineView *m_webEngine = nullptr;
   PageBridge *m_pageBridge = nullptr;
   QWebChannel *m_webChannel = nullptr;
