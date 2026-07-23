@@ -18,6 +18,13 @@
 #include <QLineEdit>
 #include <QMouseEvent>
 #include <QCheckBox>
+#include <QToolButton>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QGroupBox>
+#include <QScrollBar>
+#include <QTimer>
+#include <QPropertyAnimation>
 
 #include "automatictheme.h"
 #include "chattheme.h"
@@ -74,6 +81,13 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
                                QString enginePersistentStoragePath)
     : QWidget(parent), ui(new Ui::SettingsWidget) {
   ui->setupUi(this);
+
+#ifdef Q_OS_WIN
+  // The Qt "widget style" chooser is a Linux desktop-theming nicety; on Windows
+  // the native style is expected, so the control is hidden there.
+  ui->label_8->hide();
+  ui->styleComboBox->hide();
+#endif
 
   this->engineCachePath = engineCachePath;
   this->enginePersistentStoragePath = enginePersistentStoragePath;
@@ -222,14 +236,14 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
           .settings()
           .value("minimizeOnTrayIconClick", false)
           .toBool());
-  ui->defaultDownloadLocation->setText(
+  ui->defaultDownloadLocation->setText(QDir::toNativeSeparators(
       SettingsManager::instance()
           .settings()
           .value("defaultDownloadLocation",
                  QStandardPaths::writableLocation(
                      QStandardPaths::DownloadLocation) +
-                     QDir::separator() + QApplication::applicationDisplayName())
-          .toString());
+                     QLatin1Char('/') + QApplication::applicationDisplayName())
+          .toString()));
 
   ui->styleComboBox->blockSignals(true);
   ui->styleComboBox->addItems(QStyleFactory::keys());
@@ -296,6 +310,251 @@ SettingsWidget::SettingsWidget(QWidget *parent, int screenNumber,
     if (!screenRect.contains(this->pos())) {
       this->move(screenRect.center() - this->rect().center());
     }
+  }
+
+  // ── Re-section "General settings" + collapsible accordion ───────────────────
+  // The single "General settings" group had grown overwhelming, so its controls
+  // are redistributed into themed sub-sections. Every sub-section — and each
+  // pre-existing group below it — becomes a collapsible row with an arrow header
+  // (▸ collapsed / ▾ open); toggling hides/shows the WHOLE group as one widget,
+  // so a collapsed section shrinks to just its header instead of an empty box.
+  // Only the first row is open on launch.
+  if (auto *outer =
+          qobject_cast<QVBoxLayout *>(ui->scrollAreaWidgetContents->layout())) {
+    QWidget *host = ui->scrollAreaWidgetContents;
+
+    // An empty titled sub-section, ready to receive controls.
+    const auto newSection = [host](const QString &title) {
+      auto *g = new QGroupBox(title, host);
+      auto *v = new QVBoxLayout(g);
+      v->setContentsMargins(12, 6, 6, 6);
+      v->setSpacing(6);
+      return g;
+    };
+    const auto body = [](QGroupBox *g) {
+      return qobject_cast<QVBoxLayout *>(g->layout());
+    };
+    // Move a whole nested layout, detaching it from its current parent layout.
+    const auto moveLayout = [](QVBoxLayout *dst, QLayout *inner) {
+      if (!dst || !inner)
+        return;
+      if (auto *p = qobject_cast<QLayout *>(inner->parent()))
+        p->removeItem(inner);
+      dst->addLayout(inner);
+    };
+    // Move one control (detached from its source layout) onto its own row.
+    const auto moveWidget = [](QVBoxLayout *dst, QWidget *w, QLayout *src) {
+      if (!dst || !w)
+        return;
+      if (src)
+        src->removeWidget(w);
+      dst->addWidget(w);
+    };
+    // Move a label + field pair onto a single row.
+    const auto moveRow = [](QVBoxLayout *dst, QWidget *a, QWidget *b,
+                            QLayout *src) {
+      if (!dst)
+        return;
+      auto *h = new QHBoxLayout;
+      h->setContentsMargins(0, 0, 0, 0);
+      if (a) {
+        if (src)
+          src->removeWidget(a);
+        h->addWidget(a);
+      }
+      if (b) {
+        if (src)
+          src->removeWidget(b);
+        h->addWidget(b, 1);
+      }
+      dst->addLayout(h);
+    };
+    // Move a label + a nested control-layout pair onto a single row.
+    const auto moveRowL = [](QVBoxLayout *dst, QWidget *a, QLayout *sub,
+                             QLayout *srcOfA) {
+      if (!dst)
+        return;
+      auto *h = new QHBoxLayout;
+      h->setContentsMargins(0, 0, 0, 0);
+      if (a) {
+        if (srcOfA)
+          srcOfA->removeWidget(a);
+        h->addWidget(a);
+      }
+      if (sub) {
+        if (auto *p = qobject_cast<QLayout *>(sub->parent()))
+          p->removeItem(sub);
+        h->addLayout(sub, 1);
+      }
+      dst->addLayout(h);
+    };
+
+    QLayout *G = ui->gridLayout;    // the old loose grab-bag grid
+    QLayout *G6 = ui->gridLayout_6; // close-button / shortcuts / permissions
+
+    // ── Basics ──────────────────────────────────────────────
+    auto *basics = newSection(tr("Basics"));
+    moveRow(body(basics), ui->languageLabel, ui->languageComboBox, G);
+    moveLayout(body(basics), ui->gridLayout_7); // default download location
+    moveWidget(body(basics), ui->useNativeFileDialog, G);
+    moveWidget(body(basics), ui->identifyInLinkedDevicesCheckBox, G);
+
+    // ── Appearance ──────────────────────────────────────────
+    auto *appearance = newSection(tr("Appearance"));
+    moveLayout(body(appearance), ui->gridLayout_5);     // display theme block
+    moveLayout(body(appearance), ui->horizontalLayout); // widget style (Linux)
+    moveRow(body(appearance), ui->chatThemeLabel, ui->chatThemeComboBox, G);
+    moveRowL(body(appearance), ui->chatWallpaperLabel, ui->chatWallpaperLayout,
+             G);
+    moveRow(body(appearance), ui->fontFamilyLabel, ui->fontFamilyComboBox, G);
+    moveRow(body(appearance), ui->interfaceFontSizeLabel,
+            ui->interfaceFontSizeSpinBox, G);
+    moveRowL(body(appearance), ui->customCssLabel, ui->customCssLayout, G);
+    moveWidget(body(appearance), ui->themeToggleButtonCheckBox, G);
+    moveWidget(body(appearance), ui->smoothScrollingCheckBox, G);
+    moveWidget(body(appearance), ui->monochromeTrayIconCheckBox, G);
+
+    // ── Notifications ───────────────────────────────────────
+    auto *notifications = newSection(tr("Notifications"));
+    moveLayout(body(notifications), ui->gridLayout_8); // whole notice block
+
+    // ── Chatting ────────────────────────────────────────────
+    auto *chatting = newSection(tr("Chatting"));
+    moveRow(body(chatting), ui->spellCheckCheckBox,
+            ui->spellCheckLanguageComboBox, G);
+    moveWidget(body(chatting), ui->muteAudioCheckBox, G);
+    moveWidget(body(chatting), ui->autoPlayMediaCheckBox, G);
+    moveWidget(body(chatting), ui->dismissEmojiPanelCheckBox, G);
+    moveWidget(body(chatting), ui->hideMutedStatusCheckBox, G);
+
+    // ── Privacy & Lock ──────────────────────────────────────
+    auto *privacy = newSection(tr("Privacy & Lock"));
+    moveRow(body(privacy), ui->privacyBlurLabel, ui->privacyBlurComboBox, G);
+    moveWidget(body(privacy), ui->privacyBlurButtonCheckBox, G);
+    moveLayout(body(privacy), ui->gridLayout_3); // app-lock block
+
+    // ── Window & zoom ───────────────────────────────────────
+    auto *window = newSection(tr("Window && zoom"));
+    moveRow(body(window), ui->label, ui->closeButtonActionComboBox, G6);
+    moveWidget(body(window), ui->startMinimized, G);
+    moveWidget(body(window), ui->minimizeOnTrayIconClick, G);
+    moveWidget(body(window), ui->hideTrayIconCheckBox, G);
+    moveLayout(body(window), ui->gridLayout_9); // zoom block
+
+    // ── Advanced ────────────────────────────────────────────
+    auto *advanced = newSection(tr("Advanced"));
+    moveLayout(body(advanced), ui->horizontalLayout_3); // user agent
+    moveWidget(body(advanced), ui->autoRestartCheckBox, G);
+    moveRow(body(advanced), ui->label_9, ui->showShortcutsButton, G6);
+    moveRow(body(advanced), ui->label_10, ui->showPermissionsButton, G6);
+
+    // The emptied "General settings" shell (and its leftover separator lines)
+    // are no longer needed; the arrow headers separate the sections now.
+    outer->removeWidget(ui->groupBox_8);
+    delete ui->groupBox_8;
+
+    // Place the everyday sub-sections above the pre-existing groups, in reading
+    // order; "Advanced" is pushed to the very bottom of the whole list.
+    outer->insertWidget(0, basics);
+    outer->insertWidget(1, appearance);
+    outer->insertWidget(2, notifications);
+    outer->insertWidget(3, chatting);
+    outer->insertWidget(4, privacy);
+    outer->insertWidget(5, window);
+    outer->addWidget(advanced);
+
+    QScrollArea *scrollArea = ui->scrollArea;
+    const auto makeCollapsible = [outer, scrollArea](QGroupBox *box,
+                                                     bool open) {
+      if (!box)
+        return;
+      const int idx = outer->indexOf(box);
+      if (idx < 0)
+        return;
+      delete outer->takeAt(idx); // detach the bare group from the column
+
+      auto *section = new QWidget(box->parentWidget());
+      auto *sv = new QVBoxLayout(section);
+      sv->setContentsMargins(0, 0, 0, 0);
+      sv->setSpacing(0);
+
+      auto *header = new QToolButton(section);
+      header->setText(box->title());
+      header->setCheckable(true);
+      header->setChecked(open);
+      header->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+      header->setArrowType(open ? Qt::DownArrow : Qt::RightArrow);
+      header->setAutoRaise(true);
+      header->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+      header->setStyleSheet("QToolButton { border: none; font-weight: bold; "
+                            "text-align: left; padding: 3px 6px; }");
+
+      box->setTitle(QString()); // the header shows the title now
+      box->setStyleSheet("QGroupBox { border: none; margin-top: 0px; }");
+      box->setVisible(open);
+
+      QObject::connect(
+          header, &QToolButton::toggled, box,
+          [box, header, section, scrollArea](bool on) {
+            box->setVisible(on);
+            header->setArrowType(on ? Qt::DownArrow : Qt::RightArrow);
+            if (!on || !scrollArea)
+              return;
+            // Newly revealed content may extend past the bottom of the window;
+            // nudge the view down just enough to bring this section's last item
+            // back on screen (never scrolls up).
+            QTimer::singleShot(0, scrollArea, [scrollArea, section]() {
+              QWidget *content = scrollArea->widget();
+              if (!content)
+                return;
+              if (QLayout *l = content->layout())
+                l->activate(); // settle geometry before measuring
+              const int sectionBottom =
+                  section->mapTo(content, QPoint(0, section->height())).y();
+              QScrollBar *vsb = scrollArea->verticalScrollBar();
+              const int need = sectionBottom - scrollArea->viewport()->height();
+              if (need <= vsb->value())
+                return;
+              // Ease the scroll over ~1.5 s (reusing one animation per scrollbar
+              // so rapid toggles don't fight) so the jump is easy to follow
+              // rather than an instant snap.
+              auto *anim = vsb->findChild<QPropertyAnimation *>();
+              if (!anim) {
+                anim = new QPropertyAnimation(vsb, "value", vsb);
+                anim->setEasingCurve(QEasingCurve::InOutCubic);
+              }
+              anim->stop();
+              anim->setDuration(1500);
+              anim->setStartValue(vsb->value());
+              anim->setEndValue(qMin(need, vsb->maximum()));
+              anim->start();
+            });
+          });
+
+      sv->addWidget(header);
+      sv->addWidget(box); // reparents the group into the section
+      outer->insertWidget(idx, section);
+    };
+
+    makeCollapsible(basics, true); // open on launch
+    makeCollapsible(appearance, false);
+    makeCollapsible(notifications, false);
+    makeCollapsible(chatting, false);
+    makeCollapsible(privacy, false);
+    makeCollapsible(window, false);
+    makeCollapsible(advanced, false);
+    makeCollapsible(ui->groupBox_7, false);          // Storage
+    makeCollapsible(ui->groupBoxPerformance, false); // Performance & Privacy
+    makeCollapsible(ui->groupBoxNetwork, false);     // Network & Startup
+    makeCollapsible(ui->groupBoxJsAddons, false);    // JS Addons
+    makeCollapsible(ui->groupBoxCanned, false);      // Canned responses
+    makeCollapsible(ui->groupBoxShortcuts, false);   // Shortcuts
+
+    // Stack the section headers directly beneath one another with about one
+    // character of breathing room, instead of letting the column stretch them
+    // apart to fill the window height.
+    outer->setSpacing(this->fontMetrics().averageCharWidth());
+    outer->addStretch(1);
   }
 }
 
@@ -1310,11 +1569,12 @@ void SettingsWidget::populateSpellCheck() {
   }
   auto *model = new QStandardItemModel(combo);
   for (const QString &dictionary : available) {
-    // "es_ES" reads better as "Español (España)".
+    // Build from the language alone so "es_ES" reads "Español", not "Español
+    // de España" — the code in parentheses already disambiguates the territory.
     const QLocale locale(dictionary);
     const QString name = locale.language() == QLocale::C
                              ? dictionary
-                             : locale.nativeLanguageName() +
+                             : QLocale(locale.language()).nativeLanguageName() +
                                    QStringLiteral(" (") + dictionary +
                                    QStringLiteral(")");
     auto *item = new QStandardItem(name);
@@ -1326,8 +1586,7 @@ void SettingsWidget::populateSpellCheck() {
   }
   combo->setModel(model);
   connect(model, &QStandardItemModel::itemChanged, this,
-          [this](QStandardItem *) { saveSpellCheckLanguages(); },
-          Qt::UniqueConnection);
+          [this](QStandardItem *) { saveSpellCheckLanguages(); });
   // The view's items are toggled by a click that must not dismiss the popup.
   if (combo->view() && !combo->view()->viewport()->property("whatlyFilter").toBool()) {
     combo->view()->viewport()->installEventFilter(this);
@@ -1461,8 +1720,10 @@ void SettingsWidget::populateLanguages() {
     const QString code = file.completeBaseName(); // e.g. es_ES
     const QLocale locale(code);
     // Name the language in itself — an Italian speaker looks for "Italiano",
-    // not for whatever the current interface language calls it.
-    QString label = locale.nativeLanguageName();
+    // not for whatever the current interface language calls it. Build from the
+    // language alone (not the full locale) so it reads "Español", not "Español
+    // de España" — the code in parentheses already disambiguates the territory.
+    QString label = QLocale(locale.language()).nativeLanguageName();
     if (label.isEmpty())
       label = code;
     else
