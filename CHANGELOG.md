@@ -10,6 +10,32 @@ in a bug report instead of vanishing into the journal. The release packaging
 now verifies the bundled Qt WebEngine runtime is complete before shipping.
 Covered by unit tests (`TstPerformance`, `TstDebugLog`).
 
+**Settings, reorganised (#9).** The long "General settings" list is split into
+themed, collapsible sections — Basics, Appearance, Notifications, Chatting,
+Privacy & Lock, Window & zoom, Advanced — each with an arrow header; only the
+first is open on launch. Language names read in their own language without the
+redundant territory ("Español", not "Español de España"). Fully translated into
+all 15 languages. Covered by unit tests (`tst_settings`).
+
+**Emoji skin-tone selection (#6).** Picking a skin tone no longer closes the
+emoji panel mid-selection — the variant/skin-tone popover is now recognised as
+part of the emoji subsystem.
+
+**HD photos on receive (#7).** WhatsApp Web's `wa_web_show_hd_photo` flag is
+forced on, so HD photos render the moment the servers deliver them to linked
+devices. This is the receive side; sending in HD is a separate option.
+
+**Notification popup stays on-screen (#5).** The custom notification popup is
+anchored to the top-right of the active screen's available area with a margin,
+so its edges are no longer clipped (including on a secondary monitor).
+
+**Consistent download path (#4).** The default download location uses forward
+slashes on every platform, instead of a mixed separator on Windows.
+
+**Hide from the tray on Windows (#8).** Clicking the tray icon while the window
+is frontmost hides it again as intended — a short grace window recovers the
+focus the shell steals on the click. Windows-only; other platforms unchanged.
+
 **Raise the window from the tray.** A left click (or double click) on the
 tray icon now reliably brings the window to the front — shown, un-minimised
 and focused — which used to fail on Windows and when minimised. Only a
