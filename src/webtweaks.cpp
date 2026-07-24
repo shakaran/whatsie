@@ -6,6 +6,38 @@
 #include <QWebEngineScriptCollection>
 
 static const char kScriptName[] = "whatly-web-tweaks";
+static const char kHdFlagScriptName[] = "whatly-hd-media-flag";
+
+// WhatsApp Web ships its HD photo consumption UI dark, gated by the server-side
+// rollout flag wa_web_show_hd_photo (off for most accounts). The HD originals
+// arrive as hidden associated child messages that linked devices are not yet
+// sent, so forcing the flag changes nothing visible today — HD badges render
+// only where the data is actually present — but the moment the servers start
+// delivering HD originals to linked/companion devices, HD media lights up
+// without waiting for Meta's per-account rollout. This is the RECEIVE side;
+// hdmedia.cpp separately handles sending in HD by default.
+static const char kHdFlagScript[] = R"JS(
+(function () {
+  'use strict';
+  if (window.__whatlyHdFlagReady) return;
+  window.__whatlyHdFlagReady = true;
+  var tries = 0;
+  var timer = setInterval(function () {
+    tries += 1;
+    try {
+      var ab = window.require('WAWebABProps');
+      var orig = ab.getABPropConfigValue;
+      ab.getABPropConfigValue = function (name) {
+        if (name === 'wa_web_show_hd_photo') return true;
+        return orig.apply(this, arguments);
+      };
+      clearInterval(timer);
+    } catch (e) {
+      if (tries > 240) clearInterval(timer);  // module system never appeared
+    }
+  }, 500);
+})();
+)JS";
 
 // __FLAGS__ becomes a JSON object of the enabled tweaks. Behavior is gated by
 // the LIVE flags object (window.__whatlyWebTweaks) rather than a captured
@@ -319,9 +351,21 @@ QString scriptSource() {
 
 void install(QWebEngineProfile *profile) {
   auto *scripts = profile->scripts();
-  const auto existing = scripts->find(QLatin1String(kScriptName));
-  for (const auto &script : existing)
-    scripts->remove(script);
+  for (const char *name : {kScriptName, kHdFlagScriptName}) {
+    const auto existing = scripts->find(QLatin1String(name));
+    for (const auto &script : existing)
+      scripts->remove(script);
+  }
+
+  // Not a user tweak: the HD receive-flag script is always injected (see the
+  // comment on kHdFlagScript above).
+  QWebEngineScript hdFlag;
+  hdFlag.setName(QLatin1String(kHdFlagScriptName));
+  hdFlag.setSourceCode(QString::fromLatin1(kHdFlagScript));
+  hdFlag.setInjectionPoint(QWebEngineScript::DocumentReady);
+  hdFlag.setWorldId(QWebEngineScript::MainWorld);
+  hdFlag.setRunsOnSubFrames(false);
+  scripts->insert(hdFlag);
 
   QSettings &s = SettingsManager::instance().settings();
   const bool dismiss =
