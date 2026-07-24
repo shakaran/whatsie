@@ -155,9 +155,17 @@ jobs:
           $code = -1
           if ($p.HasExited) { $code = $p.ExitCode }
           Write-Host "build step done: stopped=$stopped exit=$code"
-          if (-not $stopped -and $phase -eq 'finish' -and $code -ne 0) {
-            throw "finish build failed (exit $code)"
+          # probe/warm are deliberately time-boxed partial builds: a soft-stop
+          # (and the taskkill'd in-flight compiles) is success, so exit 0 rather
+          # than inheriting taskkill's / the killed build's stray exit code — the
+          # pwsh shell ends with `exit $LASTEXITCODE`, which otherwise fails the
+          # step. Only `finish` fails, and only if it did not build to completion.
+          if ($phase -eq 'finish') {
+            if ($stopped -or $code -ne 0) {
+              throw "finish build did not complete (stopped=$stopped exit=$code)"
+            }
           }
+          exit 0
 
       - name: Diagnostics — is sccache wired into Chromium?
         if: always()
