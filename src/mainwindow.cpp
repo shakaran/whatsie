@@ -12,6 +12,7 @@
 #include <QStyleFactory>
 #include <QStyleHints>
 #include <QUrlQuery>
+#include <QDateTime>
 #ifdef Q_OS_LINUX
 #include <QDBusArgument>
 #include <QDBusConnection>
@@ -328,6 +329,11 @@ void MainWindow::moveEvent(QMoveEvent *event) {
 void MainWindow::changeEvent(QEvent *e) {
   if (e->type() == QEvent::WindowStateChange)
     handleZoomOnWindowStateChange(static_cast<QWindowStateChangeEvent *>(e));
+  // Remember when the window last lost activation: a tray-icon click moves
+  // focus to the shell before iconActivated() runs, so this lets it tell "was
+  // frontmost a moment ago" apart from "buried under another window".
+  if (e->type() == QEvent::ActivationChange && !isActiveWindow())
+    m_lastDeactivationMs = QDateTime::currentMSecsSinceEpoch();
   QMainWindow::changeEvent(e);
 }
 
