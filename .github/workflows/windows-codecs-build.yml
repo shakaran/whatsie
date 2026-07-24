@@ -18,8 +18,16 @@ jobs:
     runs-on: windows-2022
     timeout-minutes: 345
     env:
-      SCCACHE_GHA_ENABLED: 'true'
-      SCCACHE_CACHE_SIZE: '25G'
+      # Use sccache's plain local-disk cache (SCCACHE_DIR), NOT its built-in
+      # GitHub Actions backend: that backend talks to the legacy cache API
+      # (artifactcache.actions.githubusercontent.com), which GitHub has
+      # decommissioned — it 503s and sccache's server never starts, so nothing
+      # is cached. The disk cache is persisted with actions/cache@v4 (which uses
+      # the current cache service) in the step below. Keep the cap under
+      # GitHub's ~10 GB per-repo Actions-cache limit so the warm -> finish
+      # hand-off actually fits.
+      SCCACHE_CACHE_SIZE: '8G'
+      SCCACHE_DIR: ${{ github.workspace }}\.sccache
     steps:
       - name: Install base Qt ${{ inputs.qt_version }}
         uses: jurplel/install-qt-action@v4
@@ -66,6 +74,20 @@ jobs:
 
       - name: Set up sccache
         uses: mozilla-actions/sccache-action@v0.0.6
+
+      - name: Restore the sccache disk cache
+        # Persist SCCACHE_DIR across runs (and across the warm -> finish jobs)
+        # via the current cache service. Per-run key so every run saves a fresh
+        # entry; restore-keys prefer a prior finish, then warm, then any, so
+        # finish inherits what warm built and each run warms the next.
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}\.sccache
+          key: sccache-winwe-${{ inputs.qt_version }}-${{ inputs.phase }}-${{ github.run_id }}
+          restore-keys: |
+            sccache-winwe-${{ inputs.qt_version }}-finish-
+            sccache-winwe-${{ inputs.qt_version }}-warm-
+            sccache-winwe-${{ inputs.qt_version }}-
 
       - name: Fetch QtWebEngine source (shallow git; fast on Windows)
         shell: pwsh
