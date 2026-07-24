@@ -10,12 +10,14 @@
 #include <QComboBox>
 #include <QDialog>
 #include <QDoubleSpinBox>
+#include <QGroupBox>
 #include <QPointer>
 #include <QPushButton>
 #include <QSlider>
 #include <QSpinBox>
 #include <QTemporaryDir>
 #include <QTimer>
+#include <QToolButton>
 
 #include "settingswidget.h"
 
@@ -75,6 +77,57 @@ private slots:
     }
     QTest::qWait(20); // let any queued slot work run
     QVERIFY(true);
+  }
+
+  // #9: the settings page is a set of collapsible accordion sections — an arrow
+  // header (▾ open / ▸ collapsed) per group that shows/hides the whole group.
+  // Only the first is open on launch, and toggling a header reveals/hides its
+  // group box.
+  void collapsibleSections() {
+    QTemporaryDir cache, storage;
+    SettingsWidget sw(nullptr, 0, cache.path(), storage.path());
+
+    QList<QToolButton *> headers;
+    for (auto *tb : sw.findChildren<QToolButton *>())
+      if (tb->arrowType() == Qt::DownArrow || tb->arrowType() == Qt::RightArrow)
+        headers << tb;
+    // The new sub-sections plus the pre-existing groups.
+    QVERIFY(headers.size() >= 7);
+
+    // Exactly one section is open on launch.
+    int open = 0;
+    for (auto *h : headers)
+      if (h->isChecked())
+        ++open;
+    QCOMPARE(open, 1);
+
+    // A collapsed header's group box is hidden; toggling the header reveals it
+    // and toggling again hides it (the arrow tracks the state).
+    QToolButton *collapsed = nullptr;
+    for (auto *h : headers)
+      if (!h->isChecked()) {
+        collapsed = h;
+        break;
+      }
+    QVERIFY(collapsed);
+    QWidget *section = collapsed->parentWidget();
+    QVERIFY(section);
+    QGroupBox *box = nullptr;
+    for (auto *b : section->findChildren<QGroupBox *>())
+      if (b->parentWidget() == section) {
+        box = b;
+        break;
+      }
+    QVERIFY(box);
+    QVERIFY(!box->isVisibleTo(section)); // collapsed to just its header
+
+    collapsed->setChecked(true);
+    QVERIFY(box->isVisibleTo(section));
+    QCOMPARE(collapsed->arrowType(), Qt::DownArrow);
+
+    collapsed->setChecked(false);
+    QVERIFY(!box->isVisibleTo(section));
+    QCOMPARE(collapsed->arrowType(), Qt::RightArrow);
   }
 };
 
