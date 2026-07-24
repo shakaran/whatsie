@@ -115,8 +115,12 @@ protected slots:
       }
 
       QRect screenRect = screen->availableGeometry();
-      int x = (screenRect.x() + screenRect.width() - 20) - this->width();
-      int y = 40;
+      // Finalise the size first — otherwise width()/height() are stale here and
+      // the popup lands off the corner with its top and left edges clipped.
+      this->adjustSize();
+      const int margin = 20;  // keep at least a character clear of the screen edge
+      int x = screenRect.x() + screenRect.width() - this->width() - margin;
+      int y = screenRect.y() + margin;
 
       QPropertyAnimation *a = new QPropertyAnimation(this, "pos");
       a->setDuration(200);
