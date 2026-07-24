@@ -1,3 +1,57 @@
+## 6.5.0 (2026-07-24)
+
+**Recover from a start-up crash (#3).** If Qt WebEngine aborts while
+initialising GPU/GL against an incompatible system driver — seen on some
+Linux setups before WhatsApp Web ever loads — the next launch automatically
+switches to progressively safer software rendering and tells you so; a clean
+load resets it. Chromium's own diagnostics are now also written to a log file
+(`whatly-webengine.log`) on a desktop/systemd launch, so the crash cause lands
+in a bug report instead of vanishing into the journal. The release packaging
+now verifies the bundled Qt WebEngine runtime is complete before shipping.
+Covered by unit tests (`TstPerformance`, `TstDebugLog`).
+
+**Settings, reorganised (#9).** The long "General settings" list is split into
+themed, collapsible sections — Basics, Appearance, Notifications, Chatting,
+Privacy & Lock, Window & zoom, Advanced — each with an arrow header; only the
+first is open on launch. Language names read in their own language without the
+redundant territory ("Español", not "Español de España"). Fully translated into
+all 15 languages. Covered by unit tests (`tst_settings`).
+
+**Emoji skin-tone selection (#6).** Picking a skin tone no longer closes the
+emoji panel mid-selection — the variant/skin-tone popover is now recognised as
+part of the emoji subsystem.
+
+**HD photos on receive (#7).** WhatsApp Web's `wa_web_show_hd_photo` flag is
+forced on, so HD photos render the moment the servers deliver them to linked
+devices. This is the receive side; sending in HD is a separate option.
+
+**Notification popup stays on-screen (#5).** The custom notification popup is
+anchored to the top-right of the active screen's available area with a margin,
+so its edges are no longer clipped (including on a secondary monitor).
+
+**Consistent download path (#4).** The default download location uses forward
+slashes on every platform, instead of a mixed separator on Windows.
+
+**Hide from the tray on Windows (#8).** Clicking the tray icon while the window
+is frontmost hides it again as intended — a short grace window recovers the
+focus the shell steals on the click. Windows-only; other platforms unchanged.
+
+**Raise the window from the tray.** A left click (or double click) on the
+tray icon now reliably brings the window to the front — shown, un-minimised
+and focused — which used to fail on Windows and when minimised. Only a
+click while the window is already frontmost hides it, and only if you
+enabled *minimize on tray-icon click*.
+
+**Send media in HD by default.** An optional tweak (Settings → Performance
+& Privacy) selects HD in WhatsApp Web's media editor automatically, so
+photos and videos default to HD. It depends on WhatsApp Web's layout and
+can be turned off if an update breaks it. Covered by unit tests
+(`TstHdMedia`).
+
+**Acknowledgements.** The linked-device identification, the dark-theme
+persistence fix, and Windows support build on pull requests by Gert Bolten
+Maizonave (gbmaizol) to upstream WhatSie (#324, #326, #321).
+
 ## 6.4.0 (2026-07-20)
 
 A large feature release: a command palette, notification rules, recurring

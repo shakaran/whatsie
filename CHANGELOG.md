@@ -1,4 +1,4 @@
-## Unreleased
+## 6.5.0 (2026-07-24)
 
 **Recover from a start-up crash (#3).** If Qt WebEngine aborts while
 initialising GPU/GL against an incompatible system driver — seen on some

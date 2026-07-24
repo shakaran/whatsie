@@ -108,6 +108,20 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="6.5.0" date="2026-07-24">
+      <description>
+        <p>Fixes and refinements, several from community pull requests:</p>
+        <ul>
+          <li>Automatic recovery from a start-up crash: if the browser engine aborts before the page loads, the next launch falls back to safer software rendering, and Chromium's own output is logged for bug reports</li>
+          <li>Settings reorganised into themed, collapsible sections</li>
+          <li>Picking an emoji skin tone no longer closes the emoji panel</li>
+          <li>HD photos render as soon as linked devices receive them</li>
+          <li>The notification popup stays fully on-screen (top-right)</li>
+          <li>Consistent forward-slash download paths on every platform</li>
+          <li>On Windows, clicking the tray icon while the window is frontmost hides it again</li>
+        </ul>
+      </description>
+    </release>
     <release version="6.4.0" date="2026-07-20">
       <description>
         <p>A large feature release:</p>

@@ -183,6 +183,14 @@ On top of upstream WhatSie, this fork adds:
 - **Safer cache clearing** — the "clear cache" action refuses any path that is
   not inside the app's own storage, so it can never run a recursive delete on
   your home directory.
+- **Recovers from a start-up crash** — if the browser engine aborts while
+  bringing up GPU/GL against an incompatible driver (before WhatsApp Web even
+  loads), the next launch automatically falls back to safer software rendering
+  and tells you; a clean start resets it. Chromium's own output is also logged
+  to a file so the cause lands in a bug report instead of the system journal.
+- **Settings, reorganised** — the long settings list is grouped into themed,
+  collapsible sections (Basics, Appearance, Notifications, Chatting, Privacy &
+  Lock, Window & zoom, Advanced), with only the first open on launch.
 
 ## Screenshots
 

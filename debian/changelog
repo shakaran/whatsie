@@ -1,3 +1,16 @@
+whatly (6.5.0) unstable; urgency=medium
+
+  * Automatic recovery from a start-up GPU/GL crash: fall back to safer
+    software rendering and log Chromium's own output for bug reports (#3).
+  * Settings reorganised into themed, collapsible sections (#9).
+  * Emoji panel no longer closes when picking a skin tone (#6).
+  * HD photos render as soon as linked devices receive them (#7).
+  * Notification popup stays fully on-screen (#5); consistent download
+    paths on every platform (#4); on Windows, a tray click hides a
+    frontmost window again (#8). See CHANGELOG.md.
+
+ -- Ángel Guzmán Maeso <angel@guzmanmaeso.com>  Fri, 24 Jul 2026 18:00:00 +0200
+
 whatly (6.4.0) unstable; urgency=medium
 
   * Command palette (Ctrl+K) with fuzzy search over actions and accounts.
