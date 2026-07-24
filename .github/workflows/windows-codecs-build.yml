@@ -96,13 +96,27 @@ jobs:
           # files) under Defender takes hours; a shallow git clone + shallow
           # submodules is ~5 min, so use that here. (The local Linux script uses
           # the tar.xz, which extracts fast on ext4.)
+          #
+          # code.qt.io intermittently 503s mid-fetch (especially the huge
+          # qtwebengine-chromium submodule); retry so a transient hiccup does not
+          # waste a whole run — critical for the multi-hour finish phase. Both the
+          # clone and the submodule update are idempotent/resumable on re-run.
+          function Retry([scriptblock]$cmd, [string]$what, [int]$max = 4) {
+            for ($i = 1; $i -le $max; $i++) {
+              & $cmd
+              if ($LASTEXITCODE -eq 0) { return }
+              Write-Host "$what failed (exit $LASTEXITCODE), attempt $i/$max; retry in 30s"
+              Start-Sleep -Seconds 30
+            }
+            throw "$what failed after $max attempts"
+          }
           $ver = "${{ inputs.qt_version }}"
-          git clone --depth 1 --branch "v$ver" `
-            https://code.qt.io/qt/qtwebengine.git qtwebengine
-          if ($LASTEXITCODE -ne 0) { throw "git clone failed" }
+          if (-not (Test-Path qtwebengine)) {
+            Retry { git clone --depth 1 --branch "v$ver" `
+              https://code.qt.io/qt/qtwebengine.git qtwebengine } "git clone"
+          }
           cd qtwebengine
-          git submodule update --init --recursive --depth 1
-          if ($LASTEXITCODE -ne 0) { throw "submodule checkout failed" }
+          Retry { git submodule update --init --recursive --depth 1 } "submodule checkout"
 
       - name: Configure (Release, codecs ON, sccache as cc_wrapper)
         shell: pwsh
